@@ -40,7 +40,20 @@ export function preflightRestore(text: string): { ok: true; plan: RestorePlan } 
   try { data = JSON.parse(text); } catch { return { ok: false, error: "文件不是有效的 JSON。" }; }
   if (!isObject(data) || data.app !== APP) return { ok: false, error: "这不是词光的备份。" };
   if (data.version === 3 && data.scope === "all-local-data" && validRecords(data.records)) {
-    const courses = Object.keys(data.records).filter((key) => key.startsWith("word-atlas:v3:progress:")).map((key) => key.split(":").at(-1)!);
+    // Both the IELTS progress keys and the new-course keys belong to the scope,
+    // so the restore confirmation counts every course that will be replaced.
+    const courses = [
+      ...new Set(
+        Object.keys(data.records)
+          .filter(
+            (key) =>
+              key.startsWith("word-atlas:v3:progress:") ||
+              key.startsWith("word-atlas:v3:primary-progress:"),
+          )
+          .map((key) => key.split(":").at(-1)!)
+          .filter(Boolean),
+      ),
+    ];
     const profiles = data.records["word-atlas:profiles:v1"];
     const profileCount = isObject(profiles) && Array.isArray(profiles.profiles) ? profiles.profiles.length : 1;
     return { ok: true, plan: { kind: "v3", records: data.records, courses, profileCount } };

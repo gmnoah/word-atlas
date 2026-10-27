@@ -6,11 +6,15 @@ export function PreviewSpeak({
   locale,
   recording,
   slow = false,
+  accessibleLabel,
+  onPlaybackState,
 }: {
   text: string;
   locale: "en-GB" | "zh-CN";
   recording: string | null;
   slow?: boolean;
+  accessibleLabel?: string;
+  onPlaybackState?: (state: "playing" | "ready" | "error") => void;
 }) {
   const [status, setStatus] = useState<"idle" | "playing" | "error">("idle");
   const active = useRef<HTMLAudioElement | null>(null);
@@ -34,10 +38,12 @@ export function PreviewSpeak({
     }
     const mine = generation.current;
     setStatus("playing");
+    onPlaybackState?.("playing");
     const finish = (error = false) => {
       if (mine !== generation.current) return;
       cancel();
       setStatus(error ? "error" : "idle");
+      onPlaybackState?.(error ? "error" : "ready");
     };
     timer.current = setTimeout(() => finish(true), 15000);
     if (recording) {
@@ -85,7 +91,7 @@ export function PreviewSpeak({
         type="button"
         className="btn btn-ghost"
         onClick={() => void speak()}
-        aria-label={status === "playing" ? "停止朗读" : `朗读 ${text}`}
+        aria-label={status === "playing" ? "停止朗读" : accessibleLabel ?? `朗读 ${text}`}
       >
         <Volume2 size={20} />
         {status === "playing" ? "停止朗读" : "听一听"}

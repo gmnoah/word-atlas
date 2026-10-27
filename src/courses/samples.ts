@@ -52,6 +52,7 @@ export const sampleCourses: SampleCourse[] = [
         meaning: "苹果",
         example: {
           text: "I like apples.",
+          targetForm: "apples",
           translation: "我喜欢苹果。",
         },
         caregiverTip: "在身边或绘本里找找“苹果”，试着说一说英文。",
@@ -72,6 +73,7 @@ export const sampleCourses: SampleCourse[] = [
         meaning: "香蕉",
         example: {
           text: "This banana is yellow.",
+          targetForm: "banana",
           translation: "这根香蕉是黄色的。",
         },
         caregiverTip: "在身边或绘本里找找“香蕉”，试着说一说英文。",
@@ -92,6 +94,7 @@ export const sampleCourses: SampleCourse[] = [
         meaning: "橙子",
         example: {
           text: "Here is an orange.",
+          targetForm: "orange",
           translation: "这里有一个橙子。",
         },
         caregiverTip: "在身边或绘本里找找“橙子”，试着说一说英文。",
@@ -112,6 +115,7 @@ export const sampleCourses: SampleCourse[] = [
         meaning: "梨",
         example: {
           text: "The pear is sweet.",
+          targetForm: "pear",
           translation: "这个梨很甜。",
         },
         caregiverTip: "在身边或绘本里找找“梨”，试着说一说英文。",
@@ -132,6 +136,7 @@ export const sampleCourses: SampleCourse[] = [
         meaning: "葡萄",
         example: {
           text: "I can see a grape.",
+          targetForm: "grape",
           translation: "我能看见一颗葡萄。",
         },
         caregiverTip: "在身边或绘本里找找“葡萄”，试着说一说英文。",
@@ -152,6 +157,7 @@ export const sampleCourses: SampleCourse[] = [
         meaning: "猫",
         example: {
           text: "The cat is sleeping.",
+          targetForm: "cat",
           translation: "这只猫正在睡觉。",
         },
         caregiverTip: "在身边或绘本里找找“猫”，试着说一说英文。",
@@ -172,6 +178,7 @@ export const sampleCourses: SampleCourse[] = [
         meaning: "狗",
         example: {
           text: "The dog can run.",
+          targetForm: "dog",
           translation: "这只狗会跑。",
         },
         caregiverTip: "在身边或绘本里找找“狗”，试着说一说英文。",
@@ -192,6 +199,7 @@ export const sampleCourses: SampleCourse[] = [
         meaning: "鸟",
         example: {
           text: "A bird is in the tree.",
+          targetForm: "bird",
           translation: "一只鸟在树上。",
         },
         caregiverTip: "在身边或绘本里找找“鸟”，试着说一说英文。",
@@ -212,6 +220,7 @@ export const sampleCourses: SampleCourse[] = [
         meaning: "鱼",
         example: {
           text: "The fish is swimming.",
+          targetForm: "fish",
           translation: "这条鱼正在游泳。",
         },
         caregiverTip: "在身边或绘本里找找“鱼”，试着说一说英文。",
@@ -232,6 +241,7 @@ export const sampleCourses: SampleCourse[] = [
         meaning: "兔子",
         example: {
           text: "The rabbit has long ears.",
+          targetForm: "rabbit",
           translation: "这只兔子有长耳朵。",
         },
         caregiverTip: "在身边或绘本里找找“兔子”，试着说一说英文。",
@@ -252,6 +262,7 @@ export const sampleCourses: SampleCourse[] = [
         meaning: "太阳",
         example: {
           text: "The sun is warm.",
+          targetForm: "sun",
           translation: "阳光很温暖。",
         },
         caregiverTip: "在身边或绘本里找找“太阳”，试着说一说英文。",
@@ -272,6 +283,7 @@ export const sampleCourses: SampleCourse[] = [
         meaning: "月亮",
         example: {
           text: "Look at the moon.",
+          targetForm: "moon",
           translation: "看看月亮。",
         },
         caregiverTip: "在身边或绘本里找找“月亮”，试着说一说英文。",
@@ -292,6 +304,7 @@ export const sampleCourses: SampleCourse[] = [
         meaning: "星星",
         example: {
           text: "I can see a star.",
+          targetForm: "star",
           translation: "我能看见一颗星星。",
         },
         caregiverTip: "在身边或绘本里找找“星星”，试着说一说英文。",
@@ -312,6 +325,7 @@ export const sampleCourses: SampleCourse[] = [
         meaning: "树",
         example: {
           text: "The tree is tall.",
+          targetForm: "tree",
           translation: "这棵树很高。",
         },
         caregiverTip: "在身边或绘本里找找“树”，试着说一说英文。",
@@ -332,6 +346,7 @@ export const sampleCourses: SampleCourse[] = [
         meaning: "花",
         example: {
           text: "This flower is beautiful.",
+          targetForm: "flower",
           translation: "这朵花很美。",
         },
         caregiverTip: "在身边或绘本里找找“花”，试着说一说英文。",
@@ -352,6 +367,7 @@ export const sampleCourses: SampleCourse[] = [
         meaning: "书",
         example: {
           text: "Open your book.",
+          targetForm: "book",
           translation: "打开你的书。",
         },
         caregiverTip: "在身边或绘本里找找“书”，试着说一说英文。",
@@ -372,6 +388,7 @@ export const sampleCourses: SampleCourse[] = [
         meaning: "钢笔",
         example: {
           text: "This is my pen.",
+          targetForm: "pen",
           translation: "这是我的钢笔。",
         },
         caregiverTip: "在身边或绘本里找找“钢笔”，试着说一说英文。",
@@ -392,6 +409,7 @@ export const sampleCourses: SampleCourse[] = [
         meaning: "铅笔",
         example: {
           text: "I have a pencil.",
+          targetForm: "pencil",
           translation: "我有一支铅笔。",
         },
         caregiverTip: "在身边或绘本里找找“铅笔”，试着说一说英文。",
@@ -412,6 +430,7 @@ export const sampleCourses: SampleCourse[] = [
         meaning: "包",
         example: {
           text: "My bag is blue.",
+          targetForm: "bag",
           translation: "我的包是蓝色的。",
         },
         caregiverTip: "在身边或绘本里找找“包”，试着说一说英文。",
@@ -432,6 +451,7 @@ export const sampleCourses: SampleCourse[] = [
         meaning: "椅子",
         example: {
           text: "Sit on the chair.",
+          targetForm: "chair",
           translation: "坐在椅子上。",
         },
         caregiverTip: "在身边或绘本里找找“椅子”，试着说一说英文。",
@@ -452,6 +472,7 @@ export const sampleCourses: SampleCourse[] = [
         meaning: "牛奶",
         example: {
           text: "I drink milk.",
+          targetForm: "milk",
           translation: "我喝牛奶。",
         },
         caregiverTip: "在身边或绘本里找找“牛奶”，试着说一说英文。",
@@ -472,6 +493,7 @@ export const sampleCourses: SampleCourse[] = [
         meaning: "面包",
         example: {
           text: "This bread is soft.",
+          targetForm: "bread",
           translation: "这块面包很软。",
         },
         caregiverTip: "在身边或绘本里找找“面包”，试着说一说英文。",
@@ -492,6 +514,7 @@ export const sampleCourses: SampleCourse[] = [
         meaning: "鸡蛋",
         example: {
           text: "I have an egg.",
+          targetForm: "egg",
           translation: "我有一个鸡蛋。",
         },
         caregiverTip: "在身边或绘本里找找“鸡蛋”，试着说一说英文。",
@@ -512,6 +535,7 @@ export const sampleCourses: SampleCourse[] = [
         meaning: "米饭",
         example: {
           text: "I like rice.",
+          targetForm: "rice",
           translation: "我喜欢米饭。",
         },
         caregiverTip: "在身边或绘本里找找“米饭”，试着说一说英文。",
@@ -532,6 +556,7 @@ export const sampleCourses: SampleCourse[] = [
         meaning: "水",
         example: {
           text: "Please drink some water.",
+          targetForm: "water",
           translation: "请喝点水。",
         },
         caregiverTip: "在身边或绘本里找找“水”，试着说一说英文。",
@@ -552,6 +577,7 @@ export const sampleCourses: SampleCourse[] = [
         meaning: "杯子",
         example: {
           text: "This is my cup.",
+          targetForm: "cup",
           translation: "这是我的杯子。",
         },
         caregiverTip: "在身边或绘本里找找“杯子”，试着说一说英文。",
@@ -572,6 +598,7 @@ export const sampleCourses: SampleCourse[] = [
         meaning: "桌子",
         example: {
           text: "The book is on the table.",
+          targetForm: "table",
           translation: "书在桌子上。",
         },
         caregiverTip: "在身边或绘本里找找“桌子”，试着说一说英文。",
@@ -592,6 +619,7 @@ export const sampleCourses: SampleCourse[] = [
         meaning: "手",
         example: {
           text: "Wash your hands.",
+          targetForm: "hands",
           translation: "洗洗你的手。",
         },
         caregiverTip: "在身边或绘本里找找“手”，试着说一说英文。",
@@ -612,6 +640,7 @@ export const sampleCourses: SampleCourse[] = [
         meaning: "眼睛",
         example: {
           text: "Close your eyes.",
+          targetForm: "eyes",
           translation: "闭上你的眼睛。",
         },
         caregiverTip: "在身边或绘本里找找“眼睛”，试着说一说英文。",
@@ -632,6 +661,7 @@ export const sampleCourses: SampleCourse[] = [
         meaning: "耳朵",
         example: {
           text: "Touch your ears.",
+          targetForm: "ears",
           translation: "摸摸你的耳朵。",
         },
         caregiverTip: "在身边或绘本里找找“耳朵”，试着说一说英文。",

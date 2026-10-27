@@ -38,7 +38,12 @@ export interface EnglishEntry extends EntryBase {
   kind: "english";
   word: string;
   meaning: string;
-  example: { text: string; translation: string };
+  example: {
+    text: string;
+    translation: string;
+    /** Editor-declared form in this exact sentence, e.g. apple → apples. */
+    targetForm?: string;
+  };
 }
 
 export interface HanziEntry extends EntryBase {
@@ -83,12 +88,14 @@ export interface ProgressIdentity {
   contentId: string;
 }
 
+export type AttemptSupport = "independent" | "hinted" | "assisted";
+
 export type AttemptResult =
   | {
       outcome: "answered";
       contentId: string;
       correct: boolean;
-      support: "independent" | "hinted" | "assisted";
+      support: AttemptSupport;
     }
   | { outcome: "skipped" | "resource-error"; contentId: string };
 

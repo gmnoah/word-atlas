@@ -1,0 +1,87 @@
+
+> word-atlas@1.0.0 test
+> node --import tsx --test src/**/*.test.ts
+
+✔ T07: loadCourse('word-atlas-open') bridges legacy IELTS atlas to unified Course interface (28.324667ms)
+✔ T07: preview sample courses load under unified boundary without requesting IELTS index (2.216042ms)
+✔ T07: planned and unknown courses reject with clear, safe error messages (0.365459ms)
+✔ T07: concurrent calls deduplicate in-flight loads and retry on error (12.824334ms)
+✔ T07: AbortSignal lets one caller leave an in-flight shared load without poisoning cache (7.833833ms)
+✔ T07: private course retains matching open-atlas CEFR and topic metadata (0.78375ms)
+✔ T07: AsyncScope isolates asynchronous operations when switching learners/courses (0.158625ms)
+✔ T07: untrusted / malformed index and chunk data are caught cleanly (0.219833ms)
+✔ T07: entryToEnglishEntry correctly formats IELTS entry senses, tips and media (0.111ms)
+✔ T07: resolveMediaUrl correctly handles learning entries, legacy entries and custom paths (0.19325ms)
+✔ drafts remain previewable but cannot pass the release gate (0.910083ms)
+✔ declared missing files and unsafe paths fail even preview validation (0.200541ms)
+✔ release approval requires an auditable human review, not only an approved flag (0.291625ms)
+✔ bad references, duplicate IDs, missing text and wrong language are detected (2.045416ms)
+✔ preview limits the lesson and introduces selected entries before recall (0.976959ms)
+✔ a singleton or empty lesson never fabricates distractors (0.093291ms)
+✔ first answer is immutable and cannot be changed by repeated clicks or later hints (0.196583ms)
+✔ hints and caregiver assistance are not independent correct answers (0.115333ms)
+✔ skipping an introduction omits that entry's recall without recording a wrong answer (0.7955ms)
+✔ failed image cannot score and user can leave the failed question (0.095083ms)
+✔ unknown options and next before an answer do not advance recall (0.062709ms)
+✔ a finished session ignores further input (0.053208ms)
+✔ registry maps the legacy dataset to the unchanged IELTS route and count (7.400083ms)
+✔ every preview resolves to its pack and shares the registered manifest (0.133291ms)
+✔ planned and unknown courses never return a playable course action (0.114584ms)
+✔ sample packs have 30 English words and 20 Hanzi, each in exactly one lesson (1.174167ms)
+✔ T11: new course routes retain course identity and round-trip safely (0.924625ms)
+✔ T11: legacy word links still resolve to the default IELTS atlas (0.118375ms)
+✔ highlights the headword and common inflections (0.916959ms)
+✔ does not match inside longer unrelated words (0.110125ms)
+✔ gaps the sentence for cloze questions (0.102709ms)
+✔ normalizes typography from mobile keyboards (0.4105ms)
+✔ typing counts inserted characters and does not reward deletions (1.261291ms)
+✔ a corrected mistake remains in the cumulative accuracy denominator (0.171417ms)
+✔ replacement and middle insertion assess only new characters at their new positions (0.103042ms)
+✔ case and equivalent smart punctuation are accepted, punctuation is still required (0.206ms)
+✔ IME commits or multi-character replacements are assessed as one insertion (0.12425ms)
+✔ WPM uses five characters per word and excludes discarded error characters (0.087334ms)
+✔ an untouched or subsecond round never reports infinite or misleading WPM (0.065042ms)
+✔ normalized ligatures count as the same displayed characters (0.069833ms)
+✔ decomposed accents normalize before positions and accuracy are assessed (0.09125ms)
+✔ supplementary Unicode characters do not shift the following letter positions (0.105584ms)
+✔ source nonbreaking spaces match keyboard spaces but omitted punctuation does not (0.076417ms)
+✔ metrics never emit NaN, Infinity, negatives or accuracy above 100 (0.061084ms)
+(node:15681) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ T10: full backup preflights and replaces only Word Atlas local records (5.569458ms)
+✔ T10: legacy v2 backup imports into the default IELTS learner and invalid files do nothing (3.205208ms)
+(node:15692) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ T12: ContextIsolationCoordinator flushes pending state and issues monotonic tokens (0.607917ms)
+✔ T12: delayed async responses from Learner A cannot mutate Learner B's context (21.693ms)
+✔ T12: delayed async responses from Course X cannot mutate Course Y's context (16.878792ms)
+✔ T12: multi-tab storage event updates active profiles and learner list (0.421667ms)
+✔ T12: multi-tab storage event updates course preferences for specific learner × course (0.157333ms)
+✔ T12: multi-tab storage event in store updates settings and progress safely (0.162291ms)
+✔ T12: malformed multi-tab storage events are safely ignored (0.093833ms)
+✔ T12: contextCoordinator.selectLearner flushes and updates coordinator context (0.694708ms)
+(node:15693) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ T09: v2 migration snapshots first, preserves old data, then writes split v3 records (3.514333ms)
+✔ T09: a failed v3 write leaves v2 readable and resumes from the exact snapshot (0.385041ms)
+✔ T09: malformed legacy progress or conflicting partial v3 data is never silently overwritten (0.340583ms)
+(node:15694) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ T08: profile sanitizer keeps only bounded, unique local nicknames (0.99675ms)
+✔ T08: course preferences are validated and isolated by learner plus course (0.209458ms)
+✔ T08: creating a learner and changing a course preference does not touch another learner (1.239041ms)
+✔ a new card answered Good is scheduled soon, Again sooner (6.558333ms)
+✔ repeated successful reviews grow stability until mastered (1.132834ms)
+✔ a lapse resets progress and counts the lapse (1.199583ms)
+(node:15696) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ keeps valid progress and drops malformed records (1.039208ms)
+✔ rejects other versions and unknown settings (0.112791ms)
+ℹ tests 65
+ℹ suites 0
+ℹ pass 65
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 452.888292

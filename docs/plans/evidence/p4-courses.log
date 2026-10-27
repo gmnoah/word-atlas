@@ -1,0 +1,748 @@
+
+> word-atlas@1.0.0 check:courses
+> node --import tsx scripts/check-courses.ts
+
+{
+  "mode": "preview",
+  "registeredCourses": 5,
+  "entries": 50,
+  "structuralErrors": 0,
+  "releaseBlockers": 120,
+  "registryErrors": [],
+  "courses": [
+    {
+      "courseId": "primary-starter",
+      "errors": [],
+      "releaseBlockers": [
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-apple",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-apple",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-banana",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-banana",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-orange",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-orange",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-pear",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-pear",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-grape",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-grape",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-cat",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-cat",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-dog",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-dog",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-bird",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-bird",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-fish",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-fish",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-rabbit",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-rabbit",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-sun",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-sun",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-moon",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-moon",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-star",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-star",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-tree",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-tree",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-flower",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-flower",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-book",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-book",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-pen",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-pen",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-pencil",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-pencil",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-bag",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-bag",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-chair",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-chair",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-milk",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-milk",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-bread",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-bread",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-egg",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-egg",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-rice",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-rice",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-water",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-water",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-cup",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-cup",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-table",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-table",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-hand",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-hand",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-eye",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-eye",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-ear",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "primary-starter",
+          "entryId": "en-ear",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        }
+      ],
+      "entries": 30
+    },
+    {
+      "courseId": "hanzi-starter",
+      "errors": [],
+      "releaseBlockers": [
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u5c71",
+          "code": "missing-recording",
+          "message": "缺少 词 / 字录音"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u5c71",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u5c71",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u6c34",
+          "code": "missing-recording",
+          "message": "缺少 词 / 字录音"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u6c34",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u6c34",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u65e5",
+          "code": "missing-recording",
+          "message": "缺少 词 / 字录音"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u65e5",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u65e5",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u6708",
+          "code": "missing-recording",
+          "message": "缺少 词 / 字录音"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u6708",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u6708",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u4e91",
+          "code": "missing-recording",
+          "message": "缺少 词 / 字录音"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u4e91",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u4e91",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u4eba",
+          "code": "missing-recording",
+          "message": "缺少 词 / 字录音"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u4eba",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u4eba",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u53e3",
+          "code": "missing-recording",
+          "message": "缺少 词 / 字录音"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u53e3",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u53e3",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u624b",
+          "code": "missing-recording",
+          "message": "缺少 词 / 字录音"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u624b",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u624b",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u8db3",
+          "code": "missing-recording",
+          "message": "缺少 词 / 字录音"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u8db3",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u8db3",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u76ee",
+          "code": "missing-recording",
+          "message": "缺少 词 / 字录音"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u76ee",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u76ee",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u6728",
+          "code": "missing-recording",
+          "message": "缺少 词 / 字录音"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u6728",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u6728",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u82b1",
+          "code": "missing-recording",
+          "message": "缺少 词 / 字录音"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u82b1",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u82b1",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u96e8",
+          "code": "missing-recording",
+          "message": "缺少 词 / 字录音"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u96e8",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u96e8",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u77f3",
+          "code": "missing-recording",
+          "message": "缺少 词 / 字录音"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u77f3",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u77f3",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u7530",
+          "code": "missing-recording",
+          "message": "缺少 词 / 字录音"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u7530",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u7530",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u9e1f",
+          "code": "missing-recording",
+          "message": "缺少 词 / 字录音"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u9e1f",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u9e1f",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u9c7c",
+          "code": "missing-recording",
+          "message": "缺少 词 / 字录音"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u9c7c",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u9c7c",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u9a6c",
+          "code": "missing-recording",
+          "message": "缺少 词 / 字录音"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u9a6c",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u9a6c",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u8033",
+          "code": "missing-recording",
+          "message": "缺少 词 / 字录音"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u8033",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u8033",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u706b",
+          "code": "missing-recording",
+          "message": "缺少 词 / 字录音"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u706b",
+          "code": "missing-exampleRecording",
+          "message": "缺少 例句录音"
+        },
+        {
+          "courseId": "hanzi-starter",
+          "entryId": "hanzi-u706b",
+          "code": "unreviewed",
+          "message": "待人工审校"
+        }
+      ],
+      "entries": 20
+    }
+  ]
+}

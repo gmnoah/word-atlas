@@ -7,7 +7,7 @@ export function stopAudio() {
   token++;
   current?.pause();
   current = null;
-  if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+  if (typeof window !== "undefined" && "speechSynthesis" in window) window.speechSynthesis.cancel();
 }
 
 /** Play a recording, falling back to the device voice. Resolves when playback ends. */

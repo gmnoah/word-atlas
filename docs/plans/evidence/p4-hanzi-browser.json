@@ -1,0 +1,16 @@
+{
+  "passed": 11,
+  "checks": [
+    "Hanzi course opens a four-stop flat map without the primary tile grid",
+    "Co-reading shows one large character and keeps pinyin inside the caregiver note",
+    "Hanzi recall records caregiver assistance without independent success",
+    "Family panel saves Hanzi minutes, shows recent activity and offers a full backup",
+    "375px Hanzi map has no horizontal overflow in both themes",
+    "Preschool controls are at least 48px and show no countdown or ranking",
+    "A finished co-read suggests a real-life activity and reports zero recognition",
+    "Reduced motion turns off non-essential Hanzi animation",
+    "Hanzi lesson reload keeps the saved session",
+    "A new learner starts with no inherited Hanzi activity",
+    "Without a Mandarin voice, Hanzi never generates a listening question"
+  ]
+}

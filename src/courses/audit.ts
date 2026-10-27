@@ -1,4 +1,5 @@
 import type { SampleCourse } from "./types";
+import { exampleTargetParts } from "./example-target";
 
 export interface AuditIssue {
   courseId: string;
@@ -57,6 +58,9 @@ export function auditCourse(
           entry.question;
     if (!textComplete || !entry.caregiverTip)
       result.errors.push(issue("missing-text", "条目缺少必需文本", entry.id));
+    if (course.manifest.stage === "primary" && entry.kind === "english" &&
+        !exampleTargetParts(entry.example.text, entry.example.targetForm))
+      result.errors.push(issue("invalid-example-target", "例句须明确标注且唯一包含目标词形", entry.id));
     if (entry.media.locale !== (entry.kind === "english" ? "en-GB" : "zh-CN"))
       result.errors.push(
         issue("wrong-locale", "朗读语言与学科不一致", entry.id),

@@ -1,6 +1,7 @@
 import { useSyncExternalStore } from "react";
 import type { Accent } from "../atlas/types";
 import type { CardState, Grade } from "./srs";
+import { sanitizeActiveSession } from "./session-schema";
 
 export type QuizKind = "meaning" | "picture" | "listen" | "spell";
 export type Step = { id: string; kind: "intro" } | { id: string; kind: QuizKind; retry?: boolean; options?: string[] };
@@ -14,6 +15,8 @@ export interface ActiveSession {
   graded: Record<string, Grade>;
   newIds: string[];
   reviewIds: string[];
+  /** Content pack version this session was built from. */
+  contentVersion?: string;
   /** Answer shown but not yet continued; survives reload without double counting. */
   pending?: { correct: boolean; value: string };
   finished?: number;
@@ -152,8 +155,8 @@ export function sanitizeProgress(v: unknown, datasetId: string): Progress {
       )
       .slice(-500);
   const s = v.session;
-  if (isObj(s) && typeof s.id === "string" && Array.isArray(s.steps) && num(s.index, 0) && isObj(s.graded))
-    out.session = s as unknown as ActiveSession;
+  const session = sanitizeActiveSession(s);
+  if (session) out.session = session;
   return out;
 }
 
@@ -202,12 +205,12 @@ function emit() {
 
 function scheduleSave() {
   dirty = true;
-  window.clearTimeout(saveTimer);
-  saveTimer = window.setTimeout(flush, 250);
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(flush, 250) as unknown as number;
 }
 
 export function flush() {
-  window.clearTimeout(saveTimer);
+  clearTimeout(saveTimer);
   if (!dirty) return;
   dirty = false;
   const progressOk = loadedId !== state.progress.datasetId || write(progressKey(state.progress.datasetId), state.progress);
@@ -218,21 +221,31 @@ export function flush() {
   }
 }
 
+export function handleStorageEvent(e: { key: string | null; newValue: string | null }): boolean {
+  if (!e.newValue) return false;
+  try {
+    if (e.key === SETTINGS_KEY || e.key === "word-atlas:v3:device-settings") {
+      state = { ...state, settings: sanitizeSettings(JSON.parse(e.newValue)) };
+      emit();
+      return true;
+    }
+    if (e.key === progressKey(state.progress.datasetId)) {
+      state = { ...state, progress: sanitizeProgress(JSON.parse(e.newValue), state.progress.datasetId) };
+      emit();
+      return true;
+    }
+  } catch {
+    /* ignore malformed writes */
+  }
+  return false;
+}
+
 if (typeof window !== "undefined") {
   window.addEventListener("pagehide", flush);
   document.addEventListener("visibilitychange", () => document.visibilityState === "hidden" && flush());
   // Another tab saved: adopt its data instead of keeping a stale copy.
   window.addEventListener("storage", (e) => {
-    if (!e.newValue) return;
-    try {
-      if (e.key === SETTINGS_KEY) state = { ...state, settings: sanitizeSettings(JSON.parse(e.newValue)) };
-      else if (e.key === progressKey(state.progress.datasetId))
-        state = { ...state, progress: sanitizeProgress(JSON.parse(e.newValue), state.progress.datasetId) };
-      else return;
-      emit();
-    } catch {
-      /* ignore malformed writes */
-    }
+    handleStorageEvent(e);
   });
 }
 

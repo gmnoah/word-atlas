@@ -62,3 +62,17 @@ test("bad references, duplicate IDs, missing text and wrong language are detecte
   ])
     assert.ok(codes.has(code), code);
 });
+
+test("primary examples require one explicitly declared whole-word form", () => {
+  const course = structuredClone(sampleCourses[0]);
+  assert.equal(auditCourse(course, () => true).errors.length, 0);
+  const entry = course.entries[0];
+  if (entry.kind !== "english") throw new Error("Expected an English entry");
+  for (const targetForm of [undefined, "apple", "banana"]) {
+    entry.example.targetForm = targetForm;
+    assert.ok(auditCourse(course, () => true).errors.some((issue) => issue.code === "invalid-example-target"));
+  }
+  entry.example.targetForm = "apples";
+  entry.example.text = "I like apples and apples.";
+  assert.ok(auditCourse(course, () => true).errors.some((issue) => issue.code === "invalid-example-target"));
+});

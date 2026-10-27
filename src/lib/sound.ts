@@ -2,7 +2,8 @@
  * Sound design: short UI cues and looping ambience, played through Web Audio so
  * loops are gapless and the ambience can duck under pronunciations.
  */
-const BASE = `${import.meta.env.BASE_URL}sfx/`;
+const BASE_URL = typeof import.meta !== "undefined" && import.meta.env?.BASE_URL ? import.meta.env.BASE_URL : "/";
+const BASE = `${BASE_URL}sfx/`;
 
 export type Cue = "correct" | "wrong" | "flip" | "page" | "complete" | "streak" | "start" | "tap" | "key" | "twinkle" | "fly" | "ignite";
 export const AMBIENCE = [

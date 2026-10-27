@@ -50,6 +50,7 @@ test("T08: course preferences are validated and isolated by learner plus course"
     englishCount: 5,
     hanziCount: 2,
     slow: false,
+    minutes: 0,
   });
   assert.equal(preferencesFor(state, "b", "primary-starter"), defaultLearningPreferences);
 });

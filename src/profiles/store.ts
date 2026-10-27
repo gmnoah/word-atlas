@@ -5,6 +5,8 @@ export interface LearningPreferences {
   englishCount: 2 | 3 | 5;
   hanziCount: 2 | 3 | 5;
   slow: boolean;
+  /** Caregiver session length in minutes; 0 follows the stage default. */
+  minutes: number;
 }
 
 export interface ProfileState {
@@ -15,8 +17,8 @@ export interface ProfileState {
   coursePreferences: Record<string, LearningPreferences>;
 }
 
-const PROFILE_KEY = "word-atlas:profiles:v1";
-const COURSE_SETTINGS_KEY = "word-atlas:course-settings:v1";
+export const PROFILE_KEY = "word-atlas:profiles:v1";
+export const COURSE_SETTINGS_KEY = "word-atlas:course-settings:v1";
 const MAX_PROFILES = 12;
 const DEFAULT_PROFILE: LearnerProfile = {
   id: "learner-default",
@@ -27,11 +29,14 @@ export const defaultLearningPreferences: LearningPreferences = Object.freeze({
   englishCount: 3,
   hanziCount: 2,
   slow: true,
+  minutes: 0,
 });
 
 const isObject = (value: unknown): value is Record<string, unknown> =>
   !!value && typeof value === "object" && !Array.isArray(value);
 const isCount = (value: unknown): value is 2 | 3 | 5 => value === 2 || value === 3 || value === 5;
+const isMinutes = (value: unknown): value is number =>
+  typeof value === "number" && Number.isFinite(value) && value >= 0 && value <= 30;
 
 export function normalizeNickname(value: unknown): string | null {
   if (typeof value !== "string") return null;
@@ -67,7 +72,15 @@ export function sanitizeCoursePreferences(value: unknown): Record<string, Learni
   for (const [key, raw] of Object.entries(value.coursePreferences)) {
     if (!/^[a-z0-9_-]{1,80}:[a-z0-9_-]{1,80}$/i.test(key) || !isObject(raw)) continue;
     if (!isCount(raw.englishCount) || !isCount(raw.hanziCount) || typeof raw.slow !== "boolean") continue;
-    result[key] = { englishCount: raw.englishCount, hanziCount: raw.hanziCount, slow: raw.slow };
+    // Older records have no session length; treat that as "follow the stage".
+    const minutes = raw.minutes === undefined ? 0 : raw.minutes;
+    if (!isMinutes(minutes)) continue;
+    result[key] = {
+      englishCount: raw.englishCount,
+      hanziCount: raw.hanziCount,
+      slow: raw.slow,
+      minutes,
+    };
   }
   return result;
 }
@@ -159,7 +172,7 @@ export const profileStore = {
     if (!state.profiles.some((profile) => profile.id === profileId)) return;
     const current = preferencesFor(state, profileId, courseId);
     const next = { ...current, ...patch };
-    if (!isCount(next.englishCount) || !isCount(next.hanziCount) || typeof next.slow !== "boolean") return;
+    if (!isCount(next.englishCount) || !isCount(next.hanziCount) || typeof next.slow !== "boolean" || !isMinutes(next.minutes)) return;
     state = {
       ...state,
       coursePreferences: { ...state.coursePreferences, [courseKey(profileId, courseId)]: next },
@@ -167,7 +180,43 @@ export const profileStore = {
     saveCoursePreferences();
     emit();
   },
+  reload() {
+    const profileData = sanitizeProfiles(read(PROFILE_KEY));
+    state = {
+      version: 1,
+      ...profileData,
+      coursePreferences: sanitizeCoursePreferences(read(COURSE_SETTINGS_KEY)),
+    };
+    emit();
+  },
 };
+
+export function handleProfileStorageEvent(e: { key: string | null; newValue: string | null }): boolean {
+  if (!e.newValue) return false;
+  try {
+    if (e.key === PROFILE_KEY) {
+      const sanitized = sanitizeProfiles(JSON.parse(e.newValue));
+      state = { ...state, ...sanitized };
+      emit();
+      return true;
+    }
+    if (e.key === COURSE_SETTINGS_KEY) {
+      const coursePreferences = sanitizeCoursePreferences(JSON.parse(e.newValue));
+      state = { ...state, coursePreferences };
+      emit();
+      return true;
+    }
+  } catch {
+    /* ignore malformed writes */
+  }
+  return false;
+}
+
+if (typeof window !== "undefined") {
+  window.addEventListener("storage", (e) => {
+    handleProfileStorageEvent(e);
+  });
+}
 
 export function useProfiles<T>(select: (snapshot: ProfileState) => T): T {
   return useSyncExternalStore(profileStore.subscribe, () => select(state), () => select(state));

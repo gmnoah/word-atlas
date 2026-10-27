@@ -7,7 +7,7 @@ import { burst } from "../lib/burst";
 import { cue } from "../lib/sound";
 import { go } from "../lib/router";
 import { gap, normalize } from "../lib/text";
-import { answer, advance, buildSession, gradeFor, sessionStats } from "../store/session";
+import { answer, advance, buildSession, gradeFor, reconcileSession, sessionStats } from "../store/session";
 import { Rating } from "../store/srs";
 import { store, useStore, type ActiveSession, type QuizKind, type Step } from "../store/store";
 import { EntryView, Highlight } from "../ui/EntryView";
@@ -25,14 +25,24 @@ export function Learn() {
 
   useEffect(() => {
     const { progress, settings } = store.get();
-    if (!progress.session) {
-      const s = buildSession(atlas, progress, settings);
-      if (!s.steps.length) {
+    if (progress.session) {
+      const repaired = reconcileSession(atlas, progress.session, progress, settings);
+      if (!repaired) {
+        store.progress((p) => ({ ...p, session: null }));
         go({ page: "today" }, null, true);
         return;
       }
-      store.progress((p) => ({ ...p, session: s }));
+      if (repaired !== progress.session) {
+        store.progress((p) => ({ ...p, session: repaired }));
+      }
+      return;
     }
+    const s = buildSession(atlas, progress, settings);
+    if (!s.steps.length) {
+      go({ page: "today" }, null, true);
+      return;
+    }
+    store.progress((p) => ({ ...p, session: s }));
   }, [atlas]);
 
   const ids = useMemo(() => [...new Set(session?.steps.map((s) => s.id) ?? [])], [session?.id]); // eslint-disable-line react-hooks/exhaustive-deps

@@ -26,6 +26,7 @@ import {
   profileStore,
   useProfiles,
 } from "../profiles/store";
+import { contextCoordinator } from "../profiles/isolation";
 import { courseRegistry, courseAction } from "./registry";
 import {
   createPreviewSession,
@@ -33,8 +34,16 @@ import {
   previewStats,
 } from "./preview-session";
 import { PreviewSpeak } from "./PreviewSpeak";
+import { PrimaryLesson } from "./PrimaryLesson";
+import { PrimaryJourney } from "./PrimaryJourney";
+import { HanziLesson } from "./HanziLesson";
+import { HanziMap } from "./HanziMap";
+import { FamilyBackup, FamilyCourseNote, RecentActivity } from "./FamilyPanel";
+import type { HanziLessonMode } from "./hanzi-policy";
+import { entriesFromStartingPoint, primaryPreviewCount, type PrimaryStartingStage } from "./starting-point";
 import {
   entryLabel,
+  type HanziEntry,
   type LearningEntry,
   type Lesson,
 } from "./types";
@@ -60,6 +69,10 @@ export default function CoursePreview() {
   const [courseLoading, setCourseLoading] = useState(false);
   const [courseError, setCourseError] = useState<string | null>(null);
   const [lesson, setLesson] = useState<Lesson | null>(null);
+  const [hanziMode, setHanziMode] = useState<HanziLessonMode>("lesson");
+  const [startingStage, setStartingStage] = useState<PrimaryStartingStage>("starter");
+  const [spellingEnabled, setSpellingEnabled] = useState(false);
+  const [startingWords, setStartingWords] = useState<Record<string, string>>({});
   const [run, setRun] = useState(0);
   const [parentOpen, setParentOpen] = useState(false);
   const activeProfileId = useProfiles((snapshot) => snapshot.activeProfileId);
@@ -79,6 +92,9 @@ export default function CoursePreview() {
   const theme = useStore((s) => s.settings.theme);
   const preferences: Preferences =
     course?.manifest.id === "hanzi-starter" ? hanziPreferences : primaryPreferences;
+  const lessonPreferences: Preferences = course?.manifest.id === "primary-starter"
+    ? { ...preferences, englishCount: primaryPreviewCount(preferences.englishCount, startingStage) }
+    : preferences;
   const openCourse = (id: string) => {
     const action = courseAction(id);
     if (action.kind === "preview") go({ page: "explore", courseId: action.courseId });
@@ -91,15 +107,31 @@ export default function CoursePreview() {
     setLesson(null);
     go({ page: "explore" });
   };
+
+  useEffect(() => {
+    // When active learner changes, cleanly isolate from previous learner's state
+    stopAudio();
+    setLesson(null);
+    setHanziMode("lesson");
+    setRun(0);
+    setStartingStage("starter");
+    setSpellingEnabled(false);
+    setStartingWords({});
+  }, [activeProfileId]);
+
   useEffect(() => {
     if (!courseId) {
+      contextCoordinator.switchContext({ profileId: activeProfileId, courseId: null });
       setCourse(null);
       setCourseEntries([]);
       setCourseError(null);
       setCourseLoading(false);
       return;
     }
-    const controller = new AbortController();
+    const { token, controller } = contextCoordinator.switchContext({
+      profileId: activeProfileId,
+      courseId,
+    });
     setLesson(null);
     setCourse(null);
     setCourseEntries([]);
@@ -112,19 +144,23 @@ export default function CoursePreview() {
         const entries = (await Promise.all(ids.map((id) => nextCourse.entry(id)))).filter(isLearningEntry);
         if (entryId && !entries.some((entry) => entry.id === entryId))
           throw new Error(`课程“${nextCourse.manifest.title}”中没有条目“${entryId}”。`);
-        if (controller.signal.aborted) return;
+        if (controller.signal.aborted || !contextCoordinator.isValid(token, { profileId: activeProfileId, courseId }))
+          return;
         setCourse(nextCourse);
         setCourseEntries(entries);
       })
       .catch((error: unknown) => {
-        if (controller.signal.aborted) return;
+        if (controller.signal.aborted || !contextCoordinator.isValid(token, { profileId: activeProfileId, courseId }))
+          return;
         setCourseError(error instanceof Error ? error.message : "课程暂时无法打开");
       })
       .finally(() => {
-        if (!controller.signal.aborted) setCourseLoading(false);
+        if (!controller.signal.aborted && contextCoordinator.isValid(token, { profileId: activeProfileId, courseId })) {
+          setCourseLoading(false);
+        }
       });
     return () => controller.abort();
-  }, [courseId, entryId]);
+  }, [courseId, entryId, activeProfileId]);
   useEffect(() => {
     window.scrollTo({ top: 0 });
   }, [courseId, lesson, run]);
@@ -301,7 +337,7 @@ export default function CoursePreview() {
               </div>
             </div>
             <p className="preview-disclosure">
-              这是第一版体验样板，内容待教学审校；体验不记录正式学习进度，刷新后重新开始。
+              这是第一版体验样板，内容待教学审校；小学小课的记录保存在本机。
               <a href="#/about">
                 素材署名与项目说明 <ChevronRight size={13} />
               </a>
@@ -321,13 +357,52 @@ export default function CoursePreview() {
               回到学习空间 <ArrowLeft size={18} />
             </button>
           </div>
-        ) : lesson ? (
+        ) : lesson ? course.manifest.id === "primary-starter" ? (
+          <PrimaryLesson
+            key={`${activeProfileId}:${course.manifest.id}:${lesson.id}:${run}`}
+            course={course}
+            lesson={lesson}
+            profileId={activeProfileId}
+            entries={entriesFromStartingPoint(
+              lesson.entryIds.map((id) => courseEntries.find((entry) => entry.id === id))
+                .filter((entry): entry is LearningEntry => !!entry), startingWords[lesson.id],
+            )}
+            stage={startingStage}
+            spellingEnabled={spellingEnabled}
+            count={lessonPreferences.englishCount}
+            slow={lessonPreferences.slow}
+            onExit={() => setLesson(null)}
+            onRestart={() => setRun((r) => r + 1)}
+          />
+        ) : course.manifest.subject === "hanzi" ? (
+          <HanziLesson
+            key={`${activeProfileId}:${course.manifest.id}:${lesson.id}:${run}:${hanziMode}`}
+            course={course}
+            lesson={lesson}
+            profileId={activeProfileId}
+            entries={
+              lesson.entryIds
+                .map((id) => courseEntries.find((entry) => entry.id === id))
+                .filter((entry): entry is HanziEntry => !!entry && entry.kind === "hanzi")
+            }
+            mode={hanziMode}
+            minutes={hanziPreferences.minutes}
+            count={hanziPreferences.hanziCount}
+            slow={hanziPreferences.slow}
+            onExit={() => setLesson(null)}
+            onRestart={() => setRun((r) => r + 1)}
+          />
+        ) : (
           <PreviewLesson
             key={`${course.manifest.id}:${lesson.id}:${run}`}
             course={course}
             lesson={lesson}
-            entries={courseEntries.filter((entry) => lesson.entryIds.includes(entry.id))}
-            preferences={preferences}
+            entries={entriesFromStartingPoint(
+              lesson.entryIds.map((id) => courseEntries.find((entry) => entry.id === id))
+                .filter((entry): entry is LearningEntry => !!entry),
+              course.manifest.id === "primary-starter" ? startingWords[lesson.id] : undefined,
+            )}
+            preferences={lessonPreferences}
             onExit={() => setLesson(null)}
             onRestart={() => setRun((r) => r + 1)}
           />
@@ -352,12 +427,56 @@ export default function CoursePreview() {
               </div>
               <BookOpen size={44} strokeWidth={1} />
             </header>
+            {course.manifest.id === "primary-starter" && (
+              <section className="preview-starting-stage" aria-labelledby="starting-stage-title">
+                <div>
+                  <p className="eyebrow">YOUR STARTING POINT</p>
+                  <h2 id="starting-stage-title">从适合自己的节奏出发</h2>
+                  <p>不用按年级选择，可以随时调整。</p>
+                </div>
+                <div className="preview-stage-options" role="group" aria-label="选择学习阶段">
+                  <button type="button" className={startingStage === "starter" ? "is-selected" : ""}
+                    aria-pressed={startingStage === "starter"} onClick={() => setStartingStage("starter")}>
+                    <strong>小步启蒙</strong><span>每次最多 3 个词</span>
+                  </button>
+                  <button type="button" className={startingStage === "advanced" ? "is-selected" : ""}
+                    aria-pressed={startingStage === "advanced"} onClick={() => setStartingStage("advanced")}>
+                    <strong>多认识一些</strong><span>每次最多 5 个词</span>
+                  </button>
+                </div>
+                {startingStage === "advanced" && (
+                  <label className="preview-spelling-toggle">
+                    <input type="checkbox" checked={spellingEnabled} onChange={(event) => setSpellingEnabled(event.target.checked)} />
+                    <span><strong>试试拼写</strong><small>可选，需要输入英文；不方便输入时可以跳过。</small></span>
+                  </label>
+                )}
+                <p className="preview-stage-note">两种节奏暂用同一组体验词，结合看图和听音练习；实际词数还受家长设置影响。</p>
+              </section>
+            )}
+            {course.manifest.id === "primary-starter" && <PrimaryJourney profileId={activeProfileId} courseId={course.manifest.id}
+              entries={courseEntries} onToday={() => setLesson({ id: "today", title: "今日小课", subtitle: "回顾与发现", entryIds: courseEntries.map((entry) => entry.id) })} />}
+            {course.manifest.subject === "hanzi" ? (
+              <HanziMap
+                course={course}
+                lessons={course.lessons ?? []}
+                entries={courseEntries}
+                onStart={(next) => {
+                  setHanziMode("lesson");
+                  setLesson(next);
+                }}
+                onCoRead={(next) => {
+                  setHanziMode("co-read");
+                  setLesson(next);
+                }}
+              />
+            ) : (
+              <>
             <div className="preview-course-note">
               <Compass size={20} />
               <span>
                 选一个感兴趣的主题，每次认识{" "}
                 {course.manifest.subject === "english"
-                  ? preferences.englishCount
+                  ? lessonPreferences.englishCount
                   : preferences.hanziCount}{" "}
                 {course.manifest.subject === "english" ? "个词" : "个字"}
                 。随时可以停下来。
@@ -390,8 +509,18 @@ export default function CoursePreview() {
                           <span key={e.id}>{entryLabel(e)}</span>
                         ))}
                       </div>
+                      {course.manifest.id === "primary-starter" && entries.length > 0 && (
+                        <label className="preview-start-word">
+                          <span>从哪个词开始</span>
+                          <select aria-label={`${l.title}起始词`} value={startingWords[l.id] ?? entries[0].id}
+                            onChange={(event) => setStartingWords((current) => ({ ...current, [l.id]: event.target.value }))}>
+                            {entries.map((entry) => <option key={entry.id} value={entry.id}>{entryLabel(entry)}</option>)}
+                          </select>
+                        </label>
+                      )}
                       <button
                         className="btn btn-primary"
+                        disabled={!entries.length}
                         onClick={() => setLesson(l)}
                       >
                         开始小课 <ArrowRight size={18} />
@@ -401,12 +530,16 @@ export default function CoursePreview() {
                 );
               })}
             </div>
+              </>
+            )}
             <p className="preview-disclosure">
               内容为待审校草稿。
               {course.manifest.subject === "hanzi"
-                ? "普通话使用设备朗读预览，也可以由家长读一读。"
+                ? "普通话使用设备朗读预览，也可以由家长读一读；共读只浏览，不计识别成绩。"
                 : "单词播放原项目英音，例句为新编草稿。"}
-              正式进度与复习将在后续接入。
+              {course.manifest.id === "primary-starter"
+                ? "小学学习记录保存在本机。"
+                : "汉字学习记录按学习者和课程保存在本机。"}
             </p>
           </div>
         )}
@@ -500,6 +633,22 @@ export default function CoursePreview() {
               <option value={5}>5 个字</option>
             </select>
           </label>
+          <label>
+            汉字小课的时长
+            <select
+              value={hanziPreferences.minutes}
+              onChange={(e) =>
+                profileStore.setCoursePreferences(activeProfile.id, "hanzi-starter", {
+                  minutes: Number(e.target.value),
+                })
+              }
+            >
+              <option value={0}>按课程默认（5 分钟）</option>
+              <option value={3}>3 分钟</option>
+              <option value={5}>5 分钟</option>
+              <option value={8}>8 分钟</option>
+            </select>
+          </label>
           <label className="preview-toggle">
             <span>朗读慢一点</span>
             <input
@@ -519,8 +668,11 @@ export default function CoursePreview() {
             />
           </label>
           <p className="preview-disclosure">
-            小课偏好按学习者和课程分别保存；设备主题、音效等仍是本机设备设置。雅思进度与旧设置尚未迁移，T09 会先备份再处理；本次不会改写它们。
+            小课偏好按学习者和课程分别保存；设备主题、音效等仍是本机设备设置。这里不会改写雅思进度与旧设置。
           </p>
+          <RecentActivity profileId={activeProfileId} profileName={activeProfile.nickname} />
+          <FamilyCourseNote course={course} />
+          <FamilyBackup />
           <button className="btn btn-primary btn-xl" onClick={closeParent}>
             设置好了 <Check size={18} />
           </button>

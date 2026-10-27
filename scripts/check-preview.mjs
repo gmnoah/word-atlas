@@ -61,18 +61,90 @@ try {
   await page.getByLabel("英语小课的词数").selectOption("2");
   await page.getByRole("button", { name: "设置好了" }).click();
   await page.getByRole("button", { name: "探索基础英语" }).click();
+  const advancedStage = page.getByRole("button", { name: /多认识一些/ });
+  await advancedStage.click();
+  assert.equal(await advancedStage.getAttribute("aria-pressed"), "true");
+  await page.screenshot({ path: `${evidence}/primary-start-desktop-light.png`, fullPage: true, animations: "disabled" });
+  await page.getByRole("button", { name: "切换到深色" }).click();
+  await page.screenshot({ path: `${evidence}/primary-start-desktop-dark.png`, fullPage: true, animations: "disabled" });
+  await page.getByRole("button", { name: "切换到浅色" }).click();
+  await page.setViewportSize({ width: 375, height: 812 });
+  for (const theme of ["light", "dark"]) {
+    if (theme === "dark") await page.getByRole("button", { name: "切换到深色" }).click();
+    await page.screenshot({ path: `${evidence}/primary-start-mobile-${theme}.png`, fullPage: true, animations: "disabled" });
+    assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `primary course ${theme} must not overflow`);
+  }
+  await page.getByRole("button", { name: "切换到浅色" }).click();
+  await page.setViewportSize({ width: 1440, height: 1100 });
+  await page.getByLabel("水果篮子起始词").selectOption("en-grape");
+  await page.getByRole("button", { name: "开始小课" }).first().click();
+  await page.getByRole("heading", { name: "grape", exact: true }).waitFor();
+  assert.equal(await page.locator(".english-word-card-details").getAttribute("open"), "");
+  await page.screenshot({ path: `${evidence}/word-card-desktop-light.png`, fullPage: true, animations: "disabled" });
+  await page.getByRole("button", { name: "切换到深色" }).click();
+  await page.screenshot({ path: `${evidence}/word-card-desktop-dark.png`, fullPage: true, animations: "disabled" });
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.screenshot({ path: `${evidence}/word-card-mobile-dark.png`, animations: "disabled" });
+  await page.getByRole("button", { name: "切换到浅色" }).click();
+  await page.screenshot({ path: `${evidence}/word-card-mobile-light.png`, fullPage: true, animations: "disabled" });
+  assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+  await page.setViewportSize({ width: 1440, height: 1100 });
+  await page.getByRole("button", { name: "认识了，继续" }).click();
+  await page.getByRole("heading", { name: "apple", exact: true }).waitFor();
+  assert.equal(await page.locator(".english-word-card-details .example-target").innerText(), "apples");
+  assert.equal(await page.locator(".english-word-card-details .preview-example p").innerText(), "I like apples.");
+  checks.push("Explicit example form highlights apples while preserving the full sentence");
+  await page.getByRole("button", { name: "返回主题" }).click();
+  await page.getByRole("button", { name: "结束体验" }).click();
+  // This isolated fixture starts a new scenario; production users keep their checkpoint.
+  await page.evaluate(() => Object.keys(localStorage).filter((key) => key.startsWith("word-atlas:v3:primary-session:")).forEach((key) => localStorage.removeItem(key)));
+  await page.getByLabel("水果篮子起始词").selectOption("en-apple");
+  await page.getByRole("button", { name: "家长设置" }).click();
+  await page.getByLabel("英语小课的词数").selectOption("5");
+  await page.getByRole("button", { name: "设置好了" }).click();
+  await page.getByRole("button", { name: "开始小课" }).first().click();
+  for (let i = 0; i < 3; i++) await page.getByRole("button", { name: "认识了，继续" }).click();
+  assert.equal(await page.locator(".preview-option").count(), 3, "advanced policy uses 3 options after a 3-word group");
+  await page.getByRole("button", { name: "返回主题" }).click();
+  await page.getByRole("button", { name: "结束体验" }).click();
+  await page.evaluate(() => Object.keys(localStorage).filter((key) => key.startsWith("word-atlas:v3:primary-session:")).forEach((key) => localStorage.removeItem(key)));
+  await page.getByRole("button", { name: /小步启蒙/ }).click();
+  await page.getByRole("button", { name: "开始小课" }).first().click();
+  assert.equal(await page.locator(".english-word-card-details").getAttribute("open"), null);
+  await page.locator(".english-word-card-details summary").click();
+  assert.equal(await page.locator(".english-word-card-details").getAttribute("open"), "");
+  await page.getByRole("button", { name: "认识了，继续" }).click();
+  assert.equal(await page.locator(".english-word-card-details").getAttribute("open"), null, "new starter word resets its details");
+  await page.getByRole("button", { name: "认识了，继续" }).click();
+  assert.equal(await page.locator(".preview-option").count(), 2, "starter policy uses 2 options after a 2-word group");
+  await page.getByRole("button", { name: "返回主题" }).click();
+  await page.getByRole("button", { name: "结束体验" }).click();
+  await page.evaluate(() => Object.keys(localStorage).filter((key) => key.startsWith("word-atlas:v3:primary-session:")).forEach((key) => localStorage.removeItem(key)));
+  await page.getByRole("button", { name: "家长设置" }).click();
+  await page.getByLabel("英语小课的词数").selectOption("2");
+  await page.getByRole("button", { name: "设置好了" }).click();
+  checks.push("Primary stage and custom theme start select the actual first word and wrap safely");
   await page.getByRole("button", { name: "开始小课" }).first().click();
   await page.getByRole("button", { name: "认识了，继续" }).click();
   await page.getByRole("button", { name: "认识了，继续" }).click();
-  const target = await page
-    .locator(".preview-study-art img")
-    .getAttribute("src");
-  const targetWord = target.split("/").pop().replace(".webp", "");
+  async function preparePrimaryQuestion() {
+    const card = page.locator(".preview-study-card.is-recall");
+    const kind = await card.getAttribute("data-question-kind");
+    if (kind.startsWith("listen-")) {
+      assert.equal(await page.locator(".preview-option").first().isDisabled(), true);
+      await page.getByRole("button", { name: "播放题目发音" }).click();
+      await page.waitForFunction(() => !document.querySelector(".preview-option")?.disabled);
+    }
+    const target = await card.getAttribute("data-content-id");
+    return { kind, target };
+  }
+  let question = await preparePrimaryQuestion();
   await page.getByRole("button", { name: "给我一点提示" }).click();
-  await page.locator(".preview-option").filter({ hasText: targetWord }).click();
+  await page.locator(`[data-option-id="${question.target}"]`).click();
   assert.equal(await page.locator(".preview-option:disabled").count(), 2);
   await page.getByRole("button", { name: "继续", exact: true }).click();
-  await page.locator(".preview-option").first().click();
+  question = await preparePrimaryQuestion();
+  await page.locator(`[data-option-id="${question.target}"]`).click();
   await page.getByRole("button", { name: "继续", exact: true }).click();
   await page.getByRole("heading", { name: "今天，又认识了新朋友。" }).waitFor();
   assert.match(await page.locator(".mini-stats > div").nth(2).innerText(), /1/);
@@ -82,18 +154,23 @@ try {
   await page.getByRole("button", { name: "回到主题" }).click();
   await page.getByRole("button", { name: "学习空间", exact: true }).click();
   await page.getByRole("button", { name: "一起认汉字" }).click();
-  await page.getByRole("button", { name: "开始小课" }).first().click();
+  await page.locator(".hanzi-map-stop").first().getByRole("button", { name: "认一认" }).click();
   await page.setViewportSize({ width: 375, height: 812 });
   await page.screenshot({
     path: `${evidence}/hanzi-mobile-light.png`,
     fullPage: true,
     animations: "disabled",
   });
-  await page.getByRole("button", { name: "认识了，继续" }).click();
-  await page.getByRole("button", { name: "认识了，继续" }).click();
+  for (let i = 0; i < 3 && (await page.locator(".hanzi-study-card.is-recall").count()) === 0; i++)
+    await page.getByRole("button", { name: "认识了，继续" }).click();
+  const hanziCard = page.locator(".hanzi-study-card.is-recall");
+  const hanziKind = await hanziCard.getAttribute("data-question-kind");
+  if (hanziKind === "hanzi-listen") {
+    await page.getByRole("button", { name: "播放字的读音" }).click();
+    await page.waitForFunction(() => !document.querySelector(".hanzi-option")?.disabled);
+  }
   await page.getByRole("button", { name: "请家长帮忙" }).click();
-  const hanzi = await page.locator(".preview-feedback strong").innerText();
-  await page.getByRole("button", { name: hanzi, exact: true }).click();
+  await page.locator(`[data-option-id="${await hanziCard.getAttribute("data-content-id")}"]`).click();
   await page.getByRole("button", { name: "继续", exact: true }).click();
   await page.getByRole("button", { name: "先跳过，下次再认识" }).click();
   assert.match(await page.locator(".mini-stats > div").nth(1).innerText(), /0/);
@@ -108,7 +185,7 @@ try {
     fixture["word-atlas:v2:word-atlas-open"],
   );
   checks.push("Legacy progress remains byte-equivalent in structure");
-  await page.reload();
+  await page.goto(`${base}#/explore`);
   await page
     .getByRole("heading", { name: "每一份好奇，都值得被点亮。" })
     .waitFor();

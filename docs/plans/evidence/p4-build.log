@@ -1,0 +1,22 @@
+
+> word-atlas@1.0.0 build
+> tsc -b && vite build
+
+vite v6.4.5 building for production...
+transforming...
+✓ 1652 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                               2.31 kB │ gzip:   1.10 kB
+dist/assets/fraunces-vietnamese-opsz-normal-Czevyj-6.woff2   19.70 kB
+dist/assets/fraunces-vietnamese-opsz-italic-DxWqP7Ku.woff2   22.13 kB
+dist/assets/fraunces-latin-ext-opsz-normal-CJcjJNj7.woff2    59.39 kB
+dist/assets/fraunces-latin-opsz-normal-DihXLNYH.woff2        67.30 kB
+dist/assets/fraunces-latin-ext-opsz-italic-CGbN9UgK.woff2    71.46 kB
+dist/assets/fraunces-latin-opsz-italic-lSdLDfvT.woff2        81.52 kB
+dist/assets/CoursePreview-BIPvqiT7.css                       18.96 kB │ gzip:   3.95 kB
+dist/assets/index-DC5ED2EL.css                               67.13 kB │ gzip:  15.12 kB
+dist/assets/samples-DMUq9R7X.js                              24.48 kB │ gzip:   4.52 kB
+dist/assets/CoursePreview-CgqIzOWQ.js                        81.20 kB │ gzip:  23.06 kB
+dist/assets/index-D22gh-lv.js                               412.18 kB │ gzip: 133.17 kB
+✓ built in 12.76s
