@@ -2,7 +2,8 @@ import { Download, RotateCcw, Upload } from "lucide-react";
 import { useMemo, useRef } from "react";
 import { useAtlas } from "../atlas/context";
 import { isMastered } from "../store/srs";
-import { dayKey, exportBackup, importBackup, resetProgress, store, useStore, type Settings } from "../store/store";
+import { dayKey, resetProgress, store, useStore, type Settings } from "../store/store";
+import { applyRestore, exportFullBackup, preflightRestore } from "../profiles/backup";
 import { toast } from "../ui/Toast";
 import { streakOf } from "./Today";
 
@@ -34,7 +35,7 @@ export function Me({ privateAvailable }: { privateAvailable: boolean }) {
 
   const set = (patch: Partial<Settings>) => store.settings(patch);
   const download = () => {
-    const blob = new Blob([exportBackup()], { type: "application/json" });
+    const blob = new Blob([exportFullBackup(localStorage)], { type: "application/json" });
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
     a.download = `word-atlas-backup-${dayKey()}.json`;
@@ -43,8 +44,12 @@ export function Me({ privateAvailable }: { privateAvailable: boolean }) {
   };
   const restore = async (f: File) => {
     if (f.size > 30 * 1024 * 1024) return toast("文件太大，不像是学习备份。", "warn");
-    const r = importBackup(await f.text());
-    toast(r.ok ? `已恢复 ${r.cards} 个词的记忆` : r.error, r.ok ? "ok" : "warn");
+    const checked = preflightRestore(await f.text());
+    if (!checked.ok) return toast(checked.error, "warn");
+    const scope = `将替换这台设备中“词光”的全部本地档案数据：${checked.plan.profileCount} 位学习者、${checked.plan.courses.length} 门课程。其他网站数据不会受影响。`;
+    if (!confirm(`${scope}\n\n建议先导出当前备份。确定恢复吗？`)) return;
+    const result = applyRestore(localStorage, checked.plan);
+    toast(result.ok ? `已恢复 ${result.courses.length} 门课程的数据，请刷新页面继续。` : result.error, result.ok ? "ok" : "warn");
   };
   const maxF = Math.max(1, ...stats.forecast);
 
@@ -181,14 +186,14 @@ export function Me({ privateAvailable }: { privateAvailable: boolean }) {
 
         <section className="panel">
           <h3 className="eyebrow">数据</h3>
-          <p className="muted">进度只存在这台设备的浏览器里：没有账号，没有服务器。换设备时，导出备份再导入即可。</p>
+          <p className="muted">导出会包含这台设备的全部词光档案、课程设置和进度。恢复前会先说明替换范围；不会影响其他网站数据。</p>
           {saveError && <p className="warn-text">浏览器拒绝保存（可能是隐私模式或空间已满）。请尽快导出备份。</p>}
           <div className="data-actions">
             <button className="btn btn-ghost" onClick={download}>
-              <Download size={18} /> 导出备份
+              <Download size={18} /> 导出全部档案
             </button>
             <button className="btn btn-ghost" onClick={() => file.current?.click()}>
-              <Upload size={18} /> 导入备份
+              <Upload size={18} /> 导入并预检
             </button>
             <input ref={file} type="file" accept="application/json,.json" hidden onChange={(e) => e.target.files?.[0] && restore(e.target.files[0]).finally(() => (e.target.value = ""))} />
             <button

@@ -84,7 +84,9 @@ export function entryToEnglishEntry(e: Entry, manifest?: CourseManifest): Englis
       locale: "en-GB",
       source: manifest?.attribution ?? "Word Atlas contributors（词光）· CC BY 4.0",
     },
-    reviewStatus: "approved",
+    // Legacy material remains usable, but it has not gone through the new
+    // child-course review workflow. Do not let the adapter manufacture approval.
+    reviewStatus: "legacy-unreviewed",
     caregiverTip: e.tip,
   };
 }
@@ -229,10 +231,16 @@ export async function loadPrivateAtlas(
   options?: CourseLoadOptions,
 ): Promise<Atlas | null> {
   const signal = options?.signal;
+  if (signal?.aborted) {
+    throw abortError();
+  }
   let res: Response;
   try {
     res = await fetch("/local/catalog.json", { cache: "no-store", signal });
-  } catch {
+  } catch (error) {
+    if (signal?.aborted || (error instanceof DOMException && error.name === "AbortError")) {
+      throw error;
+    }
     return null;
   }
   if (!res.ok || !(res.headers.get("content-type") || "").includes("json")) return null;
@@ -333,6 +341,34 @@ export function createLegacyCourseAdapter(atlas: Atlas): Course {
 const courseCache = new Map<string, Course>();
 const pendingCourseLoads = new Map<string, Promise<Course>>();
 
+function abortError() {
+  return new DOMException("Aborted", "AbortError");
+}
+
+/**
+ * A caller may leave a shared course load without cancelling it for every
+ * other caller. This prevents an unmount from poisoning the module cache.
+ */
+function waitForCourse<T>(promise: Promise<T>, signal?: AbortSignal): Promise<T> {
+  if (!signal) return promise;
+  if (signal.aborted) return Promise.reject(abortError());
+
+  return new Promise<T>((resolve, reject) => {
+    const onAbort = () => reject(abortError());
+    signal.addEventListener("abort", onAbort, { once: true });
+    promise.then(
+      (value) => {
+        signal.removeEventListener("abort", onAbort);
+        resolve(value);
+      },
+      (error) => {
+        signal.removeEventListener("abort", onAbort);
+        reject(error);
+      },
+    );
+  });
+}
+
 export async function loadCourse(courseId: string, options?: CourseLoadOptions): Promise<Course> {
   const signal = options?.signal;
   if (signal?.aborted) {
@@ -340,15 +376,15 @@ export async function loadCourse(courseId: string, options?: CourseLoadOptions):
   }
 
   const cached = courseCache.get(courseId);
-  if (cached) return cached;
+  if (cached) return waitForCourse(Promise.resolve(cached), signal);
 
   const inFlight = pendingCourseLoads.get(courseId);
-  if (inFlight) return inFlight;
+  if (inFlight) return waitForCourse(inFlight, signal);
 
   const registration = findCourse(courseId);
   if (!registration) {
     if (courseId === "word-atlas-private" || courseId === "local-private") {
-      const p = loadPrivateAtlas(null, options)
+      const p = loadPrivateAtlas(options?.openAtlas ?? null)
         .then((a) => {
           if (!a) throw new Error("私有词库未提供或未开启");
           const course = createLegacyCourseAdapter(a);
@@ -359,7 +395,7 @@ export async function loadCourse(courseId: string, options?: CourseLoadOptions):
           pendingCourseLoads.delete(courseId);
         });
       pendingCourseLoads.set(courseId, p);
-      return p;
+      return waitForCourse(p, signal);
     }
     throw new Error(`未知课程：${courseId}`);
   }
@@ -370,7 +406,7 @@ export async function loadCourse(courseId: string, options?: CourseLoadOptions):
 
   const loadPromise = (async () => {
     if (registration.kind === "legacy") {
-      const atlas = await loadOpenAtlas(options);
+      const atlas = await loadOpenAtlas();
       const course = createLegacyCourseAdapter(atlas);
       courseCache.set(courseId, course);
       return course;
@@ -417,7 +453,7 @@ export async function loadCourse(courseId: string, options?: CourseLoadOptions):
     });
 
   pendingCourseLoads.set(courseId, loadPromise);
-  return loadPromise;
+  return waitForCourse(loadPromise, signal);
 }
 
 export function clearCourseCache() {

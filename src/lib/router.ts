@@ -7,7 +7,7 @@ export type Route =
   | { page: "learn" }
   | { page: "practice" }
   | { page: "me" }
-  | { page: "explore" }
+  | { page: "explore"; courseId?: string; entryId?: string }
   | { page: "about" };
 
 export interface Location {
@@ -16,7 +16,7 @@ export interface Location {
   word: string | null;
 }
 
-function parse(hash: string): Location {
+export function parseLocation(hash: string): Location {
   const [path, query = ""] = hash.replace(/^#/, "").split("?");
   const params = new URLSearchParams(query);
   const word = params.get("w");
@@ -28,8 +28,19 @@ function parse(hash: string): Location {
   else if (seg[0] === "practice") route = { page: "practice" };
   else if (seg[0] === "me") route = { page: "me" };
   else if (seg[0] === "about") route = { page: "about" };
-  else if (seg[0] === "explore") route = { page: "explore" };
-  else if (seg[0] === "w" && seg[1]) return { route: { page: "atlas" }, word: decodeURIComponent(seg[1]) };
+  else if (seg[0] === "explore")
+    route = {
+      page: "explore",
+      courseId: params.get("course") || undefined,
+      entryId: params.get("entry") || undefined,
+    };
+  else if (seg[0] === "w" && seg[1]) {
+    try {
+      return { route: { page: "atlas" }, word: decodeURIComponent(seg[1]) };
+    } catch {
+      return { route: { page: "atlas" }, word: null };
+    }
+  }
   return { route, word };
 }
 
@@ -41,15 +52,19 @@ export function href(route: Route, word?: string | null) {
     if (route.q) params.set("q", route.q);
     if (route.view) params.set("view", route.view);
   }
+  if (route.page === "explore") {
+    if (route.courseId) params.set("course", route.courseId);
+    if (route.entryId) params.set("entry", route.entryId);
+  }
   if (word) params.set("w", word);
   const q = params.toString();
   return `#/${route.page === "today" ? "" : route.page}${q ? `?${q}` : ""}`;
 }
 
-let loc = parse(location.hash);
+let loc = parseLocation(typeof location === "undefined" ? "#/" : location.hash);
 const subs = new Set<() => void>();
-window.addEventListener("hashchange", () => {
-  const next = parse(location.hash);
+if (typeof window !== "undefined") window.addEventListener("hashchange", () => {
+  const next = parseLocation(location.hash);
   const pageChange = next.route.page !== loc.route.page;
   const update = () => {
     loc = next;
@@ -73,7 +88,7 @@ export function go(route: Route, word?: string | null, replace = false) {
   const h = href(route, word);
   if (replace) history.replaceState(null, "", h);
   else history.pushState(null, "", h);
-  const next = parse(h);
+  const next = parseLocation(h);
   const pageChange = next.route.page !== loc.route.page;
   const update = () => {
     loc = next;

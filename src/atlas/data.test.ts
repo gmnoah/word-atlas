@@ -7,9 +7,10 @@ import {
   entryToEnglishEntry,
   loadCourse,
   loadOpenAtlas,
+  loadPrivateAtlas,
   resolveMediaUrl,
 } from "./data";
-import type { Entry, WordRef } from "./types";
+import type { Atlas, Entry, WordRef } from "./types";
 import { MEDIA } from "./types";
 
 /** Mock fetch to serve real static files from public/atlas for Node tests */
@@ -85,7 +86,7 @@ test(
     assert.equal(englishEntry.kind, "english");
     assert.equal(englishEntry.id, "apple");
     assert.equal(englishEntry.word, "apple");
-    assert.equal(englishEntry.reviewStatus, "approved");
+    assert.equal(englishEntry.reviewStatus, "legacy-unreviewed");
     assert.equal(englishEntry.media.image, "atlas/img/apple.webp");
     assert.equal(englishEntry.media.recording, "atlas/audio/uk/apple.mp3");
   }),
@@ -211,15 +212,95 @@ test("T07: concurrent calls deduplicate in-flight loads and retry on error", asy
   }
 });
 
-test("T07: AbortSignal cleanly cancels in-flight load without poisoning cache", async () => {
+test("T07: AbortSignal lets one caller leave an in-flight shared load without poisoning cache", async () => {
   clearCourseCache();
   const controller = new AbortController();
-  controller.abort();
+  const originalFetch = globalThis.fetch;
+  let releaseFetch: (() => void) | undefined;
+  let fetchCount = 0;
+  let markStarted: (() => void) | undefined;
+  const started = new Promise<void>((resolve) => {
+    markStarted = resolve;
+  });
 
-  await assert.rejects(
-    async () => loadCourse("word-atlas-open", { signal: controller.signal }),
-    (err: unknown) => (err as Error).name === "AbortError",
-  );
+  globalThis.fetch = async (input: RequestInfo | URL) => {
+    fetchCount++;
+    markStarted?.();
+    await new Promise<void>((resolve) => {
+      releaseFetch = resolve;
+    });
+    if (String(input).includes("atlas/index.json")) {
+      return new Response(fs.readFileSync("public/atlas/index.json", "utf8"), {
+        status: 200,
+        headers: { "content-type": "application/json" },
+      });
+    }
+    return new Response("Not found", { status: 404 });
+  };
+
+  try {
+    const abandoned = loadCourse("word-atlas-open", { signal: controller.signal });
+    await started;
+    controller.abort();
+    await assert.rejects(abandoned, (err: unknown) => (err as Error).name === "AbortError");
+
+    releaseFetch?.();
+    const course = await loadCourse("word-atlas-open");
+    assert.equal(course.manifest.id, "word-atlas-open");
+    assert.equal(fetchCount, 1, "the shared request completes and is cached once");
+  } finally {
+    globalThis.fetch = originalFetch;
+    clearCourseCache();
+  }
+});
+
+test("T07: private course retains matching open-atlas CEFR and topic metadata", async () => {
+  clearCourseCache();
+  const originalFetch = globalThis.fetch;
+  const open = {
+    words: [{ id: "cat", word: "cat", zh: "猫", ipa: "", cefr: 4, topic: 1, media: 0, order: 0 }],
+    cefr: ["A1", "A2", "B1", "B2", "C1", "C2"],
+    topics: [["general", "综合"], ["animals", "动物"]],
+  } as unknown as Atlas;
+
+  globalThis.fetch = async () =>
+    new Response(
+      JSON.stringify({
+        id: "word-atlas-private",
+        name: "本地私有词库",
+        words: [
+          {
+            id: "private-cat",
+            seq: 1,
+            word: "cat",
+            meaning: "猫 · n.",
+            phonetic: "/kæt/",
+            sentence: "The cat is sleeping.",
+            translation: "猫在睡觉。",
+            hint: "看看窗边的小猫。",
+          },
+        ],
+      }),
+      { status: 200, headers: { "content-type": "application/json" } },
+    );
+
+  try {
+    const course = await loadCourse("word-atlas-private", { openAtlas: open });
+    const entry = (await course.entry("private-cat")) as Entry;
+    assert.equal(entry.cefr, "C1");
+    assert.equal(entry.topic, "animals");
+    assert.equal(course.legacyAtlas?.topics[1]?.[0], "animals");
+
+    const controller = new AbortController();
+    controller.abort();
+    await assert.rejects(
+      () => loadPrivateAtlas(open, { signal: controller.signal }),
+      (error: unknown) => (error as Error).name === "AbortError",
+    );
+  } finally {
+    globalThis.fetch = originalFetch;
+    clearCourseCache();
+  }
 });
 
 test("T07: AsyncScope isolates asynchronous operations when switching learners/courses", () => {
@@ -297,7 +378,7 @@ test("T07: entryToEnglishEntry correctly formats IELTS entry senses, tips and me
   assert.equal(adapted.media.recording, "atlas/audio/uk/test-word.mp3");
   assert.equal(adapted.media.exampleRecording, "atlas/audio/ex/test-word.mp3");
   assert.equal(adapted.caregiverTip, "Tip for caregivers");
-  assert.equal(adapted.reviewStatus, "approved");
+  assert.equal(adapted.reviewStatus, "legacy-unreviewed");
 });
 
 test("T07: resolveMediaUrl correctly handles learning entries, legacy entries and custom paths", () => {

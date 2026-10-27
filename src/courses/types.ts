@@ -22,7 +22,8 @@ interface EntryBase {
   id: string;
   topicId: string;
   media: ContentMedia;
-  reviewStatus: "draft" | "approved";
+  /** `legacy-unreviewed` means imported historic material without a new-course review record. */
+  reviewStatus: "draft" | "approved" | "legacy-unreviewed";
   humanReview?: {
     reviewer: string;
     reviewedAt: string;

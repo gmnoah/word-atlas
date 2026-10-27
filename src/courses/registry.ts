@@ -34,7 +34,13 @@ export type CourseRegistration = Presentation &
         href: "#/";
         count: number;
       }
-    | { kind: "preview"; manifest: CourseManifest & { status: "preview" } }
+    | {
+        kind: "preview";
+        manifest: CourseManifest & { status: "preview" };
+        /** Registry metadata only; entries stay in the lazy course pack. */
+        count: number;
+        lessonCount: number;
+      }
     | { kind: "planned"; manifest: CourseManifest & { status: "planned" } }
   );
 
@@ -64,6 +70,8 @@ export const courseRegistry: readonly CourseRegistration[] = [
     cover: "atlas/img/apple.webp",
     eyebrow: "LITTLE EXPLORERS",
     badge: "小学起步",
+    count: 30,
+    lessonCount: 6,
   },
   {
     kind: "preview",
@@ -71,6 +79,8 @@ export const courseRegistry: readonly CourseRegistration[] = [
     cover: "atlas/img/mountain.webp",
     eyebrow: "FIRST CHARACTERS",
     badge: "亲子共读",
+    count: 20,
+    lessonCount: 4,
   },
   {
     kind: "planned",

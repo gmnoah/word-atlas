@@ -18,7 +18,14 @@ import { Sheet } from "../ui/Sheet";
 import { store, useStore } from "../store/store";
 import { stopAudio } from "../lib/audio";
 import { setAmbience } from "../lib/sound";
-import { sampleCourses } from "./samples";
+import { go, useLocation } from "../lib/router";
+import { loadCourse } from "../atlas/data";
+import { isLearningEntry, type Course } from "../atlas/types";
+import {
+  preferencesFor,
+  profileStore,
+  useProfiles,
+} from "../profiles/store";
 import { courseRegistry, courseAction } from "./registry";
 import {
   createPreviewSession,
@@ -30,7 +37,6 @@ import {
   entryLabel,
   type LearningEntry,
   type Lesson,
-  type SampleCourse,
 } from "./types";
 import "./preview.css";
 
@@ -46,20 +52,36 @@ export default function CoursePreview() {
     stopAudio();
     void setAmbience(null);
   }, []);
-  const [courseId, setCourseId] = useState<string | null>(null);
+  const { route } = useLocation();
+  const courseId = route.page === "explore" ? route.courseId ?? null : null;
+  const entryId = route.page === "explore" ? route.entryId : undefined;
+  const [course, setCourse] = useState<Course | null>(null);
+  const [courseEntries, setCourseEntries] = useState<LearningEntry[]>([]);
+  const [courseLoading, setCourseLoading] = useState(false);
+  const [courseError, setCourseError] = useState<string | null>(null);
   const [lesson, setLesson] = useState<Lesson | null>(null);
   const [run, setRun] = useState(0);
   const [parentOpen, setParentOpen] = useState(false);
-  const [preferences, setPreferences] = useState<Preferences>({
-    englishCount: 3,
-    hanziCount: 2,
-    slow: true,
-  });
+  const activeProfileId = useProfiles((snapshot) => snapshot.activeProfileId);
+  const activeProfile = useProfiles(
+    (snapshot) =>
+      snapshot.profiles.find((profile) => profile.id === snapshot.activeProfileId) ?? snapshot.profiles[0]!,
+  );
+  const profiles = useProfiles((snapshot) => snapshot.profiles);
+  const primaryPreferences = useProfiles((snapshot) =>
+    preferencesFor(snapshot, activeProfileId, "primary-starter"),
+  );
+  const hanziPreferences = useProfiles((snapshot) =>
+    preferencesFor(snapshot, activeProfileId, "hanzi-starter"),
+  );
+  const [nicknameDraft, setNicknameDraft] = useState(activeProfile.nickname);
+  const [profileMessage, setProfileMessage] = useState<string | null>(null);
   const theme = useStore((s) => s.settings.theme);
-  const course = sampleCourses.find((c) => c.manifest.id === courseId);
+  const preferences: Preferences =
+    course?.manifest.id === "hanzi-starter" ? hanziPreferences : primaryPreferences;
   const openCourse = (id: string) => {
     const action = courseAction(id);
-    if (action.kind === "preview") setCourseId(action.courseId);
+    if (action.kind === "preview") go({ page: "explore", courseId: action.courseId });
   };
   const closeParent = useCallback(() => setParentOpen(false), []);
   const dark =
@@ -67,11 +89,49 @@ export default function CoursePreview() {
     (theme === "system" && matchMedia("(prefers-color-scheme: dark)").matches);
   const leaveCourse = () => {
     setLesson(null);
-    setCourseId(null);
+    go({ page: "explore" });
   };
+  useEffect(() => {
+    if (!courseId) {
+      setCourse(null);
+      setCourseEntries([]);
+      setCourseError(null);
+      setCourseLoading(false);
+      return;
+    }
+    const controller = new AbortController();
+    setLesson(null);
+    setCourse(null);
+    setCourseEntries([]);
+    setCourseError(null);
+    setCourseLoading(true);
+
+    void loadCourse(courseId, { signal: controller.signal })
+      .then(async (nextCourse) => {
+        const ids = [...new Set(nextCourse.lessons?.flatMap((item) => item.entryIds) ?? [])];
+        const entries = (await Promise.all(ids.map((id) => nextCourse.entry(id)))).filter(isLearningEntry);
+        if (entryId && !entries.some((entry) => entry.id === entryId))
+          throw new Error(`课程“${nextCourse.manifest.title}”中没有条目“${entryId}”。`);
+        if (controller.signal.aborted) return;
+        setCourse(nextCourse);
+        setCourseEntries(entries);
+      })
+      .catch((error: unknown) => {
+        if (controller.signal.aborted) return;
+        setCourseError(error instanceof Error ? error.message : "课程暂时无法打开");
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) setCourseLoading(false);
+      });
+    return () => controller.abort();
+  }, [courseId, entryId]);
   useEffect(() => {
     window.scrollTo({ top: 0 });
   }, [courseId, lesson, run]);
+  useEffect(() => {
+    setNicknameDraft(activeProfile.nickname);
+    setProfileMessage(null);
+  }, [activeProfile.id, activeProfile.nickname]);
 
   return (
     <div className={`app preview-app ${lesson ? "is-focus" : ""}`}>
@@ -113,7 +173,7 @@ export default function CoursePreview() {
         </div>
       </header>
       <main className="main" id="main">
-        {!course ? (
+        {!courseId ? (
           <div className="page">
             <header className="greet preview-greet">
               <p className="eyebrow">WORD ATLAS · 一起探索</p>
@@ -164,9 +224,6 @@ export default function CoursePreview() {
                 {courseRegistry
                   .filter((c) => c.kind !== "planned")
                   .map((registered, i) => {
-                    const pack = sampleCourses.find(
-                      (c) => c.manifest.id === registered.manifest.id,
-                    );
                     return (
                       <article
                         key={registered.manifest.id}
@@ -190,7 +247,7 @@ export default function CoursePreview() {
                           <div className="preview-space-meta">
                             {registered.kind === "legacy"
                               ? `${registered.count.toLocaleString("en-US")} 个词 · 原学习进度保留`
-                              : `${pack?.entries.length ?? 0} ${registered.manifest.subject === "english" ? "个词" : "个字"} · ${pack?.lessons.length ?? 0} 个主题 · 内容草稿`}
+                              : `${registered.count} ${registered.manifest.subject === "english" ? "个词" : "个字"} · ${registered.lessonCount} 个主题 · 内容草稿`}
                           </div>
                           {registered.kind === "legacy" ? (
                             <a className="btn btn-ghost" href={registered.href}>
@@ -250,11 +307,26 @@ export default function CoursePreview() {
               </a>
             </p>
           </div>
+        ) : courseLoading ? (
+          <div className="page preview-course-state" aria-busy="true">
+            <span className="spinner" />
+            <p>正在展开这本图鉴…</p>
+          </div>
+        ) : courseError || !course ? (
+          <div className="page preview-course-state">
+            <p className="eyebrow">暂时没能打开</p>
+            <h1 className="display">这份图鉴需要再试一次。</h1>
+            <p>{courseError ?? "课程数据不完整。"}</p>
+            <button className="btn btn-primary" onClick={leaveCourse}>
+              回到学习空间 <ArrowLeft size={18} />
+            </button>
+          </div>
         ) : lesson ? (
           <PreviewLesson
             key={`${course.manifest.id}:${lesson.id}:${run}`}
             course={course}
             lesson={lesson}
+            entries={courseEntries.filter((entry) => lesson.entryIds.includes(entry.id))}
             preferences={preferences}
             onExit={() => setLesson(null)}
             onRestart={() => setRun((r) => r + 1)}
@@ -292,17 +364,15 @@ export default function CoursePreview() {
               </span>
             </div>
             <div className="preview-lessons">
-              {course.lessons.map((l, i) => {
+              {(course.lessons ?? []).map((l, i) => {
                 const entries = l.entryIds
-                  .map((id) => course.entries.find((e) => e.id === id))
+                  .map((id) => courseEntries.find((e) => e.id === id))
                   .filter((e): e is LearningEntry => !!e);
                 return (
                   <article className="panel preview-lesson-tile" key={l.id}>
                     <Illustration
                       src={
-                        entries[0]?.media.image
-                          ? asset(entries[0].media.image)
-                          : null
+                        entries[0] ? course.img(entries[0]) : null
                       }
                       word={l.title}
                     />
@@ -348,17 +418,66 @@ export default function CoursePreview() {
       <Sheet open={parentOpen} onClose={closeParent} label="家长设置">
         <div className="preview-parent">
           <p className="eyebrow">陪伴，而不催促</p>
-          <h2>这次，学一点点</h2>
-          <p>按孩子的兴趣调整，不需要一次完成整个主题。</p>
+          <h2>为 {activeProfile.nickname} 留一盏小灯</h2>
+          <p>昵称和小课偏好只留在这台设备；按孩子的兴趣调整，不需要一次完成整个主题。</p>
+          <section className="preview-profile" aria-labelledby="profile-title">
+            <div>
+              <p className="eyebrow" id="profile-title">当前学习者</p>
+              <select
+                aria-label="选择学习者"
+                value={activeProfileId}
+                onChange={(event) => profileStore.select(event.target.value)}
+              >
+                {profiles.map((profile) => (
+                  <option key={profile.id} value={profile.id}>
+                    {profile.nickname}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <label>
+              昵称
+              <input
+                value={nicknameDraft}
+                maxLength={16}
+                onChange={(event) => {
+                  setNicknameDraft(event.target.value);
+                  setProfileMessage(null);
+                }}
+              />
+            </label>
+            <div className="preview-profile-actions">
+              <button
+                type="button"
+                className="btn btn-ghost"
+                onClick={() => {
+                  const result = profileStore.rename(activeProfile.id, nicknameDraft);
+                  setProfileMessage(result.ok ? "昵称已保存。" : result.error);
+                }}
+              >
+                保存昵称
+              </button>
+              <button
+                type="button"
+                className="btn btn-ghost"
+                onClick={() => {
+                  const result = profileStore.add(nicknameDraft);
+                  setProfileMessage(result.ok ? `已为 ${result.profile.nickname} 新建学习空间。` : result.error);
+                }}
+              >
+                新建学习者
+              </button>
+            </div>
+            {profileMessage && <p className="preview-profile-message" role="status">{profileMessage}</p>}
+          </section>
           <label>
             英语小课的词数
             <select
-              value={preferences.englishCount}
+              value={primaryPreferences.englishCount}
               onChange={(e) =>
-                setPreferences((p) => ({
-                  ...p,
-                  englishCount: Number(e.target.value),
-                }))
+                profileStore.setCoursePreferences(activeProfile.id, "primary-starter", {
+                  englishCount: Number(e.target.value) as 2 | 3 | 5,
+                })
               }
             >
               <option value={2}>2 个词</option>
@@ -369,12 +488,11 @@ export default function CoursePreview() {
           <label>
             汉字小课的字数
             <select
-              value={preferences.hanziCount}
+              value={hanziPreferences.hanziCount}
               onChange={(e) =>
-                setPreferences((p) => ({
-                  ...p,
-                  hanziCount: Number(e.target.value),
-                }))
+                profileStore.setCoursePreferences(activeProfile.id, "hanzi-starter", {
+                  hanziCount: Number(e.target.value) as 2 | 3 | 5,
+                })
               }
             >
               <option value={2}>2 个字</option>
@@ -386,14 +504,22 @@ export default function CoursePreview() {
             <span>朗读慢一点</span>
             <input
               type="checkbox"
-              checked={preferences.slow}
+              checked={
+                course?.manifest.id === "hanzi-starter"
+                  ? hanziPreferences.slow
+                  : primaryPreferences.slow
+              }
               onChange={(e) =>
-                setPreferences((p) => ({ ...p, slow: e.target.checked }))
+                profileStore.setCoursePreferences(
+                  activeProfile.id,
+                  course?.manifest.id === "hanzi-starter" ? "hanzi-starter" : "primary-starter",
+                  { slow: e.target.checked },
+                )
               }
             />
           </label>
           <p className="preview-disclosure">
-            设置仅用于本次样板，刷新后恢复默认。多学员、进度保存、时间上限和备份将在后续实现；雅思设置不受这些选项影响。
+            小课偏好按学习者和课程分别保存；设备主题、音效等仍是本机设备设置。雅思进度与旧设置尚未迁移，T09 会先备份再处理；本次不会改写它们。
           </p>
           <button className="btn btn-primary btn-xl" onClick={closeParent}>
             设置好了 <Check size={18} />
@@ -407,19 +533,18 @@ export default function CoursePreview() {
 function PreviewLesson({
   course,
   lesson,
+  entries,
   preferences,
   onExit,
   onRestart,
 }: {
-  course: SampleCourse;
+  course: Course;
   lesson: Lesson;
+  entries: LearningEntry[];
   preferences: Preferences;
   onExit: () => void;
   onRestart: () => void;
 }) {
-  const entries = lesson.entryIds
-    .map((id) => course.entries.find((e) => e.id === id))
-    .filter((e): e is LearningEntry => !!e);
   const [session, dispatch] = useReducer(previewReducer, undefined, () =>
     createPreviewSession(
       entries,
@@ -546,7 +671,7 @@ function PreviewLesson({
               onErrorCapture={() => dispatch({ type: "resource-error" })}
             >
               <Illustration
-                src={entry.media.image ? asset(entry.media.image) : null}
+                src={course.img(entry)}
                 word={intro ? entryLabel(entry) : "图片暂未加载"}
                 eager
                 alt={
@@ -580,7 +705,7 @@ function PreviewLesson({
                     key={`${entry.id}:intro`}
                     text={entryLabel(entry)}
                     locale={entry.media.locale}
-                    recording={entry.media.recording}
+                    recording={course.audio(entry)}
                     slow={preferences.slow}
                   />
                   <div className="preview-example">

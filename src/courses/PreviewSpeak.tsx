@@ -41,7 +41,11 @@ export function PreviewSpeak({
     };
     timer.current = setTimeout(() => finish(true), 15000);
     if (recording) {
-      const audio = new Audio(`${import.meta.env.BASE_URL}${recording}`);
+      const audioUrl =
+        recording.startsWith("http") || recording.startsWith("/")
+          ? recording
+          : `${import.meta.env.BASE_URL}${recording}`;
+      const audio = new Audio(audioUrl);
       active.current = audio;
       audio.playbackRate = slow ? 0.8 : 1;
       audio.onended = () => finish();

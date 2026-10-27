@@ -114,6 +114,8 @@ export interface Course {
 
 export interface CourseLoadOptions {
   signal?: AbortSignal;
+  /** Open atlas used only to retain topic / CEFR metadata when loading a local private atlas. */
+  openAtlas?: Atlas | null;
 }
 
 export function isLearningEntry(e: unknown): e is LearningEntry {

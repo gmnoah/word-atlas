@@ -1,8 +1,9 @@
 import { BookOpen, ChevronLeft, ChevronRight, Compass, Github, Keyboard, Moon, Search, Sun, User } from "lucide-react";
 import { lazy, Suspense, useCallback, useEffect, useState } from "react";
 import { AtlasContext, useAtlas, useEntry } from "./atlas/context";
-import { loadOpenAtlas, loadPrivateAtlas } from "./atlas/data";
+import { loadCourse } from "./atlas/data";
 import type { Atlas } from "./atlas/types";
+import { migrateBrowserV2ToV3 } from "./profiles/migration";
 import { REPO_URL } from "./config";
 import { closeWord, currentLocation, go, openWord, useLocation, type Route } from "./lib/router";
 import { AtlasPage } from "./pages/Atlas";
@@ -46,6 +47,10 @@ const CoursePreview = lazy(() => import("./courses/CoursePreview"));
 export default function App() {
   const { route } = useLocation();
   useTheme();
+  useEffect(() => {
+    // The migration is idempotent and leaves all v2 keys intact.
+    migrateBrowserV2ToV3();
+  }, []);
   if (route.page === "explore") return <Suspense fallback={<div className="boot"><Logo /><span className="spinner" /><p>正在打开学习空间…</p></div>}><CoursePreview /></Suspense>;
   return <LegacyApp />;
 }
@@ -59,14 +64,19 @@ function LegacyApp() {
 
   useEffect(() => {
     let live = true;
-    loadOpenAtlas().then(
-      (a) => {
+    loadCourse("word-atlas-open").then(
+      (course) => {
         if (!live) return;
+        const a = course.legacyAtlas;
+        if (!a) {
+          setError("雅思词库加载结果不完整");
+          return;
+        }
         setOpen(a);
         if (import.meta.env.DEV) {
-          loadPrivateAtlas(a).then(
-            (p) => {
-              if (live) setPriv(p);
+          loadCourse("word-atlas-private", { openAtlas: a }).then(
+            (privateCourse) => {
+              if (live) setPriv(privateCourse.legacyAtlas ?? null);
             },
             () => null,
           );
