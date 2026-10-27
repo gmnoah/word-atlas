@@ -1,0 +1,44 @@
+
+> word-atlas@1.0.0 test
+> node --import tsx --test src/**/*.test.ts
+
+✔ preview limits the lesson and introduces selected entries before recall (1.06275ms)
+✔ a singleton or empty lesson never fabricates distractors (0.588ms)
+✔ first answer is immutable and cannot be changed by repeated clicks or later hints (0.361709ms)
+✔ hints and caregiver assistance are not independent correct answers (0.206041ms)
+✔ skipping an introduction omits that entry's recall without recording a wrong answer (1.490667ms)
+✔ failed image cannot score and user can leave the failed question (0.203875ms)
+✔ unknown options and next before an answer do not advance recall (0.084625ms)
+✔ a finished session ignores further input (0.065208ms)
+✔ sample packs have 30 English words and 20 Hanzi, each in exactly one lesson (2.676625ms)
+✔ highlights the headword and common inflections (1.034709ms)
+✔ does not match inside longer unrelated words (0.203083ms)
+✔ gaps the sentence for cloze questions (0.119666ms)
+✔ normalizes typography from mobile keyboards (0.509625ms)
+✔ typing counts inserted characters and does not reward deletions (1.062708ms)
+✔ a corrected mistake remains in the cumulative accuracy denominator (0.162625ms)
+✔ replacement and middle insertion assess only new characters at their new positions (0.092542ms)
+✔ case and equivalent smart punctuation are accepted, punctuation is still required (0.178875ms)
+✔ IME commits or multi-character replacements are assessed as one insertion (0.110417ms)
+✔ WPM uses five characters per word and excludes discarded error characters (0.079416ms)
+✔ an untouched or subsecond round never reports infinite or misleading WPM (0.061208ms)
+✔ normalized ligatures count as the same displayed characters (0.063541ms)
+✔ decomposed accents normalize before positions and accuracy are assessed (0.07375ms)
+✔ supplementary Unicode characters do not shift the following letter positions (0.1095ms)
+✔ source nonbreaking spaces match keyboard spaces but omitted punctuation does not (0.074583ms)
+✔ metrics never emit NaN, Infinity, negatives or accuracy above 100 (0.062792ms)
+✔ a new card answered Good is scheduled soon, Again sooner (2.94875ms)
+✔ repeated successful reviews grow stability until mastered (0.487833ms)
+✔ a lapse resets progress and counts the lapse (1.230292ms)
+(node:68438) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ keeps valid progress and drops malformed records (1.625667ms)
+✔ rejects other versions and unknown settings (0.14ms)
+ℹ tests 30
+ℹ suites 0
+ℹ pass 30
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 558.946917

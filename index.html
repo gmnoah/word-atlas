@@ -16,7 +16,6 @@
     <link rel="icon" type="image/svg+xml" href="%BASE_URL%favicon.svg" />
     <link rel="apple-touch-icon" href="%BASE_URL%icon-512.png" />
     <link rel="manifest" href="%BASE_URL%manifest.webmanifest" />
-    <link rel="preload" href="%BASE_URL%atlas/index.json" as="fetch" crossorigin="anonymous" />
     <script>
       // Apply the saved theme (dark by default) before first paint.
       (function () {
@@ -26,6 +25,15 @@
           if (s.theme) t = s.theme;
         } catch (e) {}
         if (t !== "system") document.documentElement.setAttribute("data-theme", t);
+        // Keep the IELTS preload on legacy routes; the course preview is independent.
+        if (!/^#\/explore(?:\?|$)/.test(location.hash)) {
+          var preload = document.createElement("link");
+          preload.rel = "preload";
+          preload.href = "%BASE_URL%atlas/index.json";
+          preload.as = "fetch";
+          preload.crossOrigin = "anonymous";
+          document.head.appendChild(preload);
+        }
       })();
     </script>
   </head>

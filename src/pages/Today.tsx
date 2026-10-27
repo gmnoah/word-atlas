@@ -83,6 +83,11 @@ export function Today() {
         <h1 className="display">{greeting(now.getHours())}，探索者。</h1>
       </header>
 
+      <a className="preview-launch" href="#/explore">
+        <span>新的学习旅程 · 小学英语与汉字启蒙体验样板</span>
+        <span>打开学习空间 <ArrowRight size={16} /></span>
+      </a>
+
       <section className={`journey ${total === 0 && !active ? "is-clear" : ""}`}>
         <img className="journey-art" src={`${BRAND}/hero.webp`} alt="" fetchPriority="high" />
         <div className="journey-body">

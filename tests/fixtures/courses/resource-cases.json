@@ -1,0 +1,80 @@
+{
+  "normal": {
+    "kind": "english",
+    "id": "en-apple",
+    "topicId": "fruit",
+    "word": "apple",
+    "meaning": "苹果",
+    "example": {
+      "text": "I like apples.",
+      "translation": "我喜欢苹果。"
+    },
+    "caregiverTip": "在身边或绘本里找找“苹果”，试着说一说英文。",
+    "reviewStatus": "draft",
+    "media": {
+      "image": "atlas/img/apple.webp",
+      "recording": "atlas/audio/uk/apple.mp3",
+      "locale": "en-GB",
+      "source": "Word Atlas contributors（词光）· CC BY 4.0；插画借作语义预览，适龄匹配待审校"
+    }
+  },
+  "missingAudio": {
+    "kind": "english",
+    "id": "en-apple",
+    "topicId": "fruit",
+    "word": "apple",
+    "meaning": "苹果",
+    "example": {
+      "text": "I like apples.",
+      "translation": "我喜欢苹果。"
+    },
+    "caregiverTip": "在身边或绘本里找找“苹果”，试着说一说英文。",
+    "reviewStatus": "draft",
+    "media": {
+      "image": "atlas/img/apple.webp",
+      "recording": null,
+      "locale": "en-GB",
+      "source": "Word Atlas contributors（词光）· CC BY 4.0；插画借作语义预览，适龄匹配待审校"
+    }
+  },
+  "missingImage": {
+    "kind": "english",
+    "id": "en-apple",
+    "topicId": "fruit",
+    "word": "apple",
+    "meaning": "苹果",
+    "example": {
+      "text": "I like apples.",
+      "translation": "我喜欢苹果。"
+    },
+    "caregiverTip": "在身边或绘本里找找“苹果”，试着说一说英文。",
+    "reviewStatus": "draft",
+    "media": {
+      "image": null,
+      "recording": "atlas/audio/uk/apple.mp3",
+      "locale": "en-GB",
+      "source": "Word Atlas contributors（词光）· CC BY 4.0；插画借作语义预览，适龄匹配待审校"
+    }
+  },
+  "insufficientDistractors": [
+    {
+      "kind": "english",
+      "id": "en-apple",
+      "topicId": "fruit",
+      "word": "apple",
+      "meaning": "苹果",
+      "example": {
+        "text": "I like apples.",
+        "translation": "我喜欢苹果。"
+      },
+      "caregiverTip": "在身边或绘本里找找“苹果”，试着说一说英文。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/apple.webp",
+        "recording": "atlas/audio/uk/apple.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；插画借作语义预览，适龄匹配待审校"
+      }
+    }
+  ]
+}

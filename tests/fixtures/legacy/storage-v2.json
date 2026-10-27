@@ -1,0 +1,69 @@
+{
+  "word-atlas:settings": {
+    "accent": "uk",
+    "autoplay": true,
+    "dailyNew": 10,
+    "retention": 0.9,
+    "theme": "dark",
+    "sfx": true,
+    "spell": true,
+    "startLevel": 0,
+    "onboarded": true,
+    "dataset": "open",
+    "ambience": "off",
+    "ambienceVolume": 0.45,
+    "splash": false
+  },
+  "word-atlas:v2:word-atlas-open": {
+    "version": 2,
+    "datasetId": "word-atlas-open",
+    "cards": {
+      "apple": {
+        "due": 1793059200000,
+        "s": 2,
+        "d": 5,
+        "el": 0,
+        "sd": 1,
+        "ls": 0,
+        "reps": 1,
+        "lapses": 0,
+        "st": 2,
+        "seen": 1792972800000,
+        "last": 1792972800000
+      }
+    },
+    "bookmarks": [
+      "apple"
+    ],
+    "days": {
+      "2026-10-26": {
+        "n": 1,
+        "r": 1,
+        "c": 1,
+        "t": 30
+      }
+    },
+    "typing": [],
+    "session": {
+      "id": "fixture-session",
+      "started": 1793059200000,
+      "steps": [
+        {
+          "id": "apple",
+          "kind": "meaning",
+          "options": [
+            "apple",
+            "cat"
+          ]
+        }
+      ],
+      "index": 0,
+      "graded": {},
+      "newIds": [],
+      "reviewIds": [
+        "apple"
+      ]
+    },
+    "mistakes": []
+  }
+}

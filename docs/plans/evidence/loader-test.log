@@ -1,0 +1,60 @@
+
+> word-atlas@1.0.0 test
+> node --import tsx --test src/**/*.test.ts
+
+✔ T07: loadCourse('word-atlas-open') bridges legacy IELTS atlas to unified Course interface (23.236167ms)
+✔ T07: preview sample courses load under unified boundary without requesting IELTS index (1.672666ms)
+✔ T07: planned and unknown courses reject with clear, safe error messages (0.374667ms)
+✔ T07: concurrent calls deduplicate in-flight loads and retry on error (11.735667ms)
+✔ T07: AbortSignal cleanly cancels in-flight load without poisoning cache (0.216625ms)
+✔ T07: AsyncScope isolates asynchronous operations when switching learners/courses (0.100959ms)
+✔ T07: untrusted / malformed index and chunk data are caught cleanly (0.423916ms)
+✔ T07: entryToEnglishEntry correctly formats IELTS entry senses, tips and media (0.159958ms)
+✔ T07: resolveMediaUrl correctly handles learning entries, legacy entries and custom paths (0.110334ms)
+✔ drafts remain previewable but cannot pass the release gate (2.140708ms)
+✔ declared missing files and unsafe paths fail even preview validation (0.379208ms)
+✔ release approval requires an auditable human review, not only an approved flag (3.647708ms)
+✔ bad references, duplicate IDs, missing text and wrong language are detected (0.314458ms)
+✔ preview limits the lesson and introduces selected entries before recall (1.019291ms)
+✔ a singleton or empty lesson never fabricates distractors (0.494375ms)
+✔ first answer is immutable and cannot be changed by repeated clicks or later hints (2.626916ms)
+✔ hints and caregiver assistance are not independent correct answers (0.593292ms)
+✔ skipping an introduction omits that entry's recall without recording a wrong answer (0.165166ms)
+✔ failed image cannot score and user can leave the failed question (0.095833ms)
+✔ unknown options and next before an answer do not advance recall (0.074166ms)
+✔ a finished session ignores further input (0.052125ms)
+✔ registry maps the legacy dataset to the unchanged IELTS route and count (9.276709ms)
+✔ every preview resolves to its pack and shares the registered manifest (0.138833ms)
+✔ planned and unknown courses never return a playable course action (0.099459ms)
+✔ sample packs have 30 English words and 20 Hanzi, each in exactly one lesson (1.141792ms)
+✔ highlights the headword and common inflections (1.912167ms)
+✔ does not match inside longer unrelated words (0.121667ms)
+✔ gaps the sentence for cloze questions (0.106708ms)
+✔ normalizes typography from mobile keyboards (0.44475ms)
+✔ typing counts inserted characters and does not reward deletions (1.1485ms)
+✔ a corrected mistake remains in the cumulative accuracy denominator (0.222708ms)
+✔ replacement and middle insertion assess only new characters at their new positions (0.1005ms)
+✔ case and equivalent smart punctuation are accepted, punctuation is still required (0.229792ms)
+✔ IME commits or multi-character replacements are assessed as one insertion (0.131625ms)
+✔ WPM uses five characters per word and excludes discarded error characters (0.069208ms)
+✔ an untouched or subsecond round never reports infinite or misleading WPM (0.06125ms)
+✔ normalized ligatures count as the same displayed characters (0.063958ms)
+✔ decomposed accents normalize before positions and accuracy are assessed (0.07075ms)
+✔ supplementary Unicode characters do not shift the following letter positions (0.111375ms)
+✔ source nonbreaking spaces match keyboard spaces but omitted punctuation does not (0.072791ms)
+✔ metrics never emit NaN, Infinity, negatives or accuracy above 100 (0.152292ms)
+✔ a new card answered Good is scheduled soon, Again sooner (2.915167ms)
+✔ repeated successful reviews grow stability until mastered (0.615458ms)
+✔ a lapse resets progress and counts the lapse (0.975666ms)
+(node:28838) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ keeps valid progress and drops malformed records (2.026125ms)
+✔ rejects other versions and unknown settings (0.198042ms)
+ℹ tests 46
+ℹ suites 0
+ℹ pass 46
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 437.938708

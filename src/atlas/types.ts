@@ -1,3 +1,23 @@
+import type {
+  CourseManifest,
+  EnglishEntry,
+  HanziEntry,
+  LearningEntry,
+  Lesson,
+  Stage,
+  Subject,
+} from "../courses/types";
+
+export type {
+  CourseManifest,
+  EnglishEntry,
+  HanziEntry,
+  LearningEntry,
+  Lesson,
+  Stage,
+  Subject,
+};
+
 export type Accent = "uk" | "us";
 
 /** Compact row from atlas/index.json: [id, word, zh, ipa, cefr, topic, media]. */
@@ -66,4 +86,45 @@ export interface Atlas {
   peek: (id: string) => Entry | undefined;
   img: (ref: WordRef | Entry, size?: "thumb" | "full") => string | null;
   audio: (ref: WordRef | Entry, kind: "uk" | "us" | "ex" | "ex2") => string | null;
+  /** Registered course manifest */
+  manifest: CourseManifest;
+  /** Adapter converting legacy entry to unified EnglishEntry */
+  toLearningEntry: (entry: Entry) => EnglishEntry;
+  /** Asynchronously loads and adapts an entry to EnglishEntry */
+  asLearningEntry: (id: string) => Promise<EnglishEntry>;
+}
+
+export type MediaKind = "uk" | "us" | "ex" | "ex2" | "recording" | "example";
+
+/** Unified Course interface across legacy and new courses. */
+export interface Course {
+  manifest: CourseManifest;
+  kind: "legacy" | "preview";
+  count: number;
+  peek: (id: string) => Entry | LearningEntry | undefined;
+  entry: (id: string) => Promise<Entry | LearningEntry>;
+  img: (ref: WordRef | Entry | LearningEntry, size?: "thumb" | "full") => string | null;
+  audio: (ref: WordRef | Entry | LearningEntry, kind?: MediaKind) => string | null;
+  lessons?: Lesson[];
+  /** Legacy atlas reference if this course is an IELTS atlas. */
+  legacyAtlas?: Atlas;
+  /** Asynchronously loads and adapts an entry to LearningEntry. */
+  asLearningEntry?: (id: string) => Promise<LearningEntry>;
+}
+
+export interface CourseLoadOptions {
+  signal?: AbortSignal;
+}
+
+export function isLearningEntry(e: unknown): e is LearningEntry {
+  return (
+    !!e &&
+    typeof e === "object" &&
+    "kind" in e &&
+    ((e as { kind: string }).kind === "english" || (e as { kind: string }).kind === "hanzi")
+  );
+}
+
+export function isLegacyEntry(e: unknown): e is Entry {
+  return !!e && typeof e === "object" && "w" in e && "senses" in e;
 }

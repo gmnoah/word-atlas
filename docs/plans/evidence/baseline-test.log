@@ -1,0 +1,35 @@
+
+> word-atlas@1.0.0 test
+> node --import tsx --test src/**/*.test.ts
+
+✔ highlights the headword and common inflections (1.42125ms)
+✔ does not match inside longer unrelated words (0.998833ms)
+✔ gaps the sentence for cloze questions (0.71375ms)
+✔ normalizes typography from mobile keyboards (0.533084ms)
+✔ typing counts inserted characters and does not reward deletions (3.706209ms)
+✔ a corrected mistake remains in the cumulative accuracy denominator (0.1655ms)
+✔ replacement and middle insertion assess only new characters at their new positions (0.091542ms)
+✔ case and equivalent smart punctuation are accepted, punctuation is still required (0.485542ms)
+✔ IME commits or multi-character replacements are assessed as one insertion (0.125792ms)
+✔ WPM uses five characters per word and excludes discarded error characters (0.067334ms)
+✔ an untouched or subsecond round never reports infinite or misleading WPM (0.059458ms)
+✔ normalized ligatures count as the same displayed characters (0.065ms)
+✔ decomposed accents normalize before positions and accuracy are assessed (0.077167ms)
+✔ supplementary Unicode characters do not shift the following letter positions (9.497667ms)
+✔ source nonbreaking spaces match keyboard spaces but omitted punctuation does not (0.148458ms)
+✔ metrics never emit NaN, Infinity, negatives or accuracy above 100 (0.641375ms)
+✔ a new card answered Good is scheduled soon, Again sooner (10.801625ms)
+✔ repeated successful reviews grow stability until mastered (0.463792ms)
+✔ a lapse resets progress and counts the lapse (12.496542ms)
+(node:34844) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ keeps valid progress and drops malformed records (1.044959ms)
+✔ rejects other versions and unknown settings (0.112667ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 266.316167

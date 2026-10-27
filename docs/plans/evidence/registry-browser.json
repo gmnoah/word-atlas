@@ -1,0 +1,15 @@
+{
+  "checks": [
+    "Registry renders three working spaces and two non-interactive planned courses",
+    "Preview loads independently without requesting IELTS index",
+    "English lesson: parent count, introductions, hint, locked first answer, completion",
+    "Hanzi: co-reading, caregiver assistance, skip, no false independent success",
+    "Legacy progress remains byte-equivalent in structure",
+    "375px mobile, both themes, no horizontal overflow; reload safely resets preview",
+    "Image/audio failure, skip, cancel exit and confirmed exit",
+    "Legacy word deep link and Today entry work; zero page errors",
+    "A delayed legacy ambience request cannot restart audio after cancellation"
+  ],
+  "pageErrors": [],
+  "screenshots": "output/preview-check"
+}

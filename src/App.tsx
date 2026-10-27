@@ -1,5 +1,5 @@
 import { BookOpen, ChevronLeft, ChevronRight, Compass, Github, Keyboard, Moon, Search, Sun, User } from "lucide-react";
-import { useCallback, useEffect, useState } from "react";
+import { lazy, Suspense, useCallback, useEffect, useState } from "react";
 import { AtlasContext, useAtlas, useEntry } from "./atlas/context";
 import { loadOpenAtlas, loadPrivateAtlas } from "./atlas/data";
 import type { Atlas } from "./atlas/types";
@@ -41,22 +41,44 @@ function useTheme() {
   return theme;
 }
 
+const CoursePreview = lazy(() => import("./courses/CoursePreview"));
+
 export default function App() {
+  const { route } = useLocation();
+  useTheme();
+  if (route.page === "explore") return <Suspense fallback={<div className="boot"><Logo /><span className="spinner" /><p>正在打开学习空间…</p></div>}><CoursePreview /></Suspense>;
+  return <LegacyApp />;
+}
+
+function LegacyApp() {
   const [atlas, setAtlas] = useState<Atlas | null>(null);
   const [open, setOpen] = useState<Atlas | null>(null);
   const [priv, setPriv] = useState<Atlas | null>(null);
   const [error, setError] = useState<string | null>(null);
   const dataset = useStore((s) => s.settings.dataset);
-  useTheme();
 
   useEffect(() => {
+    let live = true;
     loadOpenAtlas().then(
       (a) => {
+        if (!live) return;
         setOpen(a);
-        if (import.meta.env.DEV) loadPrivateAtlas(a).then(setPriv, () => null);
+        if (import.meta.env.DEV) {
+          loadPrivateAtlas(a).then(
+            (p) => {
+              if (live) setPriv(p);
+            },
+            () => null,
+          );
+        }
       },
-      (e: Error) => setError(e.message),
+      (e: Error) => {
+        if (live) setError(e.message);
+      },
     );
+    return () => {
+      live = false;
+    };
   }, []);
 
   useEffect(() => {

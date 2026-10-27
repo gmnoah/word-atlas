@@ -1,0 +1,19 @@
+
+> word-atlas@1.0.0 check:atlas
+> node scripts/check-atlas.mjs
+
+{
+ "words": 7298,
+ "examples": 14596,
+ "illustrated": 7298,
+ "ukAudio": 7298,
+ "usAudio": 7298,
+ "sentenceAudio": 7298,
+ "ieltsSentenceAudio": 1011,
+ "warnings": {
+  "headwordNotInExample": 24,
+  "missingIpa": 0,
+  "oneExample": 0
+ },
+ "errors": 0
+}
