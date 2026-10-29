@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u725b",
+  "kind": "sentence",
+  "text": "小牛在草地上走。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u725b-sentence.wav",
+  "sha256": "957e153f3aa5dbbb61180c941de4a918717630c71e4f19d1a7960047bedc4061",
+  "seconds": 2.148,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

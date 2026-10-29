@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u76ee",
+  "kind": "sentence",
+  "text": "小猫闭上了双目。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u76ee-sentence.wav",
+  "sha256": "5316f3edfe5af558da649a953cb34482b9e509102fa713ac02d42246cd1f5838",
+  "seconds": 1.974,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u706b",
+  "kind": "sentence",
+  "text": "火苗亮起来了。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u706b-sentence.wav",
+  "sha256": "b455d21afed1dfff503d235425b12dbb21db36f4377aa484646315fdadec28fd",
+  "seconds": 1.609,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

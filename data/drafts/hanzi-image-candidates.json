@@ -1,0 +1,806 @@
+{
+  "version": 1,
+  "purpose": "仅供人工审核，不用于发布",
+  "candidates": [
+    {
+      "entryId": "hanzi-u5bb6",
+      "character": "家",
+      "file": "public/atlas/img/family.webp",
+      "kind": "existing-atlas",
+      "sha256": "c9ade8b57b0720ec0fa4108e348ab883670ec7d83258d6caa6295886de85836d",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u732b",
+      "character": "猫",
+      "file": "public/atlas/img/cat.webp",
+      "kind": "existing-atlas",
+      "sha256": "0f0138e40d73d737af83558e3c6ed427c4cb27a2422bae6689f9dda786d49745",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u72d7",
+      "character": "狗",
+      "file": "public/atlas/img/dog.webp",
+      "kind": "existing-atlas",
+      "sha256": "9c4bdee3dc6d4a6e9f9a14c80bc6818949fdd835a17a2041e2d3254ba65771dd",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u725b",
+      "character": "牛",
+      "file": "public/atlas/img/cow.webp",
+      "kind": "existing-atlas",
+      "sha256": "c9f9e6d6838576957c512337f9532a20fd3cdb9dedde3253da7e18e17e440c7f",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u7f8a",
+      "character": "羊",
+      "file": "public/atlas/img/sheep.webp",
+      "kind": "existing-atlas",
+      "sha256": "805429552b40cc21d00a67fb18e4acbe76a3c947ebb00f8a58e71d3b1b469713",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u9e21",
+      "character": "鸡",
+      "file": "public/atlas/img/chicken.webp",
+      "kind": "existing-atlas",
+      "sha256": "fc77a5cc8ee39d73c3c52284cab51a355d3217a410cdd784be04da6ccb8d0058",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u9e2d",
+      "character": "鸭",
+      "file": "public/atlas/img/duck.webp",
+      "kind": "existing-atlas",
+      "sha256": "5315ee1f946e77f071052a261b3201d8b15904babf879b84a0a81774c9f4749d",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u5154",
+      "character": "兔",
+      "file": "public/atlas/img/rabbit.webp",
+      "kind": "existing-atlas",
+      "sha256": "a494ee71730e0371b596b36bad463d59dfd4fa30f10e7334c49d7db99e7d6674",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u866b",
+      "character": "虫",
+      "file": "public/atlas/img/insect.webp",
+      "kind": "existing-atlas",
+      "sha256": "605a32d204cee61c6e64e30998551bda6ec90dc11a4014efb786eabebd8d08d2",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u684c",
+      "character": "桌",
+      "file": "public/atlas/img/table.webp",
+      "kind": "existing-atlas",
+      "sha256": "5fb64c2c330cb40b0b2f2faa28977bc22d66b2b83e4d42c7aa8edd4f24fa2e47",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u6905",
+      "character": "椅",
+      "file": "public/atlas/img/chair.webp",
+      "kind": "existing-atlas",
+      "sha256": "3a395e2c11acda75aa9875c132aa62757719e184d64f24feed1f09a4206514f0",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u95e8",
+      "character": "门",
+      "file": "public/atlas/img/door.webp",
+      "kind": "existing-atlas",
+      "sha256": "7c6ce9da5db02e92fb955af70e1c0fd15c0d7d597604021ca49ebe4c01262929",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u7a97",
+      "character": "窗",
+      "file": "public/atlas/img/window.webp",
+      "kind": "existing-atlas",
+      "sha256": "299ee7cb00226fdf168d8f9a35211401483a8c5ba50946e321aaf3d488ebe258",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u706f",
+      "character": "灯",
+      "file": "public/atlas/img/lamp.webp",
+      "kind": "existing-atlas",
+      "sha256": "2202a028fd5bcb1cbc9c75a04183dd8bd2eeb4770937bfad836664655b315922",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u4e66",
+      "character": "书",
+      "file": "public/atlas/img/book.webp",
+      "kind": "existing-atlas",
+      "sha256": "7e57f3c8bb2e6b4f1166ac5ced85365f1f30bb2cff8aba8388b9d8337b16af9c",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u7b14",
+      "character": "笔",
+      "file": "public/atlas/img/pencil.webp",
+      "kind": "existing-atlas",
+      "sha256": "09c5891e15b0477ff247eccff4de1a8f1dd3b0a0a1a356a8ba9ac8c2eb3f6544",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u7eb8",
+      "character": "纸",
+      "file": "public/atlas/img/paper.webp",
+      "kind": "existing-atlas",
+      "sha256": "3c69a93537650f5f579efba882bd9ad0624266891a9b489fdce20afc8c236cb4",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u672c",
+      "character": "本",
+      "file": "public/atlas/img/notebook.webp",
+      "kind": "existing-atlas",
+      "sha256": "7e66aac0446428ff8c5909645f2055b7fff07a0743f89ac962d245977b5bc19e",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u7237",
+      "character": "爷",
+      "file": "public/atlas/img/grandfather.webp",
+      "kind": "existing-atlas",
+      "sha256": "f37abdd2b19e95176aa40438c83de7ae8713ccb430a81868fac88eccfff0fb58",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u5976",
+      "character": "奶",
+      "file": "public/atlas/img/grandmother.webp",
+      "kind": "existing-atlas",
+      "sha256": "a58a2d8884c9e3158f2552e8f987f7560186f1f7502649eb97bcd0025cff1c70",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u5b69",
+      "character": "孩",
+      "file": "public/atlas/img/child.webp",
+      "kind": "existing-atlas",
+      "sha256": "4b9e9211fdbcf3256b7c6a41baa8743e901f701c84d9f5bdc5557e5bb72ee2a8",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u5929",
+      "character": "天",
+      "file": "public/atlas/img/sky.webp",
+      "kind": "existing-atlas",
+      "sha256": "1db0ca04fbaebaf428e5877716f9d92ae8ad34628257d1756df3f6d43846735a",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u98ce",
+      "character": "风",
+      "file": "public/atlas/img/wind.webp",
+      "kind": "existing-atlas",
+      "sha256": "00f7bbbc3a0bc1a202dd58a5cfc15612f76558130caa8770e3be25377aff5e53",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u96ea",
+      "character": "雪",
+      "file": "public/atlas/img/snow.webp",
+      "kind": "existing-atlas",
+      "sha256": "108fe763580bd16671eb2a324cf4cba1207c16e58fe0344ec63a1ebe9d31e4b9",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u5149",
+      "character": "光",
+      "file": "public/atlas/img/light.webp",
+      "kind": "existing-atlas",
+      "sha256": "4ed310feb61dfa43b53d31f8894a8045234c994cbbbe447434811a62a0c02040",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u661f",
+      "character": "星",
+      "file": "public/atlas/img/star.webp",
+      "kind": "existing-atlas",
+      "sha256": "c57893d0a0e83ecfe9735785b6995825ca3db36951d06d282670a7ca65717ea1",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u6d77",
+      "character": "海",
+      "file": "public/atlas/img/sea.webp",
+      "kind": "existing-atlas",
+      "sha256": "eefce8826059d904bc9e62d30c3d780f519abcf4bd5516a0a8ef124138536de6",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u6cb3",
+      "character": "河",
+      "file": "public/atlas/img/river.webp",
+      "kind": "existing-atlas",
+      "sha256": "e11760405d879adc6fca460e47a16b30881a363a0017fe6d6c31a151937842bf",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u6e56",
+      "character": "湖",
+      "file": "public/atlas/img/lake.webp",
+      "kind": "existing-atlas",
+      "sha256": "6d40fb7cd9a542bc1d7995f7d04cf592597f4ce928f6308d45004a06bf6a0ff7",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u6797",
+      "character": "林",
+      "file": "public/atlas/img/forest.webp",
+      "kind": "existing-atlas",
+      "sha256": "66c9522c7f4913a3ea74e822532d1fbd34baa0603be0db1e76019e113a25ea54",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u6625",
+      "character": "春",
+      "file": "public/atlas/img/spring.webp",
+      "kind": "existing-atlas",
+      "sha256": "1576f4ba13198c252b16ba50b7efa0d22e12f11d3e926b8dd9c29fbcaefec453",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u590f",
+      "character": "夏",
+      "file": "public/atlas/img/summer.webp",
+      "kind": "existing-atlas",
+      "sha256": "d12fd659c2dd48ec04fc238d13b59931fd32c2f187315817573a423a7f095416",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u79cb",
+      "character": "秋",
+      "file": "public/atlas/img/autumn.webp",
+      "kind": "existing-atlas",
+      "sha256": "8b816ed5a9d05a4aa789eba96bb1847492e160c0e274fce2803a90c58fa51b66",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u51ac",
+      "character": "冬",
+      "file": "public/atlas/img/winter.webp",
+      "kind": "existing-atlas",
+      "sha256": "fc263e4819aff7d2e593bf2478bae389407354ec539510b25cd4a3c95242daf0",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u5927",
+      "character": "大",
+      "file": "public/atlas/img/big.webp",
+      "kind": "existing-atlas",
+      "sha256": "417e40b7b96244499ac6c556f921b51152f0fbd6b085d4ca0663cf5d1ff38a5e",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u5c0f",
+      "character": "小",
+      "file": "public/atlas/img/small.webp",
+      "kind": "existing-atlas",
+      "sha256": "b03d10a44b7189774e20eceabf5f7772abf7ed40ae3d53e612b1e1064ce44267",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u591a",
+      "character": "多",
+      "file": "public/atlas/img/many.webp",
+      "kind": "existing-atlas",
+      "sha256": "e93682a19756043ee0e71af79413eb6082d9b9cc32c3fad73e68f44f5e014b17",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u5c11",
+      "character": "少",
+      "file": "public/atlas/img/few.webp",
+      "kind": "existing-atlas",
+      "sha256": "f59518a9188f420bfa6c6589b6195c9d7f21cacbfdf9d02448d420ed5c1bd060",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u4e0a",
+      "character": "上",
+      "file": "public/atlas/img/above.webp",
+      "kind": "existing-atlas",
+      "sha256": "c67c88ad13544c089e8bcfcc75f4f40bdc430a50de0398d7e39cefeb849b0fff",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u91cc",
+      "character": "里",
+      "file": "public/atlas/img/inside.webp",
+      "kind": "existing-atlas",
+      "sha256": "94f1d9168aa3e4d2382dcbf681f6ccd85be9cd7bc483ce545bf564623239068f",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u5916",
+      "character": "外",
+      "file": "public/atlas/img/outside.webp",
+      "kind": "existing-atlas",
+      "sha256": "5e7094c13b52ac44728b00e05597ca43ddb88ef48f686d9f5ea29973176779de",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u65e9",
+      "character": "早",
+      "file": "public/atlas/img/morning.webp",
+      "kind": "existing-atlas",
+      "sha256": "884a8a44efdc27887c76143fe22267e286e5cf5a3f8a1a3bec31ba45d8f4c1d2",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u665a",
+      "character": "晚",
+      "file": "public/atlas/img/evening.webp",
+      "kind": "existing-atlas",
+      "sha256": "985a0d331b4ee6ae0c5610ba6db205112f8b317eab978d0b4e24b383c353b12f",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u5403",
+      "character": "吃",
+      "file": "public/atlas/img/eat.webp",
+      "kind": "existing-atlas",
+      "sha256": "bf9a306d2daae15cbd5d2249a9a6e0e09ed2c079ca9a74750e3e7dcac24dd3b5",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u559d",
+      "character": "喝",
+      "file": "public/atlas/img/drink.webp",
+      "kind": "existing-atlas",
+      "sha256": "9fcfba4f809dfaaa15fde2a67ee2e26eba486071d1201cd48144803828aa6afa",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u996d",
+      "character": "饭",
+      "file": "public/atlas/img/meal.webp",
+      "kind": "existing-atlas",
+      "sha256": "455b5ef92d3023f1b3ea91825b346cc2f279fb600ab5b2452d747da011a789e5",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u679c",
+      "character": "果",
+      "file": "public/atlas/img/fruit.webp",
+      "kind": "existing-atlas",
+      "sha256": "3af847efbd46ed4b4249c292761ee08aa18c2f06073a6a551cd1fc976cfd77b7",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u83dc",
+      "character": "菜",
+      "file": "public/atlas/img/vegetable.webp",
+      "kind": "existing-atlas",
+      "sha256": "851f60f2143ebfa3ce5fe5976f50bb1275ca349ed02de68e56716d6e25226002",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u7c73",
+      "character": "米",
+      "file": "public/atlas/img/rice.webp",
+      "kind": "existing-atlas",
+      "sha256": "87bb2c4407988c9a5be91d9af42a08d39da2a5dda5205692a6f5389e2be43679",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u8336",
+      "character": "茶",
+      "file": "public/atlas/img/tea.webp",
+      "kind": "existing-atlas",
+      "sha256": "e070cf4cc3685d7736a4be8200773c4151fef2a3c019d1b2266cfde935a52ce1",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u86cb",
+      "character": "蛋",
+      "file": "public/atlas/img/egg.webp",
+      "kind": "existing-atlas",
+      "sha256": "3d17cf698a881d3756c2cacfe0ee1035aec7652ceb28fd22078709048d53c0d4",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u751c",
+      "character": "甜",
+      "file": "public/atlas/img/sweet.webp",
+      "kind": "existing-atlas",
+      "sha256": "35875720352fbfd8b3d318f9de516a9ce760d9b74edb0ff61506bdb3b0a5dacc",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u753b",
+      "character": "画",
+      "file": "public/atlas/img/draw.webp",
+      "kind": "existing-atlas",
+      "sha256": "f2476507b0e56f4522c7ec2d630beecc308434bc6e116308638c7079fb22a0b5",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u8d70",
+      "character": "走",
+      "file": "public/atlas/img/walk.webp",
+      "kind": "existing-atlas",
+      "sha256": "502c0071c04bd293bc4dee204af0afb0b6c9f1e060f14a764438ca38c7b2d791",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u8dd1",
+      "character": "跑",
+      "file": "public/atlas/img/run.webp",
+      "kind": "existing-atlas",
+      "sha256": "acdd3cd026d513056e71b8e6aaa4012680a2bfbc7d4cfb4ac860499495f99023",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u8df3",
+      "character": "跳",
+      "file": "public/atlas/img/jump.webp",
+      "kind": "existing-atlas",
+      "sha256": "5b3f827c3d20612a30fc9a11c1783df0b5b12577faa87153ab2c823cabf912fa",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u5750",
+      "character": "坐",
+      "file": "public/atlas/img/sit.webp",
+      "kind": "existing-atlas",
+      "sha256": "0781f31b6750b26ee0b49c303af357cf4894ce8328219bd2c0e27381cc3f380c",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u770b",
+      "character": "看",
+      "file": "public/atlas/img/look.webp",
+      "kind": "existing-atlas",
+      "sha256": "f332ed6d1dfeccb9bd86994f0412d2a96c9177f1c63d4259b0afed67f6867b88",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u542c",
+      "character": "听",
+      "file": "public/atlas/img/listen.webp",
+      "kind": "existing-atlas",
+      "sha256": "3ae4c06cc0706efedfe15eff6849d517c78815f90ea029364eaeb550178507f4",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u8bf4",
+      "character": "说",
+      "file": "public/atlas/img/speak.webp",
+      "kind": "existing-atlas",
+      "sha256": "06eb946ba32a3cd39fe4169752f82622ac442b506832e9ccf11c9b0dcae10e1b",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u7b11",
+      "character": "笑",
+      "file": "public/atlas/img/smile.webp",
+      "kind": "existing-atlas",
+      "sha256": "b2c4945b036eab14d865b81918cb2e33b5520ceb9243b6922e7fcea84667fa97",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u6d17",
+      "character": "洗",
+      "file": "public/atlas/img/wash.webp",
+      "kind": "existing-atlas",
+      "sha256": "143943ac680cad7590895072c923faf553a7c30c2fa4d82ae0948953a02ae9f0",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u7761",
+      "character": "睡",
+      "file": "public/atlas/img/sleep.webp",
+      "kind": "existing-atlas",
+      "sha256": "72b9506282140347f1d5ffcb0ba2e4e50bbb79d4c2921443e8a09373e742a4ce",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u7238",
+      "character": "爸",
+      "file": "data/drafts/images/hanzi-u7238-father.png",
+      "kind": "new-imagegen",
+      "sha256": "157113f086358f53a4e0bf0bb62942458aec70b70f931dc08c417ed65e1f362e",
+      "source": "OpenAI imagegen；使用项目插画作风格参考，使用条件及儿童适龄性待人工确认",
+      "reviewStatus": "draft",
+      "reviewNote": "人物亲属关系可能存在歧义，需人工审查；审核前不得用于图片选择题。"
+    },
+    {
+      "entryId": "hanzi-u5988",
+      "character": "妈",
+      "file": "data/drafts/images/hanzi-u5988-mother.png",
+      "kind": "new-imagegen",
+      "sha256": "180b3e0b695c77b91900b34cbe124f3c7c790ac5890e1ddf7a1de1c914115b30",
+      "source": "OpenAI imagegen；使用项目插画作风格参考，使用条件及儿童适龄性待人工确认",
+      "reviewStatus": "draft",
+      "reviewNote": "人物亲属关系可能存在歧义，需人工审查；审核前不得用于图片选择题。"
+    },
+    {
+      "entryId": "hanzi-u54e5",
+      "character": "哥",
+      "file": "data/drafts/images/hanzi-u54e5-brother.png",
+      "kind": "new-imagegen",
+      "sha256": "1defa0bc97fa961c95360fa14fa934e70593b77040d559ea94f14d69a4091215",
+      "source": "OpenAI imagegen；使用项目插画作风格参考，使用条件及儿童适龄性待人工确认",
+      "reviewStatus": "draft",
+      "reviewNote": "人物亲属关系可能存在歧义，需人工审查；审核前不得用于图片选择题。"
+    },
+    {
+      "entryId": "hanzi-u59d0",
+      "character": "姐",
+      "file": "data/drafts/images/hanzi-u59d0-sister.png",
+      "kind": "new-imagegen",
+      "sha256": "83b92fefe240945d039a649d531cdd2ad71562b6f376b477ab73c53f717e0165",
+      "source": "OpenAI imagegen；使用项目插画作风格参考，使用条件及儿童适龄性待人工确认",
+      "reviewStatus": "draft",
+      "reviewNote": "人物亲属关系可能存在歧义，需人工审查；审核前不得用于图片选择题。"
+    },
+    {
+      "entryId": "hanzi-u5f1f",
+      "character": "弟",
+      "file": "data/drafts/images/hanzi-u5f1f-younger-brother.png",
+      "kind": "new-imagegen",
+      "sha256": "2f2cfbbb2453bca5b78766f2592fc44cb01442c6fcb08fa3d4d5d75915453af0",
+      "source": "OpenAI imagegen；使用项目插画作风格参考，使用条件及儿童适龄性待人工确认",
+      "reviewStatus": "draft",
+      "reviewNote": "人物亲属关系可能存在歧义，需人工审查；审核前不得用于图片选择题。"
+    },
+    {
+      "entryId": "hanzi-u59b9",
+      "character": "妹",
+      "file": "data/drafts/images/hanzi-u59b9-younger-sister.png",
+      "kind": "new-imagegen",
+      "sha256": "ae9c0af3b7b2d842655648f6ffee62c025974329dde8ea92e3ade1f4bc9b6045",
+      "source": "OpenAI imagegen；使用项目插画作风格参考，使用条件及儿童适龄性待人工确认",
+      "reviewStatus": "draft",
+      "reviewNote": "人物亲属关系可能存在歧义，需人工审查；审核前不得用于图片选择题。"
+    },
+    {
+      "entryId": "hanzi-u65f6",
+      "character": "时",
+      "file": "public/atlas/img/time.webp",
+      "kind": "existing-atlas",
+      "sha256": "d76d747364aba710cb07251876d11fbda67fe31d72943eb7d4c34325d7892c2d",
+      "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画",
+      "reviewStatus": "draft",
+      "reviewNote": "候选图表达目标字或短语；例句一致性、适龄性与题目选项歧义待人工审核。"
+    },
+    {
+      "entryId": "hanzi-u4e0b",
+      "character": "下",
+      "file": "data/drafts/images/hanzi-u4e0b-below.png",
+      "kind": "new-imagegen",
+      "sha256": "60e7f7d57d30daa5465b91e92ba82b4780d02948d49f383a5097f8cd25f70fba",
+      "source": "OpenAI imagegen；使用项目插画作风格参考，使用条件及儿童适龄性待人工确认",
+      "reviewStatus": "draft",
+      "reviewNote": "画面与目标字、例句及选项之间可能存在歧义，需人工审查；审核前不得用于图片选择题。"
+    },
+    {
+      "entryId": "hanzi-u5de6",
+      "character": "左",
+      "file": "data/drafts/images/hanzi-u5de6-left.png",
+      "kind": "new-imagegen",
+      "sha256": "3a638fc750881cb1a9653da0b3d650c2a04ecdd43c69f2e05d71ae24186a7f99",
+      "source": "OpenAI imagegen；使用项目插画作风格参考，使用条件及儿童适龄性待人工确认",
+      "reviewStatus": "draft",
+      "reviewNote": "画面与目标字、例句及选项之间可能存在歧义，需人工审查；审核前不得用于图片选择题。"
+    },
+    {
+      "entryId": "hanzi-u53f3",
+      "character": "右",
+      "file": "data/drafts/images/hanzi-u53f3-right.png",
+      "kind": "new-imagegen",
+      "sha256": "bac556a9e039271eb144589d2ac6b23dd5651afeca150c0c5d782ff001c43f5c",
+      "source": "OpenAI imagegen；使用项目插画作风格参考，使用条件及儿童适龄性待人工确认",
+      "reviewStatus": "draft",
+      "reviewNote": "画面与目标字、例句及选项之间可能存在歧义，需人工审查；审核前不得用于图片选择题。"
+    },
+    {
+      "entryId": "hanzi-u5730",
+      "character": "地",
+      "file": "data/drafts/images/hanzi-u5730-ground.png",
+      "kind": "new-imagegen",
+      "sha256": "b2ffaa05572e6950e474b570b3d67098c63381c28a1732f58131a6660384f976",
+      "source": "OpenAI imagegen；使用项目插画作风格参考，使用条件及儿童适龄性待人工确认",
+      "reviewStatus": "draft",
+      "reviewNote": "画面与目标字、例句及选项之间可能存在歧义，需人工审查；审核前不得用于图片选择题。"
+    },
+    {
+      "entryId": "hanzi-u8349",
+      "character": "草",
+      "file": "data/drafts/images/hanzi-u8349-grass.png",
+      "kind": "new-imagegen",
+      "sha256": "673c79b8c24ae0eecc640f0faee3de5dc4972d87a7360e0e490dfe7499d32198",
+      "source": "OpenAI imagegen；使用项目插画作风格参考，使用条件及儿童适龄性待人工确认",
+      "reviewStatus": "draft",
+      "reviewNote": "画面与目标字、例句及选项之间可能存在歧义，需人工审查；审核前不得用于图片选择题。"
+    },
+    {
+      "entryId": "hanzi-u4eca",
+      "character": "今",
+      "file": "data/drafts/images/hanzi-u4eca-today.png",
+      "kind": "new-imagegen",
+      "sha256": "551c40c5340a696c56c87bc3d9ba90b6078fd4125887230dce33c34ca9baa23d",
+      "source": "OpenAI imagegen；使用项目插画作风格参考，使用条件及儿童适龄性待人工确认",
+      "reviewStatus": "draft",
+      "reviewNote": "画面只能辅助例句，不能单独表达今天或明天；不得作为独立看图选字题。"
+    },
+    {
+      "entryId": "hanzi-u660e",
+      "character": "明",
+      "file": "data/drafts/images/hanzi-u660e-tomorrow.png",
+      "kind": "new-imagegen",
+      "sha256": "7aea00bea2c2808d2ba9698c2711ee07866b0772d35ba40f13e52ed81d143485",
+      "source": "OpenAI imagegen；使用项目插画作风格参考，使用条件及儿童适龄性待人工确认",
+      "reviewStatus": "draft",
+      "reviewNote": "画面只能辅助例句，不能单独表达今天或明天；不得作为独立看图选字题。"
+    },
+    {
+      "entryId": "hanzi-u5e74",
+      "character": "年",
+      "file": "data/drafts/images/hanzi-u5e74-year.png",
+      "kind": "new-imagegen",
+      "sha256": "f4c9318ba3c9b5597fa6eceb52c18e29c288ec74a8098fcc71d4b061c1ef7ac1",
+      "source": "OpenAI imagegen；使用项目插画作风格参考，使用条件及儿童适龄性待人工确认",
+      "reviewStatus": "draft",
+      "reviewNote": "画面与目标字、例句及选项之间可能存在歧义，需人工审查；审核前不得用于图片选择题。"
+    },
+    {
+      "entryId": "hanzi-u9762",
+      "character": "面",
+      "file": "data/drafts/images/hanzi-u9762-noodles.png",
+      "kind": "new-imagegen",
+      "sha256": "9b8c21fb12bcd7c632a9ee42a470fe346a6696855008b55d20e301a2e9cc0022",
+      "source": "OpenAI imagegen；使用项目插画作风格参考，使用条件及儿童适龄性待人工确认",
+      "reviewStatus": "draft",
+      "reviewNote": "画面与目标字、例句及选项之间可能存在歧义，需人工审查；审核前不得用于图片选择题。"
+    },
+    {
+      "entryId": "hanzi-u53f6",
+      "character": "叶",
+      "file": "data/drafts/images/hanzi-u53f6-leaf.png",
+      "kind": "new-imagegen",
+      "sha256": "8e3c6010de23f79907415d517f832af1ee749b9e37c3355bccbc85b88cbd33a4",
+      "source": "OpenAI imagegen；使用项目插画作风格参考，使用条件及儿童适龄性待人工确认",
+      "reviewStatus": "draft",
+      "reviewNote": "画面与目标字、例句及选项之间可能存在歧义，需人工审查；审核前不得用于图片选择题。"
+    }
+  ]
+}

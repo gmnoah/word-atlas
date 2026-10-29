@@ -1,0 +1,13 @@
+{
+  "course": "primary-expansion-draft",
+  "id": "en-banana",
+  "kind": "sentence",
+  "text": "This banana is yellow.",
+  "voice": "Daniel",
+  "locale": "en-GB",
+  "file": "data/drafts/audio/primary-expansion-draft/en-banana-sentence.wav",
+  "sha256": "7c789f9cea767ddad88d3da03693548231d93346694828fafa40c509d6c3ba5c",
+  "seconds": 1.656,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

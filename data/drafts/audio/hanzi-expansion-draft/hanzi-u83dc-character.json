@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u83dc",
+  "kind": "character",
+  "text": "菜",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u83dc-character.wav",
+  "sha256": "af1df073dfdd23ff3de88de55e0ac0fb76bcaa828739a782c5bcd48466e2f08b",
+  "seconds": 0.54,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

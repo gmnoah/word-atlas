@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u7a97",
+  "kind": "sentence",
+  "text": "窗户外面有树。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u7a97-sentence.wav",
+  "sha256": "2fd3d6524aadd9fda37e74dc9bc0813051816c6983bf002b70d8672c235ab6ab",
+  "seconds": 1.737,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

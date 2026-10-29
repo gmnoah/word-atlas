@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u672c",
+  "kind": "sentence",
+  "text": "我在本子上画画。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u672c-sentence.wav",
+  "sha256": "73879b5ab7af09143bbb022b14fa104d1c39927d9cb5ee941aaeb7a4e66c3cc0",
+  "seconds": 1.964,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

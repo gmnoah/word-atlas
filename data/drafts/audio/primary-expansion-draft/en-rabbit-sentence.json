@@ -1,0 +1,13 @@
+{
+  "course": "primary-expansion-draft",
+  "id": "en-rabbit",
+  "kind": "sentence",
+  "text": "The rabbit has long ears.",
+  "voice": "Daniel",
+  "locale": "en-GB",
+  "file": "data/drafts/audio/primary-expansion-draft/en-rabbit-sentence.wav",
+  "sha256": "541b581875ad6e667ebab1d0b2a7318df65055bc33a12c26a4f8acc5cc120d91",
+  "seconds": 1.831,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

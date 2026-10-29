@@ -1,0 +1,32 @@
+import { chromium } from 'playwright';
+import assert from 'node:assert/strict';
+const browser = await chromium.launch({headless:true,channel:process.env.PREVIEW_BROWSER || 'chrome'});
+try {
+ const context = await browser.newContext({acceptDownloads:true});
+ const page = await context.newPage();
+ await page.goto('http://localhost:5188/#/explore?course=hanzi-starter');
+ await page.locator('.hanzi-map-stop').first().getByRole('button',{name:'只读一读'}).click();
+ await page.getByRole('button',{name:'看过啦，下一个'}).click();
+ await page.getByRole('button',{name:'返回主题'}).click();
+ await page.getByRole('button',{name:'结束体验'}).click();
+ await page.getByRole('button',{name:'家长设置'}).click();
+ const downloadPromise = page.waitForEvent('download');
+ await page.getByRole('button',{name:'导出全部档案'}).click();
+ const download = await downloadPromise;
+ const path = await download.path();
+ assert.ok(path);
+ const before = await page.evaluate(() => localStorage.getItem('word-atlas:v3:activity:learner-default:hanzi-starter'));
+ assert.ok(before);
+ page.once('dialog', dialog => dialog.accept());
+ await page.locator('input[type=file]').setInputFiles(path);
+ await page.getByText('已恢复学习记录，请刷新页面继续。').waitFor();
+ assert.equal(await page.evaluate(() => localStorage.getItem('word-atlas:v3:activity:learner-default:hanzi-starter')), before);
+ await page.locator('input[type=file]').setInputFiles({name:'invalid.json',mimeType:'application/json',buffer:Buffer.from('{broken')});
+ await page.getByText('文件不是有效的 JSON。').waitFor();
+ assert.equal(await page.evaluate(() => localStorage.getItem('word-atlas:v3:activity:learner-default:hanzi-starter')), before);
+ await page.getByRole('button',{name:'设置好了'}).click();
+ await page.getByRole('button',{name:'学习记录'}).click();
+ await page.getByText('一起共读 1 次').waitFor();
+ console.log('活动记录浏览器导出、预检、恢复及展示通过');
+ await context.close();
+} finally { await browser.close(); }

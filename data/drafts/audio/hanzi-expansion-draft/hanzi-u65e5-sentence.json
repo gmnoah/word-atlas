@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u65e5",
+  "kind": "sentence",
+  "text": "日出的时候，天亮了。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u65e5-sentence.wav",
+  "sha256": "8e40abeb7ada980856f377177c91786039e79bff6a9a67b1690e250396cdeb51",
+  "seconds": 2.313,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

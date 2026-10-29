@@ -1,0 +1,13 @@
+{
+  "course": "primary-expansion-draft",
+  "id": "en-moon",
+  "kind": "sentence",
+  "text": "Look at the moon.",
+  "voice": "Daniel",
+  "locale": "en-GB",
+  "file": "data/drafts/audio/primary-expansion-draft/en-moon-sentence.wav",
+  "sha256": "d88ccddc8d3e749daf6eabe26034e55e7f73296724f87ff09f6e9519bf25fd16",
+  "seconds": 1.267,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

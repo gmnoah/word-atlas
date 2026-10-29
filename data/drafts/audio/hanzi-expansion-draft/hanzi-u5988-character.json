@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u5988",
+  "kind": "character",
+  "text": "妈",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u5988-character.wav",
+  "sha256": "f9d5976cae4c380249ff811137515b8524de2098abe1cac3aa27b672906d62ee",
+  "seconds": 0.536,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

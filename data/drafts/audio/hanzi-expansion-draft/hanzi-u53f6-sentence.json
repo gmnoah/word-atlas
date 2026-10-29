@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u53f6",
+  "kind": "sentence",
+  "text": "树上的叶子绿绿的。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u53f6-sentence.wav",
+  "sha256": "e8a401f439e974743685f272f758466ec3b54ee33f6317071971483468efe4e5",
+  "seconds": 1.926,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u6708",
+  "kind": "sentence",
+  "text": "月亮挂在夜空中。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u6708-sentence.wav",
+  "sha256": "9d85d05325340b9b5e0ee53784143264418eba77867f31758f313061921eba1c",
+  "seconds": 2.102,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

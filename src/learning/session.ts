@@ -574,16 +574,18 @@ export function learningSessionStats(session: LearningSession) {
       attempt.result.correct &&
       attempt.result.support === "independent",
   ).length;
-  const supported = answered.filter(
-    (attempt) =>
-      attempt.result.outcome === "answered" &&
-      attempt.result.correct &&
-      attempt.result.support !== "independent",
+  const hinted = answered.filter(
+    (attempt) => attempt.result.outcome === "answered" && attempt.result.correct && attempt.result.support === "hinted",
+  ).length;
+  const assisted = answered.filter(
+    (attempt) => attempt.result.outcome === "answered" && attempt.result.correct && attempt.result.support === "assisted",
   ).length;
   return {
     introduced: session.introduced.length,
     independent,
-    supported,
+    hinted,
+    assisted,
+    supported: hinted + assisted,
     skipped: attempts.filter((attempt) => attempt.result.outcome === "skipped").length,
     resourceErrors: attempts.filter(
       (attempt) => attempt.result.outcome === "resource-error",

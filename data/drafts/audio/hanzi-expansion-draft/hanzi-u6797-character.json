@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u6797",
+  "kind": "character",
+  "text": "林",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u6797-character.wav",
+  "sha256": "6aa6d14eb4562f07fc8c0de2186404cfe21426211b431c9048eda1959886b15e",
+  "seconds": 0.594,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

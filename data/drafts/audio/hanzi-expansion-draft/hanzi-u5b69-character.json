@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u5b69",
+  "kind": "character",
+  "text": "孩",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u5b69-character.wav",
+  "sha256": "ce69be12429c73c407151517f4aeb717308d2c48dcfcc402a0217d2688b1ef4f",
+  "seconds": 0.596,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

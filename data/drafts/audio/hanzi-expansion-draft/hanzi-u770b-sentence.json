@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u770b",
+  "kind": "sentence",
+  "text": "我和妈妈一起看书。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u770b-sentence.wav",
+  "sha256": "eed6caf16e74d16ee0595616f8ed204adf65af3de5aafe280c405232e902047e",
+  "seconds": 2.161,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

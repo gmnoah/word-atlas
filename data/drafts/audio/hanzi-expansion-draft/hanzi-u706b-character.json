@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u706b",
+  "kind": "character",
+  "text": "火",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u706b-character.wav",
+  "sha256": "cb9296b8a8dd87d90ab8c69c83c9cb4b9881acb0f5fe0c26d3bbdfe64725ff2a",
+  "seconds": 0.541,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

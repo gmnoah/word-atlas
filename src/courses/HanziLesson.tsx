@@ -1,13 +1,16 @@
+import { saveSessionActivity } from "../learning/activity-record";
 import { ArrowLeft, ArrowRight, Check, Volume2 } from "lucide-react";
 import { useCallback, useEffect, useReducer, useRef, useState } from "react";
 import type { Course } from "../atlas/types";
 import { createLearningSession, currentStep, learningReducer, learningSessionStats, type LearningAction } from "../learning/session";
-import { applyPrimarySession, primaryReviewIds, readPrimaryProgress, withPrimaryLock, writePrimaryProgress } from "../learning/primary-progress";
+import { applyPrimarySession, primaryReviewIds, readPrimaryProgress, readRestoreGeneration, withPrimaryLock, writePrimaryProgress } from "../learning/primary-progress";
 import { Illustration } from "../ui/Illustration";
 import { Sheet } from "../ui/Sheet";
 import { HanziCard } from "./HanziCard";
+import { hanziPosition, hanziQuestionPrompt, isHanziMatchingQuestion, hanziRecognitionSession } from "./hanzi-question";
+import { createListenGate, type ListenStatus } from "./hanzi-listen";
 import { hanziPolicy, type HanziLessonMode } from "./hanzi-policy";
-import { hasMandarinVoice, watchMandarinVoice } from "./hanzi-voice";
+import { findMandarinVoice, hasMandarinVoice, watchMandarinVoice } from "./hanzi-voice";
 import { clearHanziCheckpoint, readHanziCheckpoint, saveHanziCheckpoint } from "./hanzi-checkpoint";
 import { PrimaryFavorite } from "./PrimaryJourney";
 import { entryLabel, type HanziEntry, type LearningEntry, type Lesson } from "./types";
@@ -56,6 +59,7 @@ export function HanziLesson({ course, lesson, entries, profileId, mode, minutes,
     ),
   );
   const expected = useRef<string | null>(loaded.raw);
+  const generation = useRef(readRestoreGeneration(localStorage));
   const blocked = useRef(loaded.status === "invalid");
   const [saveError, setSaveError] = useState(loaded.status === "invalid");
   const [progressError, setProgressError] = useState(false);
@@ -82,6 +86,7 @@ export function HanziLesson({ course, lesson, entries, profileId, mode, minutes,
       contentVersion: course.manifest.version,
       policy: hanziPolicy({
         voiceAvailable: sessionVoice,
+        disablePicture: lesson.id.startsWith("draft-hanzi-"),
         coReading: coRead,
         entryCount: count,
         timeLimitMinutes: sessionMinutes > 0 ? sessionMinutes : null,
@@ -101,7 +106,10 @@ export function HanziLesson({ course, lesson, entries, profileId, mode, minutes,
 
   const [exitOpen, setExitOpen] = useState(false);
   const [failedImageStep, setFailedImageStep] = useState<number | null>(null);
-  const [voiceFailure, setVoiceFailure] = useState(false);
+  const [listenStatus, setListenStatus] = useState<ListenStatus>("idle");
+  const listenStep = useRef(session.index);
+  const listenGate = useRef<ReturnType<typeof createListenGate> | null>(null);
+  if (!listenGate.current) listenGate.current = createListenGate(setListenStatus);
   const closeExit = useCallback(() => setExitOpen(false), []);
   const dispatch = (action: Omit<LearningAction, "at"> & { at?: number }) =>
     dispatchRaw({ ...action, at: action.at ?? Date.now() } as LearningAction);
@@ -113,14 +121,20 @@ export function HanziLesson({ course, lesson, entries, profileId, mode, minutes,
   const attemptResult = attempt?.result;
   const lifeTip =
     entries.find((item) => session.introduced.includes(item.id))?.caregiverTip ?? "";
-  const stats = learningSessionStats(session);
+  // Visual matching exposes the answer in the prompt; keep the attempt for
+  // session recovery, but do not count it as independent recognition.
+  const recognitionSession = hanziRecognitionSession(session, lesson.id);
+  const stats = learningSessionStats(recognitionSession);
   const intro = step?.kind === "intro";
   const listenQuestion = step?.kind === "hanzi-listen";
   const pictureQuestion = step?.kind === "hanzi-picture";
+  const contextQuestion = step?.kind === "hanzi-question";
+  const matchingQuestion = !!step && isHanziMatchingQuestion(lesson.id, step.kind);
+  const currentListenStatus = listenStep.current === session.index ? listenStatus : "idle";
   const failedImage = failedImageStep === session.index;
   const imageMissing = (intro || pictureQuestion) && (!entry?.media.image || failedImage);
-  const resourceFailed = !!imageMissing || (listenQuestion && voiceFailure);
-  const unableToAnswer = !!resourceFailed || (listenQuestion && !sessionVoice);
+  const resourceFailed = !!imageMissing || (listenQuestion && currentListenStatus === "failed");
+  const unableToAnswer = !!resourceFailed || (listenQuestion && (!sessionVoice || currentListenStatus !== "ready"));
   const coRead = sessionMode === "co-read";
 
   useEffect(() => {
@@ -154,9 +168,10 @@ export function HanziLesson({ course, lesson, entries, profileId, mode, minutes,
         return;
       }
       try {
-        const updated = applyPrimarySession(stored.progress, session);
+        const updated = applyPrimarySession(stored.progress, recognitionSession);
         const changed = JSON.stringify(stored.progress) !== JSON.stringify(updated);
-        const ok = !changed || writePrimaryProgress(localStorage, updated);
+        const progressOk = !changed || writePrimaryProgress(localStorage, updated);
+        const ok = progressOk && saveSessionActivity(localStorage, profileId, recognitionSession, sessionMode, Date.now());
         progressFailure.current = !ok;
         setProgressError(!ok);
         if (ok && changed) window.dispatchEvent(new Event("primary-progress-changed"));
@@ -164,7 +179,7 @@ export function HanziLesson({ course, lesson, entries, profileId, mode, minutes,
         progressFailure.current = true;
         setProgressError(true);
       }
-    }).catch(() => {
+    }, generation.current).catch(() => {
       blocked.current = true;
       setSaveError(true);
     });
@@ -189,6 +204,7 @@ export function HanziLesson({ course, lesson, entries, profileId, mode, minutes,
           },
           expected.current,
         ),
+        generation.current,
       ).catch(() => false));
     if (!cleared) {
       setSaveError(true);
@@ -198,7 +214,10 @@ export function HanziLesson({ course, lesson, entries, profileId, mode, minutes,
   };
 
   useEffect(() => {
+    listenStep.current = session.index;
+    listenGate.current?.reset();
     window.scrollTo({ top: 0 });
+    return () => listenGate.current?.dispose();
   }, [session.index]);
   useEffect(() => {
     const tick = () =>
@@ -231,7 +250,7 @@ export function HanziLesson({ course, lesson, entries, profileId, mode, minutes,
           这次共读暂时无法保存：本地记录不可用或已在其他页面更改。原有记录会保留。
         </p>
       )}
-      {progressError && (
+      {progressError && !saveError && (
         <p role="alert" className="preview-disclosure">
           认识结果暂时无法保存，已保留本次共读记录，可稍后重新打开并重试。
         </p>
@@ -255,7 +274,7 @@ export function HanziLesson({ course, lesson, entries, profileId, mode, minutes,
               ? "今天的字都看过了。"
               : coRead
                 ? "今天一起读了几页字。"
-                : "今天，又认识了一个字。"}
+                : "今天一起找了字。"}
           </h1>
           <p>
             {session.steps.length === 0
@@ -264,7 +283,7 @@ export function HanziLesson({ course, lesson, entries, profileId, mode, minutes,
                 ? "这次先休息一下，下次再一起读。"
                 : "回到生活里，找找刚才看到的字吧。"}
           </p>
-          <dl className="mini-stats">
+          <dl className="mini-stats is-detailed">
             <div>
               <dt>一起看过</dt>
               <dd>{stats.introduced}<small>个</small></dd>
@@ -274,15 +293,20 @@ export function HanziLesson({ course, lesson, entries, profileId, mode, minutes,
               <dd>{coRead ? 0 : stats.independent}<small>个</small></dd>
             </div>
             <div>
-              <dt>提示或帮忙</dt>
-              <dd>{stats.supported}<small>个</small></dd>
+              <dt>提示后找对</dt>
+              <dd>{stats.hinted}<small>个</small></dd>
+            </div>
+            <div>
+              <dt>一起找对</dt>
+              <dd>{stats.assisted}<small>个</small></dd>
             </div>
           </dl>
           <p className="preview-disclosure">
             {coRead
               ? "共读只是看看字，不计识别成绩。"
-              : "自己找对才算识别成功；提示、家长帮忙和跳过都不计入。"}
-            学习记录保存在这台设备。
+              : "只统计首次找对；提示、家长帮忙和跳过不计入“自己找对”。"}
+            {saveError ? "本次小课未能保存。" : progressError ? "学习结果暂未保存，小课记录已保留。" : "学习记录保存在这台设备。"}
+            {!coRead && lesson.id.startsWith("draft-hanzi-") && " 照样找字不计作独立识字。"}
           </p>
           {lifeTip && session.steps.length > 0 && (
             <aside className="hanzi-life-tip" aria-label="回家可以试试">
@@ -305,10 +329,10 @@ export function HanziLesson({ course, lesson, entries, profileId, mode, minutes,
               {intro
                 ? "一个字，一个小发现"
                 : step.kind === "hanzi-listen"
-                  ? "听一听，选出这个字"
+                  ? `听词语，找第${hanziPosition(entry) ?? "一"}个字`
                   : step.kind === "hanzi-picture"
                     ? "看这幅画，选出对应的字"
-                    : entry.question}
+                    : hanziQuestionPrompt(entry, lesson.id)}
             </h1>
           </header>
           <section
@@ -324,32 +348,35 @@ export function HanziLesson({ course, lesson, entries, profileId, mode, minutes,
                   <button
                     type="button"
                     className="btn btn-ghost hanzi-listen-button"
-                    onClick={() => {
-                      setVoiceFailure(false);
-                      if (!("speechSynthesis" in window) || !sessionVoice) {
-                        setVoiceFailure(true);
-                        return;
-                      }
-                      try {
-                        window.speechSynthesis.cancel();
-                        const utterance = new SpeechSynthesisUtterance(entry.character);
-                        utterance.lang = "zh-CN";
-                        utterance.rate = slow ? 0.6 : 0.8;
-                        utterance.onerror = () => setVoiceFailure(true);
-                        window.speechSynthesis.speak(utterance);
-                      } catch {
-                        setVoiceFailure(true);
-                      }
-                    }}
+                    onClick={() => listenGate.current?.start((complete, fail) => {
+                      if (!("speechSynthesis" in window) || !sessionVoice) { fail(); return; }
+                      window.speechSynthesis.cancel();
+                      const voice = findMandarinVoice(window.speechSynthesis.getVoices());
+                      if (!voice) { fail(); return; }
+                      const utterance = new SpeechSynthesisUtterance(entry.phrase);
+                      utterance.lang = "zh-CN";
+                      utterance.voice = voice;
+                      utterance.rate = slow ? 0.6 : 0.8;
+                      utterance.onend = complete;
+                      utterance.onerror = fail;
+                      window.speechSynthesis.speak(utterance);
+                    })}
                   >
-                    <Volume2 size={20} /> 播放字的读音
+                    <Volume2 size={20} /> 播放词语
                   </button>
-                  {voiceFailure && (
-                    <p role="status">这台设备暂时读不出这个字，可以请家长读，或先跳过。</p>
+                  {currentListenStatus === "playing" && <p role="status">正在播放，听完再选。</p>}
+                  {currentListenStatus === "failed" && (
+                    <p role="status">这次声音没有播放完成，可以再试一次，或先跳过。</p>
                   )}
+                </div>
+              ) : contextQuestion ? (
+                <div className="hanzi-listen-prompt">
+                  <span className="hanzi-listen-mark" aria-hidden="true">找</span>
+                  <p>和家长一起读题，再找一找。</p>
                 </div>
               ) : (
                 <Illustration
+                  key={course.img(entry) ?? entry.id}
                   src={course.img(entry)}
                   word={entry.character}
                   eager
@@ -371,7 +398,7 @@ export function HanziLesson({ course, lesson, entries, profileId, mode, minutes,
               ) : (
                 <>
                   <p className="preview-prompt">
-                    {listenQuestion ? "选一个字" : pictureQuestion ? "选一个字" : "哪个字表示这个意思？"}
+                    选一个字
                   </p>
                   <div className="preview-options is-hanzi">
                     {(step.options ?? []).map((id) => {
@@ -400,7 +427,10 @@ export function HanziLesson({ course, lesson, entries, profileId, mode, minutes,
                             : "我们再认一认。"}
                         </strong>
                         <span>{entry.phrase} · {entry.sentence}</span>
-                        {attemptResult.outcome === "answered" &&
+                        {attemptResult.outcome === "answered" && matchingQuestion && (
+                          <small>这是找相同的字，不计作独立识字。</small>
+                        )}
+                        {attemptResult.outcome === "answered" && !matchingQuestion &&
                           attemptResult.support !== "independent" && (
                             <small>这次是一起找到的，不计作独立识别。</small>
                           )}
@@ -415,7 +445,7 @@ export function HanziLesson({ course, lesson, entries, profileId, mode, minutes,
                         </span>
                       </>
                     ) : (
-                      <span>慢慢来，不计时。</span>
+                      <span>{listenQuestion && currentListenStatus !== "ready" ? "先播放词语，听完再选。" : "慢慢来，不计时。"}</span>
                     )}
                   </div>
                   {answered ? (
@@ -461,7 +491,7 @@ export function HanziLesson({ course, lesson, entries, profileId, mode, minutes,
       <Sheet open={exitOpen} onClose={closeExit} label="暂时结束共读">
         <div className="preview-parent">
           <h2>先休息一下吗？</h2>
-          <p>返回主题后，下次打开同一个主题可以接着进行。学习记录保存在这台设备。</p>
+          <p>{saveError ? "当前小课暂时无法保存，返回后本次进度可能无法恢复；原有记录会保留。" : progressError ? "学习结果暂时无法保存，本次小课记录已保留；返回后可重新打开并重试。" : "返回主题后，下次打开同一个主题可以接着进行。学习记录保存在这台设备。"}</p>
           <div className="preview-actions">
             <button className="btn btn-primary" onClick={closeExit}>继续这次共读</button>
             <button className="btn btn-ghost" onClick={onExit}>结束体验</button>

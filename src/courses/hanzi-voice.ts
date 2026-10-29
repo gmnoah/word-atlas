@@ -3,13 +3,19 @@ export interface SpeechScope {
   speechSynthesis?: SpeechSynthesis;
 }
 
+/** Avoid selecting Cantonese or a different regional voice for Mandarin lessons. */
+export function findMandarinVoice(voices: readonly SpeechSynthesisVoice[]): SpeechSynthesisVoice | undefined {
+  return voices.find((voice) => {
+    const lang = voice.lang.replaceAll("_", "-").toLowerCase();
+    return lang === "zh-cn" || lang === "zh-hans" || lang.startsWith("zh-hans-");
+  });
+}
+
 export function hasMandarinVoice(scope?: SpeechScope): boolean {
   if (!scope?.speechSynthesis) return false;
   try {
     const voices = scope.speechSynthesis.getVoices();
-    return voices.some((voice) =>
-      voice.lang.replace("_", "-").toLowerCase().startsWith("zh"),
-    );
+    return !!findMandarinVoice(voices);
   } catch {
     return false;
   }

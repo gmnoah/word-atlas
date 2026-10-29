@@ -1,0 +1,13 @@
+{
+  "course": "primary-expansion-draft",
+  "id": "en-pear",
+  "kind": "sentence",
+  "text": "The pear is sweet.",
+  "voice": "Daniel",
+  "locale": "en-GB",
+  "file": "data/drafts/audio/primary-expansion-draft/en-pear-sentence.wav",
+  "sha256": "904c2e27880a5b5e122cbdbe24dbe0cadf4ca7e68e79d687ec56a0e7a17a0ccc",
+  "seconds": 1.369,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

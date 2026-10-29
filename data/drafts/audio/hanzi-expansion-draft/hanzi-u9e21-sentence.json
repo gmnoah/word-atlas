@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u9e21",
+  "kind": "sentence",
+  "text": "小鸡跟着妈妈走。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u9e21-sentence.wav",
+  "sha256": "69bc03f503d1c18d170041b18f0e25b141920009593635302c2e08f76c83baa1",
+  "seconds": 1.916,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

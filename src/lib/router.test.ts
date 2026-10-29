@@ -21,3 +21,12 @@ test("T11: legacy word links still resolve to the default IELTS atlas", () => {
     word: null,
   });
 });
+
+
+test("course view links round-trip and invalid views safely fall back", () => {
+  for (const view of ["journey", "atlas", "records"] as const) {
+    const route = { page: "explore" as const, courseId: "hanzi-starter", entryId: "hanzi-u6c34", view };
+    assert.deepEqual(parseLocation(href(route)).route, route);
+  }
+  assert.equal((parseLocation("#/explore?course=primary-starter&view=invalid").route as { view?: string }).view, undefined);
+});

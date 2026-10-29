@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u6708",
+  "kind": "character",
+  "text": "月",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u6708-character.wav",
+  "sha256": "a0d7ea1bfaa42ed954883a242238466198d865a2e3608b0c1c1bab370071e6a8",
+  "seconds": 0.476,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

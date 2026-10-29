@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u624b",
+  "kind": "sentence",
+  "text": "我用小手拿杯子。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u624b-sentence.wav",
+  "sha256": "b04d1f7aefec2ed57fe58ae0cc5c5f394e2bae54daaaf99c40e2465285d40a55",
+  "seconds": 1.941,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

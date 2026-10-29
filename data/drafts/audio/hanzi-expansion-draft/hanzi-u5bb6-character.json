@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u5bb6",
+  "kind": "character",
+  "text": "家",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u5bb6-character.wav",
+  "sha256": "3995fbdcf2484544afa66c689d3ae5bd977f357641f232abdc1254b89b03ecd1",
+  "seconds": 0.56,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

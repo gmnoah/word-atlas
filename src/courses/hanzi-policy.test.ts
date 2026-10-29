@@ -108,6 +108,10 @@ test("T25: Mandarin voice detection is honest about missing or late voices", () 
     getVoices: () => [{ lang: "en-GB" }, { lang: "en-US" }],
   };
   assert.equal(hasMandarinVoice({ speechSynthesis: englishOnly as unknown as SpeechSynthesis }), false);
+  const cantoneseOnly = { getVoices: () => [{ lang: "zh-HK" }, { lang: "zh-TW" }] };
+  assert.equal(hasMandarinVoice({ speechSynthesis: cantoneseOnly as unknown as SpeechSynthesis }), false);
+  const simplified = { getVoices: () => [{ lang: "zh_Hans_CN" }] };
+  assert.equal(hasMandarinVoice({ speechSynthesis: simplified as unknown as SpeechSynthesis }), true);
   let voices = [{ lang: "en-GB" }];
   const listeners = new Set<() => void>();
   const synth = {

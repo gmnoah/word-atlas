@@ -1,0 +1,13 @@
+{
+  "course": "primary-expansion-draft",
+  "id": "en-dog",
+  "kind": "sentence",
+  "text": "The dog can run.",
+  "voice": "Daniel",
+  "locale": "en-GB",
+  "file": "data/drafts/audio/primary-expansion-draft/en-dog-sentence.wav",
+  "sha256": "e8e9d174216df8be004be8c84f87c4085b305cca24fe4b573bfe3d9fde74f61b",
+  "seconds": 1.415,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

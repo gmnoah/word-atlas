@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u7b11",
+  "kind": "sentence",
+  "text": "姐姐对我微笑。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u7b11-sentence.wav",
+  "sha256": "bc9c263e62557d7f101f3332bb9b2b5ee83d9f919c66624012e374b05a5339b9",
+  "seconds": 1.698,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u706f",
+  "kind": "character",
+  "text": "灯",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u706f-character.wav",
+  "sha256": "ee12e64be36159dbe011090445ba0f68a66fcf143e9f90333cc7cf8c237df78f",
+  "seconds": 0.513,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

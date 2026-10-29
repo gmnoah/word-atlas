@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u5154",
+  "kind": "character",
+  "text": "兔",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u5154-character.wav",
+  "sha256": "5d857b2bc662744c7134ed867cc57a9cffb76acfe45f2e228dfc3d1ed3fad8f3",
+  "seconds": 0.477,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

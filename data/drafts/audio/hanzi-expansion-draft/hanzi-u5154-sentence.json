@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u5154",
+  "kind": "sentence",
+  "text": "兔子的耳朵长长的。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u5154-sentence.wav",
+  "sha256": "bc9074c5f36db34335b5f06a8cef409f45979cdc4a32176883a0ab4043acc82f",
+  "seconds": 1.812,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

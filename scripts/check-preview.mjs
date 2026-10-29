@@ -17,6 +17,9 @@ const checks = [];
 try {
   const context = await browser.newContext({
     viewport: { width: 1440, height: 1100 },
+    // Route interception must exercise the failure path even after a previous
+    // page has cached an image; offline behavior has its own separate test.
+    serviceWorkers: "block",
   });
   await context.addInitScript((fixture) => {
     for (const [key, value] of Object.entries(fixture)) {
@@ -147,7 +150,18 @@ try {
   await page.locator(`[data-option-id="${question.target}"]`).click();
   await page.getByRole("button", { name: "继续", exact: true }).click();
   await page.getByRole("heading", { name: "今天，又认识了新朋友。" }).waitFor();
-  assert.match(await page.locator(".mini-stats > div").nth(2).innerText(), /1/);
+  const resultStats = page.locator(".preview-finish .mini-stats");
+  assert.match(await resultStats.locator("div").nth(1).innerText(), /独立答对\s*1/);
+  assert.match(await resultStats.locator("div").nth(2).innerText(), /提示后答对\s*1/);
+  assert.match(await resultStats.locator("div").nth(3).innerText(), /一起答对\s*0/);
+  await page.setViewportSize({ width: 375, height: 812 });
+  assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
+  await page.screenshot({ path: `${evidence}/family-result-mobile-light.png`, fullPage: true, animations: "disabled" });
+  await page.getByRole("button", { name: "切换到深色" }).click();
+  await page.screenshot({ path: `${evidence}/family-result-mobile-dark.png`, fullPage: true, animations: "disabled" });
+  assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
+  await page.getByRole("button", { name: "切换到浅色" }).click();
+  await page.setViewportSize({ width: 1440, height: 1100 });
   checks.push(
     "English lesson: parent count, introductions, hint, locked first answer, completion",
   );
@@ -166,7 +180,7 @@ try {
   const hanziCard = page.locator(".hanzi-study-card.is-recall");
   const hanziKind = await hanziCard.getAttribute("data-question-kind");
   if (hanziKind === "hanzi-listen") {
-    await page.getByRole("button", { name: "播放字的读音" }).click();
+    await page.getByRole("button", { name: "播放词语" }).click();
     await page.waitForFunction(() => !document.querySelector(".hanzi-option")?.disabled);
   }
   await page.getByRole("button", { name: "请家长帮忙" }).click();
@@ -207,24 +221,24 @@ try {
   checks.push(
     "375px mobile, both themes, no horizontal overflow; reload safely resets preview",
   );
-  await page.route("**/atlas/img/apple.webp", (route) => route.abort());
+  await page.route("**/atlas/img/apple.webp*", (route) => route.abort());
   await page.getByRole("button", { name: "探索基础英语" }).click();
   await page.getByRole("button", { name: "开始小课" }).first().click();
   await page.getByText("这幅图暂时没打开，可以先跳过。").waitFor();
   await page.getByRole("button", { name: "先跳过，下次再认识" }).click();
-  await page.route("**/atlas/audio/uk/banana.mp3", (route) => route.abort());
+  await page.route("**/atlas/audio/uk/banana.mp3*", (route) => route.abort());
   await page.getByRole("button", { name: "朗读 banana", exact: true }).click();
   await page
     .getByText("暂时无法播放，可以重试，也可以请家长读一读。")
     .waitFor();
-  await page.unroute("**/atlas/audio/uk/banana.mp3");
+  await page.unroute("**/atlas/audio/uk/banana.mp3*");
   await page.getByRole("button", { name: "返回主题" }).click();
   await page.getByRole("button", { name: "继续这次小课" }).click();
   await page.getByRole("button", { name: "返回主题" }).click();
   await page.getByRole("button", { name: "结束体验" }).click();
   await page.getByRole("heading", { name: "基础英语", exact: true }).waitFor();
   checks.push("Image/audio failure, skip, cancel exit and confirmed exit");
-  await page.unroute("**/atlas/img/apple.webp");
+  await page.unroute("**/atlas/img/apple.webp*");
   await page.goto(`${base}#/w/apple`);
   await page.getByRole("dialog").waitFor();
   await page.getByRole("heading", { name: "apple", exact: true }).waitFor();

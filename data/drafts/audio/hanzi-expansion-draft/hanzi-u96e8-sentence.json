@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u96e8",
+  "kind": "sentence",
+  "text": "下雨了，我们撑起伞。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u96e8-sentence.wav",
+  "sha256": "ce1ca245667e4fe5e02e00d965ff36e55ffb8748652bac92b5ab4c59fe6f52a9",
+  "seconds": 2.427,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

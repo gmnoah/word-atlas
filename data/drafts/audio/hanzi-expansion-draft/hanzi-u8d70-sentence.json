@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u8d70",
+  "kind": "sentence",
+  "text": "我们一起走路。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u8d70-sentence.wav",
+  "sha256": "ece09a89a725d8cbd9fc093c15572830aa3f1e02e298911e3326703d0da79d1c",
+  "seconds": 1.453,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

@@ -14,6 +14,11 @@
     "pack:public": "python3 scripts/package_public.py --out ../开源发布/word-atlas",
     "format": "prettier --write src vite.config.ts scripts/*.mjs package.json tsconfig.json",
     "check:courses": "node --import tsx scripts/check-courses.ts",
+    "check:browser": "node scripts/check-cross-browser.mjs",
+    "prompt:course": "node --import tsx scripts/course-prompt.ts",
+    "archive:courses": "node --import tsx scripts/archive-courses.ts",
+    "export:review": "node --import tsx scripts/export-current-review.ts",
+    "drafts:prepare": "node --import tsx scripts/prepare-expansion-drafts.ts",
     "check:courses:release": "node --import tsx scripts/check-courses.ts --release"
   },
   "dependencies": {

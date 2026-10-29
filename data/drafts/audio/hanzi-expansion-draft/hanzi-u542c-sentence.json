@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u542c",
+  "kind": "sentence",
+  "text": "我听见小鸟在叫。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u542c-sentence.wav",
+  "sha256": "90acc68e559f6963cdd2d25fed29547a86076d8629b183dcf01d144da800c145",
+  "seconds": 2.161,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

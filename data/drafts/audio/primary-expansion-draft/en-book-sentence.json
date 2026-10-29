@@ -1,0 +1,13 @@
+{
+  "course": "primary-expansion-draft",
+  "id": "en-book",
+  "kind": "sentence",
+  "text": "Open your book.",
+  "voice": "Daniel",
+  "locale": "en-GB",
+  "file": "data/drafts/audio/primary-expansion-draft/en-book-sentence.wav",
+  "sha256": "5118955ba5f82cbdbafddd1e71b8885ce4634fd242cd9e249ff91c5322834752",
+  "seconds": 1.18,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

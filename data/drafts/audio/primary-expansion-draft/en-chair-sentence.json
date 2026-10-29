@@ -1,0 +1,13 @@
+{
+  "course": "primary-expansion-draft",
+  "id": "en-chair",
+  "kind": "sentence",
+  "text": "Sit on the chair.",
+  "voice": "Daniel",
+  "locale": "en-GB",
+  "file": "data/drafts/audio/primary-expansion-draft/en-chair-sentence.wav",
+  "sha256": "64c0ef3e4da0f04cda159c1819cb62fe87a4bf4890789452fe7b264af9187ca0",
+  "seconds": 1.36,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

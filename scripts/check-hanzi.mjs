@@ -19,10 +19,10 @@ try {
 
   await page.goto(`${base}#/explore?course=hanzi-starter`);
   await page.getByRole("heading", { name: "汉字启蒙", exact: true }).waitFor();
-  assert.equal(await page.locator(".hanzi-map-stop").count(), 4);
+  assert.equal(await page.locator(".hanzi-map-stop").count(), 32);
   assert.equal(await page.locator(".preview-lesson-tile").count(), 0, "preschool uses the flat map, not the tile grid");
   assert.equal(await page.getByRole("button", { name: /欠复习/ }).count(), 0);
-  checks.push("Hanzi course opens a four-stop flat map without the primary tile grid");
+  checks.push("Hanzi course opens its 32-stop flat map without the primary tile grid");
 
   await page.screenshot({ path: `${evidence}/hanzi-map-desktop-dark.png`, fullPage: true, animations: "disabled" });
   await page.getByRole("button", { name: "切换到浅色" }).click();
@@ -31,6 +31,14 @@ try {
   // Co-reading never grades and never shows pinyin outside the caregiver note.
   await page.locator(".hanzi-map-stop").first().getByRole("button", { name: "只读一读" }).click();
   await page.getByRole("heading", { name: "一个字，一个小发现" }).waitFor();
+  const art = page.locator(".hanzi-study-card .preview-study-art > .illo");
+  await art.locator("img").waitFor();
+  await page.waitForFunction(() => {
+    const image = document.querySelector(".hanzi-study-card .preview-study-art > .illo img");
+    return image instanceof HTMLImageElement && image.complete && image.naturalWidth > 0;
+  });
+  assert.ok(await art.evaluate((node) => node.getBoundingClientRect().width > 100), "character art has a visible width");
+  assert.ok(await art.locator("img").evaluate((node) => node.complete && node.naturalWidth > 0), "character image loads");
   assert.equal(await page.locator(".hanzi-card-character").innerText(), "山");
   assert.equal(await page.locator(".hanzi-card-note").evaluate((node) => node.open), false, "pinyin stays collapsed");
   assert.equal(await page.locator(".hanzi-card-note p").isVisible(), false, "pinyin is hidden until a caregiver opens the note");
@@ -50,7 +58,7 @@ try {
   assert.ok(["hanzi-question", "hanzi-picture", "hanzi-listen"].includes(kind), String(kind));
   const target = await card.getAttribute("data-content-id");
   if (kind === "hanzi-listen") {
-    await page.getByRole("button", { name: "播放字的读音" }).click();
+    await page.getByRole("button", { name: "播放词语" }).click();
     await page.waitForFunction(() => !document.querySelector(".hanzi-option")?.disabled);
   }
   await page.getByRole("button", { name: "请家长帮忙" }).click();
@@ -74,6 +82,8 @@ try {
   assert.ok(hanziPreference, "caregiver minutes are saved per learner and course");
   await page.getByRole("button", { name: "家长设置" }).click();
   assert.match(await page.locator(".family-activity").innerText(), /汉字启蒙/);
+  assert.match(await page.locator(".family-activity-note").innerText(), /提示后的首次答题会更新复习卡/);
+  assert.match(await page.locator(".family-activity-note").innerText(), /家长协助、跳过、拼写和照样找字不会更新/);
   assert.match(await page.locator(".family-activity").innerText(), /看过 [1-9] 个/);
   assert.doesNotMatch(await page.locator(".family-activity dl").innerText(), /欠复习|排名|连续/);
   assert.equal(await page.getByRole("button", { name: "导出全部档案" }).count(), 1);
@@ -109,7 +119,9 @@ try {
     await page.getByRole("button", { name: "看过啦，下一个" }).click();
   await page.getByRole("heading", { name: "今天一起读了几页字。" }).waitFor();
   assert.match(await page.locator(".hanzi-life-tip").innerText(), /回家可以试试/);
-  assert.match(await page.locator(".mini-stats > div").nth(1).innerText(), /0/);
+  assert.match(await page.locator(".mini-stats > div").nth(1).innerText(), /自己找对\s*0/);
+  assert.match(await page.locator(".mini-stats > div").nth(2).innerText(), /提示后找对\s*0/);
+  assert.match(await page.locator(".mini-stats > div").nth(3).innerText(), /一起找对\s*0/);
   checks.push("A finished co-read suggests a real-life activity and reports zero recognition");
   await page.getByRole("button", { name: "回到主题" }).click();
   await page.getByRole("heading", { name: "汉字启蒙", exact: true }).waitFor();
@@ -130,11 +142,11 @@ try {
 
   // Missing image and missing voice both stay honest and skippable.
   await page.locator(".hanzi-map-stop").nth(1).getByRole("button", { name: "认一认" }).click();
-  await page.route("**/atlas/img/person.webp", (route) => route.abort());
+  await page.route("**/atlas/img/person.webp*", (route) => route.abort());
   await page.reload();
   await page.getByRole("button", { name: "认识了，继续" }).count();
   checks.push("Hanzi lesson reload keeps the saved session");
-  await page.unroute("**/atlas/img/person.webp");
+  await page.unroute("**/atlas/img/person.webp*");
 
   // Switching learners isolates Hanzi records.
   await page.goto(`${base}#/explore?course=hanzi-starter`);

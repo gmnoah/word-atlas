@@ -4,14 +4,32 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { sampleCourses } from "../src/courses/samples.ts";
 import { courseRegistry } from "../src/courses/registry.ts";
-import { auditCourse } from "../src/courses/audit.ts";
+import { validateCourseInput } from "../src/courses/validate-input.ts";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const release = process.argv.includes("--release");
+const inputIndex = process.argv.indexOf("--input");
+if (inputIndex !== -1) {
+  try {
+    const inputFile = process.argv[inputIndex + 1];
+    if (!inputFile || inputFile.startsWith("--")) throw new Error("请提供课程 JSON 文件路径");
+    const versionIndex = process.argv.indexOf("--expected-version");
+    const expectedVersion = versionIndex === -1 ? undefined : process.argv[versionIndex + 1];
+    if (versionIndex !== -1 && (!expectedVersion || expectedVersion.startsWith("--"))) throw new Error("请提供预期版本");
+    const raw: unknown = JSON.parse(fs.readFileSync(inputFile, "utf8"));
+    const report = validateCourseInput(raw, (relative) => fs.existsSync(path.join(root, "public", relative)), expectedVersion);
+    console.log(JSON.stringify({ mode: release ? "release" : "preview", ...report }, null, 2));
+    process.exitCode = report.errors.length || (release && report.releaseBlockers.length) ? 1 : 0;
+  } catch (error) {
+    console.error(error instanceof Error ? error.message : "课程文件无法读取");
+    process.exitCode = 1;
+  }
+} else {
 const reports = sampleCourses.map((course) => ({
   courseId: course.manifest.id,
-  ...auditCourse(course, (relative) =>
+  ...validateCourseInput(course, (relative) =>
     fs.existsSync(path.join(root, "public", relative)),
+    courseRegistry.find((registered) => registered.manifest.id === course.manifest.id)?.manifest.version,
   ),
 }));
 const registryErrors: string[] = [];
@@ -42,3 +60,4 @@ const summary = {
 console.log(JSON.stringify(summary, null, 2));
 process.exitCode =
   summary.structuralErrors || (release && summary.releaseBlockers) ? 1 : 0;
+}

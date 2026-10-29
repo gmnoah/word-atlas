@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u8dd1",
+  "kind": "character",
+  "text": "跑",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u8dd1-character.wav",
+  "sha256": "53074f22289df88c7b5968a692b080587f0fb7ebdf11fabddacde8069b094203",
+  "seconds": 0.511,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

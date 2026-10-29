@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u5149",
+  "kind": "sentence",
+  "text": "阳光照进窗户。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u5149-sentence.wav",
+  "sha256": "6c8648979c83069e6b1b5136108210c7bbbf85dc9037015279461f73abdcb618",
+  "seconds": 1.811,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

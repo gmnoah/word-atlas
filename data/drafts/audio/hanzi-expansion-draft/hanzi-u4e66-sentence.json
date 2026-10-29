@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u4e66",
+  "kind": "sentence",
+  "text": "我打开一本书。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u4e66-sentence.wav",
+  "sha256": "590fcacd64406ae4ed0ab82a6254b46554de20eb37631ce43f8215c1fb7d9bf5",
+  "seconds": 1.72,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

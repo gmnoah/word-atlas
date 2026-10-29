@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u6625",
+  "kind": "sentence",
+  "text": "春天，小花开了。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u6625-sentence.wav",
+  "sha256": "9f8865237a9dcd4f3f73b6a18f8dc61363133578faeaba21e139814176ee5073",
+  "seconds": 2.317,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

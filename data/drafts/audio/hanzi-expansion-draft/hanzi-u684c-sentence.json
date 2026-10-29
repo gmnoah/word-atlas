@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u684c",
+  "kind": "sentence",
+  "text": "书放在桌子上。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u684c-sentence.wav",
+  "sha256": "86ddffe52c3a2e8933438715b36978697f7d50219183091cf7c96686e0118e23",
+  "seconds": 1.798,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

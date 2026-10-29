@@ -1,0 +1,54 @@
+{
+  "recordedAt": "2026-10-28T00:53:51.438Z",
+  "browser": "156.0.8078.48",
+  "environment": "desktop Chromium simulation, not a physical phone",
+  "viewport": "375x812",
+  "cpuThrottle": 4,
+  "network": {
+    "latencyMs": 150,
+    "downloadBytesPerSecond": 200000,
+    "uploadBytesPerSecond": 100000
+  },
+  "serviceWorker": "blocked",
+  "samplesPerCourse": 3,
+  "results": [
+    {
+      "course": "primary-starter",
+      "samples": [
+        {
+          "courseReadyMs": 2698,
+          "lessonStartMs": 221
+        },
+        {
+          "courseReadyMs": 2568,
+          "lessonStartMs": 145
+        },
+        {
+          "courseReadyMs": 2578,
+          "lessonStartMs": 156
+        }
+      ],
+      "medianCourseReadyMs": 2578,
+      "medianLessonStartMs": 156
+    },
+    {
+      "course": "hanzi-starter",
+      "samples": [
+        {
+          "courseReadyMs": 2252,
+          "lessonStartMs": 194
+        },
+        {
+          "courseReadyMs": 2105,
+          "lessonStartMs": 120
+        },
+        {
+          "courseReadyMs": 2048,
+          "lessonStartMs": 158
+        }
+      ],
+      "medianCourseReadyMs": 2105,
+      "medianLessonStartMs": 158
+    }
+  ]
+}

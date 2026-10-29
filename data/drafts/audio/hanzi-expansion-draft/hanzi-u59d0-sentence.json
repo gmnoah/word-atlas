@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u59d0",
+  "kind": "sentence",
+  "text": "姐姐在画画。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u59d0-sentence.wav",
+  "sha256": "8413576dbd0ec7aa65366af9fa29dfaa6c38092b36986e1a8431a8d1e5f8149a",
+  "seconds": 1.501,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

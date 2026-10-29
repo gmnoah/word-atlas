@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u4e0b",
+  "kind": "sentence",
+  "text": "小球在桌子下面。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u4e0b-sentence.wav",
+  "sha256": "9040b47c683f6a55d4503de58620e90cd64bf927ba15cf612737a86f2d6affaa",
+  "seconds": 2.23,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

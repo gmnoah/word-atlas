@@ -1,0 +1,13 @@
+{
+  "course": "primary-expansion-draft",
+  "id": "en-pencil",
+  "kind": "sentence",
+  "text": "I have a pencil.",
+  "voice": "Daniel",
+  "locale": "en-GB",
+  "file": "data/drafts/audio/primary-expansion-draft/en-pencil-sentence.wav",
+  "sha256": "4596f95553ee7263a8b0e46f07ae1a9cf944945037517b99bc19e73973aeb747",
+  "seconds": 1.341,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u51ac",
+  "kind": "sentence",
+  "text": "冬天，我们穿外套。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u51ac-sentence.wav",
+  "sha256": "4718a5d82aeda2d9e4714c59f965d33ceb3e29fab481a9ee8209b33d2111c15a",
+  "seconds": 2.369,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

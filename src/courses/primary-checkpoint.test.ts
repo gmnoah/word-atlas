@@ -34,6 +34,42 @@ test("a saved answered question resumes locked and can advance", () => {
   assert.equal(session.lastTickAt, 50000);
 });
 
+test("an original lesson checkpoint survives the expansion without losing its answer", () => {
+  const { storage, checkpoint } = fixture();
+  checkpoint.session.contentVersion = "0.1.0-draft";
+  saveCheckpoint(storage, checkpoint, null);
+  const restored = readCheckpoint(storage, scope, 50000);
+  assert.equal(restored.status, "ok");
+  if (restored.status === "ok") {
+    assert.equal(restored.checkpoint.session.contentVersion, "0.4.0-draft");
+    assert.deepEqual(restored.checkpoint.session.attempts, checkpoint.session.attempts);
+  }
+});
+
+test("a 0.2 lesson keeps its answer after the example is updated", () => {
+  const { storage, checkpoint } = fixture();
+  checkpoint.session.contentVersion = "0.2.0-draft";
+  saveCheckpoint(storage, checkpoint, null);
+  const restored = readCheckpoint(storage, scope, 50000);
+  assert.equal(restored.status, "ok");
+  if (restored.status === "ok") {
+    assert.equal(restored.checkpoint.session.contentVersion, scope.contentVersion);
+    assert.deepEqual(restored.checkpoint.session.attempts, checkpoint.session.attempts);
+  }
+});
+
+test("a 0.3 checkpoint survives the sample example updates", () => {
+  const { storage, checkpoint } = fixture();
+  checkpoint.session.contentVersion = "0.3.0-draft";
+  saveCheckpoint(storage, checkpoint, null);
+  const restored = readCheckpoint(storage, scope, 50000);
+  assert.equal(restored.status, "ok");
+  if (restored.status === "ok") {
+    assert.equal(restored.checkpoint.session.contentVersion, scope.contentVersion);
+    assert.deepEqual(restored.checkpoint.session.attempts, checkpoint.session.attempts);
+  }
+});
+
 test("other learners, incompatible content and concurrent tabs cannot overwrite a checkpoint", () => {
   const { storage, values, checkpoint } = fixture();
   const raw = saveCheckpoint(storage, checkpoint, null)!;

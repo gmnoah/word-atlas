@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u4eca",
+  "kind": "sentence",
+  "text": "今天我们去公园。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u4eca-sentence.wav",
+  "sha256": "1d48aca6bb72c49289bef02cb03cdc7b7d8d1055b01253b25064f337042063db",
+  "seconds": 2.058,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

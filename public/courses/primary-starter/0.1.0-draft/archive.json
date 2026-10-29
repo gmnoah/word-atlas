@@ -1,0 +1,248 @@
+{
+  "schemaVersion": 1,
+  "courseId": "primary-starter",
+  "version": "0.1.0-draft",
+  "contentSha256": "e134c050d019fad809b1143ba0a89dd0f9743ec3f3cc80b26d5bdcce1d3f3548",
+  "media": [
+    {
+      "path": "atlas/audio/uk/apple.mp3",
+      "sha256": "e611e73d5a1326a373df812fa47b023ec6cb044391242f7d02418bf6aa410bf2"
+    },
+    {
+      "path": "atlas/audio/uk/bag.mp3",
+      "sha256": "26e97a71bf9195d3a7e7a891412dda5cde119322637b27fd2b14b680da255e4a"
+    },
+    {
+      "path": "atlas/audio/uk/banana.mp3",
+      "sha256": "b69669e29f0f5e3a18c7cbae430f62cfd458a3f22831050f7bcd96e20c432e4b"
+    },
+    {
+      "path": "atlas/audio/uk/bird.mp3",
+      "sha256": "fa16e6b56817541a0eb3916ed0faa889d3ca1970050a9a3a1502505f2125a8b0"
+    },
+    {
+      "path": "atlas/audio/uk/book.mp3",
+      "sha256": "bee8f814de49574165d706a61b41059e65dc28d6c0c83bbfefc37301c770b515"
+    },
+    {
+      "path": "atlas/audio/uk/bread.mp3",
+      "sha256": "e66efe66894d6ffc15e1a63a1e074fd4c9a8f79679d27741b37a54b9a334e7d1"
+    },
+    {
+      "path": "atlas/audio/uk/cat.mp3",
+      "sha256": "ef2fc60af2eed8a1dc6ae009bf48cb984bc7c0515a57fb5ef85d7111b9103085"
+    },
+    {
+      "path": "atlas/audio/uk/chair.mp3",
+      "sha256": "b59a5c0eca221cdae554585f08b061aded40cb3626fa4ed1c345a30f762807a6"
+    },
+    {
+      "path": "atlas/audio/uk/cup.mp3",
+      "sha256": "d430ab720d5fdb7f6f9472ca8ac20468e8b51c9ed9bdbfac3772a485f3fbba7d"
+    },
+    {
+      "path": "atlas/audio/uk/dog.mp3",
+      "sha256": "e01db2b8c1d01f8ded694a5585cdd470bc4d97fde2839779868955506dd44dbc"
+    },
+    {
+      "path": "atlas/audio/uk/ear.mp3",
+      "sha256": "c4233825d311d935754183990ea9d4240cabb7437c2281b79ea4c343aa9a6568"
+    },
+    {
+      "path": "atlas/audio/uk/egg.mp3",
+      "sha256": "b7eab53ce9808330661a58265f65e9b41f7d6598f367422897dbcfc447a2a86e"
+    },
+    {
+      "path": "atlas/audio/uk/eye.mp3",
+      "sha256": "71935b3d406a2e8173fb4a29277bb7251323766d4639416f524e3392944e76f0"
+    },
+    {
+      "path": "atlas/audio/uk/fish.mp3",
+      "sha256": "2e0ec08014c414fe197ccd04d45a50fabee03b639a67e5d9f5d3d45acd8f1d6f"
+    },
+    {
+      "path": "atlas/audio/uk/flower.mp3",
+      "sha256": "75089231b200a9e956877c7dae97baf39383f84304bb37752990c46b3ea3a208"
+    },
+    {
+      "path": "atlas/audio/uk/grape.mp3",
+      "sha256": "65232571822ddf3b4a2723666253ef4010e19db2951ee59bf932c1c926ee466a"
+    },
+    {
+      "path": "atlas/audio/uk/hand.mp3",
+      "sha256": "1f63bb588cd126c1895575ee5d5f82c5f0a47db7659732a644a3c17048871a1c"
+    },
+    {
+      "path": "atlas/audio/uk/milk.mp3",
+      "sha256": "09ca0024127a25b7564cbebd5d20c9bff6e4afb46bc8efcd4ac05c9e5341051a"
+    },
+    {
+      "path": "atlas/audio/uk/moon.mp3",
+      "sha256": "e9a8a4cd67c57082a714c4b01f58935e6f9ecc2130d9e30570229d79c52c316a"
+    },
+    {
+      "path": "atlas/audio/uk/orange.mp3",
+      "sha256": "c0b3fd65380ef3027663f362f151df96480b749d0cb709e04cc942ddb3d68538"
+    },
+    {
+      "path": "atlas/audio/uk/pear.mp3",
+      "sha256": "9349334e627e828760bd9b905bd217c928ec95a6d1cc5ce3b6d23ddb39df5aad"
+    },
+    {
+      "path": "atlas/audio/uk/pen.mp3",
+      "sha256": "7a8bba1ac189fd1391db6adf7ce25378367ad008dbf5954b4b3f84767fae7247"
+    },
+    {
+      "path": "atlas/audio/uk/pencil.mp3",
+      "sha256": "a448af240555d4a38dc7e5d35acc961233babdf0ca20abf26fa03c7d1f33b037"
+    },
+    {
+      "path": "atlas/audio/uk/rabbit.mp3",
+      "sha256": "ed2123f6a065cd59c89ef0768d79943b946275697b779e8f66039628f5d77118"
+    },
+    {
+      "path": "atlas/audio/uk/rice.mp3",
+      "sha256": "976b6fa0993e44496d2c2594ca9ff58452d58b97614182dacf275b2e6f006d68"
+    },
+    {
+      "path": "atlas/audio/uk/star.mp3",
+      "sha256": "e787f75cc4ae563371953bf6da3259a476477f00bf451872dbd80ebc2b2bc4cd"
+    },
+    {
+      "path": "atlas/audio/uk/sun.mp3",
+      "sha256": "4624787428377e8ce1df3d162d0a1b3e30f98d57411ccb72571dedc2e583ce6e"
+    },
+    {
+      "path": "atlas/audio/uk/table.mp3",
+      "sha256": "9cd6c0136979b408a9129ad2aad3796a27fb07295995d8b7f50c7794fe0672ab"
+    },
+    {
+      "path": "atlas/audio/uk/tree.mp3",
+      "sha256": "68c4255c7a4c5e9dcc66cf4627db423c181f75678f29495a66caca4555253bc8"
+    },
+    {
+      "path": "atlas/audio/uk/water.mp3",
+      "sha256": "6db6b5d27ab682af50c878d9f0de45d789cbec6769ae51da61ec67e21b4759ba"
+    },
+    {
+      "path": "atlas/img/apple.webp",
+      "sha256": "ffcb424a5170e5c1a6c07a82086d0733577f5d51eb54f067ab1b34b2561ef7d4"
+    },
+    {
+      "path": "atlas/img/bag.webp",
+      "sha256": "acb7392c116fa6558953c16b3a1b94c2947a39161003c0628b6aea720040bd44"
+    },
+    {
+      "path": "atlas/img/banana.webp",
+      "sha256": "ce1426e1abc63ac737d2fb8a08a3cbcda22eafe1554dd8cb8860aaf83cab4260"
+    },
+    {
+      "path": "atlas/img/bird.webp",
+      "sha256": "1f840cae7782e50f34c63d3588818240ec521277717a157c067ed8e7cc701ae7"
+    },
+    {
+      "path": "atlas/img/book.webp",
+      "sha256": "7e57f3c8bb2e6b4f1166ac5ced85365f1f30bb2cff8aba8388b9d8337b16af9c"
+    },
+    {
+      "path": "atlas/img/bread.webp",
+      "sha256": "1ad5cf701916c58ebd396e949c477a01f3a3967e171b7546bb591d14f4d5ecdd"
+    },
+    {
+      "path": "atlas/img/cat.webp",
+      "sha256": "0f0138e40d73d737af83558e3c6ed427c4cb27a2422bae6689f9dda786d49745"
+    },
+    {
+      "path": "atlas/img/chair.webp",
+      "sha256": "3a395e2c11acda75aa9875c132aa62757719e184d64f24feed1f09a4206514f0"
+    },
+    {
+      "path": "atlas/img/cup.webp",
+      "sha256": "f20a6da52720acc8361595f72cd06c9e42c11e328c44f54605960834252e5ba5"
+    },
+    {
+      "path": "atlas/img/dog.webp",
+      "sha256": "9c4bdee3dc6d4a6e9f9a14c80bc6818949fdd835a17a2041e2d3254ba65771dd"
+    },
+    {
+      "path": "atlas/img/ear.webp",
+      "sha256": "450648bbf13f6522d5c52bbfd4009ce49565529ac5445150201e50cf66c2aaa5"
+    },
+    {
+      "path": "atlas/img/egg.webp",
+      "sha256": "3d17cf698a881d3756c2cacfe0ee1035aec7652ceb28fd22078709048d53c0d4"
+    },
+    {
+      "path": "atlas/img/eye.webp",
+      "sha256": "0100266b1d67a2a461779458a68bb8cc7dd545fcf9f45b41c392b57be6eb2f7a"
+    },
+    {
+      "path": "atlas/img/fish.webp",
+      "sha256": "e3de848966131563dfe6196485355250af38bd1149468939536e0d40e0b7fab7"
+    },
+    {
+      "path": "atlas/img/flower.webp",
+      "sha256": "f793b5f0d297b61e6e4e2a72b9e8aff4525a6733abde15a3780fb48f1c36b990"
+    },
+    {
+      "path": "atlas/img/grape.webp",
+      "sha256": "7cb469030744b10e52d45e6a9e7462c7863d8f3d3fe53e44ccf3b889a72e2fe8"
+    },
+    {
+      "path": "atlas/img/hand.webp",
+      "sha256": "3a2a4fab3978b4ec3b3a588adc4da768ab93dc3026aabdce5da0c4bafc3f5234"
+    },
+    {
+      "path": "atlas/img/milk.webp",
+      "sha256": "4d0784f8a4f5086bee226075ad744c83f73a163f498fca34bfcbac26291dd1b7"
+    },
+    {
+      "path": "atlas/img/moon.webp",
+      "sha256": "97a93a5572464a4eceed2d935c7d7053824e48b4b291f067d4794606950a33d7"
+    },
+    {
+      "path": "atlas/img/orange.webp",
+      "sha256": "03b927320bf0a95dd6a22cacf0b0b2ffd197304a6937131cdd6a770a69296cd2"
+    },
+    {
+      "path": "atlas/img/pear.webp",
+      "sha256": "357fea406407f0e6b6d24d6d2d9219014c823ed884308132f08d48130a875af1"
+    },
+    {
+      "path": "atlas/img/pen.webp",
+      "sha256": "e317a1ee284298e9845b18e55d334c14081d020f203dad8a635fcd8b1a2e09d4"
+    },
+    {
+      "path": "atlas/img/pencil.webp",
+      "sha256": "09c5891e15b0477ff247eccff4de1a8f1dd3b0a0a1a356a8ba9ac8c2eb3f6544"
+    },
+    {
+      "path": "atlas/img/rabbit.webp",
+      "sha256": "a494ee71730e0371b596b36bad463d59dfd4fa30f10e7334c49d7db99e7d6674"
+    },
+    {
+      "path": "atlas/img/rice.webp",
+      "sha256": "87bb2c4407988c9a5be91d9af42a08d39da2a5dda5205692a6f5389e2be43679"
+    },
+    {
+      "path": "atlas/img/star.webp",
+      "sha256": "c57893d0a0e83ecfe9735785b6995825ca3db36951d06d282670a7ca65717ea1"
+    },
+    {
+      "path": "atlas/img/sun.webp",
+      "sha256": "5552139f186beb0ff230973092aa54502bcf0fecafa70ab5d5b892a72182b1d6"
+    },
+    {
+      "path": "atlas/img/table.webp",
+      "sha256": "5fb64c2c330cb40b0b2f2faa28977bc22d66b2b83e4d42c7aa8edd4f24fa2e47"
+    },
+    {
+      "path": "atlas/img/tree.webp",
+      "sha256": "edb3b9c8fcaedc1ba4a89552e7dde617c3fba4f271a03638bcc7c1579bb0e422"
+    },
+    {
+      "path": "atlas/img/water.webp",
+      "sha256": "f8f7a307041f882ff956913b6ee173e4c98de2d69b98d95167c274b616794f8f"
+    }
+  ]
+}

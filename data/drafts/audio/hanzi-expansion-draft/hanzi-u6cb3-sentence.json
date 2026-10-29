@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u6cb3",
+  "kind": "sentence",
+  "text": "小河里的水清清的。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u6cb3-sentence.wav",
+  "sha256": "6ab72bff3b5dc0e14760412c439e3a6c4af9c5f68f2a35ef0e25ce06b416d393",
+  "seconds": 2.137,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

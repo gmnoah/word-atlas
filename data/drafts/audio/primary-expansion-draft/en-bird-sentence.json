@@ -1,0 +1,13 @@
+{
+  "course": "primary-expansion-draft",
+  "id": "en-bird",
+  "kind": "sentence",
+  "text": "A bird is in the tree.",
+  "voice": "Daniel",
+  "locale": "en-GB",
+  "file": "data/drafts/audio/primary-expansion-draft/en-bird-sentence.wav",
+  "sha256": "dd96e859f1222aab35ffe562f57b607469a634af985ffa9e3216598960b15d3e",
+  "seconds": 1.512,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

@@ -118,11 +118,11 @@ export const questionTypes: Record<QuestionKind, QuestionTypeDefinition> = {
   },
   "hanzi-picture": {
     subject: "hanzi",
-    prompt: "character",
-    answer: "image",
+    prompt: "image",
+    answer: "text",
     targetImage: true,
     targetAudio: false,
-    optionImages: true,
+    optionImages: false,
     input: false,
   },
   "hanzi-question": {
@@ -160,6 +160,12 @@ function answerKey(entry: LearningEntry, kind: QuestionKind): string | null {
   if (questionTypes[kind].answer === "image") return entry.media.image || null;
   const label = answerLabel(entry, kind);
   return label ? normalize(label) : null;
+}
+
+/** A character-only recording cannot distinguish identical Mandarin readings. */
+export function sameHanziPronunciation(a: LearningEntry, b: LearningEntry): boolean {
+  return a.kind === "hanzi" && b.kind === "hanzi" && !!a.pinyin.trim() &&
+    a.pinyin.trim().normalize("NFC").toLowerCase() === b.pinyin.trim().normalize("NFC").toLowerCase();
 }
 
 function supportsTarget(entry: LearningEntry, kind: QuestionKind): boolean {
@@ -221,6 +227,7 @@ export function evaluateQuestion(
   const candidates = uniqueEntries(pool).filter((entry) => {
     if (entry.id === target.id) return false;
     if (entry.kind !== target.kind) return false;
+    if (kind === "hanzi-listen" && sameHanziPronunciation(target, entry)) return false;
     if (definition.optionImages && !entry.media.image) return false;
     const key = answerKey(entry, kind);
     return !!key && key !== targetKey;

@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u5730",
+  "kind": "character",
+  "text": "地",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u5730-character.wav",
+  "sha256": "6adb6accd86f0e89259fa76c4982f4e8ca2816418af30bfb644aac763f38323d",
+  "seconds": 0.431,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

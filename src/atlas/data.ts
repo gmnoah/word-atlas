@@ -132,6 +132,18 @@ export function resolveMediaUrl(
   return bit && m & bit ? `${base}/atlas/audio/${legacyKind}/${ref.id}.mp3` : null;
 }
 
+/** Preview media uses an immutable, course-versioned copy; legacy URLs remain unchanged. */
+export function versionedCourseMedia(mediaUrl: string | null, manifest: CourseManifest): string | null {
+  if (!mediaUrl) return null;
+  if (/^(?:https?:)?\/\//i.test(mediaUrl)) return mediaUrl;
+  const base = getBaseUrl();
+  const prefix = `${base}/`;
+  if (!mediaUrl.startsWith(prefix)) return mediaUrl;
+  const relative = mediaUrl.slice(prefix.length);
+  if (!/^[a-z0-9_/-]+\.(webp|png|jpg|mp3|wav|ogg)$/i.test(relative) || relative.split("/").includes("..")) return mediaUrl;
+  return `${base}/courses/${encodeURIComponent(manifest.id)}/${encodeURIComponent(manifest.version)}/media/${relative}`;
+}
+
 export async function loadOpenAtlas(options?: CourseLoadOptions): Promise<Atlas> {
   const signal = options?.signal;
   if (signal?.aborted) {
@@ -413,9 +425,12 @@ export async function loadCourse(courseId: string, options?: CourseLoadOptions):
     }
 
     if (registration.kind === "preview") {
-      // Lazy load sample packs without bundling into the initial IELTS chunk
-      const { sampleCourses } = await import("../courses/samples");
-      const pack = sampleCourses.find((c) => c.manifest.id === courseId);
+      // Keep subjects in separate chunks so entering one course doesn't download the other.
+      const pack = courseId === "primary-starter"
+        ? (await import("../courses/primary-full")).primaryFull
+        : courseId === "hanzi-starter"
+          ? (await import("../courses/hanzi-full")).hanziFull
+          : undefined;
       if (!pack) throw new Error(`未能找到体验课程包：${courseId}`);
 
       const byId = new Map(pack.entries.map((e) => [e.id, e]));
@@ -430,8 +445,8 @@ export async function loadCourse(courseId: string, options?: CourseLoadOptions):
           if (!hit) throw new Error(`没有找到条目 ${id}`);
           return hit;
         },
-        img: (ref, size = "full") => resolveMediaUrl(ref, "img", size),
-        audio: (ref, kind = "recording") => resolveMediaUrl(ref, kind),
+        img: (ref, size = "full") => versionedCourseMedia(resolveMediaUrl(ref, "img", size), pack.manifest),
+        audio: (ref, kind = "recording") => versionedCourseMedia(resolveMediaUrl(ref, kind), pack.manifest),
         async asLearningEntry(id) {
           const hit = byId.get(id);
           if (!hit) throw new Error(`没有找到条目 ${id}`);

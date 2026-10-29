@@ -1,0 +1,13 @@
+{
+  "course": "primary-expansion-draft",
+  "id": "en-star",
+  "kind": "sentence",
+  "text": "I can see a star.",
+  "voice": "Daniel",
+  "locale": "en-GB",
+  "file": "data/drafts/audio/primary-expansion-draft/en-star-sentence.wav",
+  "sha256": "d1e70210cda87d7ec84a1d79c56556a24bc89799682be01ecb70d32c993bfe13",
+  "seconds": 1.596,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

@@ -28,3 +28,22 @@ export function primaryPreviewCount(requested: number, stage: PrimaryStartingSta
   const safe = Number.isFinite(requested) ? Math.max(1, Math.floor(requested)) : 3;
   return Math.min(safe, primaryVisualPolicy(stage).newContentLimit);
 }
+
+/** Keep familiar, concrete sample themes first without hiding other course entries. */
+export function recommendedPrimaryEntries(
+  entries: readonly LearningEntry[],
+  lessons: readonly { id: string; entryIds: readonly string[] }[],
+): LearningEntry[] {
+  const byId = new Map(entries.map((entry) => [entry.id, entry]));
+  const seen = new Set<string>();
+  const result: LearningEntry[] = [];
+  const append = (entry: LearningEntry | undefined) => {
+    if (entry && !seen.has(entry.id)) { seen.add(entry.id); result.push(entry); }
+  };
+  for (const lessonId of ["fruit", "animals", "nature", "school", "breakfast", "home"]) {
+    const lesson = lessons.find((item) => item.id === lessonId);
+    for (const id of lesson?.entryIds ?? []) append(byId.get(id));
+  }
+  for (const entry of entries) append(entry);
+  return result;
+}

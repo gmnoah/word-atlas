@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u53e3",
+  "kind": "sentence",
+  "text": "我喝了一口水。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u53e3-sentence.wav",
+  "sha256": "d8484be3a112642325918ec425dc9bb71db9b1b2d0afd67a111bab819ec1261e",
+  "seconds": 1.697,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

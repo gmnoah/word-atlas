@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "courseId": "hanzi-starter",
+  "version": "0.1.0-draft",
+  "contentSha256": "4882fba5132c0391117860744f14d0f1c19a01497b2b8e1a97329efeb7de356d",
+  "media": [
+    {
+      "path": "atlas/img/bird.webp",
+      "sha256": "1f840cae7782e50f34c63d3588818240ec521277717a157c067ed8e7cc701ae7"
+    },
+    {
+      "path": "atlas/img/cloud.webp",
+      "sha256": "deb1ea5bf4cd18ea8345dd45d28d641fbff3023ecf0ad8d79e84de79d18f6c67"
+    },
+    {
+      "path": "atlas/img/ear.webp",
+      "sha256": "450648bbf13f6522d5c52bbfd4009ce49565529ac5445150201e50cf66c2aaa5"
+    },
+    {
+      "path": "atlas/img/eye.webp",
+      "sha256": "0100266b1d67a2a461779458a68bb8cc7dd545fcf9f45b41c392b57be6eb2f7a"
+    },
+    {
+      "path": "atlas/img/field.webp",
+      "sha256": "e6d379728f78cd324c74f72f2ed6ad28ec5f476d59f289fc62b27da70ebf4eb6"
+    },
+    {
+      "path": "atlas/img/fire.webp",
+      "sha256": "9e232065542db6c200a8a8ccff80fad4dcccddbca23d3103ea9398fdf5bdf896"
+    },
+    {
+      "path": "atlas/img/fish.webp",
+      "sha256": "e3de848966131563dfe6196485355250af38bd1149468939536e0d40e0b7fab7"
+    },
+    {
+      "path": "atlas/img/flower.webp",
+      "sha256": "f793b5f0d297b61e6e4e2a72b9e8aff4525a6733abde15a3780fb48f1c36b990"
+    },
+    {
+      "path": "atlas/img/foot.webp",
+      "sha256": "ff701e53140d21bfc53b8647ddc1d48cbc73c22ff9b1e7786e2a1e9790d8a09c"
+    },
+    {
+      "path": "atlas/img/hand.webp",
+      "sha256": "3a2a4fab3978b4ec3b3a588adc4da768ab93dc3026aabdce5da0c4bafc3f5234"
+    },
+    {
+      "path": "atlas/img/horse.webp",
+      "sha256": "ff3b6326842b18a9df365ffe709815614ae37453d62b487520e46c552a414c06"
+    },
+    {
+      "path": "atlas/img/moon.webp",
+      "sha256": "97a93a5572464a4eceed2d935c7d7053824e48b4b291f067d4794606950a33d7"
+    },
+    {
+      "path": "atlas/img/mountain.webp",
+      "sha256": "6d4e436ff4a940e2ee3a57f93c579b878139d503794d98e53dea5a635792d3e2"
+    },
+    {
+      "path": "atlas/img/mouth.webp",
+      "sha256": "7236c8baf7c78ace9d35e5dcc0619084c7ef0025aec74be137cba273e1f66685"
+    },
+    {
+      "path": "atlas/img/person.webp",
+      "sha256": "e31e792bb5b62c8a8ebd46bebd81bbd6392dd54e1f4683980e0630d9a2819dc3"
+    },
+    {
+      "path": "atlas/img/rain.webp",
+      "sha256": "d48fae82e53c8c1cf1f7013180f71f6c1d6a37fc7b3dd570d5ce26a80e796913"
+    },
+    {
+      "path": "atlas/img/stone.webp",
+      "sha256": "580a8eaf3f49955ef5e8469b721d5a3323144440f726c4c0f0739f5c6d60fc89"
+    },
+    {
+      "path": "atlas/img/sun.webp",
+      "sha256": "5552139f186beb0ff230973092aa54502bcf0fecafa70ab5d5b892a72182b1d6"
+    },
+    {
+      "path": "atlas/img/tree.webp",
+      "sha256": "edb3b9c8fcaedc1ba4a89552e7dde617c3fba4f271a03638bcc7c1579bb0e422"
+    },
+    {
+      "path": "atlas/img/water.webp",
+      "sha256": "f8f7a307041f882ff956913b6ee173e4c98de2d69b98d95167c274b616794f8f"
+    }
+  ]
+}

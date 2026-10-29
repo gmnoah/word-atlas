@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u5750",
+  "kind": "character",
+  "text": "坐",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u5750-character.wav",
+  "sha256": "5efdede4ed931196271ea691f42af814e0ca6ea9ed90b5ed2fe73ebb87a68cf3",
+  "seconds": 0.524,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

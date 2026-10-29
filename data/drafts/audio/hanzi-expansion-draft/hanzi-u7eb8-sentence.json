@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u7eb8",
+  "kind": "sentence",
+  "text": "桌上有一张白纸。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u7eb8-sentence.wav",
+  "sha256": "962f96d5c2bfe313e9714e1f1eea40237bd9124d8b9e71ba80961caf01ee6708",
+  "seconds": 1.957,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

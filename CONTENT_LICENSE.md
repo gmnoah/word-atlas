@@ -13,6 +13,7 @@ Source code and UI design are under the [MIT License](LICENSE). Dependencies kee
 - `data/` 下的词库文件，以及 `public/atlas/index.json`、`public/atlas/entries/` 中的释义、英文释义、例句、译文、搭配、词族、近反义词、提示、分级与分类；
 - `public/atlas/img/`、`public/atlas/thumb/`、`public/brand/` 中的插画；
 - `public/atlas/audio/` 中的发音与例句录音。
+- `public/courses/` 中由上述资源制作的版本归档副本，沿用对应原素材的署名和授权；归档不新增声音模型或声音身份的授权。
 
 The material above is offered under CC BY 4.0, to the extent of the rights the maintainers can grant.
 

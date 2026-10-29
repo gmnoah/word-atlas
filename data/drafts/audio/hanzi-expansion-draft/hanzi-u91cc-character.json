@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u91cc",
+  "kind": "character",
+  "text": "里",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u91cc-character.wav",
+  "sha256": "ab907417df9bf651aa90492f3c234da38c49cdef0607a7e59c7a3e0a7917fd88",
+  "seconds": 0.467,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

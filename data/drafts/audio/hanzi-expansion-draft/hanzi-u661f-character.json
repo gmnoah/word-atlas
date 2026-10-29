@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u661f",
+  "kind": "character",
+  "text": "星",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u661f-character.wav",
+  "sha256": "c420dd27ff356b8b924e20d0240b63e026e2c75dd808b2fb4b621b627535f385",
+  "seconds": 0.639,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

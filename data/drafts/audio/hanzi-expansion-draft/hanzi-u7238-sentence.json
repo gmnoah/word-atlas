@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u7238",
+  "kind": "sentence",
+  "text": "爸爸陪我看书。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u7238-sentence.wav",
+  "sha256": "3150feeb0d70f26298dc662834c2066b2c89cca6df54ed2c6f92d4d7dc9842a6",
+  "seconds": 1.738,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

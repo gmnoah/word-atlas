@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u5c71",
+  "kind": "sentence",
+  "text": "远处有一座高山。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u5c71-sentence.wav",
+  "sha256": "b34a3a1894ffe2807c22985880047953c1edce7fa58a068ef4f141e4f69de8e3",
+  "seconds": 2.09,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u98ce",
+  "kind": "sentence",
+  "text": "风儿吹动树叶。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u98ce-sentence.wav",
+  "sha256": "856f89f1e888a6eac29e7a16e7852fd0c45eef1b4f9f6f3336a45cb4254b23fa",
+  "seconds": 1.695,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

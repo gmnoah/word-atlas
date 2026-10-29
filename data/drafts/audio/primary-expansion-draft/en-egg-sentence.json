@@ -1,0 +1,13 @@
+{
+  "course": "primary-expansion-draft",
+  "id": "en-egg",
+  "kind": "sentence",
+  "text": "I have an egg.",
+  "voice": "Daniel",
+  "locale": "en-GB",
+  "file": "data/drafts/audio/primary-expansion-draft/en-egg-sentence.wav",
+  "sha256": "9c51eb9f7725e1c0710b7046fbe8d5353a90f5c11900a2a3005ec85015dac368",
+  "seconds": 1.027,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

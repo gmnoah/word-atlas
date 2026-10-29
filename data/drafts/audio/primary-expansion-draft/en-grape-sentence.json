@@ -1,0 +1,13 @@
+{
+  "course": "primary-expansion-draft",
+  "id": "en-grape",
+  "kind": "sentence",
+  "text": "I can see a grape.",
+  "voice": "Daniel",
+  "locale": "en-GB",
+  "file": "data/drafts/audio/primary-expansion-draft/en-grape-sentence.wav",
+  "sha256": "727f6927637d6d967bf73e6bae79c01fcdcddd90208ae6a42b981369d2617ff8",
+  "seconds": 1.491,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

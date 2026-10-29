@@ -21,11 +21,12 @@ export function HanziCard({ entry, course, slow, coRead, onContinue }: {
       </h2>
       <p className="hanzi-card-phrase">{entry.phrase}</p>
       <PreviewSpeak
-        text={entry.character}
+        text={course.audio(entry) ? entry.character : entry.phrase}
         locale="zh-CN"
         recording={course.audio(entry)}
         slow={slow}
-        accessibleLabel={`朗读汉字 ${entry.character}`}
+        accessibleLabel={course.audio(entry) ? `朗读汉字 ${entry.character}` : `朗读词语 ${entry.phrase}`}
+        idleLabel={course.audio(entry) ? "听一听" : "听词语"}
       />
       <p className="hanzi-card-sentence">{entry.sentence}</p>
       <details className="hanzi-card-note">

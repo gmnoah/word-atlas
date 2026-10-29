@@ -1,0 +1,13 @@
+{
+  "course": "primary-expansion-draft",
+  "id": "en-tree",
+  "kind": "sentence",
+  "text": "The tree is tall.",
+  "voice": "Daniel",
+  "locale": "en-GB",
+  "file": "data/drafts/audio/primary-expansion-draft/en-tree-sentence.wav",
+  "sha256": "29726fd2fb25d81dd3e3aa77bdbefa4a59c50603c664d3a19c0aceb04950f188",
+  "seconds": 1.311,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

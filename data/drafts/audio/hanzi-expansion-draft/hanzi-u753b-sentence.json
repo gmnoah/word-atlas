@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u753b",
+  "kind": "sentence",
+  "text": "我们一起画画。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u753b-sentence.wav",
+  "sha256": "cabd6286411c270f966ef636c1760428f790e7b46ec485b0cbedd154ceae4008",
+  "seconds": 1.534,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

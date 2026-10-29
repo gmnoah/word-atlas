@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u7237",
+  "kind": "sentence",
+  "text": "爷爷坐在树下。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u7237-sentence.wav",
+  "sha256": "af549cdecaf2e9d686d87321718d3fbe09dcf8c199a0c68f37d8f73026e986ac",
+  "seconds": 1.743,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

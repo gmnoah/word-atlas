@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u9a6c",
+  "kind": "sentence",
+  "text": "小马在草地上跑。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u9a6c-sentence.wav",
+  "sha256": "e1034e4fe1549c12f2252150a91803cdfbd90f04c0e74c4e68c7151e1472482a",
+  "seconds": 2.183,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

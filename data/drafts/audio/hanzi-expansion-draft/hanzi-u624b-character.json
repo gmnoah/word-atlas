@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u624b",
+  "kind": "character",
+  "text": "手",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u624b-character.wav",
+  "sha256": "51a012ebc97754fd877a5f1c6d8f45a9dd6e787b8e1f9ab39b80ba705e0f2b6c",
+  "seconds": 0.593,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

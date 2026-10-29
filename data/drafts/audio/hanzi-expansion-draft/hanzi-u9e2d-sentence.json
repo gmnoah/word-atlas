@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u9e2d",
+  "kind": "sentence",
+  "text": "小鸭在水里游。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u9e2d-sentence.wav",
+  "sha256": "d547a1c367fe4b40a7743493077a9c819fc05afffed94084316c7a9ec9e48159",
+  "seconds": 1.823,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

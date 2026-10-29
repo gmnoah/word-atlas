@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u4eba",
+  "kind": "sentence",
+  "text": "我和家人在一起。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u4eba-sentence.wav",
+  "sha256": "74aa5e8e7a5aa811ae90aa5bffae027b3f405998227ea7fe6b7855aa104fb13b",
+  "seconds": 1.975,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

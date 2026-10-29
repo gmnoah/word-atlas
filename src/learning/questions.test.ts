@@ -10,6 +10,32 @@ import {
 } from "./policy";
 import { buildQuestion, evaluateQuestion } from "./questions";
 
+test("Hanzi listening never offers a homophone as an alternative answer", () => {
+  const entries = sampleCourses[1].entries.filter((entry): entry is HanziEntry => entry.kind === "hanzi");
+  const target = entries.find((entry) => entry.character === "鹦")!;
+  const homophone = entries.find((entry) => entry.character === "鹰")!;
+  const other = entries.find((entry) => entry.character === "鸽")!;
+  assert.equal(evaluateQuestion("hanzi-listen", target, [target, homophone], HANZI_PARENT_POLICY, 1), null);
+  const plan = evaluateQuestion("hanzi-listen", target, [target, homophone, other], HANZI_PARENT_POLICY, 1);
+  assert.ok(plan);
+  assert.ok(plan.options.includes(other.id));
+  assert.ok(!plan.options.includes(homophone.id));
+});
+
+test("Hanzi picture choices use visible characters, not distractor images", () => {
+  const entries = sampleCourses[1].entries.filter((entry): entry is HanziEntry => entry.kind === "hanzi");
+  const target = entries.find((entry) => entry.character === "山")!;
+  const duplicate = { ...target, id: "hanzi-duplicate", media: { ...target.media, image: "atlas/img/other.webp" } };
+  const other = { ...entries.find((entry) => entry.character === "水")!, media: { ...target.media, image: null } };
+  assert.equal(evaluateQuestion("hanzi-picture", target, [target, duplicate], HANZI_PARENT_POLICY, 1), null);
+  const plan = evaluateQuestion("hanzi-picture", target, [target, duplicate, other], HANZI_PARENT_POLICY, 1);
+  assert.ok(plan);
+  assert.equal(plan.prompt, "image");
+  assert.equal(plan.answer, "text");
+  assert.ok(plan.options.includes(other.id));
+  assert.ok(!plan.options.includes(duplicate.id));
+});
+
 function english(
   id: string,
   word: string,

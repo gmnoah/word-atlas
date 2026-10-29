@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u5c0f",
+  "kind": "sentence",
+  "text": "小鸟落在树上。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u5c0f-sentence.wav",
+  "sha256": "2c0f176d92f0899ee79094cbdd89db9d40355d0ae855bd5f6e84f489ee28069d",
+  "seconds": 1.939,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

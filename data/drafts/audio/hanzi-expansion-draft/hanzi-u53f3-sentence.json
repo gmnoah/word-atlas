@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u53f3",
+  "kind": "sentence",
+  "text": "笔在本子的右边。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u53f3-sentence.wav",
+  "sha256": "9ac70d2eefab416d8805b650f2280bfabed5492361228bb7175eed5bd09a85e3",
+  "seconds": 1.796,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

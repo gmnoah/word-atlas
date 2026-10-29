@@ -1,7 +1,8 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import type { EnglishEntry } from "../courses/types";
-import { PRIMARY_STARTER_POLICY } from "./policy";
+import { HANZI_PARENT_POLICY, PRIMARY_STARTER_POLICY } from "./policy";
+import { sampleCourses } from "../courses/samples";
 import {
   createLearningSession,
   currentStep,
@@ -31,6 +32,41 @@ function entry(id: string): EnglishEntry {
 }
 
 const entries = Array.from({ length: 12 }, (_, index) => entry(`en-word-${index}`));
+
+test("restoring a saved listening question removes an ambiguous homophone option", () => {
+  const pool = sampleCourses[1].entries.filter((entry) => entry.kind === "hanzi" && ["鹦", "鹰", "鸽"].includes(entry.character));
+  const target = pool.find((entry) => entry.kind === "hanzi" && entry.character === "鹦")!;
+  const homophone = pool.find((entry) => entry.kind === "hanzi" && entry.character === "鹰")!;
+  const session = createLearningSession({ courseId: "hanzi-starter", contentVersion: "test-v1", policy: HANZI_PARENT_POLICY,
+    pool, due: [target], fresh: [], now: 1000, seed: 1 });
+  session.steps[0] = { contentId: target.id, kind: "hanzi-listen", options: [target.id, homophone.id] };
+  const restored = restoreLearningSession(JSON.parse(JSON.stringify(session)), { courseId: "hanzi-starter", contentVersion: "test-v1", policy: HANZI_PARENT_POLICY, entries: pool, now: 2000 });
+  assert.equal(restored.status, "repaired");
+  assert.ok(restored.session);
+  const step = currentStep(restored.session);
+  assert.ok(step && (step.kind !== "hanzi-listen" || !step.options?.includes(homophone.id)));
+});
+test("saved Hanzi picture questions validate the characters actually displayed", () => {
+  const source = sampleCourses[1].entries.filter((entry) => entry.kind === "hanzi");
+  const target = source.find((entry) => entry.kind === "hanzi" && entry.character === "山")!;
+  const other = source.find((entry) => entry.kind === "hanzi" && entry.character === "水")!;
+  const duplicate = { ...target, id: "hanzi-duplicate", media: { ...target.media, image: "atlas/img/other.webp" } };
+  const pool = [target, other, duplicate];
+  const session = createLearningSession({ courseId: "hanzi-starter", contentVersion: "test-v1", policy: HANZI_PARENT_POLICY,
+    pool, due: [target], fresh: [], now: 1000, seed: 1 });
+  session.steps[0] = { contentId: target.id, kind: "hanzi-picture", options: [target.id, duplicate.id] };
+  const context = { courseId: "hanzi-starter", contentVersion: "test-v1", policy: HANZI_PARENT_POLICY, entries: pool, now: 2000 };
+  const repaired = restoreLearningSession(JSON.parse(JSON.stringify(session)), context);
+  assert.equal(repaired.status, "repaired");
+  assert.ok(repaired.session);
+  const step = currentStep(repaired.session);
+  assert.ok(step && (step.kind !== "hanzi-picture" || !step.options?.includes(duplicate.id)));
+  session.steps[0] = { contentId: target.id, kind: "hanzi-picture", options: [target.id, other.id] };
+  const restored = restoreLearningSession(JSON.parse(JSON.stringify(session)), context);
+  assert.ok(restored.session);
+  assert.deepEqual(currentStep(restored.session)?.options, [target.id, other.id]);
+});
+
 const context: RestoreContext = {
   courseId: "primary-starter",
   contentVersion: "test-v1",

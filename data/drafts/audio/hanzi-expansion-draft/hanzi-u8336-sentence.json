@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u8336",
+  "kind": "sentence",
+  "text": "爷爷喝了一口茶水。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u8336-sentence.wav",
+  "sha256": "a729390f7af771bda63c4315cacf2dca75199ceec16c8d14e7b325e100ad2818",
+  "seconds": 2.277,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

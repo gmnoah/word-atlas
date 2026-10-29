@@ -2,6 +2,7 @@ import { useSyncExternalStore } from "react";
 import type { Accent } from "../atlas/types";
 import type { CardState, Grade } from "./srs";
 import { sanitizeActiveSession } from "./session-schema";
+import { readRestoreGeneration } from "../lib/restore-generation";
 
 export type QuizKind = "meaning" | "picture" | "listen" | "spell";
 export type Step = { id: string; kind: "intro" } | { id: string; kind: QuizKind; retry?: boolean; options?: string[] };
@@ -198,6 +199,8 @@ let saveTimer: number | undefined;
 let dirty = false;
 /** Progress is written only after it has been read from storage for this dataset. */
 let loadedId: string | null = null;
+// A tab opened before a full restore must never flush its pre-restore state.
+const restoreGeneration = (() => { try { return { ok: true as const, value: readRestoreGeneration(localStorage) }; } catch { return { ok: false as const }; } })();
 
 function emit() {
   listeners.forEach((l) => l());
@@ -213,7 +216,9 @@ export function flush() {
   clearTimeout(saveTimer);
   if (!dirty) return;
   dirty = false;
-  const progressOk = loadedId !== state.progress.datasetId || write(progressKey(state.progress.datasetId), state.progress);
+  let generationMatches = false;
+  try { generationMatches = restoreGeneration.ok && readRestoreGeneration(localStorage) === restoreGeneration.value; } catch { /* storage unavailable */ }
+  const progressOk = generationMatches && (loadedId !== state.progress.datasetId || write(progressKey(state.progress.datasetId), state.progress));
   const ok = progressOk && write(SETTINGS_KEY, state.settings);
   if (ok === state.saveError) {
     state = { ...state, saveError: !ok };

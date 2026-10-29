@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u5403",
+  "kind": "sentence",
+  "text": "我们一起吃饭。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u5403-sentence.wav",
+  "sha256": "4bd6e0f3ea18337337afd771670ca29bad2dcc51c1badffbabee7ff0c841a4d1",
+  "seconds": 1.569,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

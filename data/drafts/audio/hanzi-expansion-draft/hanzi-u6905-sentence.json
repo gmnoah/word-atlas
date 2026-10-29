@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u6905",
+  "kind": "sentence",
+  "text": "我坐在椅子上。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u6905-sentence.wav",
+  "sha256": "65c21ecd686267e1bf0f3065fd8a375e777d79b0a2e000b526322da52bb1b23d",
+  "seconds": 1.65,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

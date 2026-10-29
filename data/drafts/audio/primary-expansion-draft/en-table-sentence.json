@@ -1,0 +1,13 @@
+{
+  "course": "primary-expansion-draft",
+  "id": "en-table",
+  "kind": "sentence",
+  "text": "The book is on the table.",
+  "voice": "Daniel",
+  "locale": "en-GB",
+  "file": "data/drafts/audio/primary-expansion-draft/en-table-sentence.wav",
+  "sha256": "0ae9dab6bcbf85f652c16cf2c6301b0f3a14eac1cc561fedb737e78925ff9394",
+  "seconds": 1.587,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

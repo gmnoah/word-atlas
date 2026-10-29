@@ -1,0 +1,13 @@
+{
+  "course": "primary-expansion-draft",
+  "id": "en-bag",
+  "kind": "sentence",
+  "text": "My bag is blue.",
+  "voice": "Daniel",
+  "locale": "en-GB",
+  "file": "data/drafts/audio/primary-expansion-draft/en-bag-sentence.wav",
+  "sha256": "8564003eee20ec0723f5fa6386c021e8e88fce59091868623f7546e1bd685e19",
+  "seconds": 1.453,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

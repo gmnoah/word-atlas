@@ -1,0 +1,6220 @@
+{
+  "manifest": {
+    "id": "hanzi-starter",
+    "version": "0.6.0-draft",
+    "title": "汉字启蒙",
+    "subject": "hanzi",
+    "stage": "preschool",
+    "status": "preview",
+    "description": "和孩子一起，在生活里遇见汉字。",
+    "attribution": "Word Atlas contributors（词光）· CC BY 4.0"
+  },
+  "lessons": [
+    {
+      "id": "nature",
+      "title": "山水之间",
+      "subtitle": "一起看看大自然",
+      "entryIds": [
+        "hanzi-u5c71",
+        "hanzi-u6c34",
+        "hanzi-u65e5",
+        "hanzi-u6708",
+        "hanzi-u4e91"
+      ]
+    },
+    {
+      "id": "body",
+      "title": "认识自己",
+      "subtitle": "从小手到小脚",
+      "entryIds": [
+        "hanzi-u4eba",
+        "hanzi-u53e3",
+        "hanzi-u624b",
+        "hanzi-u8db3",
+        "hanzi-u76ee"
+      ]
+    },
+    {
+      "id": "garden",
+      "title": "花园里",
+      "subtitle": "读一读花草的名字",
+      "entryIds": [
+        "hanzi-u6728",
+        "hanzi-u82b1",
+        "hanzi-u96e8",
+        "hanzi-u77f3",
+        "hanzi-u7530"
+      ]
+    },
+    {
+      "id": "animals",
+      "title": "动物与生活",
+      "subtitle": "在生活里认识字",
+      "entryIds": [
+        "hanzi-u9e1f",
+        "hanzi-u9c7c",
+        "hanzi-u9a6c",
+        "hanzi-u8033",
+        "hanzi-u706b"
+      ]
+    },
+    {
+      "id": "draft-hanzi-01",
+      "title": "我的家人",
+      "subtitle": "和孩子一起在生活里找找",
+      "entryIds": [
+        "hanzi-u5bb6",
+        "hanzi-u7238",
+        "hanzi-u5988",
+        "hanzi-u54e5",
+        "hanzi-u59d0",
+        "hanzi-u5f1f",
+        "hanzi-u59b9",
+        "hanzi-u7237",
+        "hanzi-u5976",
+        "hanzi-u5b69"
+      ]
+    },
+    {
+      "id": "draft-hanzi-02",
+      "title": "大小与方位",
+      "subtitle": "和孩子一起在生活里找找",
+      "entryIds": [
+        "hanzi-u5927",
+        "hanzi-u5c0f",
+        "hanzi-u591a",
+        "hanzi-u5c11",
+        "hanzi-u4e0a",
+        "hanzi-u4e0b",
+        "hanzi-u5de6",
+        "hanzi-u53f3",
+        "hanzi-u91cc",
+        "hanzi-u5916"
+      ]
+    },
+    {
+      "id": "draft-hanzi-03",
+      "title": "自然与天气",
+      "subtitle": "和孩子一起在生活里找找",
+      "entryIds": [
+        "hanzi-u5929",
+        "hanzi-u5730",
+        "hanzi-u98ce",
+        "hanzi-u96ea",
+        "hanzi-u5149",
+        "hanzi-u661f",
+        "hanzi-u6797",
+        "hanzi-u6d77",
+        "hanzi-u6cb3",
+        "hanzi-u6e56"
+      ]
+    },
+    {
+      "id": "draft-hanzi-04",
+      "title": "四季和时光",
+      "subtitle": "和孩子一起在生活里找找",
+      "entryIds": [
+        "hanzi-u6625",
+        "hanzi-u590f",
+        "hanzi-u79cb",
+        "hanzi-u51ac",
+        "hanzi-u65e9",
+        "hanzi-u665a",
+        "hanzi-u4eca",
+        "hanzi-u660e",
+        "hanzi-u5e74",
+        "hanzi-u65f6"
+      ]
+    },
+    {
+      "id": "draft-hanzi-05",
+      "title": "吃饭喝水",
+      "subtitle": "和孩子一起在生活里找找",
+      "entryIds": [
+        "hanzi-u5403",
+        "hanzi-u559d",
+        "hanzi-u996d",
+        "hanzi-u679c",
+        "hanzi-u83dc",
+        "hanzi-u7c73",
+        "hanzi-u9762",
+        "hanzi-u8336",
+        "hanzi-u86cb",
+        "hanzi-u751c"
+      ]
+    },
+    {
+      "id": "draft-hanzi-06",
+      "title": "书桌与家",
+      "subtitle": "和孩子一起在生活里找找",
+      "entryIds": [
+        "hanzi-u4e66",
+        "hanzi-u672c",
+        "hanzi-u7b14",
+        "hanzi-u753b",
+        "hanzi-u7eb8",
+        "hanzi-u684c",
+        "hanzi-u6905",
+        "hanzi-u95e8",
+        "hanzi-u7a97",
+        "hanzi-u706f"
+      ]
+    },
+    {
+      "id": "draft-hanzi-07",
+      "title": "动物与植物",
+      "subtitle": "和孩子一起在生活里找找",
+      "entryIds": [
+        "hanzi-u732b",
+        "hanzi-u72d7",
+        "hanzi-u725b",
+        "hanzi-u7f8a",
+        "hanzi-u9e21",
+        "hanzi-u9e2d",
+        "hanzi-u5154",
+        "hanzi-u866b",
+        "hanzi-u8349",
+        "hanzi-u53f6"
+      ]
+    },
+    {
+      "id": "draft-hanzi-08",
+      "title": "一起做动作",
+      "subtitle": "和孩子一起在生活里找找",
+      "entryIds": [
+        "hanzi-u8d70",
+        "hanzi-u8dd1",
+        "hanzi-u8df3",
+        "hanzi-u5750",
+        "hanzi-u770b",
+        "hanzi-u542c",
+        "hanzi-u8bf4",
+        "hanzi-u7b11",
+        "hanzi-u6d17",
+        "hanzi-u7761"
+      ]
+    },
+    {
+      "id": "draft-hanzi-09",
+      "title": "动物新朋友",
+      "subtitle": "和孩子一起在生活里找找",
+      "entryIds": [
+        "hanzi-u732a",
+        "hanzi-u718a",
+        "hanzi-u864e",
+        "hanzi-u8c61",
+        "hanzi-u7334",
+        "hanzi-u8702",
+        "hanzi-u8776",
+        "hanzi-u8681",
+        "hanzi-u86d9",
+        "hanzi-u9f9f"
+      ]
+    },
+    {
+      "id": "draft-hanzi-10",
+      "title": "水果和点心",
+      "subtitle": "和孩子一起在生活里找找",
+      "entryIds": [
+        "hanzi-u82f9",
+        "hanzi-u68a8",
+        "hanzi-u6843",
+        "hanzi-u8549",
+        "hanzi-u8461",
+        "hanzi-u7cd6",
+        "hanzi-u8393",
+        "hanzi-u74dc",
+        "hanzi-u6c64",
+        "hanzi-u7cd5"
+      ]
+    },
+    {
+      "id": "draft-hanzi-11",
+      "title": "出门去看看",
+      "subtitle": "和孩子一起在生活里找找",
+      "entryIds": [
+        "hanzi-u8f66",
+        "hanzi-u8239",
+        "hanzi-u6865",
+        "hanzi-u8def",
+        "hanzi-u4f1e",
+        "hanzi-u5e3d",
+        "hanzi-u978b",
+        "hanzi-u889c",
+        "hanzi-u8863",
+        "hanzi-u88e4"
+      ]
+    },
+    {
+      "id": "draft-hanzi-12",
+      "title": "身体小发现",
+      "subtitle": "和孩子一起在生活里找找",
+      "entryIds": [
+        "hanzi-u9f3b",
+        "hanzi-u8138",
+        "hanzi-u5934",
+        "hanzi-u7259",
+        "hanzi-u820c",
+        "hanzi-u80a9",
+        "hanzi-u80cc",
+        "hanzi-u817f",
+        "hanzi-u811a",
+        "hanzi-u809a"
+      ]
+    },
+    {
+      "id": "draft-hanzi-13",
+      "title": "家里的物品",
+      "subtitle": "和孩子一起在生活里找找",
+      "entryIds": [
+        "hanzi-u5e8a",
+        "hanzi-u676f",
+        "hanzi-u7897",
+        "hanzi-u76d8",
+        "hanzi-u74f6",
+        "hanzi-u52fa",
+        "hanzi-u9505",
+        "hanzi-u9501",
+        "hanzi-u94a5",
+        "hanzi-u949f"
+      ]
+    },
+    {
+      "id": "draft-hanzi-14",
+      "title": "颜色世界",
+      "subtitle": "和孩子一起在生活里找找",
+      "entryIds": [
+        "hanzi-u7ea2",
+        "hanzi-u9ec4",
+        "hanzi-u7eff",
+        "hanzi-u84dd",
+        "hanzi-u767d",
+        "hanzi-u9ed1",
+        "hanzi-u7d2b",
+        "hanzi-u7c89",
+        "hanzi-u6a59",
+        "hanzi-u68d5"
+      ]
+    },
+    {
+      "id": "draft-hanzi-15",
+      "title": "文具和学校",
+      "subtitle": "和孩子一起在生活里找找",
+      "entryIds": [
+        "hanzi-u6a61",
+        "hanzi-u6821",
+        "hanzi-u5c3a",
+        "hanzi-u526a",
+        "hanzi-u80f6",
+        "hanzi-u5305",
+        "hanzi-u677f",
+        "hanzi-u5e08",
+        "hanzi-u540c",
+        "hanzi-u53cb"
+      ]
+    },
+    {
+      "id": "draft-hanzi-16",
+      "title": "游戏与音乐",
+      "subtitle": "和孩子一起在生活里找找",
+      "entryIds": [
+        "hanzi-u7403",
+        "hanzi-u7b5d",
+        "hanzi-u7434",
+        "hanzi-u9f13",
+        "hanzi-u7b1b",
+        "hanzi-u53f7",
+        "hanzi-u94c3",
+        "hanzi-u6b4c",
+        "hanzi-u821e",
+        "hanzi-u4e50"
+      ]
+    },
+    {
+      "id": "draft-hanzi-17",
+      "title": "出行小发现",
+      "subtitle": "和孩子一起在生活里找找",
+      "entryIds": [
+        "hanzi-u98de",
+        "hanzi-u673a",
+        "hanzi-u6c7d",
+        "hanzi-u94c1",
+        "hanzi-u7ad9",
+        "hanzi-u7968",
+        "hanzi-u8f6e",
+        "hanzi-u8f68",
+        "hanzi-u884c",
+        "hanzi-u505c"
+      ]
+    },
+    {
+      "id": "draft-hanzi-18",
+      "title": "厨房里的东西",
+      "subtitle": "和孩子一起在生活里找找",
+      "entryIds": [
+        "hanzi-u53a8",
+        "hanzi-u51b0",
+        "hanzi-u7bb1",
+        "hanzi-u7089",
+        "hanzi-u53c9",
+        "hanzi-u5200",
+        "hanzi-u76d0",
+        "hanzi-u6cb9",
+        "hanzi-u997c",
+        "hanzi-u8c46"
+      ]
+    },
+    {
+      "id": "draft-hanzi-19",
+      "title": "洗漱小物",
+      "subtitle": "和孩子一起在生活里找找",
+      "entryIds": [
+        "hanzi-u955c",
+        "hanzi-u5dfe",
+        "hanzi-u5237",
+        "hanzi-u818f",
+        "hanzi-u7682",
+        "hanzi-u68b3",
+        "hanzi-u6d74",
+        "hanzi-u76c6",
+        "hanzi-u6ce1",
+        "hanzi-u6d01"
+      ]
+    },
+    {
+      "id": "draft-hanzi-20",
+      "title": "居家小角落",
+      "subtitle": "和孩子一起在生活里找找",
+      "entryIds": [
+        "hanzi-u6c99",
+        "hanzi-u53d1",
+        "hanzi-u6795",
+        "hanzi-u88ab",
+        "hanzi-u5e18",
+        "hanzi-u6bef",
+        "hanzi-u67b6",
+        "hanzi-u67dc",
+        "hanzi-u7720",
+        "hanzi-u623f"
+      ]
+    },
+    {
+      "id": "draft-hanzi-21",
+      "title": "公园玩耍",
+      "subtitle": "和孩子一起在生活里找找",
+      "entryIds": [
+        "hanzi-u56ed",
+        "hanzi-u6ed1",
+        "hanzi-u68af",
+        "hanzi-u8361",
+        "hanzi-u7802",
+        "hanzi-u6876",
+        "hanzi-u94f2",
+        "hanzi-u6c60",
+        "hanzi-u51f3",
+        "hanzi-u73a9"
+      ]
+    },
+    {
+      "id": "draft-hanzi-22",
+      "title": "小小植物",
+      "subtitle": "和孩子一起在生活里找找",
+      "entryIds": [
+        "hanzi-u79cd",
+        "hanzi-u6839",
+        "hanzi-u679d",
+        "hanzi-u7af9",
+        "hanzi-u83c7",
+        "hanzi-u6735",
+        "hanzi-u690d",
+        "hanzi-u68f5",
+        "hanzi-u82bd",
+        "hanzi-u82d7"
+      ]
+    },
+    {
+      "id": "draft-hanzi-23",
+      "title": "森林里的动物",
+      "subtitle": "和孩子一起在生活里找找",
+      "entryIds": [
+        "hanzi-u9e7f",
+        "hanzi-u72d0",
+        "hanzi-u72fc",
+        "hanzi-u72ee",
+        "hanzi-u6591",
+        "hanzi-u957f",
+        "hanzi-u9cc4",
+        "hanzi-u9f20",
+        "hanzi-u677e",
+        "hanzi-u523a"
+      ]
+    },
+    {
+      "id": "draft-hanzi-24",
+      "title": "海洋朋友",
+      "subtitle": "和孩子一起在生活里找找",
+      "entryIds": [
+        "hanzi-u9cb8",
+        "hanzi-u9ca8",
+        "hanzi-u8c5a",
+        "hanzi-u7ae0",
+        "hanzi-u8d1d",
+        "hanzi-u73ca",
+        "hanzi-u867e",
+        "hanzi-u9ccd",
+        "hanzi-u7901",
+        "hanzi-u6d6a"
+      ]
+    },
+    {
+      "id": "draft-hanzi-25",
+      "title": "鸟儿和昆虫",
+      "subtitle": "和孩子一起在生活里找找",
+      "entryIds": [
+        "hanzi-u9e66",
+        "hanzi-u9e70",
+        "hanzi-u9e3d",
+        "hanzi-u9e45",
+        "hanzi-u96c0",
+        "hanzi-u5b54",
+        "hanzi-u86db",
+        "hanzi-u74e2",
+        "hanzi-u7532",
+        "hanzi-u7fbd"
+      ]
+    },
+    {
+      "id": "draft-hanzi-26",
+      "title": "节日和礼物",
+      "subtitle": "和孩子一起在生活里找找",
+      "entryIds": [
+        "hanzi-u793c",
+        "hanzi-u65d7",
+        "hanzi-u8721",
+        "hanzi-u6c14",
+        "hanzi-u5e86",
+        "hanzi-u795d",
+        "hanzi-u798f",
+        "hanzi-u5f69",
+        "hanzi-u9c9c",
+        "hanzi-u8282"
+      ]
+    },
+    {
+      "id": "draft-hanzi-27",
+      "title": "天气与自然",
+      "subtitle": "和孩子一起在生活里找找",
+      "entryIds": [
+        "hanzi-u6674",
+        "hanzi-u9634",
+        "hanzi-u96fe",
+        "hanzi-u96f7",
+        "hanzi-u5c9b",
+        "hanzi-u8679",
+        "hanzi-u971c",
+        "hanzi-u9732",
+        "hanzi-u68ee",
+        "hanzi-u5ca9"
+      ]
+    },
+    {
+      "id": "draft-hanzi-28",
+      "title": "动作与感受",
+      "subtitle": "和孩子一起在生活里找找",
+      "entryIds": [
+        "hanzi-u5f00",
+        "hanzi-u5173",
+        "hanzi-u62b1",
+        "hanzi-u62ff",
+        "hanzi-u63a8",
+        "hanzi-u62c9",
+        "hanzi-u54ed",
+        "hanzi-u4eb2",
+        "hanzi-u60f3",
+        "hanzi-u7231"
+      ]
+    }
+  ],
+  "entries": [
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u5c71",
+      "topicId": "nature",
+      "character": "山",
+      "pinyin": "shān",
+      "phrase": "高山",
+      "sentence": "远处有一座高山。",
+      "question": "远处高高隆起的地方，是什么？",
+      "caregiverTip": "和孩子看看窗外，或找一本有山的绘本。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/mountain.webp",
+        "recording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；插画借作语义预览，适龄匹配待审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u6c34",
+      "topicId": "nature",
+      "character": "水",
+      "pinyin": "shuǐ",
+      "phrase": "杯中水",
+      "sentence": "杯中有清清的水。",
+      "question": "杯子里倒入的，是什么？",
+      "caregiverTip": "在家找一找水，聊聊什么时候需要用水。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/water.webp",
+        "recording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；插画借作语义预览，适龄匹配待审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u65e5",
+      "topicId": "nature",
+      "character": "日",
+      "pinyin": "rì",
+      "phrase": "日光",
+      "sentence": "日光照着海边。",
+      "question": "“日光”是太阳的光，找找表示太阳的字。",
+      "caregiverTip": "和孩子看看阳光照亮的地方，不要直视太阳。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/sun.webp",
+        "recording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；插画借作语义预览，适龄匹配待审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u6708",
+      "topicId": "nature",
+      "character": "月",
+      "pinyin": "yuè",
+      "phrase": "月亮",
+      "sentence": "月亮挂在夜空中。",
+      "question": "夜空中有时圆圆、有时弯弯的，是什么？",
+      "caregiverTip": "和孩子在绘本里找找不同形状的月亮。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/moon.webp",
+        "recording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；插画借作语义预览，适龄匹配待审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u4e91",
+      "topicId": "nature",
+      "character": "云",
+      "pinyin": "yún",
+      "phrase": "白云",
+      "sentence": "天空中飘着白云。",
+      "question": "天空里一团团飘着的，是什么？",
+      "caregiverTip": "看看窗外的云，想象它像什么。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/cloud.webp",
+        "recording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；插画借作语义预览，适龄匹配待审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u4eba",
+      "topicId": "body",
+      "character": "人",
+      "pinyin": "rén",
+      "phrase": "行人",
+      "sentence": "一位行人在路边等车。",
+      "question": "“行人”是走在路上的人，找找表示人的字。",
+      "caregiverTip": "在安全的地方看看路上的行人，聊聊过马路要注意什么。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/person.webp",
+        "recording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；插画借作语义预览，适龄匹配待审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u53e3",
+      "topicId": "body",
+      "character": "口",
+      "pinyin": "kǒu",
+      "phrase": "张口",
+      "sentence": "看牙齿时，她张开了口。",
+      "question": "我们用嘴巴吃东西，哪个字也表示嘴巴？",
+      "caregiverTip": "和孩子一起张口、闭口，注意不是练习发音评分。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/mouth.webp",
+        "recording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；插画借作语义预览，适龄匹配待审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u624b",
+      "topicId": "body",
+      "character": "手",
+      "pinyin": "shǒu",
+      "phrase": "小手",
+      "sentence": "手心里有一块小石头。",
+      "question": "拿石头和挥一挥时，我们用什么？",
+      "caregiverTip": "挥挥手，拍一拍手，找找手还能做什么。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/hand.webp",
+        "recording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；插画借作语义预览，适龄匹配待审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u8db3",
+      "topicId": "body",
+      "character": "足",
+      "pinyin": "zú",
+      "phrase": "双足",
+      "sentence": "双足踩在沙滩上。",
+      "question": "“足”也可以表示脚，找找这个字。",
+      "caregiverTip": "看看自己的脚，和“手”做个对比。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/foot.webp",
+        "recording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；插画借作语义预览，适龄匹配待审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u76ee",
+      "topicId": "body",
+      "character": "目",
+      "pinyin": "mù",
+      "phrase": "双目",
+      "sentence": "她用双目看蝴蝶。",
+      "question": "“目”也可以表示眼睛，找找这个字。",
+      "caregiverTip": "和孩子一起眨眨眼，聊聊看见了什么。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/eye.webp",
+        "recording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；插画借作语义预览，适龄匹配待审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u6728",
+      "topicId": "garden",
+      "character": "木",
+      "pinyin": "mù",
+      "phrase": "木头",
+      "sentence": "桌子是用木头做的。",
+      "question": "树干可以做成木头，找找表示木头的字。",
+      "caregiverTip": "在家看看哪些物品是木头做的。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/tree.webp",
+        "recording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；插画借作语义预览，适龄匹配待审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u82b1",
+      "topicId": "garden",
+      "character": "花",
+      "pinyin": "huā",
+      "phrase": "小花",
+      "sentence": "小花开了。",
+      "question": "花园里开出漂亮花瓣的，是什么？",
+      "caregiverTip": "找一种花，说说它的颜色。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/flower.webp",
+        "recording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；插画借作语义预览，适龄匹配待审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u96e8",
+      "topicId": "garden",
+      "character": "雨",
+      "pinyin": "yǔ",
+      "phrase": "下雨",
+      "sentence": "下雨了，我们撑起伞。",
+      "question": "从云里落下的小水滴，叫什么？",
+      "caregiverTip": "听一听下雨的声音，或翻翻雨天的绘本。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/rain.webp",
+        "recording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；插画借作语义预览，适龄匹配待审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u77f3",
+      "topicId": "garden",
+      "character": "石",
+      "pinyin": "shí",
+      "phrase": "石头",
+      "sentence": "路边有一块石头。",
+      "question": "路边硬硬的一块，可以叫它什么？",
+      "caregiverTip": "由家长找一块安全的大石头，一起看看纹路。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/stone.webp",
+        "recording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；插画借作语义预览，适龄匹配待审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u7530",
+      "topicId": "garden",
+      "character": "田",
+      "pinyin": "tián",
+      "phrase": "田地",
+      "sentence": "田地里长着庄稼。",
+      "question": "用来种庄稼的一块土地，叫什么？",
+      "caregiverTip": "在绘本或照片里看看田地里的庄稼。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/field.webp",
+        "recording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；插画借作语义预览，适龄匹配待审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u9e1f",
+      "topicId": "animals",
+      "character": "鸟",
+      "pinyin": "niǎo",
+      "phrase": "小鸟",
+      "sentence": "小鸟停在树上。",
+      "question": "有羽毛、会叽叽叫的动物，是什么？",
+      "caregiverTip": "找找绘本里的鸟，看看它的翅膀。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/bird.webp",
+        "recording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；插画借作语义预览，适龄匹配待审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u9c7c",
+      "topicId": "animals",
+      "character": "鱼",
+      "pinyin": "yú",
+      "phrase": "小鱼",
+      "sentence": "小鱼在水里游。",
+      "question": "在水里游来游去、有鳍的动物，是什么？",
+      "caregiverTip": "用手模仿小鱼游泳。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/fish.webp",
+        "recording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；插画借作语义预览，适龄匹配待审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u9a6c",
+      "topicId": "animals",
+      "character": "马",
+      "pinyin": "mǎ",
+      "phrase": "小马",
+      "sentence": "小马在草地上跑。",
+      "question": "可以在草地上奔跑、长着马鬃的动物，是什么？",
+      "caregiverTip": "看看马的图片，模仿轻轻的马蹄声。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/horse.webp",
+        "recording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；插画借作语义预览，适龄匹配待审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u8033",
+      "topicId": "animals",
+      "character": "耳",
+      "pinyin": "ěr",
+      "phrase": "耳朵",
+      "sentence": "我们用耳朵听声音。",
+      "question": "听故事时，我们用什么来听？",
+      "caregiverTip": "闭上眼睛，听听身边有哪些声音。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/ear.webp",
+        "recording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；插画借作语义预览，适龄匹配待审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u706b",
+      "topicId": "animals",
+      "character": "火",
+      "pinyin": "huǒ",
+      "phrase": "火苗",
+      "sentence": "火苗亮起来了。",
+      "question": "燃烧时亮起来的小火苗，用哪个字表示？",
+      "caregiverTip": "只看图认识火，提醒孩子不碰火、不玩火。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/fire.webp",
+        "recording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；插画借作语义预览，适龄匹配待审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u5bb6",
+      "topicId": "draft-hanzi-01",
+      "character": "家",
+      "pinyin": "jiā",
+      "phrase": "家人",
+      "sentence": "我和家人在一起。",
+      "question": "这句话里缺了哪个字？我和□人在一起。",
+      "caregiverTip": "和孩子在生活里找找“家人”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/family.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u7238",
+      "topicId": "draft-hanzi-01",
+      "character": "爸",
+      "pinyin": "bà",
+      "phrase": "爸爸",
+      "sentence": "爸爸陪我看书。",
+      "question": "这句话里缺了哪个字？□□陪我看书。",
+      "caregiverTip": "和孩子在生活里找找“爸爸”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/hanzi-u7238.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "OpenAI imagegen；使用项目插画作风格参考，使用条件及儿童适龄性待人工确认；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u5988",
+      "topicId": "draft-hanzi-01",
+      "character": "妈",
+      "pinyin": "mā",
+      "phrase": "妈妈",
+      "sentence": "妈妈陪我散步。",
+      "question": "这句话里缺了哪个字？□□陪我散步。",
+      "caregiverTip": "和孩子在生活里找找“妈妈”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/hanzi-u5988.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "OpenAI imagegen；使用项目插画作风格参考，使用条件及儿童适龄性待人工确认；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u54e5",
+      "topicId": "draft-hanzi-01",
+      "character": "哥",
+      "pinyin": "gē",
+      "phrase": "哥哥",
+      "sentence": "哥哥和我玩球。",
+      "question": "这句话里缺了哪个字？□□和我玩球。",
+      "caregiverTip": "和孩子在生活里找找“哥哥”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/hanzi-u54e5.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "OpenAI imagegen；使用项目插画作风格参考，使用条件及儿童适龄性待人工确认；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u59d0",
+      "topicId": "draft-hanzi-01",
+      "character": "姐",
+      "pinyin": "jiě",
+      "phrase": "姐姐",
+      "sentence": "姐姐在画画。",
+      "question": "这句话里缺了哪个字？□□在画画。",
+      "caregiverTip": "和孩子在生活里找找“姐姐”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/hanzi-u59d0.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "OpenAI imagegen；使用项目插画作风格参考，使用条件及儿童适龄性待人工确认；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u5f1f",
+      "topicId": "draft-hanzi-01",
+      "character": "弟",
+      "pinyin": "dì",
+      "phrase": "弟弟",
+      "sentence": "弟弟喜欢小狗。",
+      "question": "这句话里缺了哪个字？□□喜欢小狗。",
+      "caregiverTip": "和孩子在生活里找找“弟弟”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/hanzi-u5f1f.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "OpenAI imagegen；使用项目插画作风格参考，使用条件及儿童适龄性待人工确认；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u59b9",
+      "topicId": "draft-hanzi-01",
+      "character": "妹",
+      "pinyin": "mèi",
+      "phrase": "妹妹",
+      "sentence": "妹妹拿着一本书。",
+      "question": "这句话里缺了哪个字？□□拿着一本书。",
+      "caregiverTip": "和孩子在生活里找找“妹妹”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/hanzi-u59b9.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "OpenAI imagegen；使用项目插画作风格参考，使用条件及儿童适龄性待人工确认；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u7237",
+      "topicId": "draft-hanzi-01",
+      "character": "爷",
+      "pinyin": "yé",
+      "phrase": "爷爷",
+      "sentence": "爷爷坐在树下。",
+      "question": "这句话里缺了哪个字？□□坐在树下。",
+      "caregiverTip": "和孩子在生活里找找“爷爷”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/grandfather.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u5976",
+      "topicId": "draft-hanzi-01",
+      "character": "奶",
+      "pinyin": "nǎi",
+      "phrase": "奶奶",
+      "sentence": "奶奶给花浇水。",
+      "question": "这句话里缺了哪个字？□□给花浇水。",
+      "caregiverTip": "和孩子在生活里找找“奶奶”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/grandmother.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u5b69",
+      "topicId": "draft-hanzi-01",
+      "character": "孩",
+      "pinyin": "hái",
+      "phrase": "孩子",
+      "sentence": "孩子们一起唱歌。",
+      "question": "这句话里缺了哪个字？□子们一起唱歌。",
+      "caregiverTip": "和孩子在生活里找找“孩子”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/child.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u5927",
+      "topicId": "draft-hanzi-02",
+      "character": "大",
+      "pinyin": "dà",
+      "phrase": "大小",
+      "sentence": "这个苹果很大。",
+      "question": "这句话里缺了哪个字？这个苹果很□。",
+      "caregiverTip": "和孩子在生活里找找“大小”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/big.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u5c0f",
+      "topicId": "draft-hanzi-02",
+      "character": "小",
+      "pinyin": "xiǎo",
+      "phrase": "小鸟",
+      "sentence": "小鸟落在树上。",
+      "question": "这句话里缺了哪个字？□鸟落在树上。",
+      "caregiverTip": "和孩子在生活里找找“小鸟”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/small.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u591a",
+      "topicId": "draft-hanzi-02",
+      "character": "多",
+      "pinyin": "duō",
+      "phrase": "多少",
+      "sentence": "盘子里有很多水果。",
+      "question": "这句话里缺了哪个字？盘子里有很□水果。",
+      "caregiverTip": "和孩子在生活里找找“多少”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/many.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u5c11",
+      "topicId": "draft-hanzi-02",
+      "character": "少",
+      "pinyin": "shǎo",
+      "phrase": "多少",
+      "sentence": "杯子里的水很少。",
+      "question": "这句话里缺了哪个字？杯子里的水很□。",
+      "caregiverTip": "和孩子在生活里找找“多少”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/few.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u4e0a",
+      "topicId": "draft-hanzi-02",
+      "character": "上",
+      "pinyin": "shàng",
+      "phrase": "上面",
+      "sentence": "小猫在椅子上面。",
+      "question": "这句话里缺了哪个字？小猫在椅子□面。",
+      "caregiverTip": "和孩子在生活里找找“上面”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/above.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u4e0b",
+      "topicId": "draft-hanzi-02",
+      "character": "下",
+      "pinyin": "xià",
+      "phrase": "下面",
+      "sentence": "小球在桌子下面。",
+      "question": "这句话里缺了哪个字？小球在桌子□面。",
+      "caregiverTip": "和孩子在生活里找找“下面”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/hanzi-u4e0b.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "OpenAI imagegen；使用项目插画作风格参考，使用条件及儿童适龄性待人工确认；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u5de6",
+      "topicId": "draft-hanzi-02",
+      "character": "左",
+      "pinyin": "zuǒ",
+      "phrase": "左边",
+      "sentence": "书在杯子的左边。",
+      "question": "这句话里缺了哪个字？书在杯子的□边。",
+      "caregiverTip": "和孩子在生活里找找“左边”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/hanzi-u5de6.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "OpenAI imagegen；使用项目插画作风格参考，使用条件及儿童适龄性待人工确认；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u53f3",
+      "topicId": "draft-hanzi-02",
+      "character": "右",
+      "pinyin": "yòu",
+      "phrase": "右边",
+      "sentence": "笔在本子的右边。",
+      "question": "这句话里缺了哪个字？笔在本子的□边。",
+      "caregiverTip": "和孩子在生活里找找“右边”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/hanzi-u53f3.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "OpenAI imagegen；使用项目插画作风格参考，使用条件及儿童适龄性待人工确认；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u91cc",
+      "topicId": "draft-hanzi-02",
+      "character": "里",
+      "pinyin": "lǐ",
+      "phrase": "里面",
+      "sentence": "书包里面有书。",
+      "question": "这句话里缺了哪个字？书包□面有书。",
+      "caregiverTip": "和孩子在生活里找找“里面”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/inside.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u5916",
+      "topicId": "draft-hanzi-02",
+      "character": "外",
+      "pinyin": "wài",
+      "phrase": "外面",
+      "sentence": "窗户外面有树。",
+      "question": "这句话里缺了哪个字？窗户□面有树。",
+      "caregiverTip": "和孩子在生活里找找“外面”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/outside.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u5929",
+      "topicId": "draft-hanzi-03",
+      "character": "天",
+      "pinyin": "tiān",
+      "phrase": "天空",
+      "sentence": "天空中有白云。",
+      "question": "这句话里缺了哪个字？□空中有白云。",
+      "caregiverTip": "和孩子在生活里找找“天空”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/sky.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u5730",
+      "topicId": "draft-hanzi-03",
+      "character": "地",
+      "pinyin": "dì",
+      "phrase": "地面",
+      "sentence": "落叶铺在地面上。",
+      "question": "这句话里缺了哪个字？落叶铺在□面上。",
+      "caregiverTip": "和孩子在生活里找找“地面”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/hanzi-u5730.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "OpenAI imagegen；使用项目插画作风格参考，使用条件及儿童适龄性待人工确认；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u98ce",
+      "topicId": "draft-hanzi-03",
+      "character": "风",
+      "pinyin": "fēng",
+      "phrase": "风儿",
+      "sentence": "风儿吹动树叶。",
+      "question": "这句话里缺了哪个字？□儿吹动树叶。",
+      "caregiverTip": "和孩子在生活里找找“风儿”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/wind.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u96ea",
+      "topicId": "draft-hanzi-03",
+      "character": "雪",
+      "pinyin": "xuě",
+      "phrase": "下雪",
+      "sentence": "下雪了，屋顶白了。",
+      "question": "这句话里缺了哪个字？下□了，屋顶白了。",
+      "caregiverTip": "和孩子在生活里找找“下雪”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/snow.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u5149",
+      "topicId": "draft-hanzi-03",
+      "character": "光",
+      "pinyin": "guāng",
+      "phrase": "阳光",
+      "sentence": "阳光照进窗户。",
+      "question": "这句话里缺了哪个字？阳□照进窗户。",
+      "caregiverTip": "和孩子在生活里找找“阳光”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/light.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u661f",
+      "topicId": "draft-hanzi-03",
+      "character": "星",
+      "pinyin": "xīng",
+      "phrase": "星星",
+      "sentence": "夜空中有星星。",
+      "question": "这句话里缺了哪个字？夜空中有□□。",
+      "caregiverTip": "和孩子在生活里找找“星星”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/star.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u6797",
+      "topicId": "draft-hanzi-03",
+      "character": "林",
+      "pinyin": "lín",
+      "phrase": "树林",
+      "sentence": "树林里有许多树。",
+      "question": "这句话里缺了哪个字？树□里有许多树。",
+      "caregiverTip": "和孩子在生活里找找“树林”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/forest.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u6d77",
+      "topicId": "draft-hanzi-03",
+      "character": "海",
+      "pinyin": "hǎi",
+      "phrase": "大海",
+      "sentence": "大海边有沙子。",
+      "question": "这句话里缺了哪个字？大□边有沙子。",
+      "caregiverTip": "和孩子在生活里找找“大海”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/sea.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u6cb3",
+      "topicId": "draft-hanzi-03",
+      "character": "河",
+      "pinyin": "hé",
+      "phrase": "小河",
+      "sentence": "小河里的水清清的。",
+      "question": "这句话里缺了哪个字？小□里的水清清的。",
+      "caregiverTip": "和孩子在生活里找找“小河”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/river.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u6e56",
+      "topicId": "draft-hanzi-03",
+      "character": "湖",
+      "pinyin": "hú",
+      "phrase": "湖水",
+      "sentence": "湖水映着天空。",
+      "question": "这句话里缺了哪个字？□水映着天空。",
+      "caregiverTip": "和孩子在生活里找找“湖水”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/lake.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u6625",
+      "topicId": "draft-hanzi-04",
+      "character": "春",
+      "pinyin": "chūn",
+      "phrase": "春天",
+      "sentence": "春天，小花开了。",
+      "question": "这句话里缺了哪个字？□天，小花开了。",
+      "caregiverTip": "和孩子在生活里找找“春天”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/spring.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u590f",
+      "topicId": "draft-hanzi-04",
+      "character": "夏",
+      "pinyin": "xià",
+      "phrase": "夏天",
+      "sentence": "夏天，我们吃西瓜。",
+      "question": "这句话里缺了哪个字？□天，我们吃西瓜。",
+      "caregiverTip": "和孩子在生活里找找“夏天”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/summer.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u79cb",
+      "topicId": "draft-hanzi-04",
+      "character": "秋",
+      "pinyin": "qiū",
+      "phrase": "秋天",
+      "sentence": "秋天，树叶落下来。",
+      "question": "这句话里缺了哪个字？□天，树叶落下来。",
+      "caregiverTip": "和孩子在生活里找找“秋天”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/autumn.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u51ac",
+      "topicId": "draft-hanzi-04",
+      "character": "冬",
+      "pinyin": "dōng",
+      "phrase": "冬天",
+      "sentence": "冬天，我们穿外套。",
+      "question": "这句话里缺了哪个字？□天，我们穿外套。",
+      "caregiverTip": "和孩子在生活里找找“冬天”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/winter.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u65e9",
+      "topicId": "draft-hanzi-04",
+      "character": "早",
+      "pinyin": "zǎo",
+      "phrase": "早上",
+      "sentence": "早上，我们说早安。",
+      "question": "这句话里缺了哪个字？□上，我们说□安。",
+      "caregiverTip": "和孩子在生活里找找“早上”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/morning.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u665a",
+      "topicId": "draft-hanzi-04",
+      "character": "晚",
+      "pinyin": "wǎn",
+      "phrase": "晚上",
+      "sentence": "晚上，我们一起看书。",
+      "question": "这句话里缺了哪个字？□上，我们一起看书。",
+      "caregiverTip": "和孩子在生活里找找“晚上”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/evening.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u4eca",
+      "topicId": "draft-hanzi-04",
+      "character": "今",
+      "pinyin": "jīn",
+      "phrase": "今天",
+      "sentence": "今天我们去公园。",
+      "question": "这句话里缺了哪个字？□天我们去公园。",
+      "caregiverTip": "和孩子在生活里找找“今天”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/hanzi-u4eca.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "OpenAI imagegen；使用项目插画作风格参考，使用条件及儿童适龄性待人工确认；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u660e",
+      "topicId": "draft-hanzi-04",
+      "character": "明",
+      "pinyin": "míng",
+      "phrase": "明天",
+      "sentence": "明天我们一起画画。",
+      "question": "这句话里缺了哪个字？□天我们一起画画。",
+      "caregiverTip": "和孩子在生活里找找“明天”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/hanzi-u660e.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "OpenAI imagegen；使用项目插画作风格参考，使用条件及儿童适龄性待人工确认；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u5e74",
+      "topicId": "draft-hanzi-04",
+      "character": "年",
+      "pinyin": "nián",
+      "phrase": "新年",
+      "sentence": "新年到了，大家互相问好。",
+      "question": "这句话里缺了哪个字？新□到了，大家互相问好。",
+      "caregiverTip": "和孩子在生活里找找“新年”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/hanzi-u5e74.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "OpenAI imagegen；使用项目插画作风格参考，使用条件及儿童适龄性待人工确认；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u65f6",
+      "topicId": "draft-hanzi-04",
+      "character": "时",
+      "pinyin": "shí",
+      "phrase": "时间",
+      "sentence": "吃饭的时间到了。",
+      "question": "这句话里缺了哪个字？吃饭的□间到了。",
+      "caregiverTip": "和孩子在生活里找找“时间”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/time.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u5403",
+      "topicId": "draft-hanzi-05",
+      "character": "吃",
+      "pinyin": "chī",
+      "phrase": "吃饭",
+      "sentence": "我们一起吃饭。",
+      "question": "这句话里缺了哪个字？我们一起□饭。",
+      "caregiverTip": "和孩子在生活里找找“吃饭”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/eat.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u559d",
+      "topicId": "draft-hanzi-05",
+      "character": "喝",
+      "pinyin": "hē",
+      "phrase": "喝水",
+      "sentence": "运动后我喝水。",
+      "question": "这句话里缺了哪个字？运动后我□水。",
+      "caregiverTip": "和孩子在生活里找找“喝水”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/drink.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u996d",
+      "topicId": "draft-hanzi-05",
+      "character": "饭",
+      "pinyin": "fàn",
+      "phrase": "米饭",
+      "sentence": "碗里有米饭。",
+      "question": "这句话里缺了哪个字？碗里有米□。",
+      "caregiverTip": "和孩子在生活里找找“米饭”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/meal.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u679c",
+      "topicId": "draft-hanzi-05",
+      "character": "果",
+      "pinyin": "guǒ",
+      "phrase": "水果",
+      "sentence": "盘子里有水果。",
+      "question": "这句话里缺了哪个字？盘子里有水□。",
+      "caregiverTip": "和孩子在生活里找找“水果”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/fruit.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u83dc",
+      "topicId": "draft-hanzi-05",
+      "character": "菜",
+      "pinyin": "cài",
+      "phrase": "青菜",
+      "sentence": "桌上有一盘青菜。",
+      "question": "这句话里缺了哪个字？桌上有一盘青□。",
+      "caregiverTip": "和孩子在生活里找找“青菜”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/vegetable.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u7c73",
+      "topicId": "draft-hanzi-05",
+      "character": "米",
+      "pinyin": "mǐ",
+      "phrase": "大米",
+      "sentence": "大米可以煮成饭。",
+      "question": "这句话里缺了哪个字？大□可以煮成饭。",
+      "caregiverTip": "和孩子在生活里找找“大米”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/rice.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u9762",
+      "topicId": "draft-hanzi-05",
+      "character": "面",
+      "pinyin": "miàn",
+      "phrase": "面条",
+      "sentence": "碗里有热面条。",
+      "question": "这句话里缺了哪个字？碗里有热□条。",
+      "caregiverTip": "和孩子在生活里找找“面条”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/hanzi-u9762.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "OpenAI imagegen；使用项目插画作风格参考，使用条件及儿童适龄性待人工确认；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u8336",
+      "topicId": "draft-hanzi-05",
+      "character": "茶",
+      "pinyin": "chá",
+      "phrase": "茶水",
+      "sentence": "爷爷喝了一口茶水。",
+      "question": "这句话里缺了哪个字？爷爷喝了一口□水。",
+      "caregiverTip": "和孩子在生活里找找“茶水”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/tea.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u86cb",
+      "topicId": "draft-hanzi-05",
+      "character": "蛋",
+      "pinyin": "dàn",
+      "phrase": "鸡蛋",
+      "sentence": "早餐有一个鸡蛋。",
+      "question": "这句话里缺了哪个字？早餐有一个鸡□。",
+      "caregiverTip": "和孩子在生活里找找“鸡蛋”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/egg.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u751c",
+      "topicId": "draft-hanzi-05",
+      "character": "甜",
+      "pinyin": "tián",
+      "phrase": "甜甜",
+      "sentence": "这个苹果甜甜的。",
+      "question": "这句话里缺了哪个字？这个苹果□□的。",
+      "caregiverTip": "和孩子在生活里找找“甜甜”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/sweet.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u4e66",
+      "topicId": "draft-hanzi-06",
+      "character": "书",
+      "pinyin": "shū",
+      "phrase": "书本",
+      "sentence": "我打开一本书。",
+      "question": "这句话里缺了哪个字？我打开一本□。",
+      "caregiverTip": "和孩子在生活里找找“书本”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/book.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u672c",
+      "topicId": "draft-hanzi-06",
+      "character": "本",
+      "pinyin": "běn",
+      "phrase": "本子",
+      "sentence": "我在本子上画画。",
+      "question": "这句话里缺了哪个字？我在□子上画画。",
+      "caregiverTip": "和孩子在生活里找找“本子”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/notebook.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u7b14",
+      "topicId": "draft-hanzi-06",
+      "character": "笔",
+      "pinyin": "bǐ",
+      "phrase": "画笔",
+      "sentence": "我用画笔画小花。",
+      "question": "这句话里缺了哪个字？我用画□画小花。",
+      "caregiverTip": "和孩子在生活里找找“画笔”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/pencil.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u753b",
+      "topicId": "draft-hanzi-06",
+      "character": "画",
+      "pinyin": "huà",
+      "phrase": "画画",
+      "sentence": "我们一起画画。",
+      "question": "这句话里缺了哪个字？我们一起□□。",
+      "caregiverTip": "和孩子在生活里找找“画画”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/draw.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u7eb8",
+      "topicId": "draft-hanzi-06",
+      "character": "纸",
+      "pinyin": "zhǐ",
+      "phrase": "白纸",
+      "sentence": "桌上有一张白纸。",
+      "question": "这句话里缺了哪个字？桌上有一张白□。",
+      "caregiverTip": "和孩子在生活里找找“白纸”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/paper.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u684c",
+      "topicId": "draft-hanzi-06",
+      "character": "桌",
+      "pinyin": "zhuō",
+      "phrase": "桌子",
+      "sentence": "书放在桌子上。",
+      "question": "这句话里缺了哪个字？书放在□子上。",
+      "caregiverTip": "和孩子在生活里找找“桌子”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/table.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u6905",
+      "topicId": "draft-hanzi-06",
+      "character": "椅",
+      "pinyin": "yǐ",
+      "phrase": "椅子",
+      "sentence": "我坐在椅子上。",
+      "question": "这句话里缺了哪个字？我坐在□子上。",
+      "caregiverTip": "和孩子在生活里找找“椅子”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/chair.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u95e8",
+      "topicId": "draft-hanzi-06",
+      "character": "门",
+      "pinyin": "mén",
+      "phrase": "房门",
+      "sentence": "我们轻轻关上房门。",
+      "question": "这句话里缺了哪个字？我们轻轻关上房□。",
+      "caregiverTip": "和孩子在生活里找找“房门”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/door.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u7a97",
+      "topicId": "draft-hanzi-06",
+      "character": "窗",
+      "pinyin": "chuāng",
+      "phrase": "窗户",
+      "sentence": "窗户外面有树。",
+      "question": "这句话里缺了哪个字？□户外面有树。",
+      "caregiverTip": "和孩子在生活里找找“窗户”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/window.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u706f",
+      "topicId": "draft-hanzi-06",
+      "character": "灯",
+      "pinyin": "dēng",
+      "phrase": "台灯",
+      "sentence": "台灯照亮了书本。",
+      "question": "这句话里缺了哪个字？台□照亮了书本。",
+      "caregiverTip": "和孩子在生活里找找“台灯”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/lamp.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u732b",
+      "topicId": "draft-hanzi-07",
+      "character": "猫",
+      "pinyin": "māo",
+      "phrase": "小猫",
+      "sentence": "小猫趴在垫子上。",
+      "question": "这句话里缺了哪个字？小□趴在垫子上。",
+      "caregiverTip": "和孩子在生活里找找“小猫”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/cat.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u72d7",
+      "topicId": "draft-hanzi-07",
+      "character": "狗",
+      "pinyin": "gǒu",
+      "phrase": "小狗",
+      "sentence": "小狗在草地上跑。",
+      "question": "这句话里缺了哪个字？小□在草地上跑。",
+      "caregiverTip": "和孩子在生活里找找“小狗”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/dog.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u725b",
+      "topicId": "draft-hanzi-07",
+      "character": "牛",
+      "pinyin": "niú",
+      "phrase": "小牛",
+      "sentence": "小牛在草地上走。",
+      "question": "这句话里缺了哪个字？小□在草地上走。",
+      "caregiverTip": "和孩子在生活里找找“小牛”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/cow.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u7f8a",
+      "topicId": "draft-hanzi-07",
+      "character": "羊",
+      "pinyin": "yáng",
+      "phrase": "小羊",
+      "sentence": "小羊有白白的毛。",
+      "question": "这句话里缺了哪个字？小□有白白的毛。",
+      "caregiverTip": "和孩子在生活里找找“小羊”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/sheep.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u9e21",
+      "topicId": "draft-hanzi-07",
+      "character": "鸡",
+      "pinyin": "jī",
+      "phrase": "小鸡",
+      "sentence": "小鸡跟着妈妈走。",
+      "question": "这句话里缺了哪个字？小□跟着妈妈走。",
+      "caregiverTip": "和孩子在生活里找找“小鸡”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/chicken.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u9e2d",
+      "topicId": "draft-hanzi-07",
+      "character": "鸭",
+      "pinyin": "yā",
+      "phrase": "小鸭",
+      "sentence": "小鸭在水里游。",
+      "question": "这句话里缺了哪个字？小□在水里游。",
+      "caregiverTip": "和孩子在生活里找找“小鸭”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/duck.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u5154",
+      "topicId": "draft-hanzi-07",
+      "character": "兔",
+      "pinyin": "tù",
+      "phrase": "兔子",
+      "sentence": "兔子的耳朵长长的。",
+      "question": "这句话里缺了哪个字？□子的耳朵长长的。",
+      "caregiverTip": "和孩子在生活里找找“兔子”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/rabbit.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u866b",
+      "topicId": "draft-hanzi-07",
+      "character": "虫",
+      "pinyin": "chóng",
+      "phrase": "小虫",
+      "sentence": "小虫在叶子上爬。",
+      "question": "这句话里缺了哪个字？小□在叶子上爬。",
+      "caregiverTip": "和孩子在生活里找找“小虫”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/insect.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u8349",
+      "topicId": "draft-hanzi-07",
+      "character": "草",
+      "pinyin": "cǎo",
+      "phrase": "小草",
+      "sentence": "小草在风里轻轻摇。",
+      "question": "这句话里缺了哪个字？小□在风里轻轻摇。",
+      "caregiverTip": "和孩子在生活里找找“小草”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/hanzi-u8349.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "OpenAI imagegen；使用项目插画作风格参考，使用条件及儿童适龄性待人工确认；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u53f6",
+      "topicId": "draft-hanzi-07",
+      "character": "叶",
+      "pinyin": "yè",
+      "phrase": "叶子",
+      "sentence": "树上的叶子绿绿的。",
+      "question": "这句话里缺了哪个字？树上的□子绿绿的。",
+      "caregiverTip": "和孩子在生活里找找“叶子”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/hanzi-u53f6.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "OpenAI imagegen；使用项目插画作风格参考，使用条件及儿童适龄性待人工确认；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u8d70",
+      "topicId": "draft-hanzi-08",
+      "character": "走",
+      "pinyin": "zǒu",
+      "phrase": "走路",
+      "sentence": "我们一起走路。",
+      "question": "这句话里缺了哪个字？我们一起□路。",
+      "caregiverTip": "和孩子在生活里找找“走路”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/walk.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u8dd1",
+      "topicId": "draft-hanzi-08",
+      "character": "跑",
+      "pinyin": "pǎo",
+      "phrase": "跑步",
+      "sentence": "小狗在草地上跑步。",
+      "question": "这句话里缺了哪个字？小狗在草地上□步。",
+      "caregiverTip": "和孩子在生活里找找“跑步”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/run.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u8df3",
+      "topicId": "draft-hanzi-08",
+      "character": "跳",
+      "pinyin": "tiào",
+      "phrase": "跳跳",
+      "sentence": "小兔轻轻跳跳。",
+      "question": "这句话里缺了哪个字？小兔轻轻□□。",
+      "caregiverTip": "和孩子在生活里找找“跳跳”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/jump.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u5750",
+      "topicId": "draft-hanzi-08",
+      "character": "坐",
+      "pinyin": "zuò",
+      "phrase": "坐下",
+      "sentence": "我们坐下看书。",
+      "question": "这句话里缺了哪个字？我们□下看书。",
+      "caregiverTip": "和孩子在生活里找找“坐下”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/sit.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u770b",
+      "topicId": "draft-hanzi-08",
+      "character": "看",
+      "pinyin": "kàn",
+      "phrase": "看书",
+      "sentence": "我和妈妈一起看书。",
+      "question": "这句话里缺了哪个字？我和妈妈一起□书。",
+      "caregiverTip": "和孩子在生活里找找“看书”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/look.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u542c",
+      "topicId": "draft-hanzi-08",
+      "character": "听",
+      "pinyin": "tīng",
+      "phrase": "听见",
+      "sentence": "我听见小鸟在叫。",
+      "question": "这句话里缺了哪个字？我□见小鸟在叫。",
+      "caregiverTip": "和孩子在生活里找找“听见”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/listen.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u8bf4",
+      "topicId": "draft-hanzi-08",
+      "character": "说",
+      "pinyin": "shuō",
+      "phrase": "说话",
+      "sentence": "我们轻轻地说话。",
+      "question": "这句话里缺了哪个字？我们轻轻地□话。",
+      "caregiverTip": "和孩子在生活里找找“说话”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/speak.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u7b11",
+      "topicId": "draft-hanzi-08",
+      "character": "笑",
+      "pinyin": "xiào",
+      "phrase": "微笑",
+      "sentence": "姐姐对我微笑。",
+      "question": "这句话里缺了哪个字？姐姐对我微□。",
+      "caregiverTip": "和孩子在生活里找找“微笑”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/smile.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u6d17",
+      "topicId": "draft-hanzi-08",
+      "character": "洗",
+      "pinyin": "xǐ",
+      "phrase": "洗手",
+      "sentence": "吃饭前我们洗手。",
+      "question": "这句话里缺了哪个字？吃饭前我们□手。",
+      "caregiverTip": "和孩子在生活里找找“洗手”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/wash.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u7761",
+      "topicId": "draft-hanzi-08",
+      "character": "睡",
+      "pinyin": "shuì",
+      "phrase": "睡觉",
+      "sentence": "小猫安静地睡觉。",
+      "question": "这句话里缺了哪个字？小猫安静地□觉。",
+      "caregiverTip": "和孩子在生活里找找“睡觉”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/sleep.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors · CC BY 4.0；沿用原项目插画；插画语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u732a",
+      "topicId": "draft-hanzi-09",
+      "character": "猪",
+      "pinyin": "zhū",
+      "phrase": "小猪",
+      "sentence": "小猪在泥地里走。",
+      "question": "这句话里缺了哪个字？小□在泥地里走。",
+      "caregiverTip": "和孩子在生活里找找“小猪”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/pig.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u718a",
+      "topicId": "draft-hanzi-09",
+      "character": "熊",
+      "pinyin": "xióng",
+      "phrase": "小熊",
+      "sentence": "小熊抱着蜂蜜罐。",
+      "question": "这句话里缺了哪个字？小□抱着蜂蜜罐。",
+      "caregiverTip": "和孩子在生活里找找“小熊”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/bear.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u864e",
+      "topicId": "draft-hanzi-09",
+      "character": "虎",
+      "pinyin": "hǔ",
+      "phrase": "老虎",
+      "sentence": "老虎在树林里走。",
+      "question": "这句话里缺了哪个字？老□在树林里走。",
+      "caregiverTip": "和孩子在生活里找找“老虎”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/tiger.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u8c61",
+      "topicId": "draft-hanzi-09",
+      "character": "象",
+      "pinyin": "xiàng",
+      "phrase": "大象",
+      "sentence": "大象有长长的鼻子。",
+      "question": "这句话里缺了哪个字？大□有长长的鼻子。",
+      "caregiverTip": "和孩子在生活里找找“大象”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/elephant.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u7334",
+      "topicId": "draft-hanzi-09",
+      "character": "猴",
+      "pinyin": "hóu",
+      "phrase": "猴子",
+      "sentence": "猴子在树上玩。",
+      "question": "这句话里缺了哪个字？□子在树上玩。",
+      "caregiverTip": "和孩子在生活里找找“猴子”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/monkey.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u8702",
+      "topicId": "draft-hanzi-09",
+      "character": "蜂",
+      "pinyin": "fēng",
+      "phrase": "蜜蜂",
+      "sentence": "蜜蜂飞到花上。",
+      "question": "这句话里缺了哪个字？蜜□飞到花上。",
+      "caregiverTip": "和孩子在生活里找找“蜜蜂”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/bee.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u8776",
+      "topicId": "draft-hanzi-09",
+      "character": "蝶",
+      "pinyin": "dié",
+      "phrase": "蝴蝶",
+      "sentence": "蝴蝶在花丛中飞。",
+      "question": "这句话里缺了哪个字？蝴□在花丛中飞。",
+      "caregiverTip": "和孩子在生活里找找“蝴蝶”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/butterfly.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u8681",
+      "topicId": "draft-hanzi-09",
+      "character": "蚁",
+      "pinyin": "yǐ",
+      "phrase": "蚂蚁",
+      "sentence": "蚂蚁排着队走。",
+      "question": "这句话里缺了哪个字？蚂□排着队走。",
+      "caregiverTip": "和孩子在生活里找找“蚂蚁”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/ant.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u86d9",
+      "topicId": "draft-hanzi-09",
+      "character": "蛙",
+      "pinyin": "wā",
+      "phrase": "青蛙",
+      "sentence": "青蛙在池塘边跳。",
+      "question": "这句话里缺了哪个字？青□在池塘边跳。",
+      "caregiverTip": "和孩子在生活里找找“青蛙”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/frog.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u9f9f",
+      "topicId": "draft-hanzi-09",
+      "character": "龟",
+      "pinyin": "guī",
+      "phrase": "乌龟",
+      "sentence": "乌龟慢慢地爬。",
+      "question": "这句话里缺了哪个字？乌□慢慢地爬。",
+      "caregiverTip": "和孩子在生活里找找“乌龟”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/turtle.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u82f9",
+      "topicId": "draft-hanzi-10",
+      "character": "苹",
+      "pinyin": "píng",
+      "phrase": "苹果",
+      "sentence": "苹果圆圆的。",
+      "question": "这句话里缺了哪个字？□果圆圆的。",
+      "caregiverTip": "和孩子在生活里找找“苹果”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/apple.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u68a8",
+      "topicId": "draft-hanzi-10",
+      "character": "梨",
+      "pinyin": "lí",
+      "phrase": "梨子",
+      "sentence": "梨子放在篮子里。",
+      "question": "这句话里缺了哪个字？□子放在篮子里。",
+      "caregiverTip": "和孩子在生活里找找“梨子”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/pear.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u6843",
+      "topicId": "draft-hanzi-10",
+      "character": "桃",
+      "pinyin": "táo",
+      "phrase": "桃子",
+      "sentence": "桃子摸起来软软的。",
+      "question": "这句话里缺了哪个字？□子摸起来软软的。",
+      "caregiverTip": "和孩子在生活里找找“桃子”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/peach.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u8549",
+      "topicId": "draft-hanzi-10",
+      "character": "蕉",
+      "pinyin": "jiāo",
+      "phrase": "香蕉",
+      "sentence": "香蕉弯弯的。",
+      "question": "这句话里缺了哪个字？香□弯弯的。",
+      "caregiverTip": "和孩子在生活里找找“香蕉”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/banana.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u8461",
+      "topicId": "draft-hanzi-10",
+      "character": "葡",
+      "pinyin": "pú",
+      "phrase": "葡萄",
+      "sentence": "葡萄一颗挨着一颗。",
+      "question": "这句话里缺了哪个字？□萄一颗挨着一颗。",
+      "caregiverTip": "和孩子在生活里找找“葡萄”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/grape.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u7cd6",
+      "topicId": "draft-hanzi-10",
+      "character": "糖",
+      "pinyin": "táng",
+      "phrase": "白糖",
+      "sentence": "白糖看起来像小颗粒。",
+      "question": "这句话里缺了哪个字？白□看起来像小颗粒。",
+      "caregiverTip": "和孩子在生活里找找“白糖”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/sugar.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u8393",
+      "topicId": "draft-hanzi-10",
+      "character": "莓",
+      "pinyin": "méi",
+      "phrase": "草莓",
+      "sentence": "草莓红红的。",
+      "question": "这句话里缺了哪个字？草□红红的。",
+      "caregiverTip": "和孩子在生活里找找“草莓”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/strawberry.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u74dc",
+      "topicId": "draft-hanzi-10",
+      "character": "瓜",
+      "pinyin": "guā",
+      "phrase": "西瓜",
+      "sentence": "西瓜切开了。",
+      "question": "这句话里缺了哪个字？西□切开了。",
+      "caregiverTip": "和孩子在生活里找找“西瓜”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/watermelon.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u6c64",
+      "topicId": "draft-hanzi-10",
+      "character": "汤",
+      "pinyin": "tāng",
+      "phrase": "热汤",
+      "sentence": "热汤要等一等再喝。",
+      "question": "这句话里缺了哪个字？热□要等一等再喝。",
+      "caregiverTip": "和孩子在生活里找找“热汤”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/soup.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u7cd5",
+      "topicId": "draft-hanzi-10",
+      "character": "糕",
+      "pinyin": "gāo",
+      "phrase": "蛋糕",
+      "sentence": "蛋糕上有一颗草莓。",
+      "question": "这句话里缺了哪个字？蛋□上有一颗草莓。",
+      "caregiverTip": "和孩子在生活里找找“蛋糕”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/cake.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u8f66",
+      "topicId": "draft-hanzi-11",
+      "character": "车",
+      "pinyin": "chē",
+      "phrase": "汽车",
+      "sentence": "汽车在路上开。",
+      "question": "这句话里缺了哪个字？汽□在路上开。",
+      "caregiverTip": "和孩子在生活里找找“汽车”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/car.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u8239",
+      "topicId": "draft-hanzi-11",
+      "character": "船",
+      "pinyin": "chuán",
+      "phrase": "小船",
+      "sentence": "小船在水上行。",
+      "question": "这句话里缺了哪个字？小□在水上行。",
+      "caregiverTip": "和孩子在生活里找找“小船”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/boat.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u6865",
+      "topicId": "draft-hanzi-11",
+      "character": "桥",
+      "pinyin": "qiáo",
+      "phrase": "小桥",
+      "sentence": "小桥跨过小河。",
+      "question": "这句话里缺了哪个字？小□跨过小河。",
+      "caregiverTip": "和孩子在生活里找找“小桥”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/bridge.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u8def",
+      "topicId": "draft-hanzi-11",
+      "character": "路",
+      "pinyin": "lù",
+      "phrase": "马路",
+      "sentence": "马路上有汽车。",
+      "question": "这句话里缺了哪个字？马□上有汽车。",
+      "caregiverTip": "和孩子在生活里找找“马路”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/road.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u4f1e",
+      "topicId": "draft-hanzi-11",
+      "character": "伞",
+      "pinyin": "sǎn",
+      "phrase": "雨伞",
+      "sentence": "下雨时我们带上雨伞。",
+      "question": "这句话里缺了哪个字？下雨时我们带上雨□。",
+      "caregiverTip": "和孩子在生活里找找“雨伞”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/umbrella.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u5e3d",
+      "topicId": "draft-hanzi-11",
+      "character": "帽",
+      "pinyin": "mào",
+      "phrase": "帽子",
+      "sentence": "出门时戴上帽子。",
+      "question": "这句话里缺了哪个字？出门时戴上□子。",
+      "caregiverTip": "和孩子在生活里找找“帽子”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/hat.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u978b",
+      "topicId": "draft-hanzi-11",
+      "character": "鞋",
+      "pinyin": "xié",
+      "phrase": "鞋子",
+      "sentence": "我们穿好鞋子再出门。",
+      "question": "这句话里缺了哪个字？我们穿好□子再出门。",
+      "caregiverTip": "和孩子在生活里找找“鞋子”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/shoe.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u889c",
+      "topicId": "draft-hanzi-11",
+      "character": "袜",
+      "pinyin": "wà",
+      "phrase": "袜子",
+      "sentence": "袜子穿在脚上。",
+      "question": "这句话里缺了哪个字？□子穿在脚上。",
+      "caregiverTip": "和孩子在生活里找找“袜子”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/sock.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u8863",
+      "topicId": "draft-hanzi-11",
+      "character": "衣",
+      "pinyin": "yī",
+      "phrase": "衣服",
+      "sentence": "天气冷时穿上衣服。",
+      "question": "这句话里缺了哪个字？天气冷时穿上□服。",
+      "caregiverTip": "和孩子在生活里找找“衣服”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/clothes.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u88e4",
+      "topicId": "draft-hanzi-11",
+      "character": "裤",
+      "pinyin": "kù",
+      "phrase": "裤子",
+      "sentence": "裤子挂在衣柜里。",
+      "question": "这句话里缺了哪个字？□子挂在衣柜里。",
+      "caregiverTip": "和孩子在生活里找找“裤子”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/trousers.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u9f3b",
+      "topicId": "draft-hanzi-12",
+      "character": "鼻",
+      "pinyin": "bí",
+      "phrase": "鼻子",
+      "sentence": "鼻子可以闻一闻。",
+      "question": "这句话里缺了哪个字？□子可以闻一闻。",
+      "caregiverTip": "和孩子在生活里找找“鼻子”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/nose.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u8138",
+      "topicId": "draft-hanzi-12",
+      "character": "脸",
+      "pinyin": "liǎn",
+      "phrase": "脸蛋",
+      "sentence": "洗脸时轻轻擦脸蛋。",
+      "question": "这句话里缺了哪个字？洗□时轻轻擦□蛋。",
+      "caregiverTip": "和孩子在生活里找找“脸蛋”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/face.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u5934",
+      "topicId": "draft-hanzi-12",
+      "character": "头",
+      "pinyin": "tóu",
+      "phrase": "头发",
+      "sentence": "早上梳一梳头发。",
+      "question": "这句话里缺了哪个字？早上梳一梳□发。",
+      "caregiverTip": "和孩子在生活里找找“头发”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/head.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u7259",
+      "topicId": "draft-hanzi-12",
+      "character": "牙",
+      "pinyin": "yá",
+      "phrase": "牙齿",
+      "sentence": "每天早晚刷牙。",
+      "question": "这句话里缺了哪个字？每天早晚刷□。",
+      "caregiverTip": "和孩子在生活里找找“牙齿”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/tooth.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u820c",
+      "topicId": "draft-hanzi-12",
+      "character": "舌",
+      "pinyin": "shé",
+      "phrase": "舌头",
+      "sentence": "舌头可以尝到味道。",
+      "question": "这句话里缺了哪个字？□头可以尝到味道。",
+      "caregiverTip": "和孩子在生活里找找“舌头”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/tongue.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u80a9",
+      "topicId": "draft-hanzi-12",
+      "character": "肩",
+      "pinyin": "jiān",
+      "phrase": "肩膀",
+      "sentence": "书包背在肩膀上。",
+      "question": "这句话里缺了哪个字？书包背在□膀上。",
+      "caregiverTip": "和孩子在生活里找找“肩膀”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/shoulder.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u80cc",
+      "topicId": "draft-hanzi-12",
+      "character": "背",
+      "pinyin": "bèi",
+      "phrase": "后背",
+      "sentence": "小猫轻轻伸展后背。",
+      "question": "这句话里缺了哪个字？小猫轻轻伸展后□。",
+      "caregiverTip": "和孩子在生活里找找“后背”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/back.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u817f",
+      "topicId": "draft-hanzi-12",
+      "character": "腿",
+      "pinyin": "tuǐ",
+      "phrase": "小腿",
+      "sentence": "走路时小腿动起来。",
+      "question": "这句话里缺了哪个字？走路时小□动起来。",
+      "caregiverTip": "和孩子在生活里找找“小腿”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/leg.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u811a",
+      "topicId": "draft-hanzi-12",
+      "character": "脚",
+      "pinyin": "jiǎo",
+      "phrase": "小脚",
+      "sentence": "小脚穿上袜子。",
+      "question": "这句话里缺了哪个字？小□穿上袜子。",
+      "caregiverTip": "和孩子在生活里找找“小脚”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/foot.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u809a",
+      "topicId": "draft-hanzi-12",
+      "character": "肚",
+      "pinyin": "dù",
+      "phrase": "肚子",
+      "sentence": "吃饱后肚子暖暖的。",
+      "question": "这句话里缺了哪个字？吃饱后□子暖暖的。",
+      "caregiverTip": "和孩子在生活里找找“肚子”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/stomach.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u5e8a",
+      "topicId": "draft-hanzi-13",
+      "character": "床",
+      "pinyin": "chuáng",
+      "phrase": "小床",
+      "sentence": "晚上躺在小床上。",
+      "question": "这句话里缺了哪个字？晚上躺在小□上。",
+      "caregiverTip": "和孩子在生活里找找“小床”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/bed.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u676f",
+      "topicId": "draft-hanzi-13",
+      "character": "杯",
+      "pinyin": "bēi",
+      "phrase": "水杯",
+      "sentence": "水杯里装着温水。",
+      "question": "这句话里缺了哪个字？水□里装着温水。",
+      "caregiverTip": "和孩子在生活里找找“水杯”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/cup.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u7897",
+      "topicId": "draft-hanzi-13",
+      "character": "碗",
+      "pinyin": "wǎn",
+      "phrase": "饭碗",
+      "sentence": "饭碗放在桌子上。",
+      "question": "这句话里缺了哪个字？饭□放在桌子上。",
+      "caregiverTip": "和孩子在生活里找找“饭碗”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/bowl.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u76d8",
+      "topicId": "draft-hanzi-13",
+      "character": "盘",
+      "pinyin": "pán",
+      "phrase": "盘子",
+      "sentence": "盘子里放着水果。",
+      "question": "这句话里缺了哪个字？□子里放着水果。",
+      "caregiverTip": "和孩子在生活里找找“盘子”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/plate.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u74f6",
+      "topicId": "draft-hanzi-13",
+      "character": "瓶",
+      "pinyin": "píng",
+      "phrase": "水瓶",
+      "sentence": "水瓶里装着水。",
+      "question": "这句话里缺了哪个字？水□里装着水。",
+      "caregiverTip": "和孩子在生活里找找“水瓶”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/bottle.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u52fa",
+      "topicId": "draft-hanzi-13",
+      "character": "勺",
+      "pinyin": "sháo",
+      "phrase": "勺子",
+      "sentence": "用勺子喝汤。",
+      "question": "这句话里缺了哪个字？用□子喝汤。",
+      "caregiverTip": "和孩子在生活里找找“勺子”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/spoon.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u9505",
+      "topicId": "draft-hanzi-13",
+      "character": "锅",
+      "pinyin": "guō",
+      "phrase": "锅子",
+      "sentence": "大人用锅子煮饭。",
+      "question": "这句话里缺了哪个字？大人用□子煮饭。",
+      "caregiverTip": "和孩子在生活里找找“锅子”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/pot.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u9501",
+      "topicId": "draft-hanzi-13",
+      "character": "锁",
+      "pinyin": "suǒ",
+      "phrase": "门锁",
+      "sentence": "门锁在门上。",
+      "question": "这句话里缺了哪个字？门□在门上。",
+      "caregiverTip": "和孩子在生活里找找“门锁”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/lock.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u94a5",
+      "topicId": "draft-hanzi-13",
+      "character": "钥",
+      "pinyin": "yào",
+      "phrase": "钥匙",
+      "sentence": "钥匙可以打开门锁。",
+      "question": "这句话里缺了哪个字？□匙可以打开门锁。",
+      "caregiverTip": "和孩子在生活里找找“钥匙”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/key.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u949f",
+      "topicId": "draft-hanzi-13",
+      "character": "钟",
+      "pinyin": "zhōng",
+      "phrase": "钟表",
+      "sentence": "钟表挂在墙上。",
+      "question": "这句话里缺了哪个字？□表挂在墙上。",
+      "caregiverTip": "和孩子在生活里找找“钟表”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/clock.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u7ea2",
+      "topicId": "draft-hanzi-14",
+      "character": "红",
+      "pinyin": "hóng",
+      "phrase": "红色",
+      "sentence": "一起找找“红色”。",
+      "question": "“□色”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“红色”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/red.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u9ec4",
+      "topicId": "draft-hanzi-14",
+      "character": "黄",
+      "pinyin": "huáng",
+      "phrase": "黄色",
+      "sentence": "一起找找“黄色”。",
+      "question": "“□色”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“黄色”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/yellow.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u7eff",
+      "topicId": "draft-hanzi-14",
+      "character": "绿",
+      "pinyin": "lǜ",
+      "phrase": "绿色",
+      "sentence": "一起找找“绿色”。",
+      "question": "“□色”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“绿色”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/green.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u84dd",
+      "topicId": "draft-hanzi-14",
+      "character": "蓝",
+      "pinyin": "lán",
+      "phrase": "蓝色",
+      "sentence": "一起找找“蓝色”。",
+      "question": "“□色”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“蓝色”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/blue.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u767d",
+      "topicId": "draft-hanzi-14",
+      "character": "白",
+      "pinyin": "bái",
+      "phrase": "白色",
+      "sentence": "一起找找“白色”。",
+      "question": "“□色”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“白色”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/white.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u9ed1",
+      "topicId": "draft-hanzi-14",
+      "character": "黑",
+      "pinyin": "hēi",
+      "phrase": "黑色",
+      "sentence": "一起找找“黑色”。",
+      "question": "“□色”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“黑色”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/black.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u7d2b",
+      "topicId": "draft-hanzi-14",
+      "character": "紫",
+      "pinyin": "zǐ",
+      "phrase": "紫色",
+      "sentence": "一起找找“紫色”。",
+      "question": "“□色”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“紫色”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/purple.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u7c89",
+      "topicId": "draft-hanzi-14",
+      "character": "粉",
+      "pinyin": "fěn",
+      "phrase": "粉色",
+      "sentence": "一起找找“粉色”。",
+      "question": "“□色”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“粉色”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/pink.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u6a59",
+      "topicId": "draft-hanzi-14",
+      "character": "橙",
+      "pinyin": "chéng",
+      "phrase": "橙色",
+      "sentence": "一起找找“橙色”。",
+      "question": "“□色”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“橙色”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/orange.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u68d5",
+      "topicId": "draft-hanzi-14",
+      "character": "棕",
+      "pinyin": "zōng",
+      "phrase": "棕色",
+      "sentence": "一起找找“棕色”。",
+      "question": "“□色”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“棕色”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/brown.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u6a61",
+      "topicId": "draft-hanzi-15",
+      "character": "橡",
+      "pinyin": "xiàng",
+      "phrase": "橡皮",
+      "sentence": "一起找找“橡皮”。",
+      "question": "“□皮”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“橡皮”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/eraser.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u6821",
+      "topicId": "draft-hanzi-15",
+      "character": "校",
+      "pinyin": "xiào",
+      "phrase": "学校",
+      "sentence": "一起找找“学校”。",
+      "question": "“学□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“学校”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/school.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u5c3a",
+      "topicId": "draft-hanzi-15",
+      "character": "尺",
+      "pinyin": "chǐ",
+      "phrase": "尺子",
+      "sentence": "一起找找“尺子”。",
+      "question": "“□子”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“尺子”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/ruler.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u526a",
+      "topicId": "draft-hanzi-15",
+      "character": "剪",
+      "pinyin": "jiǎn",
+      "phrase": "剪刀",
+      "sentence": "一起找找“剪刀”。",
+      "question": "“□刀”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“剪刀”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/scissors.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u80f6",
+      "topicId": "draft-hanzi-15",
+      "character": "胶",
+      "pinyin": "jiāo",
+      "phrase": "胶水",
+      "sentence": "一起找找“胶水”。",
+      "question": "“□水”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“胶水”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/glue.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u5305",
+      "topicId": "draft-hanzi-15",
+      "character": "包",
+      "pinyin": "bāo",
+      "phrase": "书包",
+      "sentence": "一起找找“书包”。",
+      "question": "“书□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“书包”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/bag.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u677f",
+      "topicId": "draft-hanzi-15",
+      "character": "板",
+      "pinyin": "bǎn",
+      "phrase": "黑板",
+      "sentence": "一起找找“黑板”。",
+      "question": "“黑□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“黑板”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/board.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u5e08",
+      "topicId": "draft-hanzi-15",
+      "character": "师",
+      "pinyin": "shī",
+      "phrase": "老师",
+      "sentence": "一起找找“老师”。",
+      "question": "“老□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“老师”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/teacher.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u540c",
+      "topicId": "draft-hanzi-15",
+      "character": "同",
+      "pinyin": "tóng",
+      "phrase": "同学",
+      "sentence": "一起找找“同学”。",
+      "question": "“□学”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“同学”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/student.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u53cb",
+      "topicId": "draft-hanzi-15",
+      "character": "友",
+      "pinyin": "yǒu",
+      "phrase": "朋友",
+      "sentence": "一起找找“朋友”。",
+      "question": "“朋□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“朋友”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/friend.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u7403",
+      "topicId": "draft-hanzi-16",
+      "character": "球",
+      "pinyin": "qiú",
+      "phrase": "皮球",
+      "sentence": "一起找找“皮球”。",
+      "question": "“皮□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“皮球”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/ball.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u7b5d",
+      "topicId": "draft-hanzi-16",
+      "character": "筝",
+      "pinyin": "zhēng",
+      "phrase": "风筝",
+      "sentence": "一起找找“风筝”。",
+      "question": "“风□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“风筝”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/kite.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u7434",
+      "topicId": "draft-hanzi-16",
+      "character": "琴",
+      "pinyin": "qín",
+      "phrase": "钢琴",
+      "sentence": "一起找找“钢琴”。",
+      "question": "“钢□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“钢琴”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/piano.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u9f13",
+      "topicId": "draft-hanzi-16",
+      "character": "鼓",
+      "pinyin": "gǔ",
+      "phrase": "小鼓",
+      "sentence": "一起找找“小鼓”。",
+      "question": "“小□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“小鼓”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/drum.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u7b1b",
+      "topicId": "draft-hanzi-16",
+      "character": "笛",
+      "pinyin": "dí",
+      "phrase": "笛子",
+      "sentence": "一起找找“笛子”。",
+      "question": "“□子”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“笛子”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/flute.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u53f7",
+      "topicId": "draft-hanzi-16",
+      "character": "号",
+      "pinyin": "hào",
+      "phrase": "小号",
+      "sentence": "一起找找“小号”。",
+      "question": "“小□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“小号”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/trumpet.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u94c3",
+      "topicId": "draft-hanzi-16",
+      "character": "铃",
+      "pinyin": "líng",
+      "phrase": "铃铛",
+      "sentence": "一起找找“铃铛”。",
+      "question": "“□铛”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“铃铛”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/bell.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u6b4c",
+      "topicId": "draft-hanzi-16",
+      "character": "歌",
+      "pinyin": "gē",
+      "phrase": "唱歌",
+      "sentence": "一起找找“唱歌”。",
+      "question": "“唱□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“唱歌”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/sing.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u821e",
+      "topicId": "draft-hanzi-16",
+      "character": "舞",
+      "pinyin": "wǔ",
+      "phrase": "跳舞",
+      "sentence": "一起找找“跳舞”。",
+      "question": "“跳□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“跳舞”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/dance.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u4e50",
+      "topicId": "draft-hanzi-16",
+      "character": "乐",
+      "pinyin": "yuè",
+      "phrase": "音乐",
+      "sentence": "一起找找“音乐”。",
+      "question": "“音□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“音乐”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/music.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u98de",
+      "topicId": "draft-hanzi-17",
+      "character": "飞",
+      "pinyin": "fēi",
+      "phrase": "飞机",
+      "sentence": "一起找找“飞机”。",
+      "question": "“□机”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“飞机”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/airplane.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u673a",
+      "topicId": "draft-hanzi-17",
+      "character": "机",
+      "pinyin": "jī",
+      "phrase": "直升机",
+      "sentence": "一起找找“直升机”。",
+      "question": "“直升□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“直升机”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/helicopter.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u6c7d",
+      "topicId": "draft-hanzi-17",
+      "character": "汽",
+      "pinyin": "qì",
+      "phrase": "汽车",
+      "sentence": "一起找找“汽车”。",
+      "question": "“□车”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“汽车”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/automobile.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u94c1",
+      "topicId": "draft-hanzi-17",
+      "character": "铁",
+      "pinyin": "tiě",
+      "phrase": "地铁",
+      "sentence": "一起找找“地铁”。",
+      "question": "“地□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“地铁”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/subway.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u7ad9",
+      "topicId": "draft-hanzi-17",
+      "character": "站",
+      "pinyin": "zhàn",
+      "phrase": "车站",
+      "sentence": "一起找找“车站”。",
+      "question": "“车□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“车站”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/station.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u7968",
+      "topicId": "draft-hanzi-17",
+      "character": "票",
+      "pinyin": "piào",
+      "phrase": "车票",
+      "sentence": "一起找找“车票”。",
+      "question": "“车□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“车票”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/ticket.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u8f6e",
+      "topicId": "draft-hanzi-17",
+      "character": "轮",
+      "pinyin": "lún",
+      "phrase": "车轮",
+      "sentence": "一起找找“车轮”。",
+      "question": "“车□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“车轮”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/wheel.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u8f68",
+      "topicId": "draft-hanzi-17",
+      "character": "轨",
+      "pinyin": "guǐ",
+      "phrase": "铁轨",
+      "sentence": "一起找找“铁轨”。",
+      "question": "“铁□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“铁轨”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/railway.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u884c",
+      "topicId": "draft-hanzi-17",
+      "character": "行",
+      "pinyin": "xíng",
+      "phrase": "行走",
+      "sentence": "一起找找“行走”。",
+      "question": "“□走”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“行走”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/walk.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u505c",
+      "topicId": "draft-hanzi-17",
+      "character": "停",
+      "pinyin": "tíng",
+      "phrase": "停车",
+      "sentence": "一起找找“停车”。",
+      "question": "“□车”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“停车”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/parking.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u53a8",
+      "topicId": "draft-hanzi-18",
+      "character": "厨",
+      "pinyin": "chú",
+      "phrase": "厨房",
+      "sentence": "一起找找“厨房”。",
+      "question": "“□房”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“厨房”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/kitchen.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u51b0",
+      "topicId": "draft-hanzi-18",
+      "character": "冰",
+      "pinyin": "bīng",
+      "phrase": "冰箱",
+      "sentence": "一起找找“冰箱”。",
+      "question": "“□箱”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“冰箱”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/refrigerator.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u7bb1",
+      "topicId": "draft-hanzi-18",
+      "character": "箱",
+      "pinyin": "xiāng",
+      "phrase": "箱子",
+      "sentence": "一起找找“箱子”。",
+      "question": "“□子”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“箱子”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/box.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u7089",
+      "topicId": "draft-hanzi-18",
+      "character": "炉",
+      "pinyin": "lú",
+      "phrase": "炉子",
+      "sentence": "一起找找“炉子”。",
+      "question": "“□子”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“炉子”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/oven.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u53c9",
+      "topicId": "draft-hanzi-18",
+      "character": "叉",
+      "pinyin": "chā",
+      "phrase": "叉子",
+      "sentence": "一起找找“叉子”。",
+      "question": "“□子”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“叉子”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/fork.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u5200",
+      "topicId": "draft-hanzi-18",
+      "character": "刀",
+      "pinyin": "dāo",
+      "phrase": "菜刀",
+      "sentence": "一起找找“菜刀”。",
+      "question": "“菜□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“菜刀”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/knife.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u76d0",
+      "topicId": "draft-hanzi-18",
+      "character": "盐",
+      "pinyin": "yán",
+      "phrase": "食盐",
+      "sentence": "一起找找“食盐”。",
+      "question": "“食□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“食盐”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/salt.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u6cb9",
+      "topicId": "draft-hanzi-18",
+      "character": "油",
+      "pinyin": "yóu",
+      "phrase": "食用油",
+      "sentence": "一起找找“食用油”。",
+      "question": "“食用□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“食用油”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/oil.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u997c",
+      "topicId": "draft-hanzi-18",
+      "character": "饼",
+      "pinyin": "bǐng",
+      "phrase": "饼干",
+      "sentence": "一起找找“饼干”。",
+      "question": "“□干”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“饼干”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/cookie.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u8c46",
+      "topicId": "draft-hanzi-18",
+      "character": "豆",
+      "pinyin": "dòu",
+      "phrase": "豆子",
+      "sentence": "一起找找“豆子”。",
+      "question": "“□子”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“豆子”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/bean.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u955c",
+      "topicId": "draft-hanzi-19",
+      "character": "镜",
+      "pinyin": "jìng",
+      "phrase": "镜子",
+      "sentence": "一起找找“镜子”。",
+      "question": "“□子”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“镜子”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/mirror.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u5dfe",
+      "topicId": "draft-hanzi-19",
+      "character": "巾",
+      "pinyin": "jīn",
+      "phrase": "毛巾",
+      "sentence": "一起找找“毛巾”。",
+      "question": "“毛□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“毛巾”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/towel.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u5237",
+      "topicId": "draft-hanzi-19",
+      "character": "刷",
+      "pinyin": "shuā",
+      "phrase": "牙刷",
+      "sentence": "一起找找“牙刷”。",
+      "question": "“牙□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“牙刷”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/toothbrush.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u818f",
+      "topicId": "draft-hanzi-19",
+      "character": "膏",
+      "pinyin": "gāo",
+      "phrase": "牙膏",
+      "sentence": "一起找找“牙膏”。",
+      "question": "“牙□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“牙膏”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/toothpaste.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u7682",
+      "topicId": "draft-hanzi-19",
+      "character": "皂",
+      "pinyin": "zào",
+      "phrase": "肥皂",
+      "sentence": "一起找找“肥皂”。",
+      "question": "“肥□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“肥皂”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/soap.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u68b3",
+      "topicId": "draft-hanzi-19",
+      "character": "梳",
+      "pinyin": "shū",
+      "phrase": "梳子",
+      "sentence": "一起找找“梳子”。",
+      "question": "“□子”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“梳子”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/comb.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u6d74",
+      "topicId": "draft-hanzi-19",
+      "character": "浴",
+      "pinyin": "yù",
+      "phrase": "浴室",
+      "sentence": "一起找找“浴室”。",
+      "question": "“□室”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“浴室”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/bathroom.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u76c6",
+      "topicId": "draft-hanzi-19",
+      "character": "盆",
+      "pinyin": "pén",
+      "phrase": "水盆",
+      "sentence": "一起找找“水盆”。",
+      "question": "“水□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“水盆”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/basin.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u6ce1",
+      "topicId": "draft-hanzi-19",
+      "character": "泡",
+      "pinyin": "pào",
+      "phrase": "泡泡",
+      "sentence": "一起找找“泡泡”。",
+      "question": "“□□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“泡泡”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/bubble.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u6d01",
+      "topicId": "draft-hanzi-19",
+      "character": "洁",
+      "pinyin": "jié",
+      "phrase": "清洁",
+      "sentence": "一起找找“清洁”。",
+      "question": "“清□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“清洁”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/clean.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u6c99",
+      "topicId": "draft-hanzi-20",
+      "character": "沙",
+      "pinyin": "shā",
+      "phrase": "沙发",
+      "sentence": "一起找找“沙发”。",
+      "question": "“□发”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“沙发”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/sofa.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u53d1",
+      "topicId": "draft-hanzi-20",
+      "character": "发",
+      "pinyin": "fà",
+      "phrase": "头发",
+      "sentence": "一起找找“头发”。",
+      "question": "“头□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“头发”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/hair.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u6795",
+      "topicId": "draft-hanzi-20",
+      "character": "枕",
+      "pinyin": "zhěn",
+      "phrase": "枕头",
+      "sentence": "一起找找“枕头”。",
+      "question": "“□头”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“枕头”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/pillow.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u88ab",
+      "topicId": "draft-hanzi-20",
+      "character": "被",
+      "pinyin": "bèi",
+      "phrase": "被子",
+      "sentence": "一起找找“被子”。",
+      "question": "“□子”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“被子”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/blanket.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u5e18",
+      "topicId": "draft-hanzi-20",
+      "character": "帘",
+      "pinyin": "lián",
+      "phrase": "窗帘",
+      "sentence": "一起找找“窗帘”。",
+      "question": "“窗□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“窗帘”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/curtain.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u6bef",
+      "topicId": "draft-hanzi-20",
+      "character": "毯",
+      "pinyin": "tǎn",
+      "phrase": "地毯",
+      "sentence": "一起找找“地毯”。",
+      "question": "“地□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“地毯”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/carpet.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u67b6",
+      "topicId": "draft-hanzi-20",
+      "character": "架",
+      "pinyin": "jià",
+      "phrase": "书架",
+      "sentence": "一起找找“书架”。",
+      "question": "“书□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“书架”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/bookcase.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u67dc",
+      "topicId": "draft-hanzi-20",
+      "character": "柜",
+      "pinyin": "guì",
+      "phrase": "柜子",
+      "sentence": "一起找找“柜子”。",
+      "question": "“□子”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“柜子”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/cabinet.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u7720",
+      "topicId": "draft-hanzi-20",
+      "character": "眠",
+      "pinyin": "mián",
+      "phrase": "睡眠",
+      "sentence": "一起找找“睡眠”。",
+      "question": "“睡□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“睡眠”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/sleep.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u623f",
+      "topicId": "draft-hanzi-20",
+      "character": "房",
+      "pinyin": "fáng",
+      "phrase": "房子",
+      "sentence": "一起找找“房子”。",
+      "question": "“□子”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“房子”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/house.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u56ed",
+      "topicId": "draft-hanzi-21",
+      "character": "园",
+      "pinyin": "yuán",
+      "phrase": "公园",
+      "sentence": "一起找找“公园”。",
+      "question": "“公□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“公园”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/park.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u6ed1",
+      "topicId": "draft-hanzi-21",
+      "character": "滑",
+      "pinyin": "huá",
+      "phrase": "滑梯",
+      "sentence": "一起找找“滑梯”。",
+      "question": "“□梯”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“滑梯”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/slide.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u68af",
+      "topicId": "draft-hanzi-21",
+      "character": "梯",
+      "pinyin": "tī",
+      "phrase": "楼梯",
+      "sentence": "一起找找“楼梯”。",
+      "question": "“楼□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“楼梯”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/stairs.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u8361",
+      "topicId": "draft-hanzi-21",
+      "character": "荡",
+      "pinyin": "dàng",
+      "phrase": "荡秋千",
+      "sentence": "一起找找“荡秋千”。",
+      "question": "“□秋千”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“荡秋千”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/swing.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u7802",
+      "topicId": "draft-hanzi-21",
+      "character": "砂",
+      "pinyin": "shā",
+      "phrase": "砂粒",
+      "sentence": "一起找找“砂粒”。",
+      "question": "“□粒”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“砂粒”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/sand.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u6876",
+      "topicId": "draft-hanzi-21",
+      "character": "桶",
+      "pinyin": "tǒng",
+      "phrase": "水桶",
+      "sentence": "一起找找“水桶”。",
+      "question": "“水□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“水桶”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/bucket.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u94f2",
+      "topicId": "draft-hanzi-21",
+      "character": "铲",
+      "pinyin": "chǎn",
+      "phrase": "铲子",
+      "sentence": "一起找找“铲子”。",
+      "question": "“□子”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“铲子”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/shovel.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u6c60",
+      "topicId": "draft-hanzi-21",
+      "character": "池",
+      "pinyin": "chí",
+      "phrase": "池塘",
+      "sentence": "一起找找“池塘”。",
+      "question": "“□塘”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“池塘”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/pond.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u51f3",
+      "topicId": "draft-hanzi-21",
+      "character": "凳",
+      "pinyin": "dèng",
+      "phrase": "长凳",
+      "sentence": "一起找找“长凳”。",
+      "question": "“长□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“长凳”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/bench.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u73a9",
+      "topicId": "draft-hanzi-21",
+      "character": "玩",
+      "pinyin": "wán",
+      "phrase": "玩耍",
+      "sentence": "一起找找“玩耍”。",
+      "question": "“□耍”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“玩耍”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/play.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u79cd",
+      "topicId": "draft-hanzi-22",
+      "character": "种",
+      "pinyin": "zhǒng",
+      "phrase": "种子",
+      "sentence": "一起找找“种子”。",
+      "question": "“□子”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“种子”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/seed.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u6839",
+      "topicId": "draft-hanzi-22",
+      "character": "根",
+      "pinyin": "gēn",
+      "phrase": "树根",
+      "sentence": "一起找找“树根”。",
+      "question": "“树□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“树根”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/root.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u679d",
+      "topicId": "draft-hanzi-22",
+      "character": "枝",
+      "pinyin": "zhī",
+      "phrase": "树枝",
+      "sentence": "一起找找“树枝”。",
+      "question": "“树□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“树枝”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/branch.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u7af9",
+      "topicId": "draft-hanzi-22",
+      "character": "竹",
+      "pinyin": "zhú",
+      "phrase": "竹子",
+      "sentence": "一起找找“竹子”。",
+      "question": "“□子”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“竹子”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/bamboo.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u83c7",
+      "topicId": "draft-hanzi-22",
+      "character": "菇",
+      "pinyin": "gū",
+      "phrase": "蘑菇",
+      "sentence": "一起找找“蘑菇”。",
+      "question": "“蘑□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“蘑菇”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/mushroom.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u6735",
+      "topicId": "draft-hanzi-22",
+      "character": "朵",
+      "pinyin": "duǒ",
+      "phrase": "花朵",
+      "sentence": "一起找找“花朵”。",
+      "question": "“花□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“花朵”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/flower.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u690d",
+      "topicId": "draft-hanzi-22",
+      "character": "植",
+      "pinyin": "zhí",
+      "phrase": "植物",
+      "sentence": "一起找找“植物”。",
+      "question": "“□物”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“植物”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/plant.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u68f5",
+      "topicId": "draft-hanzi-22",
+      "character": "棵",
+      "pinyin": "kē",
+      "phrase": "一棵树",
+      "sentence": "一起找找“一棵树”。",
+      "question": "“一□树”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“一棵树”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/tree.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u82bd",
+      "topicId": "draft-hanzi-22",
+      "character": "芽",
+      "pinyin": "yá",
+      "phrase": "发芽",
+      "sentence": "一起找找“发芽”。",
+      "question": "“发□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“发芽”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/grow.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u82d7",
+      "topicId": "draft-hanzi-22",
+      "character": "苗",
+      "pinyin": "miáo",
+      "phrase": "幼苗",
+      "sentence": "一起找找“幼苗”。",
+      "question": "“幼□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“幼苗”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/garden.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u9e7f",
+      "topicId": "draft-hanzi-23",
+      "character": "鹿",
+      "pinyin": "lù",
+      "phrase": "小鹿",
+      "sentence": "一起找找“小鹿”。",
+      "question": "“小□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“小鹿”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/deer.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u72d0",
+      "topicId": "draft-hanzi-23",
+      "character": "狐",
+      "pinyin": "hú",
+      "phrase": "狐狸",
+      "sentence": "一起找找“狐狸”。",
+      "question": "“□狸”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“狐狸”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/fox.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u72fc",
+      "topicId": "draft-hanzi-23",
+      "character": "狼",
+      "pinyin": "láng",
+      "phrase": "灰狼",
+      "sentence": "一起找找“灰狼”。",
+      "question": "“灰□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“灰狼”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/wolf.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u72ee",
+      "topicId": "draft-hanzi-23",
+      "character": "狮",
+      "pinyin": "shī",
+      "phrase": "狮子",
+      "sentence": "一起找找“狮子”。",
+      "question": "“□子”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“狮子”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/lion.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u6591",
+      "topicId": "draft-hanzi-23",
+      "character": "斑",
+      "pinyin": "bān",
+      "phrase": "斑马",
+      "sentence": "一起找找“斑马”。",
+      "question": "“□马”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“斑马”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/zebra.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u957f",
+      "topicId": "draft-hanzi-23",
+      "character": "长",
+      "pinyin": "cháng",
+      "phrase": "长颈鹿",
+      "sentence": "一起找找“长颈鹿”。",
+      "question": "“□颈鹿”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“长颈鹿”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/giraffe.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u9cc4",
+      "topicId": "draft-hanzi-23",
+      "character": "鳄",
+      "pinyin": "è",
+      "phrase": "鳄鱼",
+      "sentence": "一起找找“鳄鱼”。",
+      "question": "“□鱼”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“鳄鱼”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/crocodile.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u9f20",
+      "topicId": "draft-hanzi-23",
+      "character": "鼠",
+      "pinyin": "shǔ",
+      "phrase": "老鼠",
+      "sentence": "一起找找“老鼠”。",
+      "question": "“老□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“老鼠”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/mouse.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u677e",
+      "topicId": "draft-hanzi-23",
+      "character": "松",
+      "pinyin": "sōng",
+      "phrase": "松鼠",
+      "sentence": "一起找找“松鼠”。",
+      "question": "“□鼠”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“松鼠”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/squirrel.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u523a",
+      "topicId": "draft-hanzi-23",
+      "character": "刺",
+      "pinyin": "cì",
+      "phrase": "刺猬",
+      "sentence": "一起找找“刺猬”。",
+      "question": "“□猬”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“刺猬”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/hedgehog.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u9cb8",
+      "topicId": "draft-hanzi-24",
+      "character": "鲸",
+      "pinyin": "jīng",
+      "phrase": "鲸鱼",
+      "sentence": "一起找找“鲸鱼”。",
+      "question": "“□鱼”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“鲸鱼”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/whale.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u9ca8",
+      "topicId": "draft-hanzi-24",
+      "character": "鲨",
+      "pinyin": "shā",
+      "phrase": "鲨鱼",
+      "sentence": "一起找找“鲨鱼”。",
+      "question": "“□鱼”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“鲨鱼”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/shark.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u8c5a",
+      "topicId": "draft-hanzi-24",
+      "character": "豚",
+      "pinyin": "tún",
+      "phrase": "海豚",
+      "sentence": "一起找找“海豚”。",
+      "question": "“海□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“海豚”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/dolphin.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u7ae0",
+      "topicId": "draft-hanzi-24",
+      "character": "章",
+      "pinyin": "zhāng",
+      "phrase": "章鱼",
+      "sentence": "一起找找“章鱼”。",
+      "question": "“□鱼”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“章鱼”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/octopus.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u8d1d",
+      "topicId": "draft-hanzi-24",
+      "character": "贝",
+      "pinyin": "bèi",
+      "phrase": "贝壳",
+      "sentence": "一起找找“贝壳”。",
+      "question": "“□壳”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“贝壳”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/shell.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u73ca",
+      "topicId": "draft-hanzi-24",
+      "character": "珊",
+      "pinyin": "shān",
+      "phrase": "珊瑚",
+      "sentence": "一起找找“珊瑚”。",
+      "question": "“□瑚”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“珊瑚”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/coral.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u867e",
+      "topicId": "draft-hanzi-24",
+      "character": "虾",
+      "pinyin": "xiā",
+      "phrase": "龙虾",
+      "sentence": "一起找找“龙虾”。",
+      "question": "“龙□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“龙虾”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/lobster.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u9ccd",
+      "topicId": "draft-hanzi-24",
+      "character": "鳍",
+      "pinyin": "qí",
+      "phrase": "鱼鳍",
+      "sentence": "一起找找“鱼鳍”。",
+      "question": "“鱼□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“鱼鳍”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/fin.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u7901",
+      "topicId": "draft-hanzi-24",
+      "character": "礁",
+      "pinyin": "jiāo",
+      "phrase": "珊瑚礁",
+      "sentence": "一起找找“珊瑚礁”。",
+      "question": "“珊瑚□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“珊瑚礁”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/reef.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u6d6a",
+      "topicId": "draft-hanzi-24",
+      "character": "浪",
+      "pinyin": "làng",
+      "phrase": "海浪",
+      "sentence": "一起找找“海浪”。",
+      "question": "“海□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“海浪”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/wave.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u9e66",
+      "topicId": "draft-hanzi-25",
+      "character": "鹦",
+      "pinyin": "yīng",
+      "phrase": "鹦鹉",
+      "sentence": "一起找找“鹦鹉”。",
+      "question": "“□鹉”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“鹦鹉”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/parrot.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u9e70",
+      "topicId": "draft-hanzi-25",
+      "character": "鹰",
+      "pinyin": "yīng",
+      "phrase": "老鹰",
+      "sentence": "一起找找“老鹰”。",
+      "question": "“老□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“老鹰”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/eagle.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u9e3d",
+      "topicId": "draft-hanzi-25",
+      "character": "鸽",
+      "pinyin": "gē",
+      "phrase": "鸽子",
+      "sentence": "一起找找“鸽子”。",
+      "question": "“□子”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“鸽子”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/pigeon.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u9e45",
+      "topicId": "draft-hanzi-25",
+      "character": "鹅",
+      "pinyin": "é",
+      "phrase": "白鹅",
+      "sentence": "一起找找“白鹅”。",
+      "question": "“白□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“白鹅”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/goose.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u96c0",
+      "topicId": "draft-hanzi-25",
+      "character": "雀",
+      "pinyin": "què",
+      "phrase": "麻雀",
+      "sentence": "一起找找“麻雀”。",
+      "question": "“麻□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“麻雀”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/sparrow.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u5b54",
+      "topicId": "draft-hanzi-25",
+      "character": "孔",
+      "pinyin": "kǒng",
+      "phrase": "孔雀",
+      "sentence": "一起找找“孔雀”。",
+      "question": "“□雀”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“孔雀”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/peacock.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u86db",
+      "topicId": "draft-hanzi-25",
+      "character": "蛛",
+      "pinyin": "zhū",
+      "phrase": "蜘蛛",
+      "sentence": "一起找找“蜘蛛”。",
+      "question": "“蜘□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“蜘蛛”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/spider.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u74e2",
+      "topicId": "draft-hanzi-25",
+      "character": "瓢",
+      "pinyin": "piáo",
+      "phrase": "瓢虫",
+      "sentence": "一起找找“瓢虫”。",
+      "question": "“□虫”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“瓢虫”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/ladybird.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u7532",
+      "topicId": "draft-hanzi-25",
+      "character": "甲",
+      "pinyin": "jiǎ",
+      "phrase": "甲虫",
+      "sentence": "一起找找“甲虫”。",
+      "question": "“□虫”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“甲虫”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/beetle.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u7fbd",
+      "topicId": "draft-hanzi-25",
+      "character": "羽",
+      "pinyin": "yǔ",
+      "phrase": "羽毛",
+      "sentence": "一起找找“羽毛”。",
+      "question": "“□毛”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“羽毛”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/feather.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u793c",
+      "topicId": "draft-hanzi-26",
+      "character": "礼",
+      "pinyin": "lǐ",
+      "phrase": "礼物",
+      "sentence": "一起找找“礼物”。",
+      "question": "“□物”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“礼物”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/gift.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u65d7",
+      "topicId": "draft-hanzi-26",
+      "character": "旗",
+      "pinyin": "qí",
+      "phrase": "旗子",
+      "sentence": "一起找找“旗子”。",
+      "question": "“□子”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“旗子”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/flag.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u8721",
+      "topicId": "draft-hanzi-26",
+      "character": "蜡",
+      "pinyin": "là",
+      "phrase": "蜡烛",
+      "sentence": "一起找找“蜡烛”。",
+      "question": "“□烛”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“蜡烛”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/candle.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u6c14",
+      "topicId": "draft-hanzi-26",
+      "character": "气",
+      "pinyin": "qì",
+      "phrase": "气球",
+      "sentence": "一起找找“气球”。",
+      "question": "“□球”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“气球”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/balloon.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u5e86",
+      "topicId": "draft-hanzi-26",
+      "character": "庆",
+      "pinyin": "qìng",
+      "phrase": "庆祝",
+      "sentence": "一起找找“庆祝”。",
+      "question": "“□祝”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“庆祝”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/celebrate.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u795d",
+      "topicId": "draft-hanzi-26",
+      "character": "祝",
+      "pinyin": "zhù",
+      "phrase": "祝福",
+      "sentence": "一起找找“祝福”。",
+      "question": "“□福”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“祝福”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/wish.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u798f",
+      "topicId": "draft-hanzi-26",
+      "character": "福",
+      "pinyin": "fú",
+      "phrase": "幸福",
+      "sentence": "一起找找“幸福”。",
+      "question": "“幸□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“幸福”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/happiness.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u5f69",
+      "topicId": "draft-hanzi-26",
+      "character": "彩",
+      "pinyin": "cǎi",
+      "phrase": "彩带",
+      "sentence": "一起找找“彩带”。",
+      "question": "“□带”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“彩带”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/ribbon.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u9c9c",
+      "topicId": "draft-hanzi-26",
+      "character": "鲜",
+      "pinyin": "xiān",
+      "phrase": "鲜花",
+      "sentence": "一起找找“鲜花”。",
+      "question": "“□花”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“鲜花”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/bouquet.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u8282",
+      "topicId": "draft-hanzi-26",
+      "character": "节",
+      "pinyin": "jié",
+      "phrase": "节日",
+      "sentence": "一起找找“节日”。",
+      "question": "“□日”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“节日”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/festival.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u6674",
+      "topicId": "draft-hanzi-27",
+      "character": "晴",
+      "pinyin": "qíng",
+      "phrase": "晴天",
+      "sentence": "一起找找“晴天”。",
+      "question": "“□天”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“晴天”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/sunny.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u9634",
+      "topicId": "draft-hanzi-27",
+      "character": "阴",
+      "pinyin": "yīn",
+      "phrase": "阴天",
+      "sentence": "一起找找“阴天”。",
+      "question": "“□天”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“阴天”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/cloudy.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u96fe",
+      "topicId": "draft-hanzi-27",
+      "character": "雾",
+      "pinyin": "wù",
+      "phrase": "大雾",
+      "sentence": "一起找找“大雾”。",
+      "question": "“大□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“大雾”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/fog.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u96f7",
+      "topicId": "draft-hanzi-27",
+      "character": "雷",
+      "pinyin": "léi",
+      "phrase": "打雷",
+      "sentence": "一起找找“打雷”。",
+      "question": "“打□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“打雷”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/thunder.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u5c9b",
+      "topicId": "draft-hanzi-27",
+      "character": "岛",
+      "pinyin": "dǎo",
+      "phrase": "岛屿",
+      "sentence": "一起找找“岛屿”。",
+      "question": "“□屿”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“岛屿”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/island.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u8679",
+      "topicId": "draft-hanzi-27",
+      "character": "虹",
+      "pinyin": "hóng",
+      "phrase": "彩虹",
+      "sentence": "一起找找“彩虹”。",
+      "question": "“彩□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“彩虹”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/rainbow.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u971c",
+      "topicId": "draft-hanzi-27",
+      "character": "霜",
+      "pinyin": "shuāng",
+      "phrase": "霜花",
+      "sentence": "一起找找“霜花”。",
+      "question": "“□花”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“霜花”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/frost.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u9732",
+      "topicId": "draft-hanzi-27",
+      "character": "露",
+      "pinyin": "lù",
+      "phrase": "露珠",
+      "sentence": "一起找找“露珠”。",
+      "question": "“□珠”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“露珠”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/dew.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u68ee",
+      "topicId": "draft-hanzi-27",
+      "character": "森",
+      "pinyin": "sēn",
+      "phrase": "森林",
+      "sentence": "一起找找“森林”。",
+      "question": "“□林”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“森林”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/forest.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u5ca9",
+      "topicId": "draft-hanzi-27",
+      "character": "岩",
+      "pinyin": "yán",
+      "phrase": "岩石",
+      "sentence": "一起找找“岩石”。",
+      "question": "“□石”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“岩石”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/rock.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u5f00",
+      "topicId": "draft-hanzi-28",
+      "character": "开",
+      "pinyin": "kāi",
+      "phrase": "开门",
+      "sentence": "一起找找“开门”。",
+      "question": "“□门”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“开门”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/open.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u5173",
+      "topicId": "draft-hanzi-28",
+      "character": "关",
+      "pinyin": "guān",
+      "phrase": "关门",
+      "sentence": "一起找找“关门”。",
+      "question": "“□门”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“关门”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/close.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u62b1",
+      "topicId": "draft-hanzi-28",
+      "character": "抱",
+      "pinyin": "bào",
+      "phrase": "拥抱",
+      "sentence": "一起找找“拥抱”。",
+      "question": "“拥□”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“拥抱”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/hug.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u62ff",
+      "topicId": "draft-hanzi-28",
+      "character": "拿",
+      "pinyin": "ná",
+      "phrase": "拿起",
+      "sentence": "一起找找“拿起”。",
+      "question": "“□起”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“拿起”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/hold.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u63a8",
+      "topicId": "draft-hanzi-28",
+      "character": "推",
+      "pinyin": "tuī",
+      "phrase": "推车",
+      "sentence": "一起找找“推车”。",
+      "question": "“□车”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“推车”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/push.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u62c9",
+      "topicId": "draft-hanzi-28",
+      "character": "拉",
+      "pinyin": "lā",
+      "phrase": "拉手",
+      "sentence": "一起找找“拉手”。",
+      "question": "“□手”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“拉手”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/pull.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u54ed",
+      "topicId": "draft-hanzi-28",
+      "character": "哭",
+      "pinyin": "kū",
+      "phrase": "哭泣",
+      "sentence": "一起找找“哭泣”。",
+      "question": "“□泣”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“哭泣”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/cry.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u4eb2",
+      "topicId": "draft-hanzi-28",
+      "character": "亲",
+      "pinyin": "qīn",
+      "phrase": "亲吻",
+      "sentence": "一起找找“亲吻”。",
+      "question": "“□吻”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“亲吻”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/kiss.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u60f3",
+      "topicId": "draft-hanzi-28",
+      "character": "想",
+      "pinyin": "xiǎng",
+      "phrase": "想念",
+      "sentence": "一起找找“想念”。",
+      "question": "“□念”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“想念”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/think.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    },
+    {
+      "kind": "hanzi",
+      "id": "hanzi-u7231",
+      "topicId": "draft-hanzi-28",
+      "character": "爱",
+      "pinyin": "ài",
+      "phrase": "爱心",
+      "sentence": "一起找找“爱心”。",
+      "question": "“□心”里缺了哪个字？",
+      "caregiverTip": "和孩子一起在生活或绘本里找找“爱心”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/love.webp",
+        "recording": null,
+        "exampleRecording": null,
+        "locale": "zh-CN",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，图文匹配和适龄性待人工审校"
+      }
+    }
+  ]
+}

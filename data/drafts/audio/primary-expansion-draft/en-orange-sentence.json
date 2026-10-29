@@ -1,0 +1,13 @@
+{
+  "course": "primary-expansion-draft",
+  "id": "en-orange",
+  "kind": "sentence",
+  "text": "Here is an orange.",
+  "voice": "Daniel",
+  "locale": "en-GB",
+  "file": "data/drafts/audio/primary-expansion-draft/en-orange-sentence.wav",
+  "sha256": "297b7a86e8ada388b048cd867868cbe5c36bcac1d8ff8ae66246183ede755b33",
+  "seconds": 1.489,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

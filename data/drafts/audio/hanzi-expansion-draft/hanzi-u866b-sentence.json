@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u866b",
+  "kind": "sentence",
+  "text": "小虫在叶子上爬。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u866b-sentence.wav",
+  "sha256": "0c267504a01fde5beac597362f209901d0f8f90217a2dece05e08d162f35b045",
+  "seconds": 2.206,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

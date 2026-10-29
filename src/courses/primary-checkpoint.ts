@@ -25,8 +25,22 @@ export function readCheckpoint(storage: Storage, scope: { profileId: string; cou
     if (saved.version !== 1 || saved.profileId !== scope.profileId || saved.courseId !== scope.courseId || saved.lessonId !== scope.lessonId ||
       (saved.stage !== "starter" && saved.stage !== "advanced") || typeof saved.spellingEnabled !== "boolean" ||
       (saved.stage === "starter" && saved.spellingEnabled)) return { status: "invalid", raw };
-    const restored = restoreLearningSession(saved.session, { courseId: scope.courseId, contentVersion: scope.contentVersion,
+    let restored = restoreLearningSession(saved.session, { courseId: scope.courseId, contentVersion: scope.contentVersion,
       policy: primaryVisualPolicy(saved.stage, saved.spellingEnabled), entries: scope.entries, now });
+    // Only existing versions and lesson scopes can be carried forward. Each
+    // restored question is validated against the current entries and policy.
+    if (restored.status === "rejected" && scope.courseId === "primary-starter" && scope.contentVersion === "0.4.0-draft") {
+      const originalLesson = ["fruit", "animals", "nature", "school", "breakfast", "home"].includes(scope.lessonId);
+      const versions = originalLesson ? ["0.3.0-draft", "0.2.0-draft", "0.1.0-draft"] : ["0.3.0-draft", "0.2.0-draft"];
+      for (const version of versions) {
+        restored = restoreLearningSession(saved.session, { courseId: scope.courseId, contentVersion: version,
+          policy: primaryVisualPolicy(saved.stage, saved.spellingEnabled), entries: scope.entries, now });
+        if (restored.session && restored.status !== "rejected") {
+          restored.session.contentVersion = scope.contentVersion;
+          break;
+        }
+      }
+    }
     if (!restored.session || restored.status === "rejected") return { status: "invalid", raw };
     return { status: "ok", raw, checkpoint: { version: 1, profileId: scope.profileId, courseId: scope.courseId, lessonId: scope.lessonId,
       stage: saved.stage, spellingEnabled: saved.spellingEnabled, session: restored.session } };

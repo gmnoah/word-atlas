@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u65e9",
+  "kind": "sentence",
+  "text": "早上，我们说早安。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u65e9-sentence.wav",
+  "sha256": "ccacc8993aa8446ca229cfed1063ede9d98a9fa8c7ad561acdd935e10da011a6",
+  "seconds": 2.323,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

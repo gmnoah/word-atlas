@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u5c71",
+  "kind": "character",
+  "text": "山",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u5c71-character.wav",
+  "sha256": "8fcb9b9e63e3eb7a5be4bfb2bc39ecb00c9a9e995668dd8220e8f0b4b42e596e",
+  "seconds": 0.639,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

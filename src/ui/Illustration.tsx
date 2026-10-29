@@ -2,22 +2,22 @@ import { useState } from "react";
 
 const HUES = ["#C4573A", "#7F9B77", "#D9A03A", "#5F7FA3", "#A86B8C", "#4E7C76"];
 
-/** Square illustration with a typographic plate as an intentional fallback. */
-export function Illustration({
-  src,
-  word,
-  topic = 0,
-  className = "",
-  eager = false,
-  alt,
-}: {
+interface IllustrationProps {
   src: string | null;
   word: string;
   topic?: number;
   className?: string;
   eager?: boolean;
   alt?: string;
-}) {
+}
+
+/** A new source gets its own loading state, independent of the previous image. */
+export function Illustration(props: IllustrationProps) {
+  return <IllustrationImage key={props.src ?? ""} {...props} />;
+}
+
+/** Square illustration with a typographic plate as an intentional fallback. */
+function IllustrationImage({ src, word, topic = 0, className = "", eager = false, alt }: IllustrationProps) {
   const [state, setState] = useState<"loading" | "ok" | "error">("loading");
   const showImg = src && state !== "error";
   return (

@@ -61,17 +61,34 @@ export function readHanziCheckpoint(
       // Voice availability belongs to this device, not to the saved record:
       // restoring on a device without Mandarin must not revive a listen task.
       voiceAvailable: scope.voiceAvailable,
+      disablePicture: scope.lessonId.startsWith("draft-hanzi-"),
       coReading: scope.mode === "co-read",
       entryCount: scope.entries.length,
       timeLimitMinutes: saved.minutes > 0 ? saved.minutes : null,
     });
-    const restored = restoreLearningSession(saved.session, {
+    let restored = restoreLearningSession(saved.session, {
       courseId: scope.courseId,
       contentVersion: scope.contentVersion,
       policy,
       entries: scope.entries,
       now,
     });
+    if (restored.status === "rejected" && scope.courseId === "hanzi-starter" && scope.contentVersion === "0.7.0-draft") {
+      const originalLesson = ["nature", "body", "garden", "animals"].includes(scope.lessonId);
+      const earlierExpandedLesson = /^draft-hanzi-0[1-8]$/.test(scope.lessonId);
+      const latestPriorLesson = /^draft-hanzi-(?:0[9]|1[0-3])$/.test(scope.lessonId);
+      const latestLesson = /^draft-hanzi-(?:1[4-9]|2[0-8])$/.test(scope.lessonId);
+      const compatibleVersions = ["0.6.0-draft", "0.5.0-draft", ...(originalLesson ? ["0.4.0-draft", "0.3.0-draft", "0.2.0-draft", "0.1.0-draft"] : earlierExpandedLesson ? ["0.4.0-draft", "0.3.0-draft", "0.2.0-draft"] : latestPriorLesson ? ["0.4.0-draft", "0.3.0-draft"] : latestLesson ? ["0.4.0-draft"] : [])];
+      for (const version of compatibleVersions) {
+        restored = restoreLearningSession(saved.session, {
+          courseId: scope.courseId, contentVersion: version, policy, entries: scope.entries, now,
+        });
+        if (restored.session && restored.status !== "rejected") {
+          restored.session.contentVersion = scope.contentVersion;
+          break;
+        }
+      }
+    }
     if (!restored.session || restored.status === "rejected") return { status: "invalid", raw };
     return {
       status: "ok",

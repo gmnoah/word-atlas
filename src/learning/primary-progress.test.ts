@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { sampleCourses } from "../courses/samples";
+import { primarySample } from "../courses/primary-sample";
+const sampleCourses = [primarySample];
 import { PRIMARY_STARTER_POLICY } from "./policy";
 import { createLearningSession, currentStep, learningReducer } from "./session";
 import { applyPrimarySession, emptyPrimaryProgress, parsePrimaryProgress, primaryDueIds, primaryReviewIds, primaryProgressKey, readPrimaryProgress, togglePrimaryFavorite, writePrimaryProgress } from "./primary-progress";

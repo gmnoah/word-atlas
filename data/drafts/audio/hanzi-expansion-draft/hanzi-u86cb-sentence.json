@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u86cb",
+  "kind": "sentence",
+  "text": "早餐有一个鸡蛋。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u86cb-sentence.wav",
+  "sha256": "042d5c75bf36ab601201170ba65eb6b19569a358b1b2961a1fb2ad0c40f39b0f",
+  "seconds": 1.847,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

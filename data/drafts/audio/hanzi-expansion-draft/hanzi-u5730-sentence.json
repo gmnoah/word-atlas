@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u5730",
+  "kind": "sentence",
+  "text": "落叶铺在地面上。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u5730-sentence.wav",
+  "sha256": "3f321855dd3a9804baedca2edf5c6656b817612d5e90058508e5d6468993c97a",
+  "seconds": 2.02,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

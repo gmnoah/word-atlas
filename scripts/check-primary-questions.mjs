@@ -31,11 +31,11 @@ try {
       assert.equal(await options.first().isDisabled(), true, "a listening question is locked until audio plays");
       assert.equal(await page.getByRole("button", { name: "播放题目发音" }).count(), 1);
       if (kind === "listen-word") {
-        await page.route("**/atlas/audio/uk/*.mp3", (route) => route.abort());
+        await page.route("**/atlas/audio/uk/*.mp3*", (route) => route.abort());
         await page.getByRole("button", { name: "播放题目发音" }).click();
         await page.getByText("暂时无法播放，可以重试，也可以请家长读一读。").waitFor();
         assert.equal(await options.first().isDisabled(), true, "audio failure cannot be answered");
-        await page.unroute("**/atlas/audio/uk/*.mp3");
+        await page.unroute("**/atlas/audio/uk/*.mp3*");
       }
       await page.getByRole("button", { name: "播放题目发音" }).click();
       await page.waitForFunction(() => !document.querySelector(".preview-option")?.disabled);

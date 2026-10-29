@@ -1,0 +1,83 @@
+import type { HanziEntry, Lesson } from "./types";
+
+// 以生活词语组织的新增候选；图片复用词光原有插画，仍需人工审校。
+const groups: { title: string; rows: [string, string, string, string, string][] }[] = [
+  { title: "动物新朋友", rows: [
+    ["猪", "zhū", "小猪", "小猪在泥地里走。", "pig"],
+    ["熊", "xióng", "小熊", "小熊抱着蜂蜜罐。", "bear"],
+    ["虎", "hǔ", "老虎", "老虎在树林里走。", "tiger"],
+    ["象", "xiàng", "大象", "大象有长长的鼻子。", "elephant"],
+    ["猴", "hóu", "猴子", "猴子在树上玩。", "monkey"],
+    ["蜂", "fēng", "蜜蜂", "蜜蜂飞到花上。", "bee"],
+    ["蝶", "dié", "蝴蝶", "蝴蝶在花丛中飞。", "butterfly"],
+    ["蚁", "yǐ", "蚂蚁", "蚂蚁排着队走。", "ant"],
+    ["蛙", "wā", "青蛙", "青蛙在池塘边跳。", "frog"],
+    ["龟", "guī", "乌龟", "乌龟慢慢地爬。", "turtle"],
+  ] },
+  { title: "水果和点心", rows: [
+    ["苹", "píng", "苹果", "苹果圆圆的。", "apple"],
+    ["梨", "lí", "梨子", "梨子放在篮子里。", "pear"],
+    ["桃", "táo", "桃子", "桃子摸起来软软的。", "peach"],
+    ["蕉", "jiāo", "香蕉", "香蕉弯弯的。", "banana"],
+    ["葡", "pú", "葡萄", "葡萄一颗挨着一颗。", "grape"],
+    ["糖", "táng", "白糖", "白糖看起来像小颗粒。", "sugar"],
+    ["莓", "méi", "草莓", "草莓红红的。", "strawberry"],
+    ["瓜", "guā", "西瓜", "西瓜切开了。", "watermelon"],
+    ["汤", "tāng", "热汤", "热汤要等一等再喝。", "soup"],
+    ["糕", "gāo", "蛋糕", "蛋糕上有一颗草莓。", "cake"],
+  ] },
+  { title: "出门去看看", rows: [
+    ["车", "chē", "汽车", "汽车在路上开。", "car"],
+    ["船", "chuán", "小船", "小船在水上行。", "boat"],
+    ["桥", "qiáo", "小桥", "小桥跨过小河。", "bridge"],
+    ["路", "lù", "马路", "马路上有汽车。", "road"],
+    ["伞", "sǎn", "雨伞", "下雨时我们带上雨伞。", "umbrella"],
+    ["帽", "mào", "帽子", "出门时戴上帽子。", "hat"],
+    ["鞋", "xié", "鞋子", "我们穿好鞋子再出门。", "shoe"],
+    ["袜", "wà", "袜子", "袜子穿在脚上。", "sock"],
+    ["衣", "yī", "衣服", "天气冷时穿上衣服。", "clothes"],
+    ["裤", "kù", "裤子", "裤子挂在衣柜里。", "trousers"],
+  ] },
+  { title: "身体小发现", rows: [
+    ["鼻", "bí", "鼻子", "鼻子可以闻一闻。", "nose"],
+    ["脸", "liǎn", "脸蛋", "洗脸时轻轻擦脸蛋。", "face"],
+    ["头", "tóu", "头发", "早上梳一梳头发。", "head"],
+    ["牙", "yá", "牙齿", "每天早晚刷牙。", "tooth"],
+    ["舌", "shé", "舌头", "舌头可以尝到味道。", "tongue"],
+    ["肩", "jiān", "肩膀", "书包背在肩膀上。", "shoulder"],
+    ["背", "bèi", "后背", "小猫轻轻伸展后背。", "back"],
+    ["腿", "tuǐ", "小腿", "走路时小腿动起来。", "leg"],
+    ["脚", "jiǎo", "小脚", "小脚穿上袜子。", "foot"],
+    ["肚", "dù", "肚子", "吃饱后肚子暖暖的。", "stomach"],
+  ] },
+  { title: "家里的物品", rows: [
+    ["床", "chuáng", "小床", "晚上躺在小床上。", "bed"],
+    ["杯", "bēi", "水杯", "水杯里装着温水。", "cup"],
+    ["碗", "wǎn", "饭碗", "饭碗放在桌子上。", "bowl"],
+    ["盘", "pán", "盘子", "盘子里放着水果。", "plate"],
+    ["瓶", "píng", "水瓶", "水瓶里装着水。", "bottle"],
+    ["勺", "sháo", "勺子", "用勺子喝汤。", "spoon"],
+    ["锅", "guō", "锅子", "大人用锅子煮饭。", "pot"],
+    ["锁", "suǒ", "门锁", "门锁在门上。", "lock"],
+    ["钥", "yào", "钥匙", "钥匙可以打开门锁。", "key"],
+    ["钟", "zhōng", "钟表", "钟表挂在墙上。", "clock"],
+  ] },
+];
+
+export const extraHanziLessons: Lesson[] = groups.map((group, index) => ({
+  id: `draft-hanzi-${String(index + 9).padStart(2, "0")}`,
+  title: group.title,
+  subtitle: "和孩子一起在生活里找找",
+  entryIds: group.rows.map(([character]) => `hanzi-u${character.codePointAt(0)!.toString(16)}`),
+}));
+export const extraHanziEntries: HanziEntry[] = groups.flatMap((group, index) => group.rows.map(([character, pinyin, phrase, sentence, image]) => ({
+  kind: "hanzi" as const,
+  id: `hanzi-u${character.codePointAt(0)!.toString(16)}`,
+  topicId: extraHanziLessons[index].id,
+  character, pinyin, phrase, sentence,
+  question: `这句话里缺了哪个字？${sentence.replaceAll(character, "□")}`,
+  caregiverTip: `和孩子在生活里找找“${phrase}”。`,
+  reviewStatus: "draft" as const,
+  media: { image: `atlas/img/${image}.webp`, recording: null, exampleRecording: null, locale: "zh-CN" as const,
+    source: "Word Atlas contributors（词光）· CC BY 4.0；沿用原项目插画，语义和适龄性待人工审校" },
+})));

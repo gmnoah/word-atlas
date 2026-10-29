@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u79cb",
+  "kind": "character",
+  "text": "秋",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u79cb-character.wav",
+  "sha256": "ae22f8a32627a841588f4afa75c3b37ad4aa7fe87f7fdd5f8b566cb773191baa",
+  "seconds": 0.608,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

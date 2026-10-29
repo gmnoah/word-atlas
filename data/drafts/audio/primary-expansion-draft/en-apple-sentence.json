@@ -1,0 +1,13 @@
+{
+  "course": "primary-expansion-draft",
+  "id": "en-apple",
+  "kind": "sentence",
+  "text": "I like apples.",
+  "voice": "Daniel",
+  "locale": "en-GB",
+  "file": "data/drafts/audio/primary-expansion-draft/en-apple-sentence.wav",
+  "sha256": "e65031c81ab9f38306cca646a94f504730fd613e3b91b0802087fd77e2d4d27b",
+  "seconds": 1.387,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

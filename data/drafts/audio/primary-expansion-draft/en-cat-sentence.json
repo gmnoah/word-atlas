@@ -1,0 +1,13 @@
+{
+  "course": "primary-expansion-draft",
+  "id": "en-cat",
+  "kind": "sentence",
+  "text": "The cat is sleeping.",
+  "voice": "Daniel",
+  "locale": "en-GB",
+  "file": "data/drafts/audio/primary-expansion-draft/en-cat-sentence.wav",
+  "sha256": "2bbf50e0017a18dfc7c4459a4e959511f5ed6fe69dea1a659f66a18246cea26c",
+  "seconds": 1.497,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "course": "primary-expansion-draft",
+  "id": "en-sun",
+  "kind": "sentence",
+  "text": "The sun is warm.",
+  "voice": "Daniel",
+  "locale": "en-GB",
+  "file": "data/drafts/audio/primary-expansion-draft/en-sun-sentence.wav",
+  "sha256": "104690029106577018d558d6b35cd171671213ecd46c7bbaf429d3c07acee0b5",
+  "seconds": 1.311,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

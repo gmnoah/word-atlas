@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u9e1f",
+  "kind": "sentence",
+  "text": "小鸟停在树上。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u9e1f-sentence.wav",
+  "sha256": "0ad71b92f98d7d794d114f280867b8db54824cb45fd2481562f6984e583f532d",
+  "seconds": 1.974,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

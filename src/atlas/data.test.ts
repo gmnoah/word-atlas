@@ -9,6 +9,7 @@ import {
   loadOpenAtlas,
   loadPrivateAtlas,
   resolveMediaUrl,
+  versionedCourseMedia,
 } from "./data";
 import type { Atlas, Entry, WordRef } from "./types";
 import { MEDIA } from "./types";
@@ -111,20 +112,22 @@ test(
       assert.equal(primary.manifest.id, "primary-starter");
       assert.equal(primary.manifest.subject, "english");
       assert.equal(primary.manifest.stage, "primary");
-      assert.equal(primary.count, 30);
-      assert.equal(primary.lessons?.length, 6);
+      assert.equal(primary.count, 300);
+      assert.equal(primary.lessons?.length, 33);
 
       const apple = await primary.entry("en-apple");
       assert.equal(apple.id, "en-apple");
-      assert.equal(primary.img(apple), "/atlas/img/apple.webp");
-      assert.equal(primary.audio(apple, "recording"), "/atlas/audio/uk/apple.mp3");
+      assert.equal(primary.img(apple), "/courses/primary-starter/0.4.0-draft/media/atlas/img/apple.webp");
+      assert.equal(primary.audio(apple, "recording"), "/courses/primary-starter/0.4.0-draft/media/atlas/audio/uk/apple.mp3");
+      assert.notEqual(primary.img(apple), versionedCourseMedia("/atlas/img/apple.webp", { ...primary.manifest, version: "0.2.0" }));
+      assert.equal(versionedCourseMedia("https://example.com/signed?x=1", primary.manifest), "https://example.com/signed?x=1");
 
       // Hanzi starter
       const hanzi = await loadCourse("hanzi-starter");
       assert.equal(hanzi.manifest.id, "hanzi-starter");
       assert.equal(hanzi.manifest.subject, "hanzi");
       assert.equal(hanzi.manifest.stage, "preschool");
-      assert.equal(hanzi.count, 20);
+      assert.equal(hanzi.count, 300);
 
       const shan = await hanzi.entry("hanzi-u5c71");
       assert.equal(shan.id, "hanzi-u5c71");

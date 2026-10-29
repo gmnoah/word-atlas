@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u591a",
+  "kind": "sentence",
+  "text": "盘子里有很多水果。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u591a-sentence.wav",
+  "sha256": "89fcdb880a3e86fcfed98b9e4991acec8c0a9b9131c048b758f7af3e0267dc76",
+  "seconds": 2.253,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

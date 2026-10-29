@@ -6,6 +6,7 @@ import {
   answerLabel,
   buildQuestion,
   questionTypes,
+  sameHanziPronunciation,
   type QuestionKind,
 } from "./questions";
 import {
@@ -110,6 +111,10 @@ function answerKeysMatch(
   if (!step.options.every((id) => typeof id === "string")) return false;
   if (!step.options.includes(entry.id)) return false;
   if (new Set(step.options).size !== step.options.length) return false;
+  if (step.kind === "hanzi-listen" && step.options.some((id) => {
+    const option = entriesById.get(id);
+    return id !== entry.id && !!option && sameHanziPronunciation(entry, option);
+  })) return false;
   const keys = step.options.map((id) => {
     const option = entriesById.get(id);
     if (!option || option.kind !== entry.kind) return null;

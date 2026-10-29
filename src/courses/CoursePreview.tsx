@@ -11,10 +11,11 @@ import {
   Sun,
   Volume2,
 } from "lucide-react";
-import { useCallback, useEffect, useReducer, useState } from "react";
+import { lazy, Suspense, useCallback, useEffect, useMemo, useReducer, useState } from "react";
 import { Illustration } from "../ui/Illustration";
 import { Logo } from "../ui/Logo";
 import { Sheet } from "../ui/Sheet";
+import { Toasts } from "../ui/Toast";
 import { store, useStore } from "../store/store";
 import { stopAudio } from "../lib/audio";
 import { setAmbience } from "../lib/sound";
@@ -34,13 +35,23 @@ import {
   previewStats,
 } from "./preview-session";
 import { PreviewSpeak } from "./PreviewSpeak";
+import { exampleTargetParts } from "./example-target";
 import { PrimaryLesson } from "./PrimaryLesson";
-import { PrimaryJourney } from "./PrimaryJourney";
+import { PrimaryJourney, PrimaryTodayButton } from "./PrimaryJourney";
+import { ActivitySummary } from "./ActivitySummary";
+import { readPrimaryProgress } from "../learning/primary-progress";
+import { journeyProgress, suggestedJourneyLessons } from "./journey-progress";
+import { DraftReview } from "./DraftReview";
 import { HanziLesson } from "./HanziLesson";
 import { HanziMap } from "./HanziMap";
+import { readHanziCheckpoint } from "./hanzi-checkpoint";
+import { readCheckpoint } from "./primary-checkpoint";
+import { checkpointSavedAt } from "./resume-order";
+import { watchMandarinVoice } from "./hanzi-voice";
 import { FamilyBackup, FamilyCourseNote, RecentActivity } from "./FamilyPanel";
+import { CourseOpening } from "./CourseOpening";
 import type { HanziLessonMode } from "./hanzi-policy";
-import { entriesFromStartingPoint, primaryPreviewCount, type PrimaryStartingStage } from "./starting-point";
+import { entriesFromStartingPoint, primaryPreviewCount, recommendedPrimaryEntries, type PrimaryStartingStage } from "./starting-point";
 import {
   entryLabel,
   type HanziEntry,
@@ -50,6 +61,7 @@ import {
 import "./preview.css";
 
 const asset = (path: string) => `${import.meta.env.BASE_URL}${path}`;
+const CourseGalaxy = lazy(() => import("./CourseGalaxy"));
 interface Preferences {
   englishCount: number;
   hanziCount: number;
@@ -63,9 +75,13 @@ export default function CoursePreview() {
   }, []);
   const { route } = useLocation();
   const courseId = route.page === "explore" ? route.courseId ?? null : null;
+  const draftSubject = import.meta.env.DEV && courseId === "draft-english" ? "english" : import.meta.env.DEV && courseId === "draft-hanzi" ? "hanzi" : null;
   const entryId = route.page === "explore" ? route.entryId : undefined;
+  const courseView = route.page === "explore" ? route.view : undefined;
   const [course, setCourse] = useState<Course | null>(null);
   const [courseEntries, setCourseEntries] = useState<LearningEntry[]>([]);
+  const entriesById = useMemo(() => new Map(courseEntries.map((entry) => [entry.id, entry])), [courseEntries]);
+  const todayEntries = useMemo(() => recommendedPrimaryEntries(courseEntries, course?.lessons ?? []), [courseEntries, course]);
   const [courseLoading, setCourseLoading] = useState(false);
   const [courseError, setCourseError] = useState<string | null>(null);
   const [lesson, setLesson] = useState<Lesson | null>(null);
@@ -75,31 +91,78 @@ export default function CoursePreview() {
   const [startingWords, setStartingWords] = useState<Record<string, string>>({});
   const [run, setRun] = useState(0);
   const [parentOpen, setParentOpen] = useState(false);
+  const [mapOpen, setMapOpen] = useState(false);
+  const [progressRevision, setProgressRevision] = useState(0);
+  const [mandarinAvailable, setMandarinAvailable] = useState(false);
+  useEffect(() => watchMandarinVoice(window, setMandarinAvailable), []);
+  useEffect(() => {
+    const refresh = () => setProgressRevision((revision) => revision + 1);
+    window.addEventListener("storage", refresh);
+    window.addEventListener("primary-progress-changed", refresh);
+    return () => { window.removeEventListener("storage", refresh); window.removeEventListener("primary-progress-changed", refresh); };
+  }, []);
   const activeProfileId = useProfiles((snapshot) => snapshot.activeProfileId);
+  useEffect(() => setMapOpen(false), [courseId, activeProfileId]);
   const activeProfile = useProfiles(
     (snapshot) =>
       snapshot.profiles.find((profile) => profile.id === snapshot.activeProfileId) ?? snapshot.profiles[0]!,
   );
   const profiles = useProfiles((snapshot) => snapshot.profiles);
+  const exploration = useMemo(() => {
+    void progressRevision;
+    if (!course || !courseId || course.manifest.id !== courseId) return null;
+    const result = readPrimaryProgress(localStorage, activeProfileId, courseId);
+    return result.ok ? journeyProgress(result.progress, course.lessons ?? [], courseEntries.map((entry) => entry.id)) : null;
+  }, [activeProfileId, courseId, course, courseEntries, progressRevision]);
   const primaryPreferences = useProfiles((snapshot) =>
     preferencesFor(snapshot, activeProfileId, "primary-starter"),
   );
   const hanziPreferences = useProfiles((snapshot) =>
     preferencesFor(snapshot, activeProfileId, "hanzi-starter"),
   );
+  const resumableHanzi = useMemo(() => {
+    void progressRevision;
+    if (!course || course.manifest.id !== "hanzi-starter" || courseId !== course.manifest.id) return { best: null, fallback: null, recognition: null, recognitionFallback: null, invalid: false };
+    let invalid = false;
+    let best: { lesson: Lesson; mode: HanziLessonMode; savedAt: number } | null = null;
+    let fallback: Lesson | null = null;
+    let recognition: { lesson: Lesson; savedAt: number } | null = null;
+    let recognitionFallback: Lesson | null = null;
+    const now = Date.now();
+    for (const item of course.lessons ?? []) {
+      const entries = item.entryIds.map((id) => entriesById.get(id)).filter((entry): entry is HanziEntry => !!entry && entry.kind === "hanzi");
+      for (const mode of ["co-read", "lesson"] as const) {
+        const result = readHanziCheckpoint(localStorage, { profileId: activeProfileId, courseId: course.manifest.id, lessonId: item.id,
+          mode, contentVersion: course.manifest.version, entries, voiceAvailable: mandarinAvailable }, now);
+        if (result.status === "invalid") invalid = true;
+        if (mode === "co-read" && result.status === "empty" && !fallback) fallback = item;
+        if (mode === "lesson" && result.status === "empty" && !recognitionFallback) recognitionFallback = item;
+        if (result.status === "ok" && !result.checkpoint.session.endReason) {
+          const savedAt = checkpointSavedAt(result.raw, result.checkpoint.session.startedAt, now);
+          if (!best || savedAt > best.savedAt) best = { lesson: item, mode, savedAt };
+          if (mode === "lesson" && (!recognition || savedAt > recognition.savedAt)) recognition = { lesson: item, savedAt };
+        }
+      }
+    }
+    return { best, fallback, recognition, recognitionFallback, invalid };
+  }, [course, courseId, entriesById, activeProfileId, mandarinAvailable, progressRevision, lesson]);
   const [nicknameDraft, setNicknameDraft] = useState(activeProfile.nickname);
   const [profileMessage, setProfileMessage] = useState<string | null>(null);
   const theme = useStore((s) => s.settings.theme);
+  const openingEnabled = useStore((s) => s.settings.splash);
   const preferences: Preferences =
     course?.manifest.id === "hanzi-starter" ? hanziPreferences : primaryPreferences;
   const lessonPreferences: Preferences = course?.manifest.id === "primary-starter"
     ? { ...preferences, englishCount: primaryPreviewCount(preferences.englishCount, startingStage) }
     : preferences;
-  const openCourse = (id: string) => {
+  const openCourse = (id: string, view?: "journey" | "atlas") => {
     const action = courseAction(id);
-    if (action.kind === "preview") go({ page: "explore", courseId: action.courseId });
+    if (action.kind === "preview") go({ page: "explore", courseId: action.courseId, view });
   };
   const closeParent = useCallback(() => setParentOpen(false), []);
+  const closeEntry = useCallback(() => {
+    if (route.page === "explore") go({ page: "explore", courseId: route.courseId, view: route.view });
+  }, [route]);
   const dark =
     theme === "dark" ||
     (theme === "system" && matchMedia("(prefers-color-scheme: dark)").matches);
@@ -120,6 +183,11 @@ export default function CoursePreview() {
   }, [activeProfileId]);
 
   useEffect(() => {
+    if (draftSubject) {
+      contextCoordinator.switchContext({ profileId: activeProfileId, courseId: null });
+      setLesson(null); setCourse(null); setCourseEntries([]); setCourseError(null); setCourseLoading(false);
+      return;
+    }
     if (!courseId) {
       contextCoordinator.switchContext({ profileId: activeProfileId, courseId: null });
       setCourse(null);
@@ -142,8 +210,6 @@ export default function CoursePreview() {
       .then(async (nextCourse) => {
         const ids = [...new Set(nextCourse.lessons?.flatMap((item) => item.entryIds) ?? [])];
         const entries = (await Promise.all(ids.map((id) => nextCourse.entry(id)))).filter(isLearningEntry);
-        if (entryId && !entries.some((entry) => entry.id === entryId))
-          throw new Error(`课程“${nextCourse.manifest.title}”中没有条目“${entryId}”。`);
         if (controller.signal.aborted || !contextCoordinator.isValid(token, { profileId: activeProfileId, courseId }))
           return;
         setCourse(nextCourse);
@@ -160,7 +226,7 @@ export default function CoursePreview() {
         }
       });
     return () => controller.abort();
-  }, [courseId, entryId, activeProfileId]);
+  }, [courseId, activeProfileId, draftSubject]);
   useEffect(() => {
     window.scrollTo({ top: 0 });
   }, [courseId, lesson, run]);
@@ -209,7 +275,7 @@ export default function CoursePreview() {
         </div>
       </header>
       <main className="main" id="main">
-        {!courseId ? (
+        {draftSubject ? <DraftReview subject={draftSubject} onBack={leaveCourse} /> : !courseId ? (
           <div className="page">
             <header className="greet preview-greet">
               <p className="eyebrow">WORD ATLAS · 一起探索</p>
@@ -235,13 +301,13 @@ export default function CoursePreview() {
                 <div className="journey-actions">
                   <button
                     className="btn btn-primary btn-xl"
-                    onClick={() => openCourse("primary-starter")}
+                    onClick={() => openCourse("primary-starter", "journey")}
                   >
                     探索基础英语 <ArrowRight size={20} />
                   </button>
                   <button
                     className="btn btn-glass"
-                    onClick={() => openCourse("hanzi-starter")}
+                    onClick={() => openCourse("hanzi-starter", "journey")}
                   >
                     一起认汉字
                   </button>
@@ -283,19 +349,27 @@ export default function CoursePreview() {
                           <div className="preview-space-meta">
                             {registered.kind === "legacy"
                               ? `${registered.count.toLocaleString("en-US")} 个词 · 原学习进度保留`
-                              : `${registered.count} ${registered.manifest.subject === "english" ? "个词" : "个字"} · ${registered.lessonCount} 个主题 · 内容草稿`}
+                              : `${registered.count} ${registered.manifest.subject === "english" ? "个词" : "个字"} · ${registered.lessonCount} 个学习单元 · 内容待审校`}
                           </div>
                           {registered.kind === "legacy" ? (
                             <a className="btn btn-ghost" href={registered.href}>
                               继续雅思旅程 <ArrowRight size={17} />
                             </a>
                           ) : (
-                            <button
+                            <><button
+                              className="btn btn-primary"
+                              onClick={() => openCourse(registered.manifest.id, "journey")}
+                            >
+                              开始旅程 <ArrowRight size={17} />
+                            </button><button
                               className="btn btn-ghost"
                               onClick={() => openCourse(registered.manifest.id)}
                             >
                               打开图鉴 <ArrowRight size={17} />
                             </button>
+                            {import.meta.env.DEV && <button className="btn btn-ghost draft-review-entry" onClick={() => go({ page: "explore", courseId: registered.manifest.subject === "english" ? "draft-english" : "draft-hanzi" })}>
+                              检查课程内容 <ArrowRight size={16} />
+                            </button>}</>
                           )}
                         </div>
                       </article>
@@ -337,7 +411,7 @@ export default function CoursePreview() {
               </div>
             </div>
             <p className="preview-disclosure">
-              这是第一版体验样板，内容待教学审校；小学小课的记录保存在本机。
+              课程内容待教学审校；小学小课的记录保存在本机。
               <a href="#/about">
                 素材署名与项目说明 <ChevronRight size={13} />
               </a>
@@ -427,6 +501,75 @@ export default function CoursePreview() {
               </div>
               <BookOpen size={44} strokeWidth={1} />
             </header>
+            <nav aria-label="课程导航" className="course-view-nav">
+              <button className="btn btn-ghost" aria-current={courseView === "journey" ? "page" : undefined}
+                onClick={() => go({ page: "explore", courseId: course.manifest.id, view: "journey" })}>今日旅程</button>
+              <button className="btn btn-ghost" aria-current={courseView !== "records" && courseView !== "journey" ? "page" : undefined}
+                onClick={() => go({ page: "explore", courseId: course.manifest.id, view: "atlas" })}>主题图鉴</button>
+              <button className="btn btn-ghost" aria-current={courseView === "records" ? "page" : undefined}
+                onClick={() => go({ page: "explore", courseId: course.manifest.id, view: "records" })}>学习记录</button>
+            </nav>
+            {courseView === "records" ? <div className="panel course-records"><RecentActivity profileId={activeProfileId} profileName={activeProfile.nickname} />
+              <ActivitySummary profileId={activeProfileId} courseId={course.manifest.id} />
+              <details className="course-theme-records"><summary>查看主题足迹</summary>
+                {exploration ? <><p>只统计看过的内容，并不表示已掌握。相同内容出现在多个主题时会分别显示。</p>
+                  <ul>{(course.lessons ?? []).map((item) => {
+                    const theme = exploration.themes.find((entry) => entry.id === item.id);
+                    return <li key={item.id}>{item.title}：看过 {theme?.viewed ?? 0} / {theme?.total ?? 0} {course.manifest.subject === "hanzi" ? "个字" : "个词"}</li>;
+                  })}</ul></> : <p role="alert">主题记录暂时无法读取，原数据已保留。</p>}
+              </details>
+              <p>更早的逐日活动详情仍在完善。</p></div> : courseView === "journey" ? <>
+              <section className="journey preview-hero">
+                <CourseOpening courseId={course.manifest.id} profileId={activeProfileId} enabled={openingEnabled} />
+                <img className="journey-art" src={asset("brand/hero.webp")} alt="" />
+                <div className="journey-body">
+                  <p className="eyebrow eyebrow-light">{course.manifest.subject === "hanzi" ? "亲子探索" : "今日探索"}</p>
+                  <h2>{course.manifest.subject === "hanzi" ? "一起看看生活里的字。" : "从一个小小的发现开始。"}</h2>
+                  <p className="journey-lede">选择喜欢的主题，随时可以停下来。</p>
+                  <div className="journey-actions">
+                    {course.manifest.id === "primary-starter" && <PrimaryTodayButton profileId={activeProfileId} courseId={course.manifest.id} contentVersion={course.manifest.version}
+                      entries={todayEntries} onToday={() => setLesson({ id: "today", title: "今日小课", subtitle: "回顾与发现", entryIds: todayEntries.map((entry) => entry.id) })} />}
+                    {course.manifest.subject === "hanzi" && (resumableHanzi.best || resumableHanzi.fallback) && <button className="btn btn-primary btn-xl" onClick={() => { const next = resumableHanzi.best?.lesson ?? resumableHanzi.fallback; if (!next) return; setHanziMode(resumableHanzi.best?.mode ?? "co-read"); setLesson(next); }}>{resumableHanzi.best ? `${resumableHanzi.best.mode === "co-read" ? "继续共读" : "继续认一认"}：${resumableHanzi.best.lesson.title}` : "一起读一读"} <ArrowRight size={18} /></button>}
+                    {course.manifest.subject === "hanzi" && resumableHanzi.best?.mode !== "lesson" && (resumableHanzi.recognition || resumableHanzi.recognitionFallback) && <button className="btn btn-glass" onClick={() => { const next = resumableHanzi.recognition?.lesson ?? resumableHanzi.recognitionFallback; if (!next) return; setHanziMode("lesson"); setLesson(next); }}>{resumableHanzi.recognition ? `继续认一认：${resumableHanzi.recognition.lesson.title}` : "试试认一认"}</button>}
+                    <button className="btn btn-glass" onClick={() => go({ page: "explore", courseId: course.manifest.id, view: "atlas" })}>选择主题</button>
+                  </div>
+                  {course.manifest.subject === "hanzi" && resumableHanzi.invalid && <p role="alert">部分小课记录无法读取，原记录已保留；可以选择其他主题。</p>}
+                </div>
+              </section>
+              {course.manifest.id === "primary-starter" && <PrimaryJourney profileId={activeProfileId} courseId={course.manifest.id} contentVersion={course.manifest.version}
+                entries={todayEntries} hideAction onToday={() => setLesson({ id: "today", title: "今日小课", subtitle: "回顾与发现", entryIds: todayEntries.map((entry) => entry.id) })} />}
+              <details open={mapOpen} className="course-galaxy-section panel" onToggle={(event) => setMapOpen(event.currentTarget.open)}>
+                <summary><span>探索知识星图</span><small>一颗星，是一个词或字</small></summary>
+                {mapOpen && <Suspense fallback={<p>正在展开星图…</p>}><CourseGalaxy key={`${activeProfileId}:${course.manifest.id}`} entries={courseEntries} lessons={course.lessons ?? []} profileId={activeProfileId} courseId={course.manifest.id} revision={progressRevision} onOpen={(entry) => go({ page: "explore", courseId: course.manifest.id, view: "journey", entryId: entry.id })} /></Suspense>}
+              </details>
+              <section className="journey-stops" aria-labelledby="journey-stops-title">
+                <div className="preview-section-heading"><div><p className="eyebrow">YOUR EXPLORATIONS</p><h2 id="journey-stops-title">去主题里看看</h2><p>优先展示最近初次看过的主题。</p></div></div>
+                <div className="journey-stops-grid">
+                  {suggestedJourneyLessons(course.lessons ?? [], exploration).map((item) => {
+                    const first = item.entryIds.map((id) => entriesById.get(id)).find(Boolean);
+                    const state = exploration?.themes.find((theme) => theme.id === item.id);
+                    const itemEntries = item.entryIds.map((id) => entriesById.get(id)).filter((entry): entry is LearningEntry => !!entry);
+                    const checkpoint = course.manifest.subject === "hanzi"
+                      ? readHanziCheckpoint(localStorage, { profileId: activeProfileId, courseId: course.manifest.id, lessonId: item.id, mode: "co-read", contentVersion: course.manifest.version, entries: itemEntries.filter((entry): entry is HanziEntry => entry.kind === "hanzi"), voiceAvailable: mandarinAvailable }, Date.now())
+                      : readCheckpoint(localStorage, { profileId: activeProfileId, courseId: course.manifest.id, lessonId: item.id, contentVersion: course.manifest.version, entries: entriesFromStartingPoint(itemEntries, startingWords[item.id]) }, Date.now());
+                    const label = checkpoint.status === "ok" ? (checkpoint.checkpoint.session.endReason ? "查看上次小课" : course.manifest.subject === "hanzi" ? "继续共读" : "继续小课") : course.manifest.subject === "hanzi" ? "一起读一读" : "开始小课";
+                    return <article className="panel journey-stop" data-state={state?.state ?? "unavailable"} key={item.id}>
+                      {first && <Illustration src={course.img(first)} word={entryLabel(first)} />}
+                      <div><h3>{item.title}</h3><p>{state ? state.state === "visited" ? "这一站都看过了" : state.state === "partial" ? "来过这里" : "等你来探索" : "学习记录暂不可用"}</p>
+                        {state && state.total > 0 && <div className="journey-stop-progress">
+                          <span>看过 {state.viewed} / {state.total} {course.manifest.subject === "hanzi" ? "个字" : "个词"}</span>
+                          <progress value={state.viewed} max={state.total} aria-label={`${item.title}看过 ${state.viewed} / ${state.total} ${course.manifest.subject === "hanzi" ? "个字" : "个词"}`} />
+                        </div>}
+                        <button className="btn btn-ghost" disabled={checkpoint.status === "invalid"} onClick={() => { if (course.manifest.subject === "hanzi") setHanziMode("co-read"); setLesson(item); }}>{label} <ArrowRight size={16} /></button>
+                        {checkpoint.status === "invalid" && <p role="alert">这次小课记录暂时无法读取，原记录已保留。可以选择其他主题。</p>}
+                      </div>
+                    </article>;
+                  })}
+                </div>
+                <button className="btn btn-ghost" onClick={() => go({ page: "explore", courseId: course.manifest.id, view: "atlas" })}>查看全部主题 <ArrowRight size={16} /></button>
+              </section>
+              <p className="preview-disclosure">主题进度来自本机学习记录；看过不代表掌握。</p>
+            </> : <>
             {course.manifest.id === "primary-starter" && (
               <section className="preview-starting-stage" aria-labelledby="starting-stage-title">
                 <div>
@@ -453,13 +596,15 @@ export default function CoursePreview() {
                 <p className="preview-stage-note">两种节奏暂用同一组体验词，结合看图和听音练习；实际词数还受家长设置影响。</p>
               </section>
             )}
-            {course.manifest.id === "primary-starter" && <PrimaryJourney profileId={activeProfileId} courseId={course.manifest.id}
-              entries={courseEntries} onToday={() => setLesson({ id: "today", title: "今日小课", subtitle: "回顾与发现", entryIds: courseEntries.map((entry) => entry.id) })} />}
+            {course.manifest.id === "primary-starter" && <PrimaryJourney profileId={activeProfileId} courseId={course.manifest.id} contentVersion={course.manifest.version}
+              entries={todayEntries} onToday={() => setLesson({ id: "today", title: "今日小课", subtitle: "回顾与发现", entryIds: todayEntries.map((entry) => entry.id) })} />}
             {course.manifest.subject === "hanzi" ? (
               <HanziMap
                 course={course}
                 lessons={course.lessons ?? []}
                 entries={courseEntries}
+                exploration={exploration}
+                onOpenEntry={(entry) => go({ page: "explore", courseId: course.manifest.id, view: "atlas", entryId: entry.id })}
                 onStart={(next) => {
                   setHanziMode("lesson");
                   setLesson(next);
@@ -485,7 +630,7 @@ export default function CoursePreview() {
             <div className="preview-lessons">
               {(course.lessons ?? []).map((l, i) => {
                 const entries = l.entryIds
-                  .map((id) => courseEntries.find((e) => e.id === id))
+                  .map((id) => entriesById.get(id))
                   .filter((e): e is LearningEntry => !!e);
                 return (
                   <article className="panel preview-lesson-tile" key={l.id}>
@@ -503,10 +648,11 @@ export default function CoursePreview() {
                           : "个字"}
                       </p>
                       <h2>{l.title}</h2>
+                      {exploration && <p>看过 {exploration.themes[i]?.viewed ?? 0} / {exploration.themes[i]?.total ?? 0} 个词</p>}
                       <p>{l.subtitle}</p>
                       <div className="preview-word-list">
                         {entries.map((e) => (
-                          <span key={e.id}>{entryLabel(e)}</span>
+                          <button type="button" key={e.id} className="preview-entry-link" onClick={() => go({ page: "explore", courseId: course.manifest.id, view: "atlas", entryId: e.id })} aria-label={`查看 ${entryLabel(e)} 词卡`}>{entryLabel(e)}</button>
                         ))}
                       </div>
                       {course.manifest.id === "primary-starter" && entries.length > 0 && (
@@ -532,11 +678,12 @@ export default function CoursePreview() {
             </div>
               </>
             )}
+            </>}
             <p className="preview-disclosure">
               内容为待审校草稿。
               {course.manifest.subject === "hanzi"
                 ? "普通话使用设备朗读预览，也可以由家长读一读；共读只浏览，不计识别成绩。"
-                : "单词播放原项目英音，例句为新编草稿。"}
+                : "单词播放原项目英音，例句内容待审校。"}
               {course.manifest.id === "primary-starter"
                 ? "小学学习记录保存在本机。"
                 : "汉字学习记录按学习者和课程保存在本机。"}
@@ -548,6 +695,24 @@ export default function CoursePreview() {
         <Logo compact />
         <span>一词一画，一起发现世界。</span>
       </footer>
+      <Sheet open={!!entryId && !!course} onClose={closeEntry} label="课程条目" wide>
+        {entryId && course && !entriesById.has(entryId) && <p role="alert">课程中没有找到这个条目，请返回图鉴选择。</p>}
+        {entryId && course && entriesById.has(entryId) && (() => {
+          const entry = entriesById.get(entryId)!;
+          const text = entry.kind === "english" ? entry.word : entry.phrase;
+          const example = entry.kind === "english" ? exampleTargetParts(entry.example.text, entry.example.targetForm) : null;
+          return <div className="course-entry-detail">
+            <Illustration src={course.img(entry)} word={entryLabel(entry)} />
+            <div><p className="eyebrow">课程图鉴</p><h2>{entryLabel(entry)}</h2>
+              <p>{entry.kind === "english" ? entry.meaning : entry.phrase}</p>
+              <PreviewSpeak text={text} locale={entry.kind === "english" ? entry.media.locale : "zh-CN"} recording={course.audio(entry)} slow={preferences.slow} />
+              {entry.kind === "english" ? <div className="preview-example"><p lang="en">{example ? <>{example[0]}<mark className="example-target">{example[1]}</mark>{example[2]}</> : entry.example.text}</p><span>{entry.example.translation}</span></div>
+                : <><p>{entry.sentence}</p><details><summary>给家长的小提示</summary><p>拼音：{entry.pinyin}</p><p>{entry.caregiverTip}</p></details></>}
+              <p className="preview-disclosure">内容为待审校草稿。{entry.kind === "hanzi" ? "普通话使用设备朗读，也可以请家长读一读。" : "例句和语音仍需审校。"}</p>
+            </div>
+          </div>;
+        })()}
+      </Sheet>
       <Sheet open={parentOpen} onClose={closeParent} label="家长设置">
         <div className="preview-parent">
           <p className="eyebrow">陪伴，而不催促</p>
@@ -678,6 +843,7 @@ export default function CoursePreview() {
           </button>
         </div>
       </Sheet>
+      <Toasts />
     </div>
   );
 }

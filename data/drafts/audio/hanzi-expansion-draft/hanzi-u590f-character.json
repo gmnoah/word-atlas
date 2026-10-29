@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u590f",
+  "kind": "character",
+  "text": "夏",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u590f-character.wav",
+  "sha256": "4250742aecc3f8cf0b64c99cb67a9622094fc67690c6ad83c4dc42d7f251fee2",
+  "seconds": 0.558,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

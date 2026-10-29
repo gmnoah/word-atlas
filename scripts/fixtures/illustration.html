@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Illustration recovery fixture</title></head>
+<body><div id="root"></div><script type="module">
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import { Illustration } from '/src/ui/Illustration.tsx';
+const root = createRoot(document.getElementById('root'));
+window.showIllustration = (src, word) => root.render(React.createElement(Illustration, {src, word, alt: word, eager: true}));
+window.showIllustration('/atlas/img/apple.webp', 'apple');
+</script></body></html>

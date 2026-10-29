@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u9762",
+  "kind": "character",
+  "text": "面",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u9762-character.wav",
+  "sha256": "6fa59de94abbcdac11c86fff3041fa9b20dd4cddb86b0c7593b79765ce759bc3",
+  "seconds": 0.617,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

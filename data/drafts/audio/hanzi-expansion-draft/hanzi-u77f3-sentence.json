@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u77f3",
+  "kind": "sentence",
+  "text": "路边有一块石头。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u77f3-sentence.wav",
+  "sha256": "3bf2e549f205d7517fa4eec626e764ca028d06b4531344f485005e5bb53fe067",
+  "seconds": 1.986,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

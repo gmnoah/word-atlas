@@ -1,0 +1,13 @@
+{
+  "course": "primary-expansion-draft",
+  "id": "en-milk",
+  "kind": "sentence",
+  "text": "I drink milk.",
+  "voice": "Daniel",
+  "locale": "en-GB",
+  "file": "data/drafts/audio/primary-expansion-draft/en-milk-sentence.wav",
+  "sha256": "940d8574c6b7db6b1f584911e8da163b75b777b6f69cf48ed7048f10ade92833",
+  "seconds": 1.306,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

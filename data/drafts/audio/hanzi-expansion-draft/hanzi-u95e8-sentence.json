@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u95e8",
+  "kind": "sentence",
+  "text": "我们轻轻关上房门。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u95e8-sentence.wav",
+  "sha256": "68b34178abc642191bb21d449cca704bbe4318031420037a863343f89a75f005",
+  "seconds": 2.243,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

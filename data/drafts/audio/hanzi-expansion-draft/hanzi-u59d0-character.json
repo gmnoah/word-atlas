@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u59d0",
+  "kind": "character",
+  "text": "姐",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u59d0-character.wav",
+  "sha256": "459ba871c642897af41e16cedbfeb661c795c59f43648808f268edf4dc4ed6d2",
+  "seconds": 0.456,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

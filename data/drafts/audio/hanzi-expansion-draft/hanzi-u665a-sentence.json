@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u665a",
+  "kind": "sentence",
+  "text": "晚上，我们一起看书。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u665a-sentence.wav",
+  "sha256": "9ff3863ba635d139afa0ce1c2262d94e94152fe5074920abc95f712547a15e69",
+  "seconds": 2.533,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

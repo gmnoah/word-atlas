@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u7c73",
+  "kind": "sentence",
+  "text": "大米可以煮成饭。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u7c73-sentence.wav",
+  "sha256": "1be205f6d72639d80005df50070c5ecf5aba6345e1a83ad6270fa92ac9a2aaea",
+  "seconds": 1.951,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

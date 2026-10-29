@@ -1,0 +1,13 @@
+{
+  "course": "primary-expansion-draft",
+  "id": "en-rice",
+  "kind": "sentence",
+  "text": "I like rice.",
+  "voice": "Daniel",
+  "locale": "en-GB",
+  "file": "data/drafts/audio/primary-expansion-draft/en-rice-sentence.wav",
+  "sha256": "6600059b7ec72879e76c5225942f0ccced2cc07ac93e387c4a93b1b5595a4970",
+  "seconds": 1.41,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

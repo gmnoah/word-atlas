@@ -1,3 +1,4 @@
+import { saveSessionActivity } from "../learning/activity-record";
 import { ArrowLeft, ArrowRight, Check, Leaf } from "lucide-react";
 import { useCallback, useEffect, useReducer, useRef, useState } from "react";
 import type { Course } from "../atlas/types";
@@ -9,7 +10,7 @@ import { PreviewSpeak } from "./PreviewSpeak";
 import { primaryVisualPolicy, type PrimaryStartingStage } from "./starting-point";
 import { entryLabel, type LearningEntry, type Lesson } from "./types";
 import { clearCheckpoint, readCheckpoint, saveCheckpoint } from "./primary-checkpoint";
-import { applyPrimarySession, primaryReviewIds, readPrimaryProgress, withPrimaryLock, writePrimaryProgress } from "../learning/primary-progress";
+import { applyPrimarySession, primaryReviewIds, readPrimaryProgress, readRestoreGeneration, withPrimaryLock, writePrimaryProgress } from "../learning/primary-progress";
 import { PrimaryFavorite } from "./PrimaryJourney";
 
 export function PrimaryLesson({ course, lesson, entries, profileId, stage, spellingEnabled, count, slow, onExit, onRestart }: {
@@ -27,6 +28,7 @@ export function PrimaryLesson({ course, lesson, entries, profileId, stage, spell
   const [loaded] = useState(() => readCheckpoint(localStorage, { profileId, courseId: course.manifest.id,
     lessonId: lesson.id, contentVersion: course.manifest.version, entries }, Date.now()));
   const expected = useRef<string | null>(loaded.raw);
+  const generation = useRef(readRestoreGeneration(localStorage));
   const blocked = useRef(loaded.status === "invalid");
   const progressFailure = useRef(false);
   const [saveError, setSaveError] = useState(loaded.status === "invalid");
@@ -59,7 +61,7 @@ export function PrimaryLesson({ course, lesson, entries, profileId, stage, spell
   const [failedImageStep, setFailedImageStep] = useState<number | null>(null);
   const [audioPlayback, setAudioPlayback] = useState<{
     index: number;
-    state: "playing" | "ready" | "error";
+    state: "waiting" | "playing" | "ready" | "error";
   } | null>(null);
   const [spellingInput, setSpellingInput] = useState<{ index: number; value: string } | null>(null);
   const closeExit = useCallback(() => setExitOpen(false), []);
@@ -96,16 +98,17 @@ export function PrimaryLesson({ course, lesson, entries, profileId, stage, spell
       try {
         const updated = applyPrimarySession(stored.progress, session);
         const changed = JSON.stringify(stored.progress) !== JSON.stringify(updated);
-        const ok = !changed || writePrimaryProgress(localStorage, updated);
+        const progressOk = !changed || writePrimaryProgress(localStorage, updated);
+        const ok = progressOk && saveSessionActivity(localStorage, profileId, session, "lesson", Date.now());
         progressFailure.current = !ok;
         setProgressError(!ok);
         if (ok && changed) window.dispatchEvent(new Event("primary-progress-changed"));
       } catch { progressFailure.current = true; setProgressError(true); }
-    }).catch(() => { blocked.current = true; setSaveError(true); });
+    }, generation.current).catch(() => { blocked.current = true; setSaveError(true); });
   }, [session, profileId, course.manifest.id, lesson.id, sessionStage, sessionSpelling, saveError]);
   const leaveFinished = async (action: () => void) => {
     if (progressError && !saveError) { action(); return; }
-    const cleared = saveError || await withPrimaryLock(profileId, course.manifest.id, () => progressFailure.current || clearCheckpoint(localStorage, { profileId, courseId: course.manifest.id, lessonId: lesson.id }, expected.current)).catch(() => false);
+    const cleared = saveError || await withPrimaryLock(profileId, course.manifest.id, () => progressFailure.current || clearCheckpoint(localStorage, { profileId, courseId: course.manifest.id, lessonId: lesson.id }, expected.current), generation.current).catch(() => false);
     if (!cleared) {
       setSaveError(true);
       return;
@@ -136,7 +139,7 @@ export function PrimaryLesson({ course, lesson, entries, profileId, stage, spell
         <span>{session.endedAt ? "这次的小发现" : `${session.index + 1} / ${session.steps.length}`}</span>
       </div>
       {saveError && <p role="alert" className="preview-disclosure">这次小课暂时无法保存：本地记录不可用或已在其他页面更改。原有记录会保留，本页的后续操作可能无法恢复。</p>}
-      {progressError && <p role="alert" className="preview-disclosure">学习结果暂时无法保存，已保留本次小课记录，可稍后重新打开并重试。</p>}
+      {progressError && !saveError && <p role="alert" className="preview-disclosure">学习结果暂时无法保存，已保留本次小课记录，可稍后重新打开并重试。</p>}
       <div className="preview-progress" role="progressbar" aria-label="小课进度"
         aria-valuenow={session.index} aria-valuemin={0} aria-valuemax={session.steps.length || 1}>
         <span style={{ width: `${session.steps.length ? (session.index / session.steps.length) * 100 : 0}%` }} />
@@ -147,12 +150,13 @@ export function PrimaryLesson({ course, lesson, entries, profileId, stage, spell
           <p className="eyebrow">A LITTLE DISCOVERY</p>
           <h1 className="display">今天，又认识了新朋友。</h1>
           <p>{session.endReason === "time-limit" ? "这次先休息一下，下次再一起探索。" : "一起回到生活里，找找刚才遇见的词吧。"}</p>
-          <dl className="mini-stats">
+          <dl className="mini-stats is-detailed">
             <div><dt>接触过</dt><dd>{stats.introduced}<small>个</small></dd></div>
-            <div><dt>独立找对</dt><dd>{stats.independent}<small>个</small></dd></div>
-            <div><dt>提示或协助</dt><dd>{stats.supported}<small>个</small></dd></div>
+            <div><dt>独立答对</dt><dd>{stats.independent}<small>个</small></dd></div>
+            <div><dt>提示后答对</dt><dd>{stats.hinted}<small>个</small></dd></div>
+            <div><dt>一起答对</dt><dd>{stats.assisted}<small>个</small></dd></div>
           </dl>
-          <p className="preview-disclosure">接触和找对不代表已经掌握。学习记录保存在这台设备。</p>
+          <p className="preview-disclosure">仅统计首次答对；接触和答对不代表已经掌握。{saveError ? "本次小课未能保存。" : progressError ? "学习结果暂未保存，小课记录已保留。" : "学习记录保存在这台设备。"}</p>
           <div className="preview-actions">
             <button className="btn btn-primary btn-xl" onClick={() => leaveFinished(onExit)}>回到主题 <ArrowRight size={18} /></button>
             <button className="btn btn-ghost" onClick={() => leaveFinished(onRestart)}>再体验一次</button>
@@ -227,7 +231,7 @@ export function PrimaryLesson({ course, lesson, entries, profileId, stage, spell
                         {result.support !== "independent" && <small>这次是一起找到的，不计作独立答对。</small>}</>
                     ) : session.support !== "independent" ? (
                       <><strong>{entryLabel(entry)}</strong><span>{session.support === "assisted" ? "请家长一起找找这个新朋友。" : "看看它的样子，再找一找。"}</span></>
-                    ) : <span>慢慢来，不计时。</span>}
+                    ) : <span>{audioQuestion && audioState !== "ready" ? "先听一听，再慢慢选。" : "慢慢来，不计时。"}</span>}
                   </div>
                   {answered ? <button className="btn btn-primary btn-xl" onClick={() => dispatch({ type: "next" })}>
                     继续 <ArrowRight size={20} />
@@ -242,13 +246,13 @@ export function PrimaryLesson({ course, lesson, entries, profileId, stage, spell
           {!answered && <button className="btn preview-skip" onClick={() => dispatch({ type: resourceFailed && !intro ? "resource-error" : "skip" })}>
             先跳过，下次再认识
           </button>}
-          <p className="preview-disclosure">图片与内容为体验草稿；小课保存在这台设备，再次打开同一主题可继续。</p>
+          <p className="preview-disclosure">图片与内容为体验草稿；{saveError ? "本次小课暂时无法保存。" : progressError ? "学习结果暂未保存，小课记录已保留。" : "小课保存在这台设备，再次打开同一主题可继续。"}</p>
         </>
       )}
       <Sheet open={exitOpen} onClose={closeExit} label="暂时结束小课">
         <div className="preview-parent">
           <h2>先休息一下吗？</h2>
-          <p>返回主题后，下次打开同一主题可以接着进行。学习记录保存在这台设备。</p>
+          <p>{saveError ? "当前小课暂时无法保存，返回后本次进度可能无法恢复；原有记录会保留。" : progressError ? "学习结果暂时无法保存，本次小课记录已保留；返回后可重新打开并重试。" : "返回主题后，下次打开同一主题可以接着进行。学习记录保存在这台设备。"}</p>
           <div className="preview-actions">
             <button className="btn btn-primary" onClick={closeExit}>继续这次小课</button>
             <button className="btn btn-ghost" onClick={onExit}>结束体验</button>

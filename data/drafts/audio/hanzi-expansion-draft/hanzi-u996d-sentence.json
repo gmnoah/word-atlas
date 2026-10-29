@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u996d",
+  "kind": "sentence",
+  "text": "碗里有米饭。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u996d-sentence.wav",
+  "sha256": "a9aca0ce41b4821c90d3e9d660ada956eb61c6a73405d506d1f6c0d884468437",
+  "seconds": 1.43,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

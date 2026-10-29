@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u6797",
+  "kind": "sentence",
+  "text": "树林里有许多树。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u6797-sentence.wav",
+  "sha256": "825a8b1757d482bd58f78cbf1730422c6d23160bf61cdcb262fa6502d245fd18",
+  "seconds": 1.891,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

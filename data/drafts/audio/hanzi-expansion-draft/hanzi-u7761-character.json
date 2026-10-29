@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u7761",
+  "kind": "character",
+  "text": "睡",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u7761-character.wav",
+  "sha256": "87fa9b5e48ff36c8171a579637ed7f8b40c533dcd32fd7b5123cb5cdb2a541c5",
+  "seconds": 0.569,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

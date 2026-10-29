@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u559d",
+  "kind": "sentence",
+  "text": "运动后我喝水。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u559d-sentence.wav",
+  "sha256": "a26ec6ab29c218ef9ee64e6ce7478ecded62344f01c34d470fb22cf9282cfb40",
+  "seconds": 1.777,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

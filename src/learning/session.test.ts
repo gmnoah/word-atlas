@@ -166,6 +166,8 @@ test("T18: a wrong answer inserts at most two practice retries and none are grad
   assert.deepEqual(learningSessionStats(session), {
     introduced: 0,
     independent: 0,
+    hinted: 0,
+    assisted: 0,
     supported: 0,
     skipped: 0,
     resourceErrors: 0,
@@ -335,4 +337,20 @@ test("T17: an overdue review backlog ends normally after the cap", () => {
   }
   assert.equal(session.endReason, "completed");
   assert.equal(learningSessionStats(session).skipped, 8);
+});
+
+test("session results separate first independent, hinted and assisted correct answers", () => {
+  for (const support of ["independent", "hinted", "assisted"] as const) {
+    let session = single(many[0], many);
+    if (support !== "independent") session = learningReducer(session, { type: "support", support, at: 1100 });
+    session = learningReducer(session, { type: "answer", optionId: correctOption(session), at: 1200 });
+    const stats = learningSessionStats(session);
+    assert.equal(stats.independent, support === "independent" ? 1 : 0);
+    assert.equal(stats.hinted, support === "hinted" ? 1 : 0);
+    assert.equal(stats.assisted, support === "assisted" ? 1 : 0);
+  }
+  let wrong = single(many[0], many);
+  wrong = learningReducer(wrong, { type: "support", support: "hinted", at: 1100 });
+  wrong = learningReducer(wrong, { type: "answer", optionId: wrongOption(wrong), at: 1200 });
+  assert.equal(learningSessionStats(wrong).hinted, 0, "a hinted wrong answer is not presented as a success");
 });

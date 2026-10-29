@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u5c11",
+  "kind": "sentence",
+  "text": "杯子里的水很少。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u5c11-sentence.wav",
+  "sha256": "706bba2b2f9103c368c36d72d6d29fd81bc6421b921c570fc36b95e6b3619cdf",
+  "seconds": 1.808,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

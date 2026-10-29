@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u5b69",
+  "kind": "sentence",
+  "text": "孩子们一起唱歌。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u5b69-sentence.wav",
+  "sha256": "517371f26d94d387ba8e70c344b3f585ea656b2230019b0e5a0e70ccd4dedd07",
+  "seconds": 1.92,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

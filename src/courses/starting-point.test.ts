@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { sampleCourses } from "./samples";
 import { createPreviewSession } from "./preview-session";
-import { entriesFromStartingPoint, primaryPreviewCount, primaryVisualPolicy } from "./starting-point";
+import { entriesFromStartingPoint, primaryPreviewCount, primaryVisualPolicy, recommendedPrimaryEntries } from "./starting-point";
 import { createLearningSession, currentStep, learningReducer } from "../learning/session";
 
 const entries = sampleCourses[0].entries.slice(0, 5);
@@ -57,4 +57,28 @@ test("T22: spelling submission is normalized and a repeated answer cannot change
   assert.equal(first.result.outcome === "answered" && first.result.correct, true);
   session = learningReducer(session, { type: "answer", at: 2100, value: "wrong" });
   assert.equal(session.attempts[entries[0].id], first);
+});
+
+
+test("today prioritizes the familiar themes without losing or duplicating any course entries", () => {
+  const course = sampleCourses[0];
+  const reversed = [...course.entries].reverse();
+  const ordered = recommendedPrimaryEntries(reversed, course.lessons);
+  assert.deepEqual(ordered.slice(0, 5).map((entry) => entry.id), course.lessons.find((lesson) => lesson.id === "fruit")!.entryIds);
+  assert.equal(ordered.length, course.entries.length);
+  assert.deepEqual(new Set(ordered.map((entry) => entry.id)), new Set(course.entries.map((entry) => entry.id)));
+  assert.deepEqual(recommendedPrimaryEntries(reversed, []), reversed);
+  const partial = recommendedPrimaryEntries([reversed[0], reversed[0]], course.lessons);
+  assert.deepEqual(partial, [reversed[0]]);
+});
+
+test("recommended ordering leaves due reviews ahead of new words", () => {
+  const course = sampleCourses[0];
+  const pool = recommendedPrimaryEntries([...course.entries].reverse(), course.lessons);
+  const due = pool.find((entry) => entry.id === "en-library")!;
+  const session = createLearningSession({ courseId: "primary-starter", contentVersion: "draft",
+    policy: primaryVisualPolicy("starter"), pool, due: [due],
+    fresh: pool.filter((entry) => entry.id !== due.id), requestedNewCount: 3, now: 1000, seed: 2 });
+  assert.equal(session.steps[0].contentId, due.id);
+  assert.equal(session.newIds[0], "en-apple");
 });

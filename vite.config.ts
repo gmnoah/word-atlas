@@ -3,6 +3,12 @@ import react from "@vitejs/plugin-react";
 import fs from "node:fs";
 import path from "node:path";
 import type { IncomingMessage, ServerResponse } from "node:http";
+import { sampleCourses } from "./src/courses/samples";
+import { courseProductionManifest } from "./src/courses/content-production";
+import { validateCourseInput } from "./src/courses/validate-input";
+import { courseRegistry } from "./src/courses/registry";
+import { archiveCourse } from "./scripts/course-archive-lib";
+import { draftReviewMiddleware } from "./scripts/draft-review-server";
 // Local-only content is never copied into dist or the public archive.
 function localMedia(
   req: IncomingMessage,
@@ -90,8 +96,25 @@ export default defineConfig({
   plugins: [
     react(),
     {
+      name: "course-production-manifests",
+      apply: "build",
+      generateBundle() {
+        for (const course of sampleCourses) {
+          const registered = courseRegistry.find((item) => item.manifest.id === course.manifest.id);
+          if (!registered) this.error(`课程 ${course.manifest.id} 未注册`);
+          try { archiveCourse(course, process.cwd(), false); }
+          catch (error) { this.error(error instanceof Error ? error.message : "课程资源归档检查失败"); }
+          const report = validateCourseInput(course, (relative) => fs.existsSync(path.resolve("public", relative)), registered.manifest.version);
+          if (report.errors.length) this.error(`课程 ${course.manifest.id} 结构校验未通过：${report.errors.map((error) => error.code).join(", ")}`);
+          this.emitFile({ type: "asset", fileName: `courses/${course.manifest.id}/${course.manifest.version}/manifest.json`,
+            source: JSON.stringify(courseProductionManifest(course), null, 2) + "\n" });
+        }
+      },
+    },
+    {
       name: "private-local-library",
       configureServer(server) {
+        server.middlewares.use(draftReviewMiddleware);
         server.middlewares.use(localMedia);
       },
       configurePreviewServer(server) {

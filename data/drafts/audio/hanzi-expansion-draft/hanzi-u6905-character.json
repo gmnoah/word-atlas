@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u6905",
+  "kind": "character",
+  "text": "椅",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u6905-character.wav",
+  "sha256": "4b1cf3bf6a9eef3e5d06d8a985971fa782d24701d521911d4d29b0c22ef6695b",
+  "seconds": 0.476,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "course": "primary-expansion-draft",
+  "id": "en-eye",
+  "kind": "sentence",
+  "text": "Close your eyes.",
+  "voice": "Daniel",
+  "locale": "en-GB",
+  "file": "data/drafts/audio/primary-expansion-draft/en-eye-sentence.wav",
+  "sha256": "46052e06af79b4296e25dd64ebee335c98b5aef403ca4b4b64e65ff1d76a4106",
+  "seconds": 1.329,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

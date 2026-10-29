@@ -13,6 +13,8 @@ export interface HanziPolicyOptions {
   coReading?: boolean;
   /** Number of characters to show while co-reading. */
   entryCount?: number;
+  /** Candidate illustrations have not yet been checked for ambiguous answers. */
+  disablePicture?: boolean;
 }
 
 const withVoice = (voiceAvailable: boolean): readonly QuestionKind[] =>
@@ -27,7 +29,7 @@ const withVoice = (voiceAvailable: boolean): readonly QuestionKind[] =>
 export function hanziPolicy(options: HanziPolicyOptions): LearningPolicy {
   const base: LearningPolicy = {
     ...HANZI_PARENT_POLICY,
-    allowedKinds: withVoice(options.voiceAvailable),
+    allowedKinds: withVoice(options.voiceAvailable).filter((kind) => !options.disablePicture || kind !== "hanzi-picture"),
   };
   const minutes =
     options.timeLimitMinutes === undefined || options.timeLimitMinutes === null

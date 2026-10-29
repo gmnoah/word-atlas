@@ -1580,6 +1580,35 @@ code {
   font-size: 13px;
   color: rgba(255, 255, 255, 0.75);
 }
+.journey-words {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  list-style: none;
+  margin: 13px 0 0;
+  padding: 0;
+}
+.journey-words button {
+  min-height: 36px;
+  max-width: 100%;
+  padding: 5px 13px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 999px;
+  background: rgba(18, 24, 42, 0.65);
+  color: #fffdf8;
+  font: 600 15px/1.4 var(--serif);
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+.journey-words button:hover { background: rgba(18, 24, 42, 0.9); }
+.journey-words button:focus-visible { outline: 2px solid #fffdf8; outline-offset: 3px; }
+@media (prefers-reduced-motion: no-preference) {
+  .journey-words li { animation: journey-word-arrive 450ms var(--word-delay) var(--ease) both; }
+  @keyframes journey-word-arrive {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
 .journey-actions {
   display: flex;
   flex-wrap: wrap;
@@ -1651,11 +1680,31 @@ code {
   min-width: 0;
 }
 .wotd-word {
+  display: block;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
   font: 600 38px/1.05 var(--serif);
   font-variation-settings: "opsz" 96;
   letter-spacing: -0.02em;
   margin: 8px 0 10px;
   overflow-wrap: anywhere;
+}
+.wotd-word:focus-visible {
+  outline: 2px solid var(--terra);
+  outline-offset: 5px;
+  border-radius: var(--r-sm);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .wotd-art { animation: wotd-reveal 500ms var(--ease) both; }
+  .wotd-word { animation: wotd-reveal 500ms 80ms var(--ease) both; }
+  @keyframes wotd-reveal {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 }
 .wotd-zh {
   margin-top: 10px;

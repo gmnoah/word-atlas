@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u866b",
+  "kind": "character",
+  "text": "虫",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u866b-character.wav",
+  "sha256": "07d3f9e8bce43ff2cbeb6cbe29aa9f832345effbb1ada1faf3edefc9ddaf51fa",
+  "seconds": 0.622,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

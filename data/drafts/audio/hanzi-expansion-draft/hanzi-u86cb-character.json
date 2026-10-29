@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u86cb",
+  "kind": "character",
+  "text": "蛋",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u86cb-character.wav",
+  "sha256": "b54367dc7de43c184706c84d92a24e81caf955453525d350e029e4d7a2dedef1",
+  "seconds": 0.478,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

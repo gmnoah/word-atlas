@@ -1,0 +1,13 @@
+{
+  "course": "primary-expansion-draft",
+  "id": "en-water",
+  "kind": "sentence",
+  "text": "Please drink some water.",
+  "voice": "Daniel",
+  "locale": "en-GB",
+  "file": "data/drafts/audio/primary-expansion-draft/en-water-sentence.wav",
+  "sha256": "fd6f822b51e7a5a8f8f84e8ae1247a281f49b51a657dd5659d6c4970a381d3c1",
+  "seconds": 1.66,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

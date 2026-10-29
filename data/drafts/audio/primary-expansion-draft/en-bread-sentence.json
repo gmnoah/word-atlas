@@ -1,0 +1,13 @@
+{
+  "course": "primary-expansion-draft",
+  "id": "en-bread",
+  "kind": "sentence",
+  "text": "This bread is soft.",
+  "voice": "Daniel",
+  "locale": "en-GB",
+  "file": "data/drafts/audio/primary-expansion-draft/en-bread-sentence.wav",
+  "sha256": "6b4100effaf840efa1c1b983e052f49ba62efe576ae2a53ec8ce36201fca3857",
+  "seconds": 1.496,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u6e56",
+  "kind": "sentence",
+  "text": "湖水映着天空。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u6e56-sentence.wav",
+  "sha256": "617a7bed847bdc8149dc8c52cd09f23199d51c2e4c79e51b5df0a3e3ee66dd0d",
+  "seconds": 1.829,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u5929",
+  "kind": "sentence",
+  "text": "天空中有白云。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u5929-sentence.wav",
+  "sha256": "ca81ad84c34760f935d274cd0f442d04a263884352a18cd9aa2b6992bd8d5e3c",
+  "seconds": 1.941,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

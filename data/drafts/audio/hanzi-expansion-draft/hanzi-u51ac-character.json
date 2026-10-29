@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u51ac",
+  "kind": "character",
+  "text": "冬",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u51ac-character.wav",
+  "sha256": "e27f3f1c0519d32d1dc2d98542de329d7e36bea68c9f635155f2e20f843113e9",
+  "seconds": 0.523,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u59b9",
+  "kind": "sentence",
+  "text": "妹妹拿着一本书。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u59b9-sentence.wav",
+  "sha256": "6d2f5344b8dbc56f9b3c8ab8058af6e115b1bd9b487e0cc3f56b9b71801c1e48",
+  "seconds": 1.836,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

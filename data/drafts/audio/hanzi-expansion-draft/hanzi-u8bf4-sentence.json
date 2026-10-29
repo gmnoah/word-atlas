@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u8bf4",
+  "kind": "sentence",
+  "text": "我们轻轻地说话。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u8bf4-sentence.wav",
+  "sha256": "5e1c3bec0049e9ecbbc442fcd5a53ac34fc067e0636e49fec1b960931967f0e5",
+  "seconds": 1.848,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

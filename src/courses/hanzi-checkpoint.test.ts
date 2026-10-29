@@ -84,6 +84,99 @@ test("T25/T27: a Hanzi checkpoint resumes with its first answer locked", () => {
   assert.deepEqual(repeated.attempts, session.attempts);
 });
 
+test("an original Hanzi lesson checkpoint survives the expansion", () => {
+  const { storage } = memory();
+  const checkpoint = fixture();
+  checkpoint.session.contentVersion = "0.1.0-draft";
+  saveHanziCheckpoint(storage, checkpoint, null);
+  const restored = readHanziCheckpoint(storage, scope, 50_000);
+  assert.equal(restored.status, "ok");
+  if (restored.status === "ok") {
+    assert.equal(restored.checkpoint.session.contentVersion, "0.7.0-draft");
+    assert.deepEqual(restored.checkpoint.session.attempts, checkpoint.session.attempts);
+  }
+});
+
+test("a 0.5 sample lesson resumes after its context is revised", () => {
+  const { storage } = memory();
+  const checkpoint = fixture();
+  checkpoint.session.contentVersion = "0.5.0-draft";
+  saveHanziCheckpoint(storage, checkpoint, null);
+  const restored = readHanziCheckpoint(storage, scope, 50_000);
+  assert.equal(restored.status, "ok");
+  if (restored.status === "ok") {
+    assert.equal(restored.checkpoint.session.contentVersion, scope.contentVersion);
+    assert.deepEqual(restored.checkpoint.session.attempts, checkpoint.session.attempts);
+  }
+});
+
+test("a 0.6 lesson resumes after the sample vocabulary is refined", () => {
+  const { storage } = memory();
+  const checkpoint = fixture();
+  checkpoint.session.contentVersion = "0.6.0-draft";
+  saveHanziCheckpoint(storage, checkpoint, null);
+  const restored = readHanziCheckpoint(storage, scope, 50_000);
+  assert.equal(restored.status, "ok");
+  if (restored.status === "ok") {
+    assert.equal(restored.checkpoint.session.contentVersion, scope.contentVersion);
+    assert.deepEqual(restored.checkpoint.session.attempts, checkpoint.session.attempts);
+  }
+});
+
+test("a 100-character course checkpoint survives the new version", () => {
+  const { storage } = memory();
+  const checkpoint = fixture();
+  checkpoint.session.contentVersion = "0.2.0-draft";
+  saveHanziCheckpoint(storage, checkpoint, null);
+  const restored = readHanziCheckpoint(storage, scope, 50_000);
+  assert.equal(restored.status, "ok");
+  if (restored.status === "ok") assert.deepEqual(restored.checkpoint.session.attempts, checkpoint.session.attempts);
+});
+
+test("a 150-character course checkpoint survives the new version", () => {
+  const { storage } = memory();
+  const checkpoint = fixture();
+  checkpoint.session.contentVersion = "0.3.0-draft";
+  saveHanziCheckpoint(storage, checkpoint, null);
+  const restored = readHanziCheckpoint(storage, scope, 50_000);
+  assert.equal(restored.status, "ok");
+  if (restored.status === "ok") assert.deepEqual(restored.checkpoint.session.attempts, checkpoint.session.attempts);
+});
+
+test("a newly added 150-character lesson resumes after expansion to 300", () => {
+  const { storage } = memory();
+  const expandedLesson = course.lessons.find((item) => item.id === "draft-hanzi-09")!;
+  const expandedEntries = course.entries.filter((entry) => expandedLesson.entryIds.includes(entry.id));
+  const expandedScope = { ...scope, lessonId: expandedLesson.id, entries: expandedEntries, mode: "co-read" as const };
+  const session = createLearningSession({
+    courseId: scope.courseId, contentVersion: "0.3.0-draft",
+    policy: hanziPolicy({ voiceAvailable: false, coReading: true, entryCount: 2, disablePicture: true }),
+    pool: expandedEntries, fresh: expandedEntries, due: [], requestedNewCount: 2,
+    introOnly: true, now: 1000, seed: 9,
+  });
+  const checkpoint: HanziCheckpoint = { version: 1, profileId: scope.profileId, courseId: scope.courseId,
+    lessonId: expandedLesson.id, mode: "co-read", voiceAvailable: false, minutes: 5, session };
+  saveHanziCheckpoint(storage, checkpoint, null);
+  const restored = readHanziCheckpoint(storage, expandedScope, 50_000);
+  assert.equal(restored.status, "ok");
+  if (restored.status === "ok") assert.equal(restored.checkpoint.session.contentVersion, "0.7.0-draft");
+});
+
+test("a saved 0.4 lesson resumes after a pronunciation correction", () => {
+  const { storage } = memory();
+  const currentLesson = course.lessons.find((item) => item.id === "draft-hanzi-20")!;
+  const currentEntries = course.entries.filter((entry) => currentLesson.entryIds.includes(entry.id));
+  const currentScope = { ...scope, lessonId: currentLesson.id, entries: currentEntries, mode: "co-read" as const };
+  const session = createLearningSession({ courseId: scope.courseId, contentVersion: "0.4.0-draft",
+    policy: hanziPolicy({ voiceAvailable: false, coReading: true, entryCount: 2, disablePicture: true }),
+    pool: currentEntries, fresh: currentEntries, due: [], requestedNewCount: 2, introOnly: true, now: 1000, seed: 9 });
+  saveHanziCheckpoint(storage, { version: 1, profileId: scope.profileId, courseId: scope.courseId,
+    lessonId: currentLesson.id, mode: "co-read", voiceAvailable: false, minutes: 5, session }, null);
+  const restored = readHanziCheckpoint(storage, currentScope, 50_000);
+  assert.equal(restored.status, "ok");
+  if (restored.status === "ok") assert.equal(restored.checkpoint.session.contentVersion, "0.7.0-draft");
+});
+
 test("T26: co-reading checkpoints keep browsing-only sessions", () => {
   const { storage } = memory();
   const checkpoint = fixture("co-read");

@@ -36,7 +36,7 @@ export interface GalaxyLayout {
  * A spiral galaxy: each IELTS topic owns an arm, easy words sit near the core and
  * the hardest at the rim, so learning visibly travels outward.
  */
-export function layoutGalaxy(atlas: Atlas): GalaxyLayout {
+export function layoutGalaxy(atlas: Pick<Atlas, "words" | "topics">): GalaxyLayout {
   const words = atlas.words;
   const n = words.length;
   const positions = new Float32Array(n * 3);

@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u5e74",
+  "kind": "sentence",
+  "text": "新年到了，大家互相问好。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u5e74-sentence.wav",
+  "sha256": "44a7d1deb096896386b9b4059122855f466d7e99c625e9acdecc02fa9770b561",
+  "seconds": 3.17,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

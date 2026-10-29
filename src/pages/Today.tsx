@@ -125,11 +125,18 @@ export function Today() {
             </>
           )}
           {teaser.length > 0 && (
-            <div className="teaser" aria-label="今天将遇见的新词">
-              {teaser.map((w, i) => (
-                <Illustration key={w.id} src={atlas.img(w, "thumb")} word={w.word} topic={w.topic} className={`teaser-${i}`} />
-              ))}
-              <span>今天会遇见它们</span>
+            <div className="journey-preview">
+              <div className="teaser" aria-hidden="true">
+                {teaser.map((w, i) => (
+                  <Illustration key={w.id} src={atlas.img(w, "thumb")} word={w.word} topic={w.topic} className={`teaser-${i}`} />
+                ))}
+                <span>今天会遇见它们</span>
+              </div>
+              <ul className="journey-words" aria-label="今天将遇见的新词">
+                {teaser.map((w, i) => <li key={w.id} style={{ "--word-delay": `${i * 70}ms` } as React.CSSProperties}>
+                  <button type="button" lang="en" onClick={() => openWord(w.id)} aria-label={`打开 ${w.word} 的词卡`}>{w.word}</button>
+                </li>)}
+              </ul>
             </div>
           )}
           <div className="journey-actions">
@@ -242,13 +249,13 @@ function WordOfDay() {
   const { entry } = useEntry(pick?.id);
   if (!pick) return null;
   return (
-    <section className="panel wotd" onClick={() => openWord(pick.id)} role="button" tabIndex={0} onKeyDown={(e) => e.key === "Enter" && openWord(pick.id)} aria-label={`今日一词：${pick.word}`}>
+    <section className="panel wotd" onClick={() => openWord(pick.id)} aria-label="今日一词">
       <Illustration src={atlas.img(pick)} word={pick.word} topic={pick.topic} className="wotd-art" />
       <div className="wotd-body">
         <h3 className="eyebrow">今日一词</h3>
-        <p className="wotd-word" lang="en">
+        <button type="button" className="wotd-word" lang="en" aria-label={`打开今日一词 ${pick.word} 的词卡`} onClick={(event) => { event.stopPropagation(); openWord(pick.id); }}>
           {pick.word}
-        </p>
+        </button>
         {entry && (
           <div onClick={(e) => e.stopPropagation()}>
             <Pronounce entry={entry} refw={pick} />

@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u4e0a",
+  "kind": "sentence",
+  "text": "小猫在椅子上面。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u4e0a-sentence.wav",
+  "sha256": "46bd675d58beba41fb452157b25b322731c1cf0a2a035c9210298f0d8676c691",
+  "seconds": 2.021,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u79cb",
+  "kind": "sentence",
+  "text": "秋天，树叶落下来。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u79cb-sentence.wav",
+  "sha256": "68b56554fa4aba293fe3d0448d2f13fe614160f640dbc4ca8f7ac210f21a128a",
+  "seconds": 2.65,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

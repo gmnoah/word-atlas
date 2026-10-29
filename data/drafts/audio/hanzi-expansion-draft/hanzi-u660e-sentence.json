@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u660e",
+  "kind": "sentence",
+  "text": "明天我们一起画画。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u660e-sentence.wav",
+  "sha256": "0bf11cfb4ab72f89234b7446e056d570ba2196cbfe72d1b71d5546fb9d584c4d",
+  "seconds": 2.161,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

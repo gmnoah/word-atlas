@@ -1,5 +1,7 @@
 import { review, type CardState } from "../store/srs";
 import type { LearningSession } from "./session";
+import { readRestoreGeneration } from "../lib/restore-generation";
+export { readRestoreGeneration } from "../lib/restore-generation";
 
 /**
  * The same local progress shape serves both new courses; keys stay scoped by
@@ -104,10 +106,13 @@ export function writePrimaryProgress(storage: ProgressStorage, progress: Primary
 }
 
 /** All tabs updating a learner's primary records must use the same browser lock. */
-export async function withPrimaryLock<T>(profileId: string, courseId: string, work: () => T): Promise<T> {
+export async function withPrimaryLock<T>(profileId: string, courseId: string, work: () => T, expectedGeneration?: string | null): Promise<T> {
   const key = primaryProgressKey(profileId, courseId);
   if (!globalThis.navigator?.locks) throw new Error("此浏览器不支持安全的多页面保存。");
-  return navigator.locks.request(key, work);
+  return navigator.locks.request("word-atlas:restore", { mode: "shared" }, () => navigator.locks.request(key, () => {
+    if (expectedGeneration !== undefined && readRestoreGeneration(localStorage) !== expectedGeneration) throw new Error("备份已恢复，请刷新后继续学习。");
+    return work();
+  }));
 }
 
 /** Revisit introduced words without a recognition card, then due cards. */

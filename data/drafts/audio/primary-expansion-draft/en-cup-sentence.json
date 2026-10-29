@@ -1,0 +1,13 @@
+{
+  "course": "primary-expansion-draft",
+  "id": "en-cup",
+  "kind": "sentence",
+  "text": "This is my cup.",
+  "voice": "Daniel",
+  "locale": "en-GB",
+  "file": "data/drafts/audio/primary-expansion-draft/en-cup-sentence.wav",
+  "sha256": "8e6bec366764fb2c0aca799fdcbcb5ec740b94c91b576c000639c9a0a7a073d5",
+  "seconds": 1.276,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

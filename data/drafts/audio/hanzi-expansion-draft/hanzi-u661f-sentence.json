@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u661f",
+  "kind": "sentence",
+  "text": "夜空中有星星。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u661f-sentence.wav",
+  "sha256": "cf390a31a07b672a1e1b5566b3e7491d3f2479bbed423f8ada4f2a287fa64997",
+  "seconds": 1.882,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

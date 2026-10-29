@@ -1,0 +1,13 @@
+{
+  "course": "primary-expansion-draft",
+  "id": "en-hand",
+  "kind": "sentence",
+  "text": "Wash your hands.",
+  "voice": "Daniel",
+  "locale": "en-GB",
+  "file": "data/drafts/audio/primary-expansion-draft/en-hand-sentence.wav",
+  "sha256": "e1de6f547dc8d41d83cf212884c4ca4506884fda3e2cda33481f0715c2a93f4f",
+  "seconds": 1.464,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

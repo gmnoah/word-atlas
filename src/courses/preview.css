@@ -35,6 +35,13 @@
 .preview-hero.journey {
   min-height: 380px;
 }
+.course-opening { position: absolute; inset: 0; z-index: 4; display: grid; place-items: center; color: #f2ebdd; background: #151b2d; pointer-events: none; animation: course-opening-fade 1.8s var(--ease) both; }
+.course-opening-content { display: grid; justify-items: center; gap: 12px; font: 600 clamp(22px, 3vw, 32px)/1.3 var(--serif); animation: course-opening-arrive 650ms var(--ease) both; }
+.course-opening-content small { font: 14px/1.4 var(--sans); color: #c8c1b3; }
+.course-opening-skip { position: absolute; top: 16px; right: 16px; min-height: 48px; padding: 8px 16px; color: #f2ebdd; background: #151b2d; border: 1px solid rgba(242,235,221,.55); border-radius: 999px; pointer-events: auto; cursor: pointer; }
+@keyframes course-opening-fade { 0% { opacity: 0; } 20%, 65% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes course-opening-arrive { from { opacity: 0; transform: translateY(12px) scale(.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@media (prefers-reduced-motion: reduce) { .course-opening { display: none; animation: none; } }
 .preview-hero .journey-body {
   max-width: 650px;
 }
@@ -45,6 +52,25 @@
 .preview-hero .journey-art {
   animation: none;
 }
+.preview-hero .journey-actions .btn { min-height: 48px; }
+.preview-hero .journey-action-error { flex-basis: 100%; color: #fffdf8; font-size: 14px; }
+.course-galaxy-section { margin: 24px 0; padding: 24px; }
+.course-galaxy-section summary { cursor: pointer; font: 600 22px/1.4 var(--serif); }
+.course-galaxy-section summary small { display: block; margin: 4px 0 0 25px; color: var(--ink-2); font: 14px/1.5 var(--sans); }
+.course-galaxy { margin-top: 18px; }
+.course-galaxy-sky { position: relative; height: clamp(280px, 42vw, 440px); overflow: hidden; border-radius: var(--r-lg); background: #0d1120; }
+.course-galaxy-sky canvas { display: block; width: 100%; height: 100%; touch-action: none; }
+.course-galaxy-caption { position: absolute; top: 20px; left: 20px; display: grid; gap: 4px; color: #f2ebdd; pointer-events: none; }
+.course-galaxy-caption strong { font: 600 22px/1.3 var(--serif); }
+.course-galaxy-caption span { font-size: 13px; }
+.course-galaxy-controls { position: absolute; right: 12px; bottom: 12px; display: flex; gap: 8px; }
+.course-galaxy-controls button { display: grid; place-items: center; min-width: 48px; min-height: 48px; color: #f2ebdd; border: 1px solid rgba(242,235,221,.5); border-radius: 50%; background: #151b2d; cursor: pointer; }
+.course-galaxy > p { color: var(--ink-2); }
+.course-galaxy-filter { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; font-weight: 600; }
+.course-galaxy-filter select { min-height: 48px; max-width: 100%; padding: 8px 12px; color: var(--ink); background: var(--card); border: 1px solid var(--line-strong); border-radius: var(--r-sm); }
+.course-galaxy-entries { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; list-style: none; }
+.course-galaxy-entries button { display: flex; align-items: center; gap: 8px; min-height: 48px; padding: 8px 12px; color: var(--ink); background: var(--card); border: 1px solid var(--line-strong); border-radius: var(--r-sm); cursor: pointer; }
+.course-galaxy-entries small { color: var(--sage-ink); }
 .preview-section-heading {
   margin: 40px 0 20px;
   display: flex;
@@ -593,6 +619,14 @@
 .preview-finish h1 {
   margin: 16px 0;
 }
+.preview-finish .mini-stats.is-detailed {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+@media (min-width: 760px) {
+  .preview-finish .mini-stats.is-detailed {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
 .preview-finish > p:not(.eyebrow) {
   color: var(--ink-2);
 }
@@ -881,6 +915,7 @@
   }
 }
 .primary-journey { display: grid; gap: 24px; padding: 24px; margin: 24px 0; }
+.primary-journey .btn { min-height: 48px; }
 .primary-journey h2, .primary-journey h3 { margin: 0 0 8px; }
 .primary-journey p { color: var(--ink-2); }
 .primary-favorites ul { list-style: none; padding: 0; margin: 0; }
@@ -1053,6 +1088,9 @@
   display: grid;
   place-items: center;
 }
+.hanzi-study-card .preview-study-art > .illo {
+  width: 100%;
+}
 .hanzi-listen-prompt {
   display: grid;
   gap: 12px;
@@ -1182,3 +1220,79 @@
   color: var(--ink-2);
   font-size: 14px;
 }
+.draft-review-head { max-width: 760px; margin-bottom: 28px; }
+.draft-review-visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.draft-review-notice { color: var(--ink-2); background: var(--ochre-soft); border: 1px solid var(--line); border-radius: var(--r); padding: 14px 18px; }
+.draft-review-entry { width: 100%; margin-top: 8px; justify-content: space-between; }
+.draft-review-controls { display: flex; gap: 16px; align-items: center; justify-content: space-between; margin: 24px 0 16px; color: var(--ink-2); }
+.draft-review-controls label { display: flex; align-items: center; gap: 10px; width: min(100%, 520px); border: 1px solid var(--line-strong); border-radius: var(--r); padding: 0 14px; background: var(--card); }
+.draft-review-controls input { border: 0; background: transparent; color: var(--ink); min-width: 0; width: 100%; min-height: 48px; font: inherit; outline: 0; }
+.draft-review-controls label:focus-within { outline: 2px solid var(--terra); outline-offset: 2px; }
+.draft-review-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.draft-review-card { display: flex; flex-direction: column; text-align: left; padding: 0; overflow: hidden; cursor: pointer; color: var(--ink); }
+.draft-review-card .illo { width: 100%; aspect-ratio: 1; }
+.draft-review-card > span { display: grid; gap: 4px; padding: 14px; }
+.draft-review-card strong { font: 600 22px/1.2 var(--serif); overflow-wrap: anywhere; }
+.draft-review-card small { color: var(--ink-2); font-size: 14px; }
+.draft-review-card.is-selected { outline: 2px solid var(--sage); }
+.draft-review-detail { display: grid; gap: 24px; padding: 22px; }
+.draft-review-detail > .illo { width: 100%; max-width: 440px; align-self: start; }
+.draft-review-detail-body h2 { font: 600 clamp(34px, 4vw, 52px)/1.1 var(--serif); margin: 10px 0; }
+.draft-review-meaning { font-size: 19px; color: var(--ink-2); }
+.draft-review-pinyin { color: var(--ink-2); }
+.draft-review-example { border-left: 3px solid var(--sage); padding-left: 14px; margin: 18px 0; }
+.draft-review-example p { margin: 4px 0; }
+.draft-review-audio { display: grid; gap: 12px; margin: 16px 0; }
+.draft-review-audio label { display: grid; gap: 6px; color: var(--ink-2); font-size: 14px; }
+.draft-review-audio audio { width: min(100%, 380px); }
+.draft-review-detail details { color: var(--ink-2); margin-top: 16px; }
+.draft-review-detail summary { cursor: pointer; }
+.draft-review-navigation, .draft-review-pagination { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 20px; }
+.draft-review-pagination { justify-content: center; margin-bottom: 36px; }
+.draft-review-empty { padding: 28px; color: var(--ink-2); }
+@media (min-width: 760px) { .draft-review-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } .draft-review-detail { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); } }
+
+.course-view-nav { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 24px; }
+.course-view-nav [aria-current="page"] { background: var(--paper-2); border-color: var(--line-strong); }
+.course-records { padding: 24px; }
+
+.journey-stops { margin: 32px 0; }
+.journey-stops-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 16px; margin: 16px 0; }
+.journey-stop { overflow: hidden; }
+.journey-stop .illo { max-height: 180px; }
+.journey-stop > div:last-child { padding: 16px; }
+.journey-stop h3 { margin: 0; }
+.journey-stop p { color: var(--ink-2); }
+.journey-stop .btn { min-height: 48px; }
+.journey-stop-progress { display: grid; gap: 7px; margin: 12px 0 16px; color: var(--ink-2); font-size: 14px; }
+.journey-stop-progress progress { width: 100%; height: 6px; border: 0; border-radius: 999px; overflow: hidden; background: var(--paper-2); accent-color: var(--sage); }
+.journey-stop-progress progress::-webkit-progress-bar { background: var(--paper-2); border-radius: inherit; }
+.journey-stop-progress progress::-webkit-progress-value { background: var(--sage); border-radius: inherit; }
+.journey-stop-progress progress::-moz-progress-bar { background: var(--sage); border-radius: inherit; }
+
+.course-theme-records { margin: 24px 0; }
+.course-theme-records summary { cursor: pointer; font-weight: 600; }
+.course-theme-records ul { columns: 2 220px; padding-inline-start: 20px; }
+.course-theme-records li { break-inside: avoid; margin-block: 8px; }
+
+.course-entry-detail { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 24px; align-items: center; padding: 32px 8px 8px; }
+.course-entry-detail h2 { font-family: var(--serif); font-size: 2.5rem; }
+
+.preview-entry-link, .hanzi-entry-link { color: var(--ink); background: var(--paper-2); border: 1px solid var(--line); border-radius: var(--r-sm); cursor: pointer; }
+.preview-entry-link { padding: 6px 10px; }
+.hanzi-entry-link { min-width: 48px; min-height: 48px; padding: 4px; }
+.preview-entry-link:focus-visible, .hanzi-entry-link:focus-visible { outline: 2px solid var(--terra); outline-offset: 2px; }
+
+/* Quiet feedback for explored stations; the text also communicates the state. */
+.journey-stop[data-state="partial"], .journey-stop[data-state="visited"] { border-color: var(--sage); }
+.journey-stop[data-state="visited"] h3::before { content: "✦"; color: var(--ochre); margin-inline-end: .4em; }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .journey-stop { transition: transform .2s var(--ease), box-shadow .2s var(--ease); }
+  .journey-stop:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+}
+
+.activity-week { list-style: none; margin: 12px 0; padding: 0; display: grid; gap: 8px; }
+.activity-week li { display: grid; grid-template-columns: 46px minmax(28px, 1fr) minmax(130px, auto); gap: 10px; align-items: center; font-size: 14px; }
+.activity-week-date { font-variant-numeric: tabular-nums; color: var(--ink-2); }
+.activity-week-bar { height: 6px; border-radius: 999px; background: var(--paper-2); overflow: hidden; }
+.activity-week-bar i { display: block; height: 100%; background: var(--sage); border-radius: inherit; }

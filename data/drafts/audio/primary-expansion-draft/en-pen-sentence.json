@@ -1,0 +1,13 @@
+{
+  "course": "primary-expansion-draft",
+  "id": "en-pen",
+  "kind": "sentence",
+  "text": "This is my pen.",
+  "voice": "Daniel",
+  "locale": "en-GB",
+  "file": "data/drafts/audio/primary-expansion-draft/en-pen-sentence.wav",
+  "sha256": "a162bdf0fc096a5f740b411679882fc4f36eeedc3acee2829acf8158396714f7",
+  "seconds": 1.357,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

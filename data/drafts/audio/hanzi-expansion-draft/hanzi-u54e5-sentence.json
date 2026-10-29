@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u54e5",
+  "kind": "sentence",
+  "text": "哥哥和我玩球。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u54e5-sentence.wav",
+  "sha256": "46b35e59201df3a3ba7628e64a53254fd37ea503be6045fce93bd5c5a0eaea31",
+  "seconds": 1.691,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

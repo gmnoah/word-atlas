@@ -1,0 +1,13 @@
+{
+  "course": "primary-expansion-draft",
+  "id": "en-ear",
+  "kind": "sentence",
+  "text": "Touch your ears.",
+  "voice": "Daniel",
+  "locale": "en-GB",
+  "file": "data/drafts/audio/primary-expansion-draft/en-ear-sentence.wav",
+  "sha256": "3c05e20f2cf724e633c843775ab6c2464667ef5c6b57bc6cc79f8ac5ec73acdb",
+  "seconds": 1.308,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

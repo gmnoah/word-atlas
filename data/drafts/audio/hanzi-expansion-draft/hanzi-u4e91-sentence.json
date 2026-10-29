@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u4e91",
+  "kind": "sentence",
+  "text": "天空中飘着白云。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u4e91-sentence.wav",
+  "sha256": "08f96de2b5985ed33d9b16ffef4548db8f493ec4ef3a14bb9cb6505a8aba36c4",
+  "seconds": 2.266,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

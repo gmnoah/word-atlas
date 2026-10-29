@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u559d",
+  "kind": "character",
+  "text": "喝",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u559d-character.wav",
+  "sha256": "bffeb6cba73bdad79ae8a2238b45c0d094ed4fa321af7bf08aea4b3479546f62",
+  "seconds": 0.558,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u83dc",
+  "kind": "sentence",
+  "text": "桌上有一盘青菜。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u83dc-sentence.wav",
+  "sha256": "6342c94637d7a71647c686ad31939242ed29506481c95d74ce121e56622f40fc",
+  "seconds": 2.12,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

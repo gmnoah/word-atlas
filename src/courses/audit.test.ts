@@ -9,11 +9,11 @@ test("drafts remain previewable but cannot pass the release gate", () => {
   assert.equal(report.errors.length, 0);
   assert.equal(
     report.releaseBlockers.filter((i) => i.code === "missing-recording").length,
-    20,
+    300,
   );
   assert.equal(
     report.releaseBlockers.filter((i) => i.code === "unreviewed").length,
-    20,
+    300,
   );
 });
 test("declared missing files and unsafe paths fail even preview validation", () => {
@@ -33,7 +33,7 @@ test("release approval requires an auditable human review, not only an approved 
     entry.media.recording = "test/word.mp3";
     entry.media.exampleRecording = "test/sentence.mp3";
   }
-  assert.equal(auditCourse(course, () => true).releaseBlockers.length, 20);
+  assert.equal(auditCourse(course, () => true).releaseBlockers.length, 300);
   // Synthetic evidence only inside a test fixture, never written to real content.
   for (const entry of course.entries)
     entry.humanReview = {

@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u7f8a",
+  "kind": "sentence",
+  "text": "小羊有白白的毛。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u7f8a-sentence.wav",
+  "sha256": "0a288e11ba836114e908b9b9526afea8cf42af4fbb16a23017ec03d12b8842b6",
+  "seconds": 1.963,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

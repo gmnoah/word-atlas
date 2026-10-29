@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u96e8",
+  "kind": "character",
+  "text": "雨",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u96e8-character.wav",
+  "sha256": "16d4e26e4a5fef5e5cf5e3d10924f030e15aa3d4722886b18fac00be6c8f6fff",
+  "seconds": 0.476,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

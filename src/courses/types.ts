@@ -77,6 +77,8 @@ export interface CourseManifest {
 
 export interface SampleCourse {
   manifest: CourseManifest;
+  /** Optional topic catalog; older sample packs use their lesson IDs as topics. */
+  topics?: { id: string; title: string }[];
   lessons: Lesson[];
   entries: LearningEntry[];
 }

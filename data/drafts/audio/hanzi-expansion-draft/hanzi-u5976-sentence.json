@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u5976",
+  "kind": "sentence",
+  "text": "奶奶给花浇水。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u5976-sentence.wav",
+  "sha256": "b4c471fc29361412178e55c57aa727c00b681f7cf16231e12d39e820167648f1",
+  "seconds": 1.896,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

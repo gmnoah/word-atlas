@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u65f6",
+  "kind": "sentence",
+  "text": "吃饭的时间到了。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u65f6-sentence.wav",
+  "sha256": "3e55552a96ab247dd6e5e42d320099197ee0e89ee0a3f937973fea291edf312c",
+  "seconds": 1.76,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "course": "primary-expansion-draft",
+  "id": "en-flower",
+  "kind": "sentence",
+  "text": "This flower is beautiful.",
+  "voice": "Daniel",
+  "locale": "en-GB",
+  "file": "data/drafts/audio/primary-expansion-draft/en-flower-sentence.wav",
+  "sha256": "325008055fe1fdb61789a7677a6f241396c76f806813e45bf47768bda5b63fa9",
+  "seconds": 1.842,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u706f",
+  "kind": "sentence",
+  "text": "台灯照亮了书本。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u706f-sentence.wav",
+  "sha256": "7010107782ccff7fee4237790bf18a48ac5002b6aaaf14605abc6a8753be4310",
+  "seconds": 1.87,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

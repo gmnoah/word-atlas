@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u751c",
+  "kind": "sentence",
+  "text": "这个苹果甜甜的。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u751c-sentence.wav",
+  "sha256": "43c8cb085aaf0b1e4d5c96e448d0a685887030a03aa3043b66bcba46757cbc25",
+  "seconds": 1.865,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u6d17",
+  "kind": "sentence",
+  "text": "吃饭前我们洗手。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u6d17-sentence.wav",
+  "sha256": "cc8335cada124feba9f76503bce794141cffb87bbb013399655f45ce6a07f751",
+  "seconds": 2.131,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

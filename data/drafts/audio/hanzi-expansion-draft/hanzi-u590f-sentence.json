@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u590f",
+  "kind": "sentence",
+  "text": "夏天，我们吃西瓜。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u590f-sentence.wav",
+  "sha256": "ba4f2d6f54aadc1c52bd28df4235fc321f42d51826b177b63896af38e91b1988",
+  "seconds": 2.38,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

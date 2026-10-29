@@ -7,7 +7,7 @@ export type Route =
   | { page: "learn" }
   | { page: "practice" }
   | { page: "me" }
-  | { page: "explore"; courseId?: string; entryId?: string }
+  | { page: "explore"; courseId?: string; entryId?: string; view?: "journey" | "atlas" | "records" }
   | { page: "about" };
 
 export interface Location {
@@ -33,6 +33,8 @@ export function parseLocation(hash: string): Location {
       page: "explore",
       courseId: params.get("course") || undefined,
       entryId: params.get("entry") || undefined,
+      ...(params.get("view") === "journey" || params.get("view") === "atlas" || params.get("view") === "records"
+        ? { view: params.get("view") as "journey" | "atlas" | "records" } : {}),
     };
   else if (seg[0] === "w" && seg[1]) {
     try {
@@ -55,6 +57,7 @@ export function href(route: Route, word?: string | null) {
   if (route.page === "explore") {
     if (route.courseId) params.set("course", route.courseId);
     if (route.entryId) params.set("entry", route.entryId);
+    if (route.view) params.set("view", route.view);
   }
   if (word) params.set("w", word);
   const q = params.toString();

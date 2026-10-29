@@ -3,7 +3,7 @@ import type { CourseManifest } from "./types";
 const attribution = "Word Atlas contributors（词光）· CC BY 4.0";
 export const primaryManifest: CourseManifest & { status: "preview" } = {
   id: "primary-starter",
-  version: "0.1.0-draft",
+  version: "0.4.0-draft",
   title: "基础英语",
   subject: "english",
   stage: "primary",
@@ -13,7 +13,7 @@ export const primaryManifest: CourseManifest & { status: "preview" } = {
 };
 export const hanziManifest: CourseManifest & { status: "preview" } = {
   id: "hanzi-starter",
-  version: "0.1.0-draft",
+  version: "0.7.0-draft",
   title: "汉字启蒙",
   subject: "hanzi",
   stage: "preschool",
@@ -70,8 +70,8 @@ export const courseRegistry: readonly CourseRegistration[] = [
     cover: "atlas/img/apple.webp",
     eyebrow: "LITTLE EXPLORERS",
     badge: "小学起步",
-    count: 30,
-    lessonCount: 6,
+    count: 300,
+    lessonCount: 33,
   },
   {
     kind: "preview",
@@ -79,8 +79,8 @@ export const courseRegistry: readonly CourseRegistration[] = [
     cover: "atlas/img/mountain.webp",
     eyebrow: "FIRST CHARACTERS",
     badge: "亲子共读",
-    count: 20,
-    lessonCount: 4,
+    count: 300,
+    lessonCount: 32,
   },
   {
     kind: "planned",

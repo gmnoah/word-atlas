@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u7b14",
+  "kind": "sentence",
+  "text": "我用画笔画小花。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u7b14-sentence.wav",
+  "sha256": "1e15dfe1641850d463b664a9cf6cd9913a9c58f076c92c9d4a81115947ffb1de",
+  "seconds": 2.08,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u8db3",
+  "kind": "sentence",
+  "text": "小鸟用双足站在树枝上。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u8db3-sentence.wav",
+  "sha256": "7659b96b4607e85b9e96a6a6bbdd845eac6957ab17e6d059f6dac7f4275943bc",
+  "seconds": 2.926,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

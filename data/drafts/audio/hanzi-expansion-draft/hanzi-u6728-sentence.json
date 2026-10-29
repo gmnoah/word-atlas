@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u6728",
+  "kind": "sentence",
+  "text": "桌子是用木头做的。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u6728-sentence.wav",
+  "sha256": "d98126d67af1ef28a89edbc341ed0412e09d31be37bc1d5de8b2d4c15838667c",
+  "seconds": 1.992,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

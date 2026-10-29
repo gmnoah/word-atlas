@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u7761",
+  "kind": "sentence",
+  "text": "小猫安静地睡觉。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u7761-sentence.wav",
+  "sha256": "ffaeaf27842bac84c8c35b424840528e7954010515066569b1d78d5ff6373589",
+  "seconds": 2.044,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

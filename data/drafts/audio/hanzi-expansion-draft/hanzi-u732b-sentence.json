@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u732b",
+  "kind": "sentence",
+  "text": "小猫趴在垫子上。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u732b-sentence.wav",
+  "sha256": "34b96a51f3c8bbfde38b7628900336afb0ae578f9d51e05fe2384e04438a5a26",
+  "seconds": 2.125,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

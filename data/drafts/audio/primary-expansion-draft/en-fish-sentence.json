@@ -1,0 +1,13 @@
+{
+  "course": "primary-expansion-draft",
+  "id": "en-fish",
+  "kind": "sentence",
+  "text": "The fish is swimming.",
+  "voice": "Daniel",
+  "locale": "en-GB",
+  "file": "data/drafts/audio/primary-expansion-draft/en-fish-sentence.wav",
+  "sha256": "d741aab8d12f3aa795d6aeac7f7cd464890acc3f6f91e4e2b63540b965cfcd92",
+  "seconds": 1.439,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

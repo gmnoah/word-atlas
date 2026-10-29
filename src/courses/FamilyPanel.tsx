@@ -1,7 +1,7 @@
 import { Download, Upload } from "lucide-react";
 import { useRef, useState } from "react";
 import { readPrimaryProgress } from "../learning/primary-progress";
-import { applyRestore, exportFullBackup, preflightRestore } from "../profiles/backup";
+import { applyRestoreWithLock, exportFullBackup, preflightRestore } from "../profiles/backup";
 import { toast } from "../ui/Toast";
 import { dayKey } from "../store/store";
 import type { Course } from "../atlas/types";
@@ -29,7 +29,7 @@ export function RecentActivity({ profileId, profileName }: { profileId: string; 
   });
   return (
     <section className="family-activity" aria-labelledby="family-activity-title">
-      <p className="eyebrow" id="family-activity-title">最近的活动</p>
+      <p className="eyebrow" id="family-activity-title">学习记录</p>
       <h3>{profileName} 在这台设备上的记录</h3>
       <dl>
         {rows.map((row) => (
@@ -51,7 +51,7 @@ export function RecentActivity({ profileId, profileName }: { profileId: string; 
         ))}
       </dl>
       <p className="family-activity-note">
-        “看过”不等于已经掌握；只有独立找对才更新复习卡。这里不显示排名、连击或欠复习数量。
+        “看过”和复习卡都不代表已经掌握。可计分的识别题中，独立或提示后的首次答题会更新复习卡；家长协助、跳过、拼写和照样找字不会更新。
       </p>
     </section>
   );
@@ -83,7 +83,7 @@ export function FamilyBackup() {
       }
       const scope = `将替换这台设备中“词光”的全部本地档案：${checked.plan.profileCount} 位学习者、${checked.plan.courses.length} 门课程。其他网站数据不会受影响。`;
       if (!confirm(`${scope}\n\n建议先导出当前备份。确定恢复吗？`)) return;
-      const result = applyRestore(localStorage, checked.plan);
+      const result = await applyRestoreWithLock(localStorage, checked.plan);
       toast(result.ok ? "已恢复学习记录，请刷新页面继续。" : result.error, result.ok ? "ok" : "warn");
     } finally {
       setBusy(false);

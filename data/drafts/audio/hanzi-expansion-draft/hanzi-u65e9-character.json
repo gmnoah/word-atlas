@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u65e9",
+  "kind": "character",
+  "text": "早",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u65e9-character.wav",
+  "sha256": "c523e631912530215915d3830b1216f2a4f628489ed4897288a899f063004294",
+  "seconds": 0.547,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}

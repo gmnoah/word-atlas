@@ -1,0 +1,13 @@
+{
+  "course": "hanzi-expansion-draft",
+  "id": "hanzi-u6d77",
+  "kind": "sentence",
+  "text": "大海边有沙子。",
+  "voice": "Tingting",
+  "locale": "zh-CN",
+  "file": "data/drafts/audio/hanzi-expansion-draft/hanzi-u6d77-sentence.wav",
+  "sha256": "cdc59d67f3399818b3694c3d06d401e862e337767f091c7a408161f0e8f56ac7",
+  "seconds": 1.696,
+  "source": "本机 macOS 系统语音生成；使用及再分发条件待核实",
+  "reviewStatus": "draft"
+}
