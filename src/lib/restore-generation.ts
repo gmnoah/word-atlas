@@ -2,5 +2,9 @@
 export const RESTORE_GENERATION_KEY = "word-atlas:restore-generation";
 
 export function readRestoreGeneration(storage: Pick<Storage, "getItem">): string | null {
-  return storage.getItem(RESTORE_GENERATION_KEY);
+  try {
+    return storage.getItem(RESTORE_GENERATION_KEY);
+  } catch {
+    return null;
+  }
 }
