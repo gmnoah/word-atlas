@@ -14,10 +14,10 @@ export function primaryVisualPolicy(stage: PrimaryStartingStage, spelling = fals
 }
 
 /** Reorder a theme cyclically so even its last item can be a starting point. */
-export function entriesFromStartingPoint(
-  entries: readonly LearningEntry[],
+export function entriesFromStartingPoint<T extends LearningEntry>(
+  entries: readonly T[],
   startId?: string,
-): LearningEntry[] {
+): T[] {
   const index = entries.findIndex((entry) => entry.id === startId);
   const start = index < 0 ? 0 : index;
   return [...entries.slice(start), ...entries.slice(0, start)];

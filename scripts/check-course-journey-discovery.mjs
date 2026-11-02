@@ -192,6 +192,30 @@ try {
         optionValues[0],
         "a returning learner should default to the next unseen word",
       );
+    } else {
+      await progressPage.evaluate(() => {
+        for (const key of Object.keys(localStorage)) {
+          if (key.startsWith("word-atlas:v3:hanzi-session:")) localStorage.removeItem(key);
+        }
+      });
+      const introduced = await progressPage.evaluate(() => {
+        const key = Object.keys(localStorage).find((item) =>
+          item.startsWith("word-atlas:v3:primary-progress:"),
+        );
+        return Object.keys(JSON.parse(localStorage.getItem(key)).introduced);
+      });
+      await progressPage.goto(
+        "http://localhost:5188/#/explore?course=hanzi-starter&view=atlas",
+      );
+      const firstStop = progressPage.locator(".hanzi-map-stop").first();
+      await firstStop.getByRole("button", { name: "只读一读" }).click();
+      const studyCard = progressPage.locator(".hanzi-study-card");
+      await studyCard.waitFor();
+      assert.equal(
+        introduced.includes(await studyCard.getAttribute("data-content-id")),
+        false,
+        "returning co-reading should start with a character the learner has not seen",
+      );
     }
     await progressContext.close();
   }
@@ -222,7 +246,7 @@ try {
   await context.close();
 
   console.log(
-    "两课程今日发现、主题进度、真实进度轮换、英语主题未看起点、学习空间续学状态、词字卡键盘开关、减少动态、375/800/1280px 与深浅主题通过；800px 学习空间为两列",
+    "两课程今日发现、主题进度、真实进度轮换、英语与汉字未看起点、学习空间续学状态、词字卡键盘开关、减少动态、375/800/1280px 与深浅主题通过；800px 学习空间为两列",
   );
 } finally {
   await browser.close();

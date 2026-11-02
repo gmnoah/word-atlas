@@ -540,9 +540,12 @@ export default function CoursePreview() {
             lesson={lesson}
             profileId={activeProfileId}
             entries={
-              lesson.entryIds
-                .map((id) => courseEntries.find((entry) => entry.id === id))
-                .filter((entry): entry is HanziEntry => !!entry && entry.kind === "hanzi")
+              entriesFromStartingPoint(
+                lesson.entryIds
+                  .map((id) => courseEntries.find((entry) => entry.id === id))
+                  .filter((entry): entry is HanziEntry => !!entry && entry.kind === "hanzi"),
+                primaryStartFor(lesson.id),
+              )
             }
             mode={hanziMode}
             minutes={hanziPreferences.minutes}
