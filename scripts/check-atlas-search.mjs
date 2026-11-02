@@ -9,6 +9,11 @@ try {
     const page = await context.newPage();
     await page.goto('http://localhost:5188/#/explore?course=primary-starter&view=atlas');
     const english = page.getByRole('searchbox', { name: '查找主题或单词' });
+    const firstTheme = page.locator('.preview-lesson-tile').first();
+    for (const control of [firstTheme.getByRole('button', { name: '查看 apple 词卡' }), firstTheme.getByRole('button', { name: '开始小课' }), firstTheme.getByLabel('水果篮子起始词')]) {
+      const box = await control.boundingBox();
+      assert.ok(box && box.width >= 48 && box.height >= 48, '儿童图鉴核心操作至少 48px');
+    }
     await english.fill('ELEPHANT');
     await page.getByRole('heading', { name: '英语词汇 03' }).waitFor();
     await page.getByRole('button', { name: '查看 elephant 词卡，符合查找' }).click();

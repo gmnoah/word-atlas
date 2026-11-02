@@ -17,7 +17,7 @@ try {
   const resume = page.getByRole('button',{name:course === 'primary-starter' ? '继续今日小课' : /继续共读/});
   await resume.waitFor();
   await resume.click();
-  assert.equal(await page.getByRole('button',{name:'返回主题'}).isVisible(),true);
+  assert.equal(await page.getByRole('button',{name:'返回旅程'}).isVisible(),true);
   await context.close();
  }
  console.log('浏览器返回后两课程可恢复小课');

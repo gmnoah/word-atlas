@@ -17,7 +17,7 @@ try {
   await page.getByRole('dialog').waitFor(); await page.getByRole('button',{name:'关闭',exact:true}).click();
   await stop.getByRole('button',{name:course==='hanzi-starter'?'一起读一读':'开始小课'}).click();
   await page.getByRole('button',{name:course==='hanzi-starter'?'看过啦，下一个':'认识了，继续'}).click();
-  await page.getByRole('button',{name:'返回主题'}).click(); await page.getByRole('button',{name:'结束体验'}).click();
+  await page.getByRole('button',{name:'返回旅程'}).click(); await page.getByRole('button',{name:'结束体验'}).click();
   await page.getByRole('button',{name:'学习记录'}).click();
   await page.getByRole('region',{name:'详细活动记录'}).locator('.activity-week li').last().getByText(/有日期看过 1 次/).waitFor();
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);

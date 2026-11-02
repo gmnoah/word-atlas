@@ -11,7 +11,7 @@ try {
   const title=await card.locator('h3').innerText();
   await card.getByRole('button',{name:course==='primary-starter'?'开始小课':'一起读一读'}).click();
   await page.getByRole('button',{name:course==='primary-starter'?'认识了，继续':'看过啦，下一个'}).click();
-  await page.getByRole('button',{name:'返回主题'}).click();
+  await page.getByRole('button',{name:'返回旅程'}).click();
   await page.getByRole('button',{name:'结束体验'}).click();
   card=page.locator('.journey-stop').filter({has:page.getByRole('heading',{name:title,exact:true})});
   await card.getByRole('button',{name:course==='primary-starter'?'继续小课':'继续共读'}).waitFor();

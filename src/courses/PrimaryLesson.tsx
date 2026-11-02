@@ -13,7 +13,7 @@ import { clearCheckpoint, readCheckpoint, saveCheckpoint } from "./primary-check
 import { applyPrimarySession, primaryReviewIds, readPrimaryProgress, readRestoreGeneration, withPrimaryLock, writePrimaryProgress } from "../learning/primary-progress";
 import { PrimaryFavorite } from "./PrimaryJourney";
 
-export function PrimaryLesson({ course, lesson, entries, profileId, stage, spellingEnabled, count, slow, onExit, onRestart }: {
+export function PrimaryLesson({ course, lesson, entries, profileId, stage, spellingEnabled, count, slow, returnToJourney, onExit, onRestart }: {
   course: Course;
   lesson: Lesson;
   entries: LearningEntry[];
@@ -22,6 +22,7 @@ export function PrimaryLesson({ course, lesson, entries, profileId, stage, spell
   spellingEnabled: boolean;
   count: number;
   slow: boolean;
+  returnToJourney: boolean;
   onExit: () => void;
   onRestart: () => void;
 }) {
@@ -133,7 +134,7 @@ export function PrimaryLesson({ course, lesson, entries, profileId, stage, spell
     <div className="page preview-study">
       <div className="preview-study-toolbar">
         <button className="btn btn-ghost" onClick={() => (session.endedAt ? leaveFinished(onExit) : setExitOpen(true))}>
-          <ArrowLeft size={18} /> 返回主题
+          <ArrowLeft size={18} /> {returnToJourney ? "返回旅程" : "返回主题"}
         </button>
         <span>{lesson.title}</span>
         <span>{session.endedAt ? "这次的小发现" : `${session.index + 1} / ${session.steps.length}`}</span>
@@ -148,8 +149,8 @@ export function PrimaryLesson({ course, lesson, entries, profileId, stage, spell
         <section className="panel preview-finish">
           <Leaf size={44} strokeWidth={1.3} />
           <p className="eyebrow">A LITTLE DISCOVERY</p>
-          <h1 className="display">今天，又认识了新朋友。</h1>
-          <p>{session.endReason === "time-limit" ? "这次先休息一下，下次再一起探索。" : "一起回到生活里，找找刚才遇见的词吧。"}</p>
+          <h1 className="display">{stats.introduced > 0 ? "今天，又认识了新朋友。" : "这次先到这里。"}</h1>
+          <p>{session.endReason === "time-limit" || stats.introduced === 0 ? "先休息一下，下次再一起探索。" : "一起回到生活里，找找刚才遇见的词吧。"}</p>
           <dl className="mini-stats is-detailed">
             <div><dt>接触过</dt><dd>{stats.introduced}<small>个</small></dd></div>
             <div><dt>独立答对</dt><dd>{stats.independent}<small>个</small></dd></div>
@@ -158,7 +159,7 @@ export function PrimaryLesson({ course, lesson, entries, profileId, stage, spell
           </dl>
           <p className="preview-disclosure">仅统计首次答对；接触和答对不代表已经掌握。{saveError ? "本次小课未能保存。" : progressError ? "学习结果暂未保存，小课记录已保留。" : "学习记录保存在这台设备。"}</p>
           <div className="preview-actions">
-            <button className="btn btn-primary btn-xl" onClick={() => leaveFinished(onExit)}>回到主题 <ArrowRight size={18} /></button>
+            <button className="btn btn-primary btn-xl" onClick={() => leaveFinished(onExit)}>{returnToJourney ? "回到旅程" : "回到主题"} <ArrowRight size={18} /></button>
             <button className="btn btn-ghost" onClick={() => leaveFinished(onRestart)}>再体验一次</button>
           </div>
         </section>
@@ -252,7 +253,7 @@ export function PrimaryLesson({ course, lesson, entries, profileId, stage, spell
       <Sheet open={exitOpen} onClose={closeExit} label="暂时结束小课">
         <div className="preview-parent">
           <h2>先休息一下吗？</h2>
-          <p>{saveError ? "当前小课暂时无法保存，返回后本次进度可能无法恢复；原有记录会保留。" : progressError ? "学习结果暂时无法保存，本次小课记录已保留；返回后可重新打开并重试。" : "返回主题后，下次打开同一主题可以接着进行。学习记录保存在这台设备。"}</p>
+          <p>{saveError ? "当前小课暂时无法保存，返回后本次进度可能无法恢复；原有记录会保留。" : progressError ? "学习结果暂时无法保存，本次小课记录已保留；返回后可重新打开并重试。" : "返回后，下次打开同一小课可以接着进行。学习记录保存在这台设备。"}</p>
           <div className="preview-actions">
             <button className="btn btn-primary" onClick={closeExit}>继续这次小课</button>
             <button className="btn btn-ghost" onClick={onExit}>结束体验</button>

@@ -11,7 +11,7 @@ try {
   const start=hero.getByRole('button',{name:'开始今日小课'}); await start.waitFor();
   assert.ok(await start.evaluate(el=>el.getBoundingClientRect().height)>=48);
   await start.click(); await page.getByRole('button',{name:'认识了，继续'}).click();
-  await page.getByRole('button',{name:'返回主题'}).click(); await page.getByRole('button',{name:'结束体验'}).click();
+  await page.getByRole('button',{name:'返回旅程'}).click(); await page.getByRole('button',{name:'结束体验'}).click();
   await hero.getByRole('button',{name:'继续今日小课'}).waitFor();
   await panel.getByText('上次的小课还在这里，随时接着学习。').waitFor();
   const key='word-atlas:v3:primary-session:learner-default:primary-starter:today';

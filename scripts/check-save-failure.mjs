@@ -74,7 +74,7 @@ try {
           }
         }
       }
-      await page.getByRole('button', { name: '继续这次小课' }).or(page.getByRole('button', { name: '继续这次共读' })).click();
+      await page.getByRole('button', { name: /继续这次(小课|共读|认读)/ }).click();
       assert.equal(await sheet.isVisible(), false);
       await context.close();
     }

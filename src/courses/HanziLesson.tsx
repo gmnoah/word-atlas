@@ -19,7 +19,7 @@ import { entryLabel, type HanziEntry, type LearningEntry, type Lesson } from "./
  * Preschool Hanzi lesson. Co-reading browses characters and never grades a
  * recall; a lesson asks "which character means this?" without pinyin or typing.
  */
-export function HanziLesson({ course, lesson, entries, profileId, mode, minutes, count, slow, onExit, onRestart }: {
+export function HanziLesson({ course, lesson, entries, profileId, mode, minutes, count, slow, returnToJourney, onExit, onRestart }: {
   course: Course;
   lesson: Lesson;
   entries: HanziEntry[];
@@ -28,6 +28,7 @@ export function HanziLesson({ course, lesson, entries, profileId, mode, minutes,
   minutes: number;
   count: number;
   slow: boolean;
+  returnToJourney: boolean;
   onExit: () => void;
   onRestart: () => void;
 }) {
@@ -240,7 +241,7 @@ export function HanziLesson({ course, lesson, entries, profileId, mode, minutes,
           className="btn btn-ghost"
           onClick={() => (session.endedAt ? leaveFinished(onExit) : setExitOpen(true))}
         >
-          <ArrowLeft size={18} /> 返回主题
+          <ArrowLeft size={18} /> {returnToJourney ? "返回旅程" : "返回主题"}
         </button>
         <span>{lesson.title}</span>
         <span>{session.endedAt ? "这次的小发现" : "慢慢来"}</span>
@@ -270,14 +271,14 @@ export function HanziLesson({ course, lesson, entries, profileId, mode, minutes,
           <span className="hanzi-finish-mark" aria-hidden="true">字</span>
           <p className="eyebrow">A LITTLE CHARACTER</p>
           <h1 className="display">
-            {session.steps.length === 0
-              ? "今天的字都看过了。"
+            {stats.introduced === 0
+              ? "这次先到这里。"
               : coRead
                 ? "今天一起读了几页字。"
                 : "今天一起找了字。"}
           </h1>
           <p>
-            {session.steps.length === 0
+            {stats.introduced === 0
               ? "先休息一下，下次再来读一读。"
               : session.endReason === "time-limit"
                 ? "这次先休息一下，下次再一起读。"
@@ -308,7 +309,7 @@ export function HanziLesson({ course, lesson, entries, profileId, mode, minutes,
             {saveError ? "本次小课未能保存。" : progressError ? "学习结果暂未保存，小课记录已保留。" : "学习记录保存在这台设备。"}
             {!coRead && lesson.id.startsWith("draft-hanzi-") && " 照样找字不计作独立识字。"}
           </p>
-          {lifeTip && session.steps.length > 0 && (
+          {lifeTip && stats.introduced > 0 && (
             <aside className="hanzi-life-tip" aria-label="回家可以试试">
               <p className="eyebrow">回家可以试试</p>
               <p>{lifeTip}</p>
@@ -316,7 +317,7 @@ export function HanziLesson({ course, lesson, entries, profileId, mode, minutes,
           )}
           <div className="preview-actions">
             <button className="btn btn-primary btn-xl" onClick={() => leaveFinished(onExit)}>
-              回到主题 <ArrowRight size={18} />
+              {returnToJourney ? "回到旅程" : "回到主题"} <ArrowRight size={18} />
             </button>
             <button className="btn btn-ghost" onClick={() => leaveFinished(onRestart)}>再体验一次</button>
           </div>
@@ -488,12 +489,12 @@ export function HanziLesson({ course, lesson, entries, profileId, mode, minutes,
           </p>
         </>
       )}
-      <Sheet open={exitOpen} onClose={closeExit} label="暂时结束共读">
+      <Sheet open={exitOpen} onClose={closeExit} label={coRead ? "暂时结束共读" : "暂时结束认读"}>
         <div className="preview-parent">
           <h2>先休息一下吗？</h2>
-          <p>{saveError ? "当前小课暂时无法保存，返回后本次进度可能无法恢复；原有记录会保留。" : progressError ? "学习结果暂时无法保存，本次小课记录已保留；返回后可重新打开并重试。" : "返回主题后，下次打开同一个主题可以接着进行。学习记录保存在这台设备。"}</p>
+          <p>{saveError ? "当前小课暂时无法保存，返回后本次进度可能无法恢复；原有记录会保留。" : progressError ? "学习结果暂时无法保存，本次小课记录已保留；返回后可重新打开并重试。" : "返回后，下次打开同一活动可以接着进行。学习记录保存在这台设备。"}</p>
           <div className="preview-actions">
-            <button className="btn btn-primary" onClick={closeExit}>继续这次共读</button>
+            <button className="btn btn-primary" onClick={closeExit}>继续这次{coRead ? "共读" : "认读"}</button>
             <button className="btn btn-ghost" onClick={onExit}>结束体验</button>
           </div>
         </div>

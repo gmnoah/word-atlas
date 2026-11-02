@@ -16,7 +16,7 @@ try {
   const mode=await page.evaluate(()=>{const k=Object.keys(localStorage).find(k=>k.startsWith('word-atlas:v3:hanzi-session:'));return k?.split(':').at(-1);});
   assert.equal(mode,'lesson');
   await page.getByRole('button',{name:'认识了，继续'}).click();
-  await page.getByRole('button',{name:'返回主题'}).click(); await page.getByRole('button',{name:'结束体验'}).click();
+  await page.getByRole('button',{name:'返回旅程'}).click(); await page.getByRole('button',{name:'结束体验'}).click();
   await hero.getByRole('button',{name:/继续认一认：/}).waitFor();
   assert.equal(await hero.getByRole('button',{name:/继续认一认：/}).count(),1);
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);

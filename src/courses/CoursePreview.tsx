@@ -467,6 +467,7 @@ export default function CoursePreview() {
             spellingEnabled={spellingEnabled}
             count={lessonPreferences.englishCount}
             slow={lessonPreferences.slow}
+            returnToJourney={courseView === "journey"}
             onExit={() => setLesson(null)}
             onRestart={() => setRun((r) => r + 1)}
           />
@@ -485,6 +486,7 @@ export default function CoursePreview() {
             minutes={hanziPreferences.minutes}
             count={hanziPreferences.hanziCount}
             slow={hanziPreferences.slow}
+            returnToJourney={courseView === "journey"}
             onExit={() => setLesson(null)}
             onRestart={() => setRun((r) => r + 1)}
           />

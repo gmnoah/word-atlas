@@ -9,7 +9,7 @@ try {
   const stop=page.locator('.journey-stop').first();
   await stop.getByRole('button',{name:course==='hanzi-starter'?'一起读一读':'开始小课'}).click();
   await page.getByRole('button',{name:course==='hanzi-starter'?'看过啦，下一个':'认识了，继续'}).click();
-  await page.getByRole('button',{name:'返回主题'}).click(); await page.getByRole('button',{name:'结束体验'}).click();
+  await page.getByRole('button',{name:'返回旅程'}).click(); await page.getByRole('button',{name:'结束体验'}).click();
   await page.getByRole('button',{name:'学习记录'}).click();
   const summary=page.getByRole('region',{name:'详细活动记录'});
   await summary.getByRole('heading',{name:'近七天活动'}).waitFor();
