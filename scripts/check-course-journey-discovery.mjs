@@ -92,6 +92,54 @@ try {
       "journey-discovery-arrive",
     );
     await motionContext.close();
+
+    const progressContext = await browser.newContext({
+      viewport: { width: 1280, height: 900 },
+      reducedMotion: "reduce",
+      serviceWorkers: "block",
+    });
+    const progressPage = await progressContext.newPage();
+    await progressPage.goto(
+      `http://localhost:5188/#/explore?course=${course}&view=journey`,
+    );
+    await progressPage.locator(".journey-discovery").waitFor();
+    const firstLabel = await progressPage
+      .locator(".journey-discovery strong")
+      .first()
+      .innerText();
+    const heroActions = progressPage.locator(
+      ".preview-hero .journey-actions",
+    );
+    await heroActions
+      .getByRole("button", {
+        name:
+          course === "hanzi-starter" ? /一起读一读/ : /开始今日小课/,
+      })
+      .first()
+      .click();
+    await progressPage
+      .getByRole("button", {
+        name:
+          course === "hanzi-starter" ? "看过啦，下一个" : "认识了，继续",
+      })
+      .click();
+    await progressPage.getByRole("button", { name: "返回旅程" }).click();
+    await progressPage.getByRole("button", { name: "结束体验" }).click();
+    await progressPage.locator(".journey-discovery").waitFor();
+    assert.notEqual(
+      await progressPage
+        .locator(".journey-discovery strong")
+        .first()
+        .innerText(),
+      firstLabel,
+    );
+    assert.match(
+      await progressPage
+        .locator(".journey-discovery-progress")
+        .innerText(),
+      /已看过 1 \/ 300 个[词字] · 本主题还有 4 个没看/,
+    );
+    await progressContext.close();
   }
 
   const context = await browser.newContext({
@@ -113,7 +161,7 @@ try {
   await context.close();
 
   console.log(
-    "两课程今日发现、词字卡键盘开关、减少动态、375/800/1280px 与深浅主题通过；800px 学习空间为两列",
+    "两课程今日发现、真实进度轮换、词字卡键盘开关、减少动态、375/800/1280px 与深浅主题通过；800px 学习空间为两列",
   );
 } finally {
   await browser.close();

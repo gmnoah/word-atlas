@@ -127,12 +127,15 @@ export default function CoursePreview() {
       snapshot.profiles.find((profile) => profile.id === snapshot.activeProfileId) ?? snapshot.profiles[0]!,
   );
   const profiles = useProfiles((snapshot) => snapshot.profiles);
-  const exploration = useMemo(() => {
+  const primaryProgress = useMemo(() => {
     void progressRevision;
     if (!course || !courseId || course.manifest.id !== courseId) return null;
-    const result = readPrimaryProgress(localStorage, activeProfileId, courseId);
-    return result.ok ? journeyProgress(result.progress, course.lessons ?? [], courseEntries.map((entry) => entry.id)) : null;
+    return readPrimaryProgress(localStorage, activeProfileId, courseId);
   }, [activeProfileId, courseId, course, courseEntries, progressRevision]);
+  const exploration = useMemo(() => {
+    if (!primaryProgress?.ok) return null;
+    return journeyProgress(primaryProgress.progress, course?.lessons ?? [], courseEntries.map((entry) => entry.id));
+  }, [course, courseEntries, primaryProgress]);
   const primaryPreferences = useProfiles((snapshot) =>
     preferencesFor(snapshot, activeProfileId, "primary-starter"),
   );
@@ -168,12 +171,18 @@ export default function CoursePreview() {
   const journeyDiscovery = useMemo(() => {
     const lesson = suggestedJourneyLessons(course?.lessons ?? [], exploration)[0]
       ?? course?.lessons?.[0];
-    const entries = (lesson?.entryIds ?? [])
+    const lessonEntries = (lesson?.entryIds ?? [])
       .map((id) => entriesById.get(id))
-      .filter((entry): entry is LearningEntry => !!entry)
-      .slice(0, 4);
-    return { title: lesson?.title ?? "第一站", entries };
-  }, [course, entriesById, exploration]);
+      .filter((entry): entry is LearningEntry => !!entry);
+    const introduced = primaryProgress?.ok ? primaryProgress.progress.introduced : {};
+    const unseen = lessonEntries.filter((entry) => !Object.hasOwn(introduced, entry.id));
+    const seen = lessonEntries.filter((entry) => Object.hasOwn(introduced, entry.id));
+    return {
+      title: lesson?.title ?? "第一站",
+      entries: [...unseen, ...seen].slice(0, 4),
+      unseenCount: primaryProgress?.ok ? unseen.length : null,
+    };
+  }, [course, entriesById, exploration, primaryProgress]);
   const [nicknameDraft, setNicknameDraft] = useState(activeProfile.nickname);
   const [profileMessage, setProfileMessage] = useState<string | null>(null);
   const theme = useStore((s) => s.settings.theme);
@@ -573,7 +582,8 @@ export default function CoursePreview() {
                         </button></li>)}
                     </ul>
                     <p className="journey-discovery-progress">{exploration
-                      ? <>图鉴里已看过 <strong>{exploration.seen}</strong> / {exploration.total} {course.manifest.subject === "hanzi" ? "个字" : "个词"}</>
+                      ? <>图鉴里已看过 <strong>{exploration.seen}</strong> / {exploration.total} {course.manifest.subject === "hanzi" ? "个字" : "个词"}
+                        {journeyDiscovery.unseenCount !== null && <> · {journeyDiscovery.unseenCount ? `本主题还有 ${journeyDiscovery.unseenCount} 个没看` : "本主题都看过了"}</>}</>
                       : "学习记录暂时无法读取；仍可点开上面的词字看看。"}</p>
                   </div>}
                   <div className="journey-actions">
