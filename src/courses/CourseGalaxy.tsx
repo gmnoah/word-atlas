@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { Crosshair, Minus, Plus, RotateCcw } from "lucide-react";
 import { detectQuality, GalaxyEngine } from "../galaxy/engine";
 import { layoutGalaxy } from "../galaxy/layout";
@@ -32,8 +32,11 @@ export default function CourseGalaxy({ entries, lessons, profileId, courseId, re
   const seen = useMemo(() => new Set(progress.ok ? Object.keys(progress.progress.introduced).filter(id => entryById.has(id)) : []), [progress, entryById]);
   const chosen = lessons.find(item => item.id === topic) ?? lessons[0];
   const visible = chosen ? chosen.entryIds.map(id => entryById.get(id)).filter((entry): entry is LearningEntry => !!entry) : entries;
+  const visibleSeen = progress.ok ? visible.filter(entry => seen.has(entry.id)).length : 0;
+  const unit = courseId === "hanzi-starter" ? "字" : "词";
   const hoveredEntry = hoveredId ? entryById.get(hoveredId) : undefined;
   const focusedIndices = focusedTopic === chosen?.id ? [...new Set(visible.map(entry => layout.index.get(entry.id)).filter((index): index is number => index !== undefined))] : [];
+  const helpId = useId();
 
   useEffect(() => {
     const cv = canvas.current;
@@ -87,9 +90,9 @@ export default function CourseGalaxy({ entries, lessons, profileId, courseId, re
     const indices = visible.map(entry => layout.index.get(entry.id)).filter((index): index is number => index !== undefined);
     if (indices.length && engine.current) { engine.current.frameStars(indices); engine.current.drawOnce(); setFocusedTopic(chosen?.id ?? null); }
   };
-  return <section className="course-galaxy" aria-label="课程知识星图">
+  return <section className={`course-galaxy is-${courseId === "hanzi-starter" ? "hanzi" : "english"}`} aria-label="课程知识星图">
     <div className="course-galaxy-sky" hidden={!webgl}>
-      <canvas ref={canvas} role="img" tabIndex={webgl ? 0 : -1} aria-label={`知识星图，共 ${entries.length} 个${courseId === "hanzi-starter" ? "字" : "词"}，${progress.ok ? `看过 ${seen.size} 个` : "学习记录暂不可读取"}。${webgl ? "可拖动或用方向键旋转，用加减键缩放；" : ""}下面可按主题选择词卡。`}
+      <canvas ref={canvas} role="img" tabIndex={webgl ? 0 : -1} aria-describedby={helpId} aria-label={`知识星图，共 ${entries.length} 个${unit}，${progress.ok ? `看过 ${seen.size} 个` : "学习记录暂不可读取"}。${webgl ? "可拖动或用方向键旋转，用加减键缩放；" : ""}下面可按主题选择词卡。`}
         onKeyDown={event => {
           const view = engine.current;
           if (!view || !["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "+", "=", "-"].includes(event.key)) return;
@@ -144,7 +147,7 @@ export default function CourseGalaxy({ entries, lessons, profileId, courseId, re
         onPointerCancel={event => { pointers.current.delete(event.pointerId); drag.current=null; pinch.current=null; multiTouch.current=true; }}
         onPointerLeave={() => { if (engine.current) { engine.current.hover = -1; engine.current.drawOnce(); } setHoveredId(null); }} />
       <svg ref={topicMarkers} className="course-galaxy-markers" aria-hidden="true">{focusedIndices.map(index => <circle key={index} data-index={index} r="8" />)}</svg>
-      <div className="course-galaxy-caption"><strong>你的知识星图</strong><span>{progress.ok ? `看过 ${seen.size} / ${entries.length}` : "学习记录暂时无法读取"}</span></div>
+      <div className="course-galaxy-caption"><strong>你的知识星图</strong><span aria-live="polite">{progress.ok ? `看过 ${seen.size} / ${entries.length}` : "学习记录暂时无法读取"}</span><small>亮点代表看过，微光代表待探索</small></div>
       {hoveredEntry && <div className="course-galaxy-preview" aria-hidden="true"><strong lang={hoveredEntry.kind === "hanzi" ? "zh-CN" : "en"}>{entryLabel(hoveredEntry)}</strong><span>{hoveredEntry.kind === "hanzi" ? hoveredEntry.phrase : hoveredEntry.meaning}</span>{progress.ok && seen.has(hoveredEntry.id) && <small>看过</small>}</div>}
       {webgl && <div className="course-galaxy-controls"><button type="button" onClick={() => zoom(.8)} aria-label="放大星图"><Plus size={18} /></button><button type="button" onClick={() => zoom(1.25)} aria-label="缩小星图"><Minus size={18} /></button><button type="button" onClick={() => { setFocusedTopic(null); engine.current?.resetImmediately(); engine.current?.drawOnce(); }} aria-label="重置星图"><RotateCcw size={18} /></button></div>}
     </div>
@@ -153,9 +156,17 @@ export default function CourseGalaxy({ entries, lessons, profileId, courseId, re
       <span>学习记录暂时无法读取，仍可从主题列表浏览词字；原记录已保留。</span>
       {onOpenSettings && <button type="button" className="btn btn-ghost" onClick={onOpenSettings}>打开家长设置</button>}
     </div>}
-    <p role={contextLost ? "status" : undefined}>{webgl ? "拖动或用方向键旋转，双指或加减键缩放；点亮代表看过，圆圈标示定位的主题。也可以从下面的主题打开词卡。" : contextLost ? "星图画面暂时中断，可以继续从下面的主题打开词卡。" : "此设备暂不支持三维画面，可以从下面的主题打开词卡。"}看过不代表掌握。</p>
+    <div id={helpId} className="course-galaxy-help">
+      <span role={contextLost ? "status" : undefined}>{webgl ? "拖动或用方向键旋转 · 双指或加减键缩放 · 点击星星打开词卡。圆圈标示定位的主题。" : contextLost ? "星图画面暂时中断，可以继续从下面的主题打开词卡。" : "此设备暂不支持三维画面，可以从下面的主题打开词卡。"}</span>
+      <small>看过不代表掌握。</small>
+    </div>
     <div className="course-galaxy-filter"><label htmlFor="course-galaxy-topic">选择主题</label><select id="course-galaxy-topic" value={chosen?.id ?? ""} onChange={event => { setTopic(event.target.value); setFocusedTopic(null); }}>{lessons.map(lesson => <option key={lesson.id} value={lesson.id}>{lesson.title}</option>)}</select>
       {webgl && <button type="button" className="btn btn-ghost" disabled={!visible.length} onClick={focusTopic} aria-label={`在星图中定位${chosen?.title ?? "当前主题"}`}><Crosshair size={17} /> 定位主题</button>}
+    </div>
+    <div className="course-galaxy-topic-progress" aria-live="polite">
+      <span><strong>{chosen?.title ?? "全部"}</strong> · 本主题</span>
+      <small>{progress.ok ? `已看过 ${visibleSeen} / ${visible.length}` : "学习记录待恢复"}</small>
+      {progress.ok && <progress value={visibleSeen} max={Math.max(visible.length, 1)} aria-label={`${chosen?.title ?? "当前主题"}已看过 ${visibleSeen} / ${visible.length} 个${unit}`} />}
     </div>
     <ul className="course-galaxy-entries">{visible.map(entry => <li key={entry.id}><button type="button" onClick={() => onOpen(entry)} aria-label={`查看${entryLabel(entry)}${entry.kind === "hanzi" ? "字卡" : "词卡"}${seen.has(entry.id) ? "，看过" : ""}`}><span className="course-galaxy-entry-copy"><span lang={entry.kind === "hanzi" ? "zh-CN" : "en"}>{entryLabel(entry)}</span><small>{entry.kind === "hanzi" ? entry.phrase : entry.meaning}</small></span>{seen.has(entry.id) && <small className="is-seen">看过</small>}</button></li>)}</ul>
   </section>;

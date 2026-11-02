@@ -11,7 +11,7 @@ try {
   const opening=page.getByRole('button',{name:'跳过开场'}); await opening.waitFor(); await opening.click();
   assert.equal(await opening.count(),0);
   const section=page.locator('.course-galaxy-section'); await section.locator('summary').click();
-  assert.match(await section.locator('summary').innerText(),/已看过 0 \/ 300 个[字词]\s*·\s*0 \/ (32|33) 个主题有足迹/);
+  assert.match(await section.locator('summary').innerText(),/已看过 0 \/ 300 个[字词]\s*0 \/ (32|33) 个主题有足迹/);
   const map=page.getByRole('region',{name:'课程知识星图'}); await map.waitFor();
   if(await map.getByText(/拖动或用方向键旋转/).count()) webglVerified=true;
   await map.getByText('看过 0 / 300').waitFor();
@@ -19,6 +19,7 @@ try {
   assert.ok(await map.getByRole('button',{name:'放大星图'}).evaluate(el=>el.getBoundingClientRect().height)>=48);
   await map.getByRole('button',{name:'放大星图'}).click(); await map.getByRole('button',{name:'缩小星图'}).click(); await map.getByRole('button',{name:'重置星图'}).click();
   const select=map.getByLabel('选择主题'); const opts=await select.locator('option').count(); assert.ok(opts>1); await select.selectOption({index:1});
+  await map.getByText('已看过 0 / 5').waitFor();
   const firstEntryText=await map.locator('.course-galaxy-entries button').first().innerText();
   assert.match(firstEntryText,course==='hanzi-starter'?/人\s*行人/:/cat\s*猫/);
   await map.locator('.course-galaxy-entries button').first().click(); await page.getByRole('dialog').waitFor(); await page.getByRole('button',{name:'关闭',exact:true}).click();
@@ -27,8 +28,10 @@ try {
   await page.getByRole('button',{name:course==='hanzi-starter'?'看过啦，下一个':'认识了，继续'}).click();
   await page.getByRole('button',{name:'返回旅程'}).click(); await page.getByRole('button',{name:'结束本次学习'}).click();
   if(!await page.locator('.course-galaxy-section').evaluate(el=>el.open)) await page.locator('.course-galaxy-section summary').click();
-  await page.getByRole('region',{name:'课程知识星图'}).getByText('看过 1 / 300').waitFor();
-  assert.match(await section.locator('summary').innerText(),/已看过 1 \/ 300 个[字词]\s*·\s*1 \/ (32|33) 个主题有足迹/);
+  const updatedMap=page.getByRole('region',{name:'课程知识星图'});
+  await updatedMap.getByText('看过 1 / 300').waitFor();
+  await updatedMap.getByText('已看过 1 / 5').waitFor();
+  assert.match(await section.locator('summary').innerText(),/已看过 1 \/ 300 个[字词]\s*1 \/ (32|33) 个主题有足迹/);
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true); assert.deepEqual(errors,[]);
   await page.reload(); assert.equal(await opening.count(),0);
   await context.close();

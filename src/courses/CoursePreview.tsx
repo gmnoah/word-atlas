@@ -742,9 +742,12 @@ export default function CoursePreview() {
               <details open={mapOpen} className="course-galaxy-section panel" onToggle={(event) => setMapOpen(event.currentTarget.open)}>
                 <summary>
                   <span>探索知识星图</span>
-                  <small>{exploration
-                    ? `已看过 ${exploration.seen} / ${exploration.total} 个${course.manifest.subject === "hanzi" ? "字" : "词"} · ${exploration.themes.filter((item) => item.viewed > 0).length} / ${exploration.themes.length} 个主题有足迹`
-                    : "学习记录暂时无法读取，仍可展开查看课程内容"}</small>
+                  <small className="course-galaxy-summary">{exploration
+                    ? <>
+                      <span>已看过 <strong>{exploration.seen} / {exploration.total}</strong> 个{course.manifest.subject === "hanzi" ? "字" : "词"}</span>
+                      <span><strong>{exploration.themes.filter((item) => item.viewed > 0).length} / {exploration.themes.length}</strong> 个主题有足迹</span>
+                    </>
+                    : <span>学习记录暂时无法读取，仍可展开查看课程内容</span>}</small>
                 </summary>
                 {mapOpen && <Suspense fallback={<p>正在展开星图…</p>}><CourseGalaxy key={`${activeProfileId}:${course.manifest.id}`} entries={courseEntries} lessons={course.lessons ?? []} profileId={activeProfileId} courseId={course.manifest.id} revision={progressRevision} onOpenSettings={() => setParentOpen(true)} onOpen={(entry) => go({ page: "explore", courseId: course.manifest.id, view: "journey", entryId: entry.id })} /></Suspense>}
               </details>
