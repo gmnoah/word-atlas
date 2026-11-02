@@ -40,7 +40,14 @@ export function PrimaryFavorite({ profileId, courseId, entry }: { profileId: str
   </button>{error && <p role="alert">收藏暂时无法保存，请稍后再试。</p>}</div>;
 }
 
-type TodayProps = { profileId: string; courseId: string; contentVersion: string; entries: LearningEntry[]; onToday: () => void };
+type TodayProps = {
+  profileId: string;
+  courseId: string;
+  contentVersion: string;
+  entries: LearningEntry[];
+  onToday: () => void;
+  onOpenSettings?: () => void;
+};
 
 function todayState({ profileId, courseId, contentVersion, entries }: TodayProps, progress: PrimaryProgress | null) {
   const known = new Set(entries.map((entry) => entry.id));
@@ -59,11 +66,13 @@ export function PrimaryTodayButton(props: TodayProps) {
   const { progress, error } = usePrimaryProgress(props.profileId, props.courseId);
   const today = todayState(props, progress);
   return <><button className="btn btn-primary btn-xl" disabled={today.disabled} onClick={props.onToday}>{today.actionLabel} <ArrowRight size={18} /></button>
-    {error ? <span className="journey-action-error" role="status">学习进度暂时无法读取，请稍后再试。</span> : today.checkpoint.status === "invalid" && <span className="journey-action-error" role="status">今日小课记录暂时无法读取，原记录已保留。可以选择其他主题。</span>}</>;
+    {error ? <div className="journey-action-error" role="status"><span>学习进度暂时无法读取，原记录已保留。</span>
+      {props.onOpenSettings && <button type="button" className="btn btn-glass" onClick={props.onOpenSettings}>打开家长设置</button>}</div>
+      : today.checkpoint.status === "invalid" && <span className="journey-action-error" role="status">今日小课记录暂时无法读取，原记录已保留。可以选择其他主题。</span>}</>;
 }
 
 export function PrimaryJourney(props: TodayProps & { hideAction?: boolean }) {
-  const { profileId, courseId, entries, onToday, hideAction = false } = props;
+  const { profileId, courseId, entries, onToday, onOpenSettings, hideAction = false } = props;
   const { progress, error, toggle } = usePrimaryProgress(profileId, courseId);
   const favorites = progress ? entries.filter((entry) => progress.favorites.includes(entry.id)) : [];
   const today = todayState(props, progress);
@@ -76,6 +85,9 @@ export function PrimaryJourney(props: TodayProps & { hideAction?: boolean }) {
       {favorites.length ? <ul>{favorites.map((entry) => <li key={entry.id}><span>{entryLabel(entry)}{entry.kind === "english" ? ` · ${entry.meaning}` : ""}</span>
         <button className="btn btn-ghost" onClick={() => void toggle(entry.id)} aria-label={`取消收藏 ${entryLabel(entry)}`}>取消收藏</button></li>)}</ul> : <p>{progress ? "遇到喜欢的词，可以在词卡上收藏。" : "收藏记录暂时无法读取。"}</p>}
     </div>
-    {error && <p role="alert">学习进度暂时无法读取或保存，原记录已保留。</p>}
+    {error && !hideAction && <div className="primary-journey-error" role="alert">
+      <span>学习进度暂时无法读取，原记录已保留。</span>
+      {onOpenSettings && <button type="button" className="btn btn-ghost" onClick={onOpenSettings}>打开家长设置</button>}
+    </div>}
   </section>;
 }

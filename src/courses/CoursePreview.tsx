@@ -555,7 +555,7 @@ export default function CoursePreview() {
                   <p className="journey-lede">选择喜欢的主题，随时可以停下来。</p>
                   <div className="journey-actions">
                     {course.manifest.id === "primary-starter" && <PrimaryTodayButton profileId={activeProfileId} courseId={course.manifest.id} contentVersion={course.manifest.version}
-                      entries={todayEntries} onToday={() => setLesson({ id: "today", title: "今日小课", subtitle: "回顾与发现", entryIds: todayEntries.map((entry) => entry.id) })} />}
+                      entries={todayEntries} onOpenSettings={() => setParentOpen(true)} onToday={() => setLesson({ id: "today", title: "今日小课", subtitle: "回顾与发现", entryIds: todayEntries.map((entry) => entry.id) })} />}
                     {course.manifest.subject === "hanzi" && (resumableHanzi.best || resumableHanzi.fallback) && <button className="btn btn-primary btn-xl" onClick={() => { const next = resumableHanzi.best?.lesson ?? resumableHanzi.fallback; if (!next) return; setHanziMode(resumableHanzi.best?.mode ?? "co-read"); setLesson(next); }}>{resumableHanzi.best ? `${resumableHanzi.best.mode === "co-read" ? "继续共读" : "继续认一认"}：${resumableHanzi.best.lesson.title}` : "一起读一读"} <ArrowRight size={18} /></button>}
                     {course.manifest.subject === "hanzi" && resumableHanzi.best?.mode !== "lesson" && (resumableHanzi.recognition || resumableHanzi.recognitionFallback) && <button className="btn btn-glass" onClick={() => { const next = resumableHanzi.recognition?.lesson ?? resumableHanzi.recognitionFallback; if (!next) return; setHanziMode("lesson"); setLesson(next); }}>{resumableHanzi.recognition ? `继续认一认：${resumableHanzi.recognition.lesson.title}` : "试试认一认"}</button>}
                     <button className="btn btn-glass" onClick={() => go({ page: "explore", courseId: course.manifest.id, view: "atlas" })}>选择主题</button>
@@ -564,7 +564,7 @@ export default function CoursePreview() {
                 </div>
               </section>
               {course.manifest.id === "primary-starter" && <PrimaryJourney profileId={activeProfileId} courseId={course.manifest.id} contentVersion={course.manifest.version}
-                entries={todayEntries} hideAction onToday={() => setLesson({ id: "today", title: "今日小课", subtitle: "回顾与发现", entryIds: todayEntries.map((entry) => entry.id) })} />}
+                entries={todayEntries} hideAction onOpenSettings={() => setParentOpen(true)} onToday={() => setLesson({ id: "today", title: "今日小课", subtitle: "回顾与发现", entryIds: todayEntries.map((entry) => entry.id) })} />}
               <details open={mapOpen} className="course-galaxy-section panel" onToggle={(event) => setMapOpen(event.currentTarget.open)}>
                 <summary><span>探索知识星图</span><small>一颗星，是一个词或字</small></summary>
                 {mapOpen && <Suspense fallback={<p>正在展开星图…</p>}><CourseGalaxy key={`${activeProfileId}:${course.manifest.id}`} entries={courseEntries} lessons={course.lessons ?? []} profileId={activeProfileId} courseId={course.manifest.id} revision={progressRevision} onOpen={(entry) => go({ page: "explore", courseId: course.manifest.id, view: "journey", entryId: entry.id })} /></Suspense>}
@@ -624,7 +624,7 @@ export default function CoursePreview() {
               </section>
             )}
             {course.manifest.id === "primary-starter" && <PrimaryJourney profileId={activeProfileId} courseId={course.manifest.id} contentVersion={course.manifest.version}
-              entries={todayEntries} onToday={() => setLesson({ id: "today", title: "今日小课", subtitle: "回顾与发现", entryIds: todayEntries.map((entry) => entry.id) })} />}
+              entries={todayEntries} onOpenSettings={() => setParentOpen(true)} onToday={() => setLesson({ id: "today", title: "今日小课", subtitle: "回顾与发现", entryIds: todayEntries.map((entry) => entry.id) })} />}
             <section className="atlas-search" aria-label="查找图鉴内容">
               <label htmlFor="atlas-search">查找主题或{course.manifest.subject === "hanzi" ? "汉字" : "单词"}</label>
               <div className="atlas-search-control"><Search size={20} aria-hidden="true" />

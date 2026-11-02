@@ -53,7 +53,8 @@
   animation: none;
 }
 .preview-hero .journey-actions .btn { min-height: 48px; }
-.preview-hero .journey-action-error { flex-basis: 100%; color: #fffdf8; font-size: 14px; }
+.preview-hero .journey-action-error { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; flex-basis: 100%; color: #fffdf8; font-size: 14px; }
+.preview-hero .journey-action-error .btn { min-height: 48px; padding: 7px 14px; }
 .course-galaxy-section { margin: 24px 0; padding: 24px; }
 .course-galaxy-section summary { cursor: pointer; font: 600 22px/1.4 var(--serif); }
 .course-galaxy-section summary small { display: block; margin: 4px 0 0 25px; color: var(--ink-2); font: 14px/1.5 var(--sans); }
@@ -961,6 +962,7 @@
 .primary-journey .btn { min-height: 48px; }
 .primary-journey h2, .primary-journey h3 { margin: 0 0 8px; }
 .primary-journey p { color: var(--ink-2); }
+.primary-journey-error { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding-top: 14px; border-top: 1px solid var(--line); color: var(--terra-ink); font-size: 14px; }
 .primary-favorites ul { list-style: none; padding: 0; margin: 0; }
 .primary-favorites li { display: flex; align-items: center; justify-content: space-between; gap: 12px; border-top: 1px solid var(--line); }
 @media (min-width: 760px) { .primary-journey { grid-template-columns: 1fr 1fr; } }
