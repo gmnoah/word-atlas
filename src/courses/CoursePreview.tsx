@@ -165,6 +165,15 @@ export default function CoursePreview() {
     }
     return { best, fallback, recognition, recognitionFallback, invalid };
   }, [course, courseId, entriesById, activeProfileId, mandarinAvailable, progressRevision, lesson]);
+  const journeyDiscovery = useMemo(() => {
+    const lesson = suggestedJourneyLessons(course?.lessons ?? [], exploration)[0]
+      ?? course?.lessons?.[0];
+    const entries = (lesson?.entryIds ?? [])
+      .map((id) => entriesById.get(id))
+      .filter((entry): entry is LearningEntry => !!entry)
+      .slice(0, 4);
+    return { title: lesson?.title ?? "第一站", entries };
+  }, [course, entriesById, exploration]);
   const [nicknameDraft, setNicknameDraft] = useState(activeProfile.nickname);
   const [profileMessage, setProfileMessage] = useState<string | null>(null);
   const theme = useStore((s) => s.settings.theme);
@@ -553,6 +562,20 @@ export default function CoursePreview() {
                   <p className="eyebrow eyebrow-light">{course.manifest.subject === "hanzi" ? "亲子探索" : "今日探索"}</p>
                   <h2>{course.manifest.subject === "hanzi" ? "一起看看生活里的字。" : "从一个小小的发现开始。"}</h2>
                   <p className="journey-lede">选择喜欢的主题，随时可以停下来。</p>
+                  {journeyDiscovery.entries.length > 0 && <div className="journey-discovery" aria-label={`今日发现：${journeyDiscovery.title}`}>
+                    <p><span>今日发现</span><small>{journeyDiscovery.title}</small></p>
+                    <ul>
+                      {journeyDiscovery.entries.map((entry) =>
+                        <li key={entry.id}><button type="button" onClick={() => go({ page: "explore", courseId: course.manifest.id, view: "journey", entryId: entry.id })}
+                          aria-label={`打开 ${entryLabel(entry)} ${course.manifest.subject === "hanzi" ? "字卡" : "词卡"}`}>
+                          <strong lang={entry.kind === "english" ? "en" : "zh-CN"}>{entryLabel(entry)}</strong>
+                          <small>{entry.kind === "english" ? entry.meaning : entry.phrase}</small>
+                        </button></li>)}
+                    </ul>
+                    <p className="journey-discovery-progress">{exploration
+                      ? <>图鉴里已看过 <strong>{exploration.seen}</strong> / {exploration.total} {course.manifest.subject === "hanzi" ? "个字" : "个词"}</>
+                      : "学习记录暂时无法读取；仍可点开上面的词字看看。"}</p>
+                  </div>}
                   <div className="journey-actions">
                     {course.manifest.id === "primary-starter" && <PrimaryTodayButton profileId={activeProfileId} courseId={course.manifest.id} contentVersion={course.manifest.version}
                       entries={todayEntries} onOpenSettings={() => setParentOpen(true)} onToday={() => setLesson({ id: "today", title: "今日小课", subtitle: "回顾与发现", entryIds: todayEntries.map((entry) => entry.id) })} />}
