@@ -17,10 +17,12 @@ try {
     const page = await context.newPage();
     await page.goto(`http://localhost:5188/#/explore?course=${course}&view=records`);
     const rows = page.locator('.activity-week li');
-    await rows.last().getByText(/识别 20 次/).waitFor();
-    await rows.nth(5).getByText(/识别 10 次/).waitFor();
-    assert.equal(await rows.nth(5).locator('i').evaluate(el => el.style.width), '50%');
-    assert.equal(await rows.last().locator('i').evaluate(el => el.style.width), '100%');
+    await rows.last().getByText(/识别 20/).waitFor();
+    await rows.nth(5).getByText(/识别 10/).waitFor();
+    assert.equal(await rows.nth(5).locator('i.is-recognition').evaluate(el => el.style.width), '50%');
+    assert.equal(await rows.last().locator('i.is-recognition').evaluate(el => el.style.width), '100%');
+    assert.equal(await page.locator('.activity-week-legend li').count(), course === 'hanzi-starter' ? 3 : 2);
+    assert.equal(await rows.last().locator('.activity-week-date').evaluate(el => el.scrollWidth <= el.clientWidth), true);
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
     await context.close();
   }

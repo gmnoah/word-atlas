@@ -590,7 +590,7 @@ export default function CoursePreview() {
                     return <li key={item.id}>{item.title}：看过 {theme?.viewed ?? 0} / {theme?.total ?? 0} {course.manifest.subject === "hanzi" ? "个字" : "个词"}</li>;
                   })}</ul></> : <p role="alert">主题记录暂时无法读取，原数据已保留。</p>}
               </details>
-              <p>更早的逐日活动详情仍在完善。</p></div> : courseView === "journey" ? <>
+              <p>逐日记录只覆盖本机保留且带有日期的活动；更早或缺少日期的数据不会补造。</p></div> : courseView === "journey" ? <>
               <section className="journey preview-hero">
                 <CourseOpening courseId={course.manifest.id} profileId={activeProfileId} enabled={openingEnabled} />
                 <img className="journey-art" src={asset("brand/hero.webp")} alt="" />
