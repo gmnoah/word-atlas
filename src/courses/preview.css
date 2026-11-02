@@ -1231,6 +1231,21 @@
   color: var(--ink-2);
   font-size: 14px;
 }
+.hanzi-map-recovery {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  margin: 18px 0 0;
+  padding: 12px 14px;
+  color: var(--ink-2);
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+}
+.hanzi-map-recovery .btn {
+  min-height: 48px;
+}
 .hanzi-map-path {
   list-style: none;
   display: grid;

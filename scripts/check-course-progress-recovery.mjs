@@ -18,14 +18,21 @@ try {
         await page.reload();
 
         const discovery = page.locator(".journey-discovery");
-        await discovery.getByText("学习记录暂时无法读取；仍可点开上面的词字看看。").waitFor();
-        const discoveryRecovery = discovery.getByRole("button", { name: "打开家长设置" });
-        assert.equal(await discoveryRecovery.evaluate(element => element.getBoundingClientRect().height >= 48), true);
-        await discoveryRecovery.click();
+        await discovery.getByText("学习记录暂时无法读取。").waitFor();
+        const progressRecovery = page.locator(".journey-progress-recovery");
+        await progressRecovery.getByText("学习记录暂时无法读取，仍可浏览词字；请先恢复记录再开始新的学习。").waitFor();
+        const recoveryButton = progressRecovery.getByRole("button", { name: "打开家长设置" });
+        assert.equal(await recoveryButton.evaluate(element => element.getBoundingClientRect().height >= 48), true);
+        await recoveryButton.click();
         const dialog = page.getByRole("dialog", { name: "家长设置" });
         await dialog.getByText("备份与恢复").waitFor();
         await dialog.getByRole("button", { name: "关闭" }).click();
-        assert.equal(await discoveryRecovery.evaluate(element => document.activeElement === element), true);
+        assert.equal(await recoveryButton.evaluate(element => document.activeElement === element), true);
+        const blockedStarts = page.locator(".journey-stop").getByRole("button", { name: "学习记录待恢复" });
+        assert.ok(await blockedStarts.count() > 0);
+        for (let index = 0; index < await blockedStarts.count(); index += 1) {
+          assert.equal(await blockedStarts.nth(index).isDisabled(), true);
+        }
 
         if (course === "hanzi-starter") {
           const favorites = page.getByRole("region", { name: "收藏的字" });
@@ -48,13 +55,36 @@ try {
         await dialog.getByText("备份与恢复").waitFor();
         await dialog.getByRole("button", { name: "关闭" }).click();
         assert.equal(await galaxyRecovery.evaluate(element => document.activeElement === element), true);
+
+        await page.getByRole("button", { name: "主题图鉴", exact: true }).click();
+        if (course === "hanzi-starter") {
+          const mapRecovery = page.locator(".hanzi-map-recovery");
+          await mapRecovery.getByText("学习记录暂时无法读取，仍可打开字卡看看；请先恢复记录再开始共读或认读。").waitFor();
+          const mapRecoveryButton = mapRecovery.getByRole("button", { name: "打开家长设置" });
+          assert.equal(await mapRecoveryButton.evaluate(element => element.getBoundingClientRect().height >= 48), true);
+          const mapStarts = page.locator(".hanzi-map-actions").getByRole("button", { name: "学习记录待恢复" });
+          assert.ok(await mapStarts.count() > 0);
+          for (let index = 0; index < await mapStarts.count(); index += 1) {
+            assert.equal(await mapStarts.nth(index).isDisabled(), true);
+          }
+          await mapRecoveryButton.click();
+          await dialog.getByText("备份与恢复").waitFor();
+          await dialog.getByRole("button", { name: "关闭" }).click();
+          assert.equal(await mapRecoveryButton.evaluate(element => document.activeElement === element), true);
+        } else {
+          const blockedAtlasStarts = page.locator(".preview-lessons").getByRole("button", { name: "学习记录待恢复" });
+          assert.ok(await blockedAtlasStarts.count() > 0);
+          for (let index = 0; index < await blockedAtlasStarts.count(); index += 1) {
+            assert.equal(await blockedAtlasStarts.nth(index).isDisabled(), true);
+          }
+        }
         assert.equal(await page.evaluate(key => localStorage.getItem(key), key), "{damaged");
         assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
         await context.close();
       }
     }
   }
-  console.log("两门课程旅程、收藏与知识星图的损坏记录恢复入口通过");
+  console.log("两门课程旅程、收藏、知识星图与图鉴损坏记录恢复入口及启动保护通过");
 } finally {
   await browser.close();
 }

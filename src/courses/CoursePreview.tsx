@@ -708,16 +708,18 @@ export default function CoursePreview() {
                           aria-label={`${journeyDiscovery.title}已看过 ${journeyDiscovery.themeViewed} / ${journeyDiscovery.themeTotal} 个${course.manifest.subject === "hanzi" ? "字" : "词"}`}
                         />}
                       </>
-                      : <>
-                        <span>学习记录暂时无法读取；仍可点开上面的词字看看。</span>
-                        <button type="button" className="btn btn-glass" onClick={() => setParentOpen(true)}>打开家长设置</button>
-                      </>}</div>
+                      : <span>学习记录暂时无法读取。</span>}</div>
+                  </div>}
+                  {!exploration && <div className="journey-action-error journey-progress-recovery" role="status">
+                    <span>学习记录暂时无法读取，仍可浏览词字；请先恢复记录再开始新的学习。</span>
+                    <button type="button" className="btn btn-glass" onClick={() => setParentOpen(true)}>打开家长设置</button>
                   </div>}
                   <div className="journey-actions">
                     {course.manifest.id === "primary-starter" && <PrimaryTodayButton profileId={activeProfileId} courseId={course.manifest.id} contentVersion={course.manifest.version}
                       entries={todayEntries} onOpenSettings={() => setParentOpen(true)} onToday={() => setLesson({ id: "today", title: "今日小课", subtitle: "回顾与发现", entryIds: todayEntries.map((entry) => entry.id) })} />}
-                    {course.manifest.subject === "hanzi" && (resumableHanzi.best || resumableHanzi.fallback) && <button className="btn btn-primary btn-xl" onClick={() => { const next = resumableHanzi.best?.lesson ?? resumableHanzi.fallback; if (!next) return; setHanziMode(resumableHanzi.best?.mode ?? "co-read"); setLesson(next); }}>{resumableHanzi.best ? `${resumableHanzi.best.mode === "co-read" ? "继续共读" : "继续认一认"}：${resumableHanzi.best.lesson.title}` : "一起读一读"} <ArrowRight size={18} /></button>}
-                    {course.manifest.subject === "hanzi" && resumableHanzi.best?.mode !== "lesson" && (resumableHanzi.recognition || resumableHanzi.recognitionFallback) && <button className="btn btn-glass" onClick={() => { const next = resumableHanzi.recognition?.lesson ?? resumableHanzi.recognitionFallback; if (!next) return; setHanziMode("lesson"); setLesson(next); }}>{resumableHanzi.recognition ? `继续认一认：${resumableHanzi.recognition.lesson.title}` : "试试认一认"}</button>}
+                    {course.manifest.subject === "hanzi" && !exploration && <button className="btn btn-primary btn-xl" disabled>学习记录待恢复 <ArrowRight size={18} /></button>}
+                    {course.manifest.subject === "hanzi" && exploration && (resumableHanzi.best || resumableHanzi.fallback) && <button className="btn btn-primary btn-xl" onClick={() => { const next = resumableHanzi.best?.lesson ?? resumableHanzi.fallback; if (!next) return; setHanziMode(resumableHanzi.best?.mode ?? "co-read"); setLesson(next); }}>{resumableHanzi.best ? `${resumableHanzi.best.mode === "co-read" ? "继续共读" : "继续认一认"}：${resumableHanzi.best.lesson.title}` : "一起读一读"} <ArrowRight size={18} /></button>}
+                    {course.manifest.subject === "hanzi" && exploration && resumableHanzi.best?.mode !== "lesson" && (resumableHanzi.recognition || resumableHanzi.recognitionFallback) && <button className="btn btn-glass" onClick={() => { const next = resumableHanzi.recognition?.lesson ?? resumableHanzi.recognitionFallback; if (!next) return; setHanziMode("lesson"); setLesson(next); }}>{resumableHanzi.recognition ? `继续认一认：${resumableHanzi.recognition.lesson.title}` : "试试认一认"}</button>}
                     <button className="btn btn-glass" onClick={() => go({ page: "explore", courseId: course.manifest.id, view: "atlas" })}>选择主题</button>
                   </div>
                   {course.manifest.subject === "hanzi" && resumableHanzi.invalid && <div className="journey-action-error" role="status">
@@ -750,7 +752,11 @@ export default function CoursePreview() {
                     const checkpoint = course.manifest.subject === "hanzi"
                       ? readHanziCheckpoint(localStorage, { profileId: activeProfileId, courseId: course.manifest.id, lessonId: item.id, mode: "co-read", contentVersion: course.manifest.version, entries: itemEntries.filter((entry): entry is HanziEntry => entry.kind === "hanzi"), voiceAvailable: mandarinAvailable }, Date.now())
                       : readCheckpoint(localStorage, { profileId: activeProfileId, courseId: course.manifest.id, lessonId: item.id, contentVersion: course.manifest.version, entries: entriesFromStartingPoint(itemEntries, startingWords[item.id]) }, Date.now());
-                    const label = checkpoint.status === "ok" ? (checkpoint.checkpoint.session.endReason ? "查看上次小课" : course.manifest.subject === "hanzi" ? "继续共读" : "继续小课") : course.manifest.subject === "hanzi" ? "一起读一读" : "开始小课";
+                    const label = !exploration
+                      ? "学习记录待恢复"
+                      : checkpoint.status === "ok"
+                        ? checkpoint.checkpoint.session.endReason ? "查看上次小课" : course.manifest.subject === "hanzi" ? "继续共读" : "继续小课"
+                        : course.manifest.subject === "hanzi" ? "一起读一读" : "开始小课";
                     return <article className="panel journey-stop" data-state={state?.state ?? "unavailable"} key={item.id}>
                       {first && <Illustration src={course.img(first)} word={entryLabel(first)} />}
                       <div><h3>{item.title}</h3><p>{state ? state.state === "visited" ? "这一站都看过了" : state.state === "partial" ? "来过这里" : "等你来探索" : "学习记录暂不可用"}</p>
@@ -762,7 +768,7 @@ export default function CoursePreview() {
                           <span>看过 {state.viewed} / {state.total} {course.manifest.subject === "hanzi" ? "个字" : "个词"}</span>
                           <progress value={state.viewed} max={state.total} aria-label={`${item.title}看过 ${state.viewed} / ${state.total} ${course.manifest.subject === "hanzi" ? "个字" : "个词"}`} />
                         </div>}
-                        <button className="btn btn-ghost" disabled={checkpoint.status === "invalid"} onClick={() => { if (course.manifest.subject === "hanzi") setHanziMode("co-read"); setLesson(item); }}>{label} <ArrowRight size={16} /></button>
+                        <button className="btn btn-ghost" disabled={!exploration || checkpoint.status === "invalid"} onClick={() => { if (course.manifest.subject === "hanzi") setHanziMode("co-read"); setLesson(item); }}>{label} <ArrowRight size={16} /></button>
                         {checkpoint.status === "invalid" && <div className="journey-action-error" role="status">
                           <span>这次小课记录暂时无法读取，原记录已保留。可以选择其他主题。</span>
                           <button type="button" className="btn btn-ghost" onClick={() => setParentOpen(true)}>打开家长设置</button>
@@ -914,7 +920,7 @@ export default function CoursePreview() {
                           <button type="button" key={e.id} className={`preview-entry-link${matchingEntryIds.has(e.id) ? " is-search-match" : ""}`} onClick={() => go({ page: "explore", courseId: course.manifest.id, view: "atlas", entryId: e.id })} aria-label={`查看 ${entryLabel(e)} 词卡${matchingEntryIds.has(e.id) ? "，符合查找" : ""}`}>{entryLabel(e)}</button>
                         ))}
                       </div>
-                      {course.manifest.id === "primary-starter" && entries.length > 0 && checkpoint?.status === "empty" && (
+                      {course.manifest.id === "primary-starter" && entries.length > 0 && checkpoint?.status === "empty" && exploration && (
                         <label className="preview-start-word">
                           <span>从哪个词开始</span>
                           <select aria-label={`${l.title}起始词`} value={startId ?? entries[0].id}
@@ -926,10 +932,10 @@ export default function CoursePreview() {
                       {checkpoint?.status === "ok" && !checkpoint.checkpoint.session.endReason && <p>接着上次的小课继续。</p>}
                       <button
                         className="btn btn-primary"
-                        disabled={!entries.length || checkpoint?.status === "invalid"}
+                        disabled={!exploration || !entries.length || checkpoint?.status === "invalid"}
                         onClick={() => setLesson(l)}
                       >
-                        {checkpoint?.status === "invalid" ? "小课记录待恢复" : checkpoint?.status === "ok" ? checkpoint.checkpoint.session.endReason ? "查看上次小课" : "继续小课" : "开始小课"} <ArrowRight size={18} />
+                        {!exploration ? "学习记录待恢复" : checkpoint?.status === "invalid" ? "小课记录待恢复" : checkpoint?.status === "ok" ? checkpoint.checkpoint.session.endReason ? "查看上次小课" : "继续小课" : "开始小课"} <ArrowRight size={18} />
                       </button>
                       {checkpoint?.status === "invalid" && <div className="journey-action-error" role="status">
                         <span>这次小课记录暂时无法读取，原记录已保留。可以选择其他主题。</span>

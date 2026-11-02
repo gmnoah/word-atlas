@@ -32,6 +32,10 @@ export function HanziMap({ course, lessons, entries, exploration, matchingEntryI
         </div>
         <Compass size={30} strokeWidth={1.2} aria-hidden="true" />
       </div>
+      {!exploration && <div className="journey-action-error hanzi-map-recovery" role="status">
+        <span>学习记录暂时无法读取，仍可打开字卡看看；请先恢复记录再开始共读或认读。</span>
+        {onOpenSettings && <button type="button" className="btn btn-ghost" onClick={onOpenSettings}>打开家长设置</button>}
+      </div>}
       <ol className="hanzi-map-path">
         {lessons.map((lesson) => {
           const index = (course.lessons ?? []).findIndex((item) => item.id === lesson.id);
@@ -62,11 +66,11 @@ export function HanziMap({ course, lessons, entries, exploration, matchingEntryI
                   ))}
                 </p>
                 <div className="hanzi-map-actions">
-                  <button className="btn btn-primary btn-xl" disabled={recognition === "invalid"} onClick={() => onStart(lesson)}>
-                    <BookOpen size={20} /> {recognition === "invalid" ? "认读记录待恢复" : recognition === "active" ? "继续认一认" : recognition === "finished" ? "查看认读结果" : "认一认"}
+                  <button className="btn btn-primary btn-xl" disabled={!exploration || recognition === "invalid"} onClick={() => onStart(lesson)}>
+                    <BookOpen size={20} /> {!exploration ? "学习记录待恢复" : recognition === "invalid" ? "认读记录待恢复" : recognition === "active" ? "继续认一认" : recognition === "finished" ? "查看认读结果" : "认一认"}
                   </button>
-                  <button className="btn btn-ghost" disabled={reading === "invalid"} onClick={() => onCoRead(lesson)}>
-                    {reading === "invalid" ? "共读记录待恢复" : reading === "active" ? "继续共读" : reading === "finished" ? "查看共读结果" : "只读一读"}
+                  <button className="btn btn-ghost" disabled={!exploration || reading === "invalid"} onClick={() => onCoRead(lesson)}>
+                    {!exploration ? "学习记录待恢复" : reading === "invalid" ? "共读记录待恢复" : reading === "active" ? "继续共读" : reading === "finished" ? "查看共读结果" : "只读一读"}
                   </button>
                 </div>
                 {(recognition === "invalid" || reading === "invalid") && <div className="journey-action-error" role="status">
