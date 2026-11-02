@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight, Check, Leaf } from "lucide-react";
 import { useCallback, useEffect, useReducer, useRef, useState } from "react";
 import type { Course } from "../atlas/types";
 import { createLearningSession, currentStep, learningReducer, learningSessionStats, type LearningAction } from "../learning/session";
+import { checkpointRevision } from "../learning/session-persistence";
 import { Illustration } from "../ui/Illustration";
 import { Sheet } from "../ui/Sheet";
 import { EnglishWordCard } from "./EnglishWordCard";
@@ -37,6 +38,8 @@ export function PrimaryLesson({ course, lesson, entries, profileId, stage, spell
   const [progressError, setProgressError] = useState(false);
   const [saveRetry, setSaveRetry] = useState(0);
   const [saveRetrying, setSaveRetrying] = useState(false);
+  const attemptedRevision = useRef<string | null>(null);
+  const handledRetry = useRef(0);
   const [sessionStage] = useState(loaded.status === "ok" ? loaded.checkpoint.stage : stage);
   const [sessionSpelling] = useState(loaded.status === "ok" ? loaded.checkpoint.spellingEnabled : spellingEnabled);
   const [session, dispatchRaw] = useReducer(learningReducer, undefined, () => {
@@ -98,6 +101,11 @@ export function PrimaryLesson({ course, lesson, entries, profileId, stage, spell
 
   useEffect(() => {
     if (saveError) return;
+    const revision = checkpointRevision(session);
+    const retryRequested = saveRetry > handledRetry.current;
+    if (revision === attemptedRevision.current && !retryRequested) return;
+    if (retryRequested) handledRetry.current = saveRetry;
+    attemptedRevision.current = revision;
     void withPrimaryLock(profileId, course.manifest.id, () => {
       if (blocked.current) return;
       const raw = saveCheckpoint(localStorage, { version: 1, profileId, courseId: course.manifest.id,

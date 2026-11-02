@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight, Check, Volume2 } from "lucide-react";
 import { useCallback, useEffect, useReducer, useRef, useState } from "react";
 import type { Course } from "../atlas/types";
 import { createLearningSession, currentStep, learningReducer, learningSessionStats, type LearningAction } from "../learning/session";
+import { checkpointRevision } from "../learning/session-persistence";
 import { applyPrimarySession, primaryReviewIds, readPrimaryProgress, readRestoreGeneration, withPrimaryLock, writePrimaryProgress } from "../learning/primary-progress";
 import { Illustration } from "../ui/Illustration";
 import { Sheet } from "../ui/Sheet";
@@ -67,6 +68,8 @@ export function HanziLesson({ course, lesson, entries, profileId, mode, minutes,
   const [progressError, setProgressError] = useState(false);
   const [saveRetry, setSaveRetry] = useState(0);
   const [saveRetrying, setSaveRetrying] = useState(false);
+  const attemptedRevision = useRef<string | null>(null);
+  const handledRetry = useRef(0);
   const progressFailure = useRef(false);
   const [sessionMode] = useState(loaded.status === "ok" ? loaded.checkpoint.mode : mode);
   const [sessionVoice] = useState(loaded.status === "ok" ? loaded.checkpoint.voiceAvailable : voiceAvailable);
@@ -148,6 +151,11 @@ export function HanziLesson({ course, lesson, entries, profileId, mode, minutes,
 
   useEffect(() => {
     if (saveError) return;
+    const revision = checkpointRevision(session);
+    const retryRequested = saveRetry > handledRetry.current;
+    if (revision === attemptedRevision.current && !retryRequested) return;
+    if (retryRequested) handledRetry.current = saveRetry;
+    attemptedRevision.current = revision;
     void withPrimaryLock(profileId, course.manifest.id, () => {
       if (blocked.current) return;
       const raw = saveHanziCheckpoint(
