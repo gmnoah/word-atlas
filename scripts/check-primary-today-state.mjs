@@ -21,11 +21,17 @@ try {
   await panel.getByText('今日小课记录暂时无法读取，可以先选择其他主题。').waitFor();
   await hero.getByText('今日小课记录暂时无法读取，原记录已保留。可以选择其他主题。').waitFor();
   assert.equal(await panel.getByText('学习进度暂时无法读取或保存，原记录已保留。').count(), 0);
-  assert.equal(await hero.getByRole('button',{name:'开始今日小课'}).isDisabled(),true);
+  assert.equal(await hero.getByRole('button',{name:'开始今日小课'}).count(),0);
+  assert.equal(await hero.getByRole('button',{name:'小课记录待恢复'}).isDisabled(),true);
+  await hero.getByRole('button',{name:'打开家长设置'}).click();
+  await page.getByRole('dialog').getByText('备份与恢复').waitFor();
+  await page.getByRole('button',{name:'关闭',exact:true}).click();
   assert.equal(await page.evaluate(key=>localStorage.getItem(key),key),'broken');
   await page.evaluate(()=>localStorage.setItem('word-atlas:v3:primary-progress:learner-default:primary-starter','broken'));
   await page.reload(); await panel.getByText('收藏记录暂时无法读取，原记录已保留。').waitFor();
   await hero.getByText('学习进度暂时无法读取，原记录已保留。').waitFor();
+  assert.equal(await hero.getByRole('button',{name:'开始今日小课'}).count(),0);
+  assert.equal(await hero.getByRole('button',{name:'学习记录待恢复'}).isDisabled(),true);
   assert.equal(await page.getByText('学习进度暂时无法读取，原记录已保留。').count(),1);
   assert.equal(await page.getByText('收藏记录暂时无法读取，原记录已保留。').count(),1);
   assert.equal(await page.getByText('收藏暂时无法保存，原记录已保留。').count(),0);

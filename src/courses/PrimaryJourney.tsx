@@ -156,7 +156,17 @@ function todayState({ profileId, courseId, contentVersion, entries }: TodayProps
   const checkpoint = readCheckpoint(localStorage, { profileId, courseId, lessonId: "today", contentVersion, entries }, Date.now());
   const hasCheckpoint = checkpoint.status === "ok" && !checkpoint.checkpoint.session.endReason;
   const hasFinishedCheckpoint = checkpoint.status === "ok" && !!checkpoint.checkpoint.session.endReason;
-  const actionLabel = status === "loading" ? "正在读取学习记录" : hasCheckpoint ? "继续今日小课" : hasFinishedCheckpoint ? "查看上次小课" : "开始今日小课";
+  const actionLabel = status === "loading"
+    ? "正在读取学习记录"
+    : status === "read-error"
+      ? "学习记录待恢复"
+      : checkpoint.status === "invalid"
+        ? "小课记录待恢复"
+        : hasCheckpoint
+          ? "继续今日小课"
+          : hasFinishedCheckpoint
+            ? "查看上次小课"
+            : "开始今日小课";
   const description = status === "loading" ? "正在读取学习记录…" : status === "read-error" ? "学习记录暂时无法读取。" : checkpoint.status === "invalid" ? "今日小课记录暂时无法读取，可以先选择其他主题。" : hasCheckpoint ? "上次的小课还在这里，随时接着学习。" : hasFinishedCheckpoint ? "上次的小课还在这里，可以查看结果。" : due.length ? "先回顾认识过的词，再发现新朋友。" : fresh.length ? "从一个小小的发现开始。" : "今天先休息，之后再回来看看。";
   return { checkpoint, actionLabel, description, disabled: !progress || checkpoint.status === "invalid" || (!due.length && !fresh.length && !hasCheckpoint && !hasFinishedCheckpoint) };
 }
@@ -168,7 +178,8 @@ export function PrimaryTodayButton(props: TodayProps) {
   return <><button className="btn btn-primary btn-xl" disabled={today.disabled} onClick={props.onToday}>{today.actionLabel} <ArrowRight size={18} /></button>
     {readError ? <div className="journey-action-error" role="status"><span>学习进度暂时无法读取，原记录已保留。</span>
       {props.onOpenSettings && <button type="button" className="btn btn-glass" onClick={props.onOpenSettings}>打开家长设置</button>}</div>
-      : today.checkpoint.status === "invalid" && <span className="journey-action-error" role="status">今日小课记录暂时无法读取，原记录已保留。可以选择其他主题。</span>}</>;
+      : today.checkpoint.status === "invalid" && <div className="journey-action-error" role="status"><span>今日小课记录暂时无法读取，原记录已保留。可以选择其他主题。</span>
+        {props.onOpenSettings && <button type="button" className="btn btn-glass" onClick={props.onOpenSettings}>打开家长设置</button>}</div>}</>;
 }
 
 export function PrimaryJourney(props: TodayProps & { hideAction?: boolean; onOpenFavorite: (entry: LearningEntry) => void }) {
