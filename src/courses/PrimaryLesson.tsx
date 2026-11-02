@@ -63,6 +63,7 @@ export function PrimaryLesson({ course, lesson, entries, profileId, stage, spell
   });
   const [exitOpen, setExitOpen] = useState(false);
   const [failedImageStep, setFailedImageStep] = useState<number | null>(null);
+  const [imageAttempt, setImageAttempt] = useState(0);
   const [audioPlayback, setAudioPlayback] = useState<{
     index: number;
     state: "waiting" | "playing" | "ready" | "error";
@@ -82,12 +83,18 @@ export function PrimaryLesson({ course, lesson, entries, profileId, stage, spell
   const audioQuestion = step?.kind === "listen-picture" || step?.kind === "listen-word";
   const spellQuestion = step?.kind === "spell";
   const spellingValue = spellingInput?.index === session.index ? spellingInput.value : "";
-  const imageQuestion = step?.kind === "picture-word" || step?.kind === "listen-picture";
   const failedImage = failedImageStep === session.index;
   const audioState = audioPlayback?.index === session.index ? audioPlayback.state : "waiting";
-  const imageMissing = (intro || imageQuestion) && (!entry?.media.image || failedImage);
-  const resourceFailed = !!imageMissing || (audioQuestion && audioState === "error");
+  const mainImageQuestion = intro || step?.kind === "picture-word";
+  const imageMissing = mainImageQuestion && !entry?.media.image;
+  const mainImageFailed = mainImageQuestion && failedImage;
+  const optionImageFailed = step?.kind === "listen-picture" && failedImage;
+  const resourceFailed = imageMissing || mainImageFailed || optionImageFailed || (audioQuestion && audioState === "error");
   const unableToAnswer = !!resourceFailed || (audioQuestion && audioState !== "ready");
+  const retryImage = () => {
+    setFailedImageStep(null);
+    setImageAttempt((value) => value + 1);
+  };
 
   useEffect(() => {
     if (saveError) return;
@@ -199,10 +206,14 @@ export function PrimaryLesson({ course, lesson, entries, profileId, stage, spell
                     onPlaybackState={(state) => setAudioPlayback({ index: session.index, state })} />
                 </div>
               ) : (
-                <Illustration src={course.img(entry)} word={intro ? entryLabel(entry) : "图片暂未加载"} eager
+                <Illustration key={`${entry.id}:${step.kind}:${imageAttempt}`} src={course.img(entry)}
+                  word={intro ? entryLabel(entry) : "图片暂未加载"} eager
                   alt={intro && entry.kind === "english" ? entry.meaning : "请根据画面选择对应的词"} />
               )}
-              {imageMissing && <p role="status">这幅图暂时没打开，可以先跳过。</p>}
+              {(imageMissing || mainImageFailed) && <div className="preview-media-error" role="status">
+                <p>{imageMissing ? "这个内容暂时没有可用插画，可以继续听读。" : "这幅图暂时没打开。"}</p>
+                {mainImageFailed && <button type="button" className="btn btn-ghost" onClick={retryImage}>重新加载图片</button>}
+              </div>}
             </div>
             <div className="preview-study-content">
               {intro && <PrimaryFavorite profileId={profileId} courseId={course.manifest.id} entry={entry} onOpenSettings={onOpenSettings} />}
@@ -223,7 +234,7 @@ export function PrimaryLesson({ course, lesson, entries, profileId, stage, spell
                         onChange={(event) => setSpellingInput({ index: session.index, value: event.target.value })} />
                       {!answered && <button type="submit" className="btn btn-primary" disabled={!spellingValue.trim()}>确认答案 <ArrowRight size={18} /></button>}
                     </form>
-                  ) : <div className={`preview-options ${step.kind === "listen-picture" ? "is-picture-choice" : ""}`} onErrorCapture={() => setFailedImageStep(session.index)}>
+                  ) : <div key={`${session.index}:${imageAttempt}`} className={`preview-options ${step.kind === "listen-picture" ? "is-picture-choice" : ""}`} onErrorCapture={() => setFailedImageStep(session.index)}>
                     {(step.options ?? []).map((id, index) => {
                       const option = entries.find((item) => item.id === id);
                       if (!option) return null;
@@ -236,7 +247,10 @@ export function PrimaryLesson({ course, lesson, entries, profileId, stage, spell
                       </button>;
                     })}
                   </div>}
-                  {failedImage && step.kind === "listen-picture" && <p role="status">选项图片暂时没打开，可以先跳过。</p>}
+                  {optionImageFailed && <div className="preview-media-error" role="status">
+                    <p>选项图片暂时没打开，可以重新加载，或先跳过这道题。</p>
+                    <button type="button" className="btn btn-ghost" onClick={retryImage}>重新加载图片</button>
+                  </div>}
                   <div className="preview-feedback" aria-live="polite">
                     {answered && result?.outcome === "answered" ? (
                       <><strong>{result.correct ? "找到了！" : "我们再认识一下。"}</strong>

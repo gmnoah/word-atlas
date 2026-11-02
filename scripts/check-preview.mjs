@@ -242,7 +242,8 @@ try {
   await page.route("**/*.webp*", (route) => route.abort());
   await page.getByRole("button", { name: "打开图鉴：基础英语" }).click();
   await page.getByRole("button", { name: "开始小课" }).first().click();
-  await page.getByText("这幅图暂时没打开，可以先跳过。").waitFor();
+  await page.getByText("这幅图暂时没打开。").waitFor();
+  await page.getByRole("button", { name: "重新加载图片" }).waitFor();
   await page.getByRole("button", { name: "先跳过，下次再认识" }).click();
   await page.unroute("**/*.webp*");
   await page.route("**/*.mp3*", (route) => route.abort());

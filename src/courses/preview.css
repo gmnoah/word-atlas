@@ -66,6 +66,8 @@
 .course-galaxy-recovery .btn { min-height: 48px; }
 .preview-save-error { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
 .preview-save-error .btn { min-height: 48px; }
+.preview-media-error { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.preview-media-error .btn { min-height: 48px; }
 .course-galaxy-sky canvas { display: block; width: 100%; height: 100%; touch-action: none; }
 .course-galaxy-sky canvas:focus-visible { outline: 2px solid #f2ebdd; outline-offset: -5px; }
 .course-galaxy-markers { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; }

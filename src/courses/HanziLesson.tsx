@@ -110,6 +110,7 @@ export function HanziLesson({ course, lesson, entries, profileId, mode, minutes,
 
   const [exitOpen, setExitOpen] = useState(false);
   const [failedImageStep, setFailedImageStep] = useState<number | null>(null);
+  const [imageAttempt, setImageAttempt] = useState(0);
   const [listenStatus, setListenStatus] = useState<ListenStatus>("idle");
   const listenStep = useRef(session.index);
   const listenGate = useRef<ReturnType<typeof createListenGate> | null>(null);
@@ -139,6 +140,10 @@ export function HanziLesson({ course, lesson, entries, profileId, mode, minutes,
   const imageMissing = (intro || pictureQuestion) && (!entry?.media.image || failedImage);
   const resourceFailed = !!imageMissing || (listenQuestion && currentListenStatus === "failed");
   const unableToAnswer = !!resourceFailed || (listenQuestion && (!sessionVoice || currentListenStatus !== "ready"));
+  const retryImage = () => {
+    setFailedImageStep(null);
+    setImageAttempt((value) => value + 1);
+  };
   const coRead = sessionMode === "co-read";
 
   useEffect(() => {
@@ -386,14 +391,17 @@ export function HanziLesson({ course, lesson, entries, profileId, mode, minutes,
                 </div>
               ) : (
                 <Illustration
-                  key={course.img(entry) ?? entry.id}
+                  key={`${course.img(entry) ?? entry.id}:${imageAttempt}`}
                   src={course.img(entry)}
                   word={entry.character}
                   eager
                   alt={intro ? entry.phrase : "请根据画面选择对应的字"}
                 />
               )}
-              {imageMissing && <p role="status">这幅图暂时没打开，可以先跳过。</p>}
+              {imageMissing && <div className="preview-media-error" role="status">
+                <p>{entry.media.image ? "这幅图暂时没打开。" : "这个字暂时没有可用插画，可以继续认一认。"}</p>
+                {failedImage && <button type="button" className="btn btn-ghost" onClick={retryImage}>重新加载图片</button>}
+              </div>}
             </div>
             <div className="preview-study-content">
               {intro && <PrimaryFavorite profileId={profileId} courseId={course.manifest.id} entry={entry} onOpenSettings={onOpenSettings} />}
