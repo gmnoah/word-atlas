@@ -712,7 +712,10 @@ export default function CoursePreview() {
                     {course.manifest.subject === "hanzi" && resumableHanzi.best?.mode !== "lesson" && (resumableHanzi.recognition || resumableHanzi.recognitionFallback) && <button className="btn btn-glass" onClick={() => { const next = resumableHanzi.recognition?.lesson ?? resumableHanzi.recognitionFallback; if (!next) return; setHanziMode("lesson"); setLesson(next); }}>{resumableHanzi.recognition ? `继续认一认：${resumableHanzi.recognition.lesson.title}` : "试试认一认"}</button>}
                     <button className="btn btn-glass" onClick={() => go({ page: "explore", courseId: course.manifest.id, view: "atlas" })}>选择主题</button>
                   </div>
-                  {course.manifest.subject === "hanzi" && resumableHanzi.invalid && <p role="alert">部分小课记录无法读取，原记录已保留；可以选择其他主题。</p>}
+                  {course.manifest.subject === "hanzi" && resumableHanzi.invalid && <div className="journey-action-error" role="status">
+                    <span>部分小课记录无法读取，原记录已保留；可以选择其他主题。</span>
+                    <button type="button" className="btn btn-glass" onClick={() => setParentOpen(true)}>打开家长设置</button>
+                  </div>}
                 </div>
               </section>
               {course.manifest.id === "primary-starter" && <PrimaryJourney profileId={activeProfileId} courseId={course.manifest.id} contentVersion={course.manifest.version}

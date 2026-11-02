@@ -25,6 +25,12 @@ try {
  await page.reload();
  await page.getByText('部分小课记录无法读取，原记录已保留；可以选择其他主题。').waitFor();
  await page.getByRole('button',{name:/继续认一认/}).waitFor();
+ const recovery=page.getByRole('button',{name:'打开家长设置'});
+ await recovery.waitFor();
+ assert.equal(await recovery.evaluate(element=>element.getBoundingClientRect().height>=48),true);
+ await recovery.click();
+ await page.getByRole('dialog').getByText('备份与恢复').waitFor();
+ await page.getByRole('button',{name:'关闭',exact:true}).click();
  assert.equal(await page.evaluate(()=>{const key=Object.keys(localStorage).find(k=>k.startsWith('word-atlas:v3:hanzi-session:') && k.endsWith(':co-read'));return localStorage.getItem(key);}), 'broken');
  console.log('跨模式最近续学与损坏断点保留提示通过');
  await context.close();
