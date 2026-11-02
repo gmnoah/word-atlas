@@ -707,7 +707,8 @@ export default function CoursePreview() {
               </section>
             )}
             {course.manifest.id === "primary-starter" && <PrimaryJourney profileId={activeProfileId} courseId={course.manifest.id} contentVersion={course.manifest.version}
-              entries={todayEntries} onOpenSettings={() => setParentOpen(true)} onToday={() => setLesson({ id: "today", title: "今日小课", subtitle: "回顾与发现", entryIds: todayEntries.map((entry) => entry.id) })} />}
+              entries={todayEntries} onOpenFavorite={(entry) => go({ page: "explore", courseId: course.manifest.id, view: "atlas", entryId: entry.id })}
+              onOpenSettings={() => setParentOpen(true)} onToday={() => setLesson({ id: "today", title: "今日小课", subtitle: "回顾与发现", entryIds: todayEntries.map((entry) => entry.id) })} />}
             <section className="atlas-search" aria-label="查找图鉴内容">
               <label htmlFor="atlas-search">查找主题或{course.manifest.subject === "hanzi" ? "汉字" : "单词"}</label>
               <div className="atlas-search-control"><Search size={20} aria-hidden="true" />

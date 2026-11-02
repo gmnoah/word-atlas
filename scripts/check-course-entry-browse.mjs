@@ -47,12 +47,29 @@ try {
     await page.goBack();
     await page.getByRole("heading", { name: "水果篮子" }).waitFor();
     assert.equal(await page.getByRole("dialog", { name: "课程条目" }).count(), 0);
+    assert.equal(await page.evaluate(async () => {
+      const progress = await import("/src/learning/primary-progress.ts");
+      const ok = await progress.withPrimaryLock("learner-default", "primary-starter", () => {
+        const current = progress.readPrimaryProgress(localStorage, "learner-default", "primary-starter");
+        if (!current.ok) return false;
+        let next = current.progress;
+        for (const id of ["en-banana", "en-cat"]) next = progress.togglePrimaryFavorite(next, id);
+        return progress.writePrimaryProgress(localStorage, next);
+      });
+      if (ok) window.dispatchEvent(new Event("primary-progress-changed"));
+      return ok;
+    }), true);
     await page.goto("http://localhost:5188/#/explore?course=primary-starter&view=journey");
     const englishJourney = page.getByRole("region", { name: "今日学习" });
+    assert.equal(await englishJourney.locator(".primary-favorites-count").textContent(), "3");
     await englishJourney.getByRole("button", { name: "打开 apple 词卡" }).click();
     detail = page.getByRole("dialog", { name: "课程条目" });
     await detail.getByRole("heading", { name: "apple", exact: true }).waitFor();
     await detail.getByRole("button", { name: "关闭" }).click();
+    await page.waitForFunction(() => document.activeElement?.getAttribute("aria-label") === "打开 apple 词卡");
+    await englishJourney.getByRole("button", { name: "取消收藏 banana" }).click();
+    await englishJourney.getByRole("button", { name: "打开 banana 词卡" }).waitFor({ state: "detached" });
+    await page.waitForFunction(() => document.activeElement?.getAttribute("aria-label") === "打开 cat 词卡");
 
     await page.goto("http://localhost:5188/#/explore?course=primary-starter&view=journey&entry=en-apple");
     detail = page.getByRole("dialog", { name: "课程条目" });
@@ -90,12 +107,14 @@ try {
     await detail.getByRole("heading", { name: "山", exact: true }).waitFor();
     await detail.getByRole("button", { name: "关闭" }).click();
     await favoriteOverview.getByRole("button", { name: "取消收藏 山" }).click();
-    await favoriteOverview.getByText("还没有收藏的字。在词字卡里遇到喜欢的内容时，点一下收藏。").waitFor();
+    const emptyFavorites = favoriteOverview.getByText("还没有收藏的字。在词字卡里遇到喜欢的内容时，点一下收藏。");
+    await emptyFavorites.waitFor();
+    await page.waitForFunction(() => document.activeElement?.classList.contains("primary-favorites-empty"));
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
 
     await context.close();
   }
-  console.log("两课程词字卡连续浏览、图鉴收藏、英语与汉字收藏回看、朗读切换、返回历史及桌面/375px 深浅主题通过");
+  console.log("两课程词字卡连续浏览、图鉴收藏、收藏数量与取消焦点、英语与汉字收藏回看、朗读切换、返回历史及桌面/375px 深浅主题通过");
 } finally {
   await browser.close();
 }

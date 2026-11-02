@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Heart, ArrowRight, ChevronRight } from "lucide-react";
 import { primaryReviewIds, readPrimaryProgress, togglePrimaryFavorite, withPrimaryLock, writePrimaryProgress, type PrimaryProgress } from "../learning/primary-progress";
 import { entryLabel, type LearningEntry } from "./types";
@@ -24,12 +24,56 @@ function usePrimaryProgress(profileId: string, courseId: string) {
         const current = readPrimaryProgress(localStorage, profileId, courseId);
         return current.ok && writePrimaryProgress(localStorage, togglePrimaryFavorite(current.progress, id));
       });
-      if (!ok) { setError(true); return; }
+      if (!ok) { setError(true); return false; }
       window.dispatchEvent(new Event("primary-progress-changed"));
-    } catch { setError(true); }
+      return true;
+    } catch { setError(true); return false; }
   };
   const scopedProgress = progress?.profileId === profileId && progress.courseId === courseId ? progress : null;
   return { progress: scopedProgress, error, toggle };
+}
+
+function FavoriteList({ entries, unit, onOpen, onRemove, emptyText }: {
+  entries: LearningEntry[];
+  unit: "词" | "字";
+  onOpen: (entry: LearningEntry) => void;
+  onRemove: (id: string) => Promise<boolean>;
+  emptyText: string;
+}) {
+  const openRefs = useRef(new Map<string, HTMLButtonElement>());
+  const emptyRef = useRef<HTMLParagraphElement>(null);
+  const [removingId, setRemovingId] = useState<string | null>(null);
+  const [focusAfterRemoval, setFocusAfterRemoval] = useState<{ removedId: string; nextId?: string } | null>(null);
+
+  useEffect(() => {
+    if (!focusAfterRemoval || entries.some((entry) => entry.id === focusAfterRemoval.removedId)) return;
+    if (focusAfterRemoval.nextId) openRefs.current.get(focusAfterRemoval.nextId)?.focus({ preventScroll: true });
+    else emptyRef.current?.focus({ preventScroll: true });
+    setFocusAfterRemoval(null);
+  }, [entries, focusAfterRemoval]);
+
+  const remove = async (entry: LearningEntry) => {
+    const index = entries.findIndex((item) => item.id === entry.id);
+    const next = entries[index + 1] ?? entries[index - 1];
+    setRemovingId(entry.id);
+    const removed = await onRemove(entry.id);
+    setRemovingId(null);
+    if (!removed) return;
+    setFocusAfterRemoval({ removedId: entry.id, nextId: next?.id });
+  };
+
+  if (!entries.length) return <p ref={emptyRef} className="primary-favorites-empty" role="status" tabIndex={-1}>{emptyText}</p>;
+  return <ul>{entries.map((entry) => <li key={entry.id}>
+    <button ref={(node) => {
+      if (node) openRefs.current.set(entry.id, node);
+      else openRefs.current.delete(entry.id);
+    }} type="button" className="primary-favorite-open" aria-label={`打开 ${entryLabel(entry)} ${unit}卡`} onClick={() => onOpen(entry)}>
+      <span>{entryLabel(entry)}{entry.kind === "english" ? ` · ${entry.meaning}` : ` · ${entry.phrase}`}</span>
+      <ChevronRight size={16} aria-hidden="true" />
+    </button>
+    <button type="button" className="btn btn-ghost" disabled={removingId === entry.id}
+      aria-label={`取消收藏 ${entryLabel(entry)}`} aria-busy={removingId === entry.id} onClick={() => void remove(entry)}>取消收藏</button>
+  </li>)}</ul>;
 }
 
 export function PrimaryFavorite({ profileId, courseId, entry }: { profileId: string; courseId: string; entry: LearningEntry }) {
@@ -56,13 +100,8 @@ export function PrimaryFavoriteOverview({ profileId, courseId, entries, unit, on
       <p>从图鉴或小课里收藏，之后可以在这里再打开看看。</p>
     </div>
     <div className="primary-favorites">
-      {favorites.length ? <ul>{favorites.map((entry) => <li key={entry.id}>
-        <button type="button" className="primary-favorite-open" aria-label={`打开 ${entryLabel(entry)} ${unit}卡`} onClick={() => onOpenEntry(entry)}>
-          <span>{entryLabel(entry)}{entry.kind === "english" ? ` · ${entry.meaning}` : ` · ${entry.phrase}`}</span>
-          <ChevronRight size={16} aria-hidden="true" />
-        </button>
-        <button type="button" className="btn btn-ghost" onClick={() => void toggle(entry.id)} aria-label={`取消收藏 ${entryLabel(entry)}`}>取消收藏</button>
-      </li>)}</ul> : <p>{progress ? `还没有收藏的${unit}。在词字卡里遇到喜欢的内容时，点一下收藏。` : `收藏记录暂时无法读取。`}</p>}
+      <FavoriteList entries={favorites} unit={unit} onOpen={onOpenEntry} onRemove={toggle}
+        emptyText={progress ? `还没有收藏的${unit}。在词字卡里遇到喜欢的内容时，点一下收藏。` : "收藏记录暂时无法读取。"} />
     </div>
     {error && <div className="primary-journey-error" role="alert"><span>收藏暂时无法保存，原记录已保留。</span></div>}
   </section>;
@@ -99,7 +138,7 @@ export function PrimaryTodayButton(props: TodayProps) {
       : today.checkpoint.status === "invalid" && <span className="journey-action-error" role="status">今日小课记录暂时无法读取，原记录已保留。可以选择其他主题。</span>}</>;
 }
 
-export function PrimaryJourney(props: TodayProps & { hideAction?: boolean; onOpenFavorite?: (entry: LearningEntry) => void }) {
+export function PrimaryJourney(props: TodayProps & { hideAction?: boolean; onOpenFavorite: (entry: LearningEntry) => void }) {
   const { profileId, courseId, entries, onToday, onOpenSettings, hideAction = false, onOpenFavorite } = props;
   const { progress, error, toggle } = usePrimaryProgress(profileId, courseId);
   const favorites = progress ? entries.filter((entry) => progress.favorites.includes(entry.id)) : [];
@@ -109,12 +148,9 @@ export function PrimaryJourney(props: TodayProps & { hideAction?: boolean; onOpe
       <p>{today.description}</p>
       {!hideAction && <button className="btn btn-primary" disabled={today.disabled} onClick={onToday}>{today.actionLabel} <ArrowRight size={18} /></button>}
     </div>
-    <div className="primary-favorites"><h3>收藏的词</h3>
-      {favorites.length ? <ul>{favorites.map((entry) => <li key={entry.id}>
-        {onOpenFavorite ? <button type="button" className="primary-favorite-open" aria-label={`打开 ${entryLabel(entry)} 词卡`} onClick={() => onOpenFavorite(entry)}>
-          <span>{entryLabel(entry)}{entry.kind === "english" ? ` · ${entry.meaning}` : ""}</span><ChevronRight size={16} aria-hidden="true" />
-        </button> : <span>{entryLabel(entry)}{entry.kind === "english" ? ` · ${entry.meaning}` : ""}</span>}
-        <button className="btn btn-ghost" onClick={() => void toggle(entry.id)} aria-label={`取消收藏 ${entryLabel(entry)}`}>取消收藏</button></li>)}</ul> : <p>{progress ? "遇到喜欢的词，可以在词卡上收藏。" : "收藏记录暂时无法读取。"}</p>}
+    <div className="primary-favorites"><h3>收藏的词{favorites.length > 0 && <span className="primary-favorites-count">{favorites.length}</span>}</h3>
+      <FavoriteList entries={favorites} unit="词" onOpen={onOpenFavorite} onRemove={toggle}
+        emptyText={progress ? "遇到喜欢的词，可以在词卡上收藏。" : "收藏记录暂时无法读取。"} />
     </div>
     {error && !hideAction && <div className="primary-journey-error" role="alert">
       <span>学习进度暂时无法读取，原记录已保留。</span>
