@@ -3,6 +3,7 @@ import {
   ArrowRight,
   BookOpen,
   Check,
+  ChevronLeft,
   ChevronRight,
   Compass,
   Leaf,
@@ -222,7 +223,7 @@ export default function CoursePreview() {
   };
   const closeParent = useCallback(() => setParentOpen(false), []);
   const closeEntry = useCallback(() => {
-    if (route.page === "explore") go({ page: "explore", courseId: route.courseId, view: route.view });
+    if (route.page === "explore") go({ page: "explore", courseId: route.courseId, view: route.view }, null, true);
   }, [route]);
   const dark =
     theme === "dark" ||
@@ -840,14 +841,29 @@ export default function CoursePreview() {
           const entry = entriesById.get(entryId)!;
           const text = entry.kind === "english" ? entry.word : entry.phrase;
           const example = entry.kind === "english" ? exampleTargetParts(entry.example.text, entry.example.targetForm) : null;
+          const lesson = (course.lessons ?? []).find((item) => item.entryIds.includes(entry.id));
+          const position = lesson ? lesson.entryIds.indexOf(entry.id) : -1;
+          const previousId = position > 0 ? lesson?.entryIds[position - 1] : undefined;
+          const nextId = lesson && position >= 0 && position < lesson.entryIds.length - 1 ? lesson.entryIds[position + 1] : undefined;
+          const unit = entry.kind === "english" ? "词" : "字";
+          const browseTo = (id: string) => go({ page: "explore", courseId: course.manifest.id, view: route.page === "explore" ? route.view : "atlas", entryId: id }, null, true);
           return <div className="course-entry-detail">
             <Illustration src={course.img(entry)} word={entryLabel(entry)} fallbackMessage="插画暂时无法显示" />
-            <div><p className="eyebrow">课程图鉴</p><h2>{entryLabel(entry)}</h2>
+            <div><p className="eyebrow">{lesson ? `${lesson.title} · 第 ${position + 1} / ${lesson.entryIds.length} 个${unit}` : "课程图鉴"}</p><h2>{entryLabel(entry)}</h2>
               <p>{entry.kind === "english" ? entry.meaning : entry.phrase}</p>
-              <PreviewSpeak text={text} locale={entry.kind === "english" ? entry.media.locale : "zh-CN"} recording={course.audio(entry)} slow={preferences.slow} />
+              <PreviewSpeak key={`course-entry:${entry.id}`} text={text} locale={entry.kind === "english" ? entry.media.locale : "zh-CN"} recording={course.audio(entry)} slow={preferences.slow} />
               {entry.kind === "english" ? <div className="preview-example"><p lang="en">{example ? <>{example[0]}<mark className="example-target">{example[1]}</mark>{example[2]}</> : entry.example.text}</p><span>{entry.example.translation}</span></div>
                 : <><p>{entry.sentence}</p><details><summary>给家长的小提示</summary><p>拼音：{entry.pinyin}</p><p>{entry.caregiverTip}</p></details></>}
               <p className="preview-disclosure">内容为待审校草稿。{entry.kind === "hanzi" ? "普通话使用设备朗读，也可以请家长读一读。" : "例句和语音仍需审校。"}</p>
+              {lesson && lesson.entryIds.length > 1 && <div className="course-entry-browse" aria-label={`在${lesson.title}中浏览`}>
+                <button type="button" className="btn btn-ghost" disabled={!previousId} onClick={() => previousId && browseTo(previousId)}>
+                  <ChevronLeft size={18} aria-hidden="true" /> 上一{unit}
+                </button>
+                <span>第 {position + 1} / {lesson.entryIds.length} 个</span>
+                <button type="button" className="btn btn-ghost" disabled={!nextId} onClick={() => nextId && browseTo(nextId)}>
+                  下一{unit} <ChevronRight size={18} aria-hidden="true" />
+                </button>
+              </div>}
             </div>
           </div>;
         })()}

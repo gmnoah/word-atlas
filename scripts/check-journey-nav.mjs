@@ -16,13 +16,13 @@ try {
   await page.getByRole('button',{name:'今日旅程'}).click();
   await page.getByRole('heading',{name:course === 'hanzi-starter' ? '一起看看生活里的字。' : '从一个小小的发现开始。'}).waitFor();
   await page.getByRole('button',{name:'学习记录'}).click();
-  await page.getByText('更早的逐日活动详情仍在完善。').waitFor();
+  await page.getByText('还没有详细活动记录。之后的小课会在这里留下记录。').waitFor();
   await page.goBack();
   await page.getByRole('heading',{name:course === 'hanzi-starter' ? '一起看看生活里的字。' : '从一个小小的发现开始。'}).waitFor();
   await page.goForward();
-  await page.getByText('更早的逐日活动详情仍在完善。').waitFor();
+  await page.getByText('还没有详细活动记录。之后的小课会在这里留下记录。').waitFor();
   await page.reload();
-  await page.getByText('更早的逐日活动详情仍在完善。').waitFor();
+  await page.getByText('还没有详细活动记录。之后的小课会在这里留下记录。').waitFor();
   await page.getByRole('button',{name:'主题图鉴'}).click();
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),true);
   await page.getByRole('button',{name:course === 'hanzi-starter' ? '查看山字卡' : '查看 apple 词卡'}).first().click();
