@@ -708,7 +708,10 @@ export default function CoursePreview() {
                           aria-label={`${journeyDiscovery.title}已看过 ${journeyDiscovery.themeViewed} / ${journeyDiscovery.themeTotal} 个${course.manifest.subject === "hanzi" ? "字" : "词"}`}
                         />}
                       </>
-                      : <span>学习记录暂时无法读取；仍可点开上面的词字看看。</span>}</div>
+                      : <>
+                        <span>学习记录暂时无法读取；仍可点开上面的词字看看。</span>
+                        <button type="button" className="btn btn-glass" onClick={() => setParentOpen(true)}>打开家长设置</button>
+                      </>}</div>
                   </div>}
                   <div className="journey-actions">
                     {course.manifest.id === "primary-starter" && <PrimaryTodayButton profileId={activeProfileId} courseId={course.manifest.id} contentVersion={course.manifest.version}
@@ -726,7 +729,7 @@ export default function CoursePreview() {
               {course.manifest.id === "primary-starter" && <PrimaryJourney profileId={activeProfileId} courseId={course.manifest.id} contentVersion={course.manifest.version}
                 entries={todayEntries} hideAction onOpenFavorite={(entry) => go({ page: "explore", courseId: course.manifest.id, view: "journey", entryId: entry.id })}
                 onOpenSettings={() => setParentOpen(true)} onToday={() => setLesson({ id: "today", title: "今日小课", subtitle: "回顾与发现", entryIds: todayEntries.map((entry) => entry.id) })} />}
-              {course.manifest.subject === "hanzi" && <PrimaryFavoriteOverview profileId={activeProfileId} courseId={course.manifest.id} entries={courseEntries} unit="字"
+              {course.manifest.subject === "hanzi" && <PrimaryFavoriteOverview profileId={activeProfileId} courseId={course.manifest.id} entries={courseEntries} unit="字" onOpenSettings={() => setParentOpen(true)}
                 onOpenEntry={(entry) => go({ page: "explore", courseId: course.manifest.id, view: "journey", entryId: entry.id })} />}
               <details open={mapOpen} className="course-galaxy-section panel" onToggle={(event) => setMapOpen(event.currentTarget.open)}>
                 <summary>
@@ -735,7 +738,7 @@ export default function CoursePreview() {
                     ? `已看过 ${exploration.seen} / ${exploration.total} 个${course.manifest.subject === "hanzi" ? "字" : "词"} · ${exploration.themes.filter((item) => item.viewed > 0).length} / ${exploration.themes.length} 个主题有足迹`
                     : "学习记录暂时无法读取，仍可展开查看课程内容"}</small>
                 </summary>
-                {mapOpen && <Suspense fallback={<p>正在展开星图…</p>}><CourseGalaxy key={`${activeProfileId}:${course.manifest.id}`} entries={courseEntries} lessons={course.lessons ?? []} profileId={activeProfileId} courseId={course.manifest.id} revision={progressRevision} onOpen={(entry) => go({ page: "explore", courseId: course.manifest.id, view: "journey", entryId: entry.id })} /></Suspense>}
+                {mapOpen && <Suspense fallback={<p>正在展开星图…</p>}><CourseGalaxy key={`${activeProfileId}:${course.manifest.id}`} entries={courseEntries} lessons={course.lessons ?? []} profileId={activeProfileId} courseId={course.manifest.id} revision={progressRevision} onOpenSettings={() => setParentOpen(true)} onOpen={(entry) => go({ page: "explore", courseId: course.manifest.id, view: "journey", entryId: entry.id })} /></Suspense>}
               </details>
               <section className="journey-stops" aria-labelledby="journey-stops-title">
                 <div className="preview-section-heading"><div><p className="eyebrow">YOUR EXPLORATIONS</p><h2 id="journey-stops-title">去主题里看看</h2><p>优先展示最近初次看过的主题。</p></div></div>

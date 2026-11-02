@@ -115,12 +115,13 @@ export function PrimaryFavorite({ profileId, courseId, entry }: { profileId: str
   </div>;
 }
 
-export function PrimaryFavoriteOverview({ profileId, courseId, entries, unit, onOpenEntry }: {
+export function PrimaryFavoriteOverview({ profileId, courseId, entries, unit, onOpenEntry, onOpenSettings }: {
   profileId: string;
   courseId: string;
   entries: LearningEntry[];
   unit: "词" | "字";
   onOpenEntry: (entry: LearningEntry) => void;
+  onOpenSettings?: () => void;
 }) {
   const { progress, loading, readError, writeError, toggle } = usePrimaryProgress(profileId, courseId);
   const favorites = progress ? entries.filter((entry) => progress.favorites.includes(entry.id)) : [];
@@ -132,7 +133,10 @@ export function PrimaryFavoriteOverview({ profileId, courseId, entries, unit, on
     </div>
     <div className="primary-favorites">
       {loading ? <p className="primary-favorites-empty" role="status">正在读取收藏记录…</p>
-        : readError ? <p className="primary-favorites-empty" role="alert">收藏记录暂时无法读取，原记录已保留。</p>
+        : readError ? <div className="primary-favorites-empty primary-favorites-recovery" role="alert">
+          <p>收藏记录暂时无法读取，原记录已保留。</p>
+          {onOpenSettings && <button type="button" className="btn btn-ghost" onClick={onOpenSettings}>打开家长设置</button>}
+        </div>
           : <FavoriteList entries={favorites} unit={unit} onOpen={onOpenEntry} onRemove={toggle}
             emptyText={`还没有收藏的${unit}。在词字卡里遇到喜欢的内容时，点一下收藏。`} />}
     </div>
