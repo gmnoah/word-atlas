@@ -1583,6 +1583,8 @@
 .course-theme-records summary { cursor: pointer; font-weight: 600; }
 .course-theme-records ul { columns: 2 220px; padding-inline-start: 20px; }
 .course-theme-records li { break-inside: avoid; margin-block: 8px; }
+.journey-stop .journey-action-error { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: 10px 0 0; color: var(--ink-2); font-size: 14px; line-height: 1.5; }
+.journey-stop .journey-action-error .btn { min-height: 48px; }
 
 .course-entry-detail { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 24px; align-items: center; padding: 32px 8px 8px; }
 .course-entry-detail h2 { font-family: var(--serif); font-size: 2.5rem; }

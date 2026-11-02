@@ -670,7 +670,12 @@ export default function CoursePreview() {
                   <ul>{(course.lessons ?? []).map((item) => {
                     const theme = exploration.themes.find((entry) => entry.id === item.id);
                     return <li key={item.id}>{item.title}：看过 {theme?.viewed ?? 0} / {theme?.total ?? 0} {course.manifest.subject === "hanzi" ? "个字" : "个词"}</li>;
-                  })}</ul></> : <p role="alert">主题记录暂时无法读取，原数据已保留。</p>}
+                  })}</ul></> : <>
+                    <p role="alert">主题记录暂时无法读取，原数据已保留。</p>
+                    <div className="activity-empty-actions">
+                      <button type="button" className="btn btn-ghost" onClick={() => setParentOpen(true)}>打开家长设置</button>
+                    </div>
+                  </>}
               </details>
               <p>逐日记录只覆盖本机保留且带有日期的活动；更早或缺少日期的数据不会补造。</p></div> : courseView === "journey" ? <>
               <section className="journey preview-hero">
@@ -755,7 +760,10 @@ export default function CoursePreview() {
                           <progress value={state.viewed} max={state.total} aria-label={`${item.title}看过 ${state.viewed} / ${state.total} ${course.manifest.subject === "hanzi" ? "个字" : "个词"}`} />
                         </div>}
                         <button className="btn btn-ghost" disabled={checkpoint.status === "invalid"} onClick={() => { if (course.manifest.subject === "hanzi") setHanziMode("co-read"); setLesson(item); }}>{label} <ArrowRight size={16} /></button>
-                        {checkpoint.status === "invalid" && <p role="alert">这次小课记录暂时无法读取，原记录已保留。可以选择其他主题。</p>}
+                        {checkpoint.status === "invalid" && <div className="journey-action-error" role="status">
+                          <span>这次小课记录暂时无法读取，原记录已保留。可以选择其他主题。</span>
+                          <button type="button" className="btn btn-ghost" onClick={() => setParentOpen(true)}>打开家长设置</button>
+                        </div>}
                       </div>
                     </article>;
                   })}

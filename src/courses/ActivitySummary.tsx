@@ -30,7 +30,10 @@ export function ActivitySummary({ profileId, courseId, emptyAction, onOpenSettin
         <h3>详细活动记录</h3>
         <p role="alert">逐日详细记录目前为空，累计学习进度暂时无法读取；原记录已保留。</p>
         <p>旧版或早于逐日活动保存的数据无法补造日期。可回到今日旅程，或在家长设置中检查备份恢复。</p>
-        {emptyAction}
+        <div className="activity-empty-actions">
+          {emptyAction}
+          {onOpenSettings && <button type="button" className="btn btn-ghost" onClick={onOpenSettings}>打开家长设置</button>}
+        </div>
       </section>;
     }
     const seen = Object.keys(progress.progress.introduced).length;

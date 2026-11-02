@@ -42,7 +42,19 @@ try {
     assert.equal(await page.evaluate(({ key, isHanzi }) => localStorage.getItem(key) === 'broken'
       && (!isHanzi || localStorage.getItem(key.replace(/:co-read$/, ':lesson')) === 'broken'), { key, isHanzi }), true);
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
+    await page.goto(`http://localhost:5188/#/explore?course=${course}&view=journey`);
+    const brokenStop = page.locator('.journey-stop').filter({ hasText: '这次小课记录暂时无法读取' }).first();
+    await brokenStop.waitFor();
+    const journeyRecovery = brokenStop.getByRole('button', { name: '打开家长设置' });
+    assert.equal(await journeyRecovery.evaluate(element => element.getBoundingClientRect().height >= 48), true);
+    await journeyRecovery.click();
+    await page.getByRole('dialog').getByText('备份与恢复').waitFor();
+    await page.getByRole('button', { name: '关闭', exact: true }).click();
+    assert.equal(await journeyRecovery.evaluate(element => document.activeElement === element), true);
+    assert.equal(await page.evaluate(({ key, isHanzi }) => localStorage.getItem(key) === 'broken'
+      && (!isHanzi || localStorage.getItem(key.replace(/:co-read$/, ':lesson')) === 'broken'), { key, isHanzi }), true);
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
     await context.close();
   }
-  console.log('图鉴续学标签、独立活动与损坏记录保护通过');
+  console.log('图鉴与旅程续学标签、恢复入口和损坏记录保护通过');
 } finally { await browser.close(); }
