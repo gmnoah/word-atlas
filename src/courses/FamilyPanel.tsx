@@ -5,6 +5,7 @@ import { applyRestoreWithLock, exportFullBackup, preflightRestore } from "../pro
 import { toast } from "../ui/Toast";
 import { dayKey } from "../store/store";
 import type { Course } from "../atlas/types";
+import { findCourse } from "./registry";
 
 const COURSES = [
   { id: "primary-starter", label: "基础英语" },
@@ -12,14 +13,21 @@ const COURSES = [
 ] as const;
 
 /** Read-only family view: what was met, what is due, and what was kept. */
-export function RecentActivity({ profileId, profileName }: { profileId: string; profileName: string }) {
+export function RecentActivity({ profileId, profileName, currentCourseId }: {
+  profileId: string;
+  profileName: string;
+  currentCourseId?: string;
+}) {
   const rows = COURSES.map((course) => {
+    const registration = findCourse(course.id);
+    const total = registration?.kind === "preview" ? registration.count : null;
     const result = readPrimaryProgress(localStorage, profileId, course.id);
-    if (!result.ok) return { ...course, error: true, introduced: 0, cards: 0, favorites: 0, due: 0 };
+    if (!result.ok) return { ...course, total, error: true, introduced: 0, cards: 0, favorites: 0, due: 0 };
     const now = Date.now();
     const cards = Object.values(result.progress.cards);
     return {
       ...course,
+      total,
       error: false,
       introduced: Object.keys(result.progress.introduced).length,
       cards: cards.length,
@@ -34,17 +42,19 @@ export function RecentActivity({ profileId, profileName }: { profileId: string; 
       <p className="family-activity-profile">当前学习者：{profileName}</p>
       <dl>
         {rows.map((row) => (
-          <div key={row.id}>
-            <dt>{row.label}</dt>
+          <div key={row.id} className={row.id === currentCourseId ? "is-current" : undefined}>
+            <dt>{row.label}{row.id === currentCourseId && <span className="family-activity-current">当前课程</span>}</dt>
             <dd>
               {row.error ? (
                 <span className="family-activity-error">记录暂时无法读取，原数据已保留。</span>
               ) : (
                 <>
-                  <span>看过 {row.introduced} 个</span>
+                  <span>看过 {row.introduced}{row.total ? ` / ${row.total}` : " 个"}</span>
                   <span>有复习卡 {row.cards} 个</span>
                   <span>收藏 {row.favorites} 个</span>
                   {row.due > 0 && <span>可以回顾 {row.due} 个</span>}
+                  {row.total && <progress className="family-activity-progress" value={Math.min(row.introduced, row.total)} max={row.total}
+                    aria-label={`${row.label}已看过 ${row.introduced} / ${row.total}`} />}
                 </>
               )}
             </dd>

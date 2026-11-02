@@ -9,12 +9,20 @@ try {
   await page.getByRole('heading',{name:course === 'primary-starter' ? '基础英语 · 活动详情' : '汉字启蒙 · 活动详情'}).waitFor();
   await page.getByRole('heading',{name:'本机学习记录',level:2}).waitFor();
   assert.match(await page.locator('.family-activity-profile').innerText(), /^当前学习者：\s*\S+$/);
+  const currentSummary = page.locator('.family-activity dl > div.is-current');
+  await currentSummary.getByText('当前课程').waitFor();
+  await currentSummary.getByText('看过 0 / 300').waitFor();
+  assert.equal(await page.locator('.family-activity-progress').count(),2);
   await page.getByText('逐日记录只覆盖本机保留且带有日期的活动；更早或缺少日期的数据不会补造。').waitFor();
   await page.evaluate(courseId => {
+   const progress={version:1,profileId:'learner-default',courseId,introduced:{a:1,b:2},cards:{},favorites:[],applied:{}};
+   localStorage.setItem(`word-atlas:v3:primary-progress:learner-default:${courseId}`,JSON.stringify(progress));
    const record = {version:1,profileId:'learner-default',courseId,since:Date.now(),sessions:{s:{sessionId:'s',contentVersion:'1',mode:'lesson',startedAt:1,updatedAt:2,introduced:['a'],answers:{a:'independent',b:'hinted',c:'assisted',d:'incorrect',e:'skipped',f:'resource-error'},retryEvents:{'retry-0':'skipped','retry-1':'resource-error'}}}};
    localStorage.setItem(`word-atlas:v3:activity:learner-default:${courseId}`, JSON.stringify(record));
   },course);
   await page.reload();
+  await currentSummary.getByText('看过 2 / 300').waitFor();
+  assert.equal(await currentSummary.locator('progress').getAttribute('aria-label'), `${course === 'primary-starter' ? '基础英语' : '汉字启蒙'}已看过 2 / 300`);
   await page.getByText('独立答对 1 次 · 提示后答对 1 次 · 家长一起答对 1 次').waitFor();
   assert.equal(await page.getByRole('list',{name:'首次答对分类'}).getByRole('listitem').count(),3);
   await page.getByText('首次未答对 1 次，不计入上面的答对次数。答错后可以重试；统计只保留第一次结果。').waitFor();

@@ -584,7 +584,7 @@ export default function CoursePreview() {
               <button className="btn btn-ghost" aria-current={courseView === "records" ? "page" : undefined}
                 onClick={() => go({ page: "explore", courseId: course.manifest.id, view: "records" })}>学习记录</button>
             </nav>
-            {courseView === "records" ? <div className="panel course-records"><RecentActivity profileId={activeProfileId} profileName={activeProfile.nickname} />
+            {courseView === "records" ? <div className="panel course-records"><RecentActivity profileId={activeProfileId} profileName={activeProfile.nickname} currentCourseId={course.manifest.id} />
               <div className="course-records-heading"><p className="eyebrow">THIS COURSE / 当前课程</p>
                 <h2>{course.manifest.title} · 活动详情</h2>
                 <p>以下记录仅包含当前学习者在这门课程中的活动。</p></div>
