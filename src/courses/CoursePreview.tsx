@@ -85,8 +85,12 @@ export default function CoursePreview() {
   const [course, setCourse] = useState<Course | null>(null);
   const [courseEntries, setCourseEntries] = useState<LearningEntry[]>([]);
   const [atlasQuery, setAtlasQuery] = useState("");
+  const [atlasFilter, setAtlasFilter] = useState<"all" | "unseen" | "seen">("all");
   const atlasSearchRef = useRef<HTMLInputElement>(null);
-  useEffect(() => setAtlasQuery(""), [courseId]);
+  useEffect(() => {
+    setAtlasQuery("");
+    setAtlasFilter("all");
+  }, [courseId]);
   const entriesById = useMemo(() => new Map(courseEntries.map((entry) => [entry.id, entry])), [courseEntries]);
   const todayEntries = useMemo(() => recommendedPrimaryEntries(courseEntries, course?.lessons ?? []), [courseEntries, course]);
   const matchingEntryIds = useMemo(() => {
@@ -139,6 +143,39 @@ export default function CoursePreview() {
     if (!primaryProgress?.ok) return null;
     return journeyProgress(primaryProgress.progress, course?.lessons ?? [], courseEntries.map((entry) => entry.id));
   }, [course, courseEntries, primaryProgress]);
+  const activeAtlasFilter = exploration ? atlasFilter : "all";
+  const visibleLessons = useMemo(() => {
+    if (activeAtlasFilter === "all" || !exploration) return matchingLessons;
+    const states = new Map(exploration.themes.map((theme) => [theme.id, theme]));
+    return matchingLessons.filter((lesson) => {
+      const state = states.get(lesson.id);
+      if (!state) return false;
+      return activeAtlasFilter === "unseen" ? state.viewed < state.total : state.viewed > 0;
+    });
+  }, [activeAtlasFilter, exploration, matchingLessons]);
+  const visibleMatchingEntryIds = useMemo(() => {
+    const ids = new Set<string>();
+    for (const lesson of visibleLessons) {
+      for (const id of lesson.entryIds) if (matchingEntryIds.has(id)) ids.add(id);
+    }
+    return ids;
+  }, [matchingEntryIds, visibleLessons]);
+  const atlasUnit = course?.manifest.subject === "hanzi" ? "字" : "词";
+  const queryActive = !!atlasQuery.trim();
+  const totalLessons = course?.lessons?.length ?? 0;
+  const atlasStatus = queryActive
+    ? visibleLessons.length
+      ? activeAtlasFilter === "all"
+        ? `显示 ${visibleLessons.length} / ${totalLessons} 个匹配主题 · ${visibleMatchingEntryIds.size} / ${courseEntries.length} 个${atlasUnit}。主题内未匹配的内容仍会显示。`
+        : `显示 ${visibleLessons.length} / ${totalLessons} 个范围内的匹配主题 · ${visibleMatchingEntryIds.size} 个${atlasUnit}符合查找。主题内未匹配的内容仍会显示。`
+      : activeAtlasFilter === "all"
+        ? `没有找到相关主题。换一个${atlasUnit === "字" ? "汉字、词语、拼音" : "单词或中文"}，清空查找可恢复全部 ${totalLessons} 个主题、${courseEntries.length} 个${atlasUnit}。`
+        : `当前“${activeAtlasFilter === "unseen" ? "还有没看" : "看过一些"}”范围中没有找到匹配内容。可以切换到“全部”或清空查找。`
+    : activeAtlasFilter === "all"
+      ? `全部 ${totalLessons} 个主题 · ${courseEntries.length} 个${atlasUnit}，按主题保留完整图鉴。`
+      : activeAtlasFilter === "unseen"
+        ? `${visibleLessons.length} / ${totalLessons} 个主题还有没看的内容 · 筛选后仍保留每个主题的完整${atlasUnit}表。`
+        : `${visibleLessons.length} / ${totalLessons} 个主题里有看过内容 · 筛选后仍保留每个主题的完整${atlasUnit}表。`;
   const introducedIds = useMemo(
     () => new Set(primaryProgress?.ok ? Object.keys(primaryProgress.progress.introduced) : []),
     [primaryProgress],
@@ -735,18 +772,24 @@ export default function CoursePreview() {
                   requestAnimationFrame(() => atlasSearchRef.current?.focus());
                 }}><X size={18} aria-hidden="true" /></button>}
               </div>
+              <div className="atlas-progress-filter" role="group" aria-label="按图鉴进度筛选">
+                <span>按进度</span>
+                {([
+                  ["all", "全部"],
+                  ["unseen", "还有没看"],
+                  ["seen", "看过一些"],
+                ] as const).map(([value, label]) =>
+                  <button key={value} type="button" aria-pressed={activeAtlasFilter === value}
+                    disabled={!exploration && value !== "all"} onClick={() => setAtlasFilter(value)}>{label}</button>)}
+              </div>
               <p id="atlas-search-status" role="status" aria-live="polite">
-                {!atlasQuery.trim()
-                  ? `全部 ${course.lessons?.length ?? 0} 个主题 · ${courseEntries.length} 个${course.manifest.subject === "hanzi" ? "字" : "词"}，按主题保留完整图鉴。`
-                  : matchingLessons.length
-                    ? `显示 ${matchingLessons.length} / ${course.lessons?.length ?? 0} 个匹配主题 · ${matchingEntryIds.size} / ${courseEntries.length} 个${course.manifest.subject === "hanzi" ? "字" : "词"}。主题内未匹配的内容仍会显示。`
-                    : `没有找到相关主题。换一个${course.manifest.subject === "hanzi" ? "汉字、词语、拼音" : "单词或中文"}，清空查找可恢复全部 ${course.lessons?.length ?? 0} 个主题、${courseEntries.length} 个${course.manifest.subject === "hanzi" ? "字" : "词"}。`}
+                {atlasStatus}
               </p>
             </section>
             {course.manifest.subject === "hanzi" ? (
               <HanziMap
                 course={course}
-                lessons={matchingLessons}
+                lessons={visibleLessons}
                 matchingEntryIds={matchingEntryIds}
                 entries={courseEntries}
                 exploration={exploration}
@@ -779,7 +822,7 @@ export default function CoursePreview() {
               </span>
             </div>
             <div className="preview-lessons">
-              {matchingLessons.map((l) => {
+              {visibleLessons.map((l) => {
                 const i = (course.lessons ?? []).findIndex((item) => item.id === l.id);
                 const entries = l.entryIds
                   .map((id) => entriesById.get(id))

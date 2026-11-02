@@ -15,9 +15,35 @@ try {
       const box = await control.boundingBox();
       assert.ok(box && box.width >= 48 && box.height >= 48, '儿童图鉴核心操作至少 48px');
     }
+    await page.evaluate(() => {
+      const introduced=Object.fromEntries(['en-apple','en-banana','en-orange','en-pear','en-grape','en-cat'].map((id,index)=>[id,index+1]));
+      localStorage.setItem('word-atlas:v3:primary-progress:learner-default:primary-starter',JSON.stringify({
+        version:1,profileId:'learner-default',courseId:'primary-starter',introduced,cards:{},favorites:[],applied:{},
+      }));
+    });
+    await page.reload();
+    const englishFilter=page.getByRole('group',{name:'按图鉴进度筛选'});
+    for (const button of await englishFilter.getByRole('button').all()) {
+      assert.equal(await button.evaluate(element=>element.getBoundingClientRect().height>=48),true);
+    }
+    assert.equal(await englishFilter.getByRole('button',{name:'全部'}).getAttribute('aria-pressed'),'true');
+    await englishFilter.getByRole('button',{name:'看过一些'}).click();
+    await page.getByText('2 / 33 个主题里有看过内容 · 筛选后仍保留每个主题的完整词表。').waitFor();
+    assert.equal(await page.locator('.preview-lesson-tile').count(),2);
+    await englishFilter.getByRole('button',{name:'还有没看'}).click();
+    await page.getByText('32 / 33 个主题还有没看的内容 · 筛选后仍保留每个主题的完整词表。').waitFor();
+    assert.equal(await page.locator('.preview-lesson-tile').count(),32);
+    assert.equal(await page.getByRole('heading',{name:'水果篮子'}).count(),0);
+    assert.equal(await page.getByRole('heading',{name:'动物朋友'}).count(),1);
+    await englishFilter.getByRole('button',{name:'全部'}).click();
+    assert.equal(await page.locator('.preview-lesson-tile').count(),33);
     await english.fill('ELEPHANT');
     await page.getByRole('heading', { name: '英语词汇 03' }).waitFor();
     await page.getByText(/显示 1 \/ 33 个匹配主题 · 1 \/ 300 个词。主题内未匹配的内容仍会显示。/).waitFor();
+    await englishFilter.getByRole('button',{name:'看过一些'}).click();
+    await page.getByText('当前“看过一些”范围中没有找到匹配内容。可以切换到“全部”或清空查找。').waitFor();
+    await englishFilter.getByRole('button',{name:'全部'}).click();
+    await page.getByRole('heading', { name: '英语词汇 03' }).waitFor();
     const clearEnglish = page.getByRole('button', { name: '清空图鉴查找' });
     assert.equal(await clearEnglish.evaluate((element) => element.getBoundingClientRect().width >= 48 && element.getBoundingClientRect().height >= 48), true);
     await page.getByRole('button', { name: '查看 elephant 词卡，符合查找' }).click();
@@ -30,6 +56,24 @@ try {
     await page.goto('http://localhost:5188/#/explore?course=hanzi-starter&view=atlas');
     const hanzi = page.getByRole('searchbox', { name: '查找主题或汉字' });
     await page.getByText('全部 32 个主题 · 300 个字，按主题保留完整图鉴。').waitFor();
+    await page.evaluate(() => {
+      const introduced=Object.fromEntries(['hanzi-u5c71','hanzi-u6c34','hanzi-u65e5','hanzi-u6708','hanzi-u4e91','hanzi-u4eba'].map((id,index)=>[id,index+1]));
+      localStorage.setItem('word-atlas:v3:primary-progress:learner-default:hanzi-starter',JSON.stringify({
+        version:1,profileId:'learner-default',courseId:'hanzi-starter',introduced,cards:{},favorites:[],applied:{},
+      }));
+    });
+    await page.reload();
+    const hanziFilter=page.getByRole('group',{name:'按图鉴进度筛选'});
+    await hanziFilter.getByRole('button',{name:'看过一些'}).click();
+    await page.getByText('2 / 32 个主题里有看过内容 · 筛选后仍保留每个主题的完整字表。').waitFor();
+    assert.equal(await page.locator('.hanzi-map-stop').count(),2);
+    await hanziFilter.getByRole('button',{name:'还有没看'}).click();
+    await page.getByText('31 / 32 个主题还有没看的内容 · 筛选后仍保留每个主题的完整字表。').waitFor();
+    assert.equal(await page.locator('.hanzi-map-stop').count(),31);
+    assert.equal(await page.getByRole('heading',{name:'山水之间'}).count(),0);
+    assert.equal(await page.getByRole('heading',{name:'认识自己'}).count(),1);
+    await hanziFilter.getByRole('button',{name:'全部'}).click();
+    assert.equal(await page.locator('.hanzi-map-stop').count(),32);
     await hanzi.fill('shan');
     await page.getByRole('heading', { name: '山水之间' }).waitFor();
     await page.getByText(/个匹配主题 · [1-9]\d* \/ 300 个字。主题内未匹配的内容仍会显示。/).waitFor();
@@ -48,5 +92,5 @@ try {
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
     await context.close();
   }
-  console.log('两课程全量图鉴摘要、搜索计数、空结果、清除按钮、词字卡及桌面/375px 深浅主题通过');
+  console.log('两课程全量图鉴摘要、进度筛选、搜索组合、空结果、清除按钮、词字卡及桌面/375px 深浅主题通过');
 } finally { await browser.close(); }

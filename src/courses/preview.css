@@ -471,6 +471,37 @@
 }
 .atlas-search-clear:hover { color: var(--ink); background: var(--paper-2); }
 .atlas-search-clear:focus-visible { outline: 2px solid var(--terra); outline-offset: -4px; }
+.atlas-progress-filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+.atlas-progress-filter > span {
+  margin-right: 2px;
+  color: var(--ink-3);
+  font-size: 13px;
+}
+.atlas-progress-filter button {
+  min-height: 48px;
+  padding: 7px 14px;
+  color: var(--ink-2);
+  background: var(--card);
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+.atlas-progress-filter button:hover { color: var(--ink); background: var(--paper-2); }
+.atlas-progress-filter button[aria-pressed="true"] {
+  color: var(--card);
+  background: var(--ink);
+  border-color: var(--ink);
+}
+.atlas-progress-filter button:focus-visible { outline: 2px solid var(--terra); outline-offset: 2px; }
+.atlas-progress-filter button:disabled { opacity: 0.48; cursor: not-allowed; }
 .atlas-search p { margin: 8px 0 0; color: var(--ink-2); font-size: 14px; line-height: 1.55; }
 .preview-lessons {
   display: grid;
