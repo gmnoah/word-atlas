@@ -750,7 +750,7 @@ export default function CoursePreview() {
           const text = entry.kind === "english" ? entry.word : entry.phrase;
           const example = entry.kind === "english" ? exampleTargetParts(entry.example.text, entry.example.targetForm) : null;
           return <div className="course-entry-detail">
-            <Illustration src={course.img(entry)} word={entryLabel(entry)} />
+            <Illustration src={course.img(entry)} word={entryLabel(entry)} fallbackMessage="插画暂时无法显示" />
             <div><p className="eyebrow">课程图鉴</p><h2>{entryLabel(entry)}</h2>
               <p>{entry.kind === "english" ? entry.meaning : entry.phrase}</p>
               <PreviewSpeak text={text} locale={entry.kind === "english" ? entry.media.locale : "zh-CN"} recording={course.audio(entry)} slow={preferences.slow} />

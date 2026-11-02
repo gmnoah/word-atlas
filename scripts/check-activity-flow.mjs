@@ -11,12 +11,12 @@ try {
  await page.getByRole('button',{name:'返回主题'}).click();
  await page.getByRole('button',{name:'结束体验'}).click();
  await page.getByRole('button',{name:'今日旅程'}).click();
- await page.getByRole('button',{name:/继续共读/}).waitFor();
+ await page.locator('.preview-hero').getByRole('button',{name:/继续共读/}).waitFor();
  await page.getByRole('button',{name:'学习记录'}).click();
  await page.getByText('一起共读 1 次').waitFor();
  await page.getByText('查看主题足迹').click();
  assert.match(await page.locator('.course-theme-records li').first().innerText(), /看过 [1-9]\d* \/ /);
- await page.getByText('独立答对 0 次 · 提示后答对 0 次 · 家长一起答对 0 次').waitFor();
+ await page.getByText('目前记录中还没有识别作答。共读、跳过和资源故障不会算作识别作答。').waitFor();
  await page.reload();
  await page.getByText('一起共读 1 次').waitFor();
  const record = await page.evaluate(() => JSON.parse(localStorage.getItem('word-atlas:v3:activity:learner-default:hanzi-starter')));

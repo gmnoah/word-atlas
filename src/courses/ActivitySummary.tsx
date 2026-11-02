@@ -8,20 +8,22 @@ export function ActivitySummary({ profileId, courseId }: { profileId: string; co
   const archived = Object.values(result.record.archivedSessions ?? {});
   if (!sessions.length && !archived.length) return <p>还没有详细活动记录。之后的小课会在这里留下记录。</p>;
   const counts = summarizeActivity(result.record);
+  const hasRecognition = counts.independent + counts.hinted + counts.assisted + counts.incorrect > 0;
   const recent = recentRecognitionDays(result.record, new Date());
+  const maxDailyRecognition = Math.max(1, ...recent.days.map((day) => day.count));
   const olderIntro = sessions.some((session) => session.introSkipped === undefined) || archived.some((session) => !session.introHistoryKnown);
   const olderRetry = sessions.some((session) => session.retryEvents === undefined) || archived.some((session) => !session.retryHistoryKnown);
   const sinceDate = new Date(result.record.since);
   const sinceDay = `${sinceDate.getFullYear()}-${String(sinceDate.getMonth() + 1).padStart(2, "0")}-${String(sinceDate.getDate()).padStart(2, "0")}`;
   return <section aria-label="详细活动记录">
     <h3>首次答对的记录</h3>
-    <div className="activity-totals" role="list" aria-label="首次答对分类">
+    {hasRecognition ? <div className="activity-totals" role="list" aria-label="首次答对分类">
       <span className="activity-total" role="listitem">独立答对 <strong>{counts.independent}</strong> 次</span>
       <span className="activity-total-separator" aria-hidden="true"> · </span>
       <span className="activity-total" role="listitem">提示后答对 <strong>{counts.hinted}</strong> 次</span>
       <span className="activity-total-separator" aria-hidden="true"> · </span>
       <span className="activity-total" role="listitem">家长一起答对 <strong>{counts.assisted}</strong> 次</span>
-    </div>
+    </div> : <p>目前记录中还没有识别作答。{courseId === "hanzi-starter" ? "共读、跳过和资源故障" : "跳过和资源故障"}不会算作识别作答。</p>}
     {courseId === "hanzi-starter" && <p>一起共读 {counts.coReadSessions} 次</p>}
     <p>已记录：初见先跳过 {counts.introSkipped} 次 · 识别题先跳过 {counts.skipped} 次 · 识别题资源暂不可用 {counts.resourceErrors} 次</p>
     <p>已记录：重试时跳过 {counts.retrySkipped} 次 · 重试时资源暂不可用 {counts.retryResourceErrors} 次</p>
@@ -29,12 +31,12 @@ export function ActivitySummary({ profileId, courseId }: { profileId: string; co
     {counts.retryHistoryIncomplete && <p role="status">部分较长会话的重试记录不完整，以上重试次数仅包含已保存的记录。</p>}
     <p>跳过和资源故障不算答错，也不会记入识别作答次数。</p>
     <h3>近七天活动</h3>
-    <p>“看过”按每次小课保存的接触记录统计，同一词字在不同小课中可重复计数；识别包含首次作答、提示和协助，不包含跳过及资源故障。条形长度表示识别次数。</p>
+    <p>“看过”按每次小课保存的接触记录统计，同一词字在不同小课中可重复计数；识别包含首次作答、提示和协助，不包含跳过及资源故障。条形按近七天最多识别次数同比例显示。</p>
     <ol className="activity-week">{recent.days.map((day) => {
       const unknown = day.key < sinceDay && day.count === 0 && day.coRead === 0 && day.introduced === 0;
       const label = unknown ? "暂无详细记录" : `有日期看过 ${day.introduced} 次 · 识别 ${day.count} 次${courseId === "hanzi-starter" ? ` · 共读 ${day.coRead} 次` : ""}`;
       return <li key={day.key}><span className="activity-week-date">{day.key.slice(5)}</span>
-        <span className="activity-week-bar" aria-hidden="true"><i style={{ width: `${Math.min(100, day.count * 10)}%` }} /></span>
+        <span className="activity-week-bar" aria-hidden="true"><i style={{ width: `${(day.count / maxDailyRecognition) * 100}%` }} /></span>
         <span>{label}</span></li>;
     })}</ol>
     {recent.undated > 0 && <p>另有 {recent.undated} 次早期作答没有日期，未纳入逐日统计。</p>}

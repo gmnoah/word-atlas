@@ -667,6 +667,7 @@
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
+.preview-finish .mini-stats.is-coreading { grid-template-columns: 1fr; }
 .preview-finish > p:not(.eyebrow) {
   color: var(--ink-2);
 }
@@ -1325,6 +1326,7 @@
 
 .course-entry-detail { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 24px; align-items: center; padding: 32px 8px 8px; }
 .course-entry-detail h2 { font-family: var(--serif); font-size: 2.5rem; }
+.course-entry-detail .illo-fallback-note { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); padding: 5px 10px; border-radius: 999px; background: var(--card); color: var(--ink-2); font-size: 13px; white-space: nowrap; }
 
 .preview-entry-link, .hanzi-entry-link { color: var(--ink); background: var(--paper-2); border: 1px solid var(--line); border-radius: var(--r-sm); cursor: pointer; }
 .preview-entry-link { min-width: 48px; min-height: 48px; padding: 6px 10px; }

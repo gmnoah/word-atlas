@@ -43,7 +43,7 @@ export function RecentActivity({ profileId, profileName }: { profileId: string; 
                   <span>看过 {row.introduced} 个</span>
                   <span>有复习卡 {row.cards} 个</span>
                   <span>收藏 {row.favorites} 个</span>
-                  {row.due > 0 && <span>今天到期 {row.due} 个</span>}
+                  {row.due > 0 && <span>可以回顾 {row.due} 个</span>}
                 </>
               )}
             </dd>

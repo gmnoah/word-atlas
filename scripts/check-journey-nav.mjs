@@ -26,6 +26,8 @@ try {
   await page.getByRole('button',{name:'主题图鉴'}).click();
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),true);
   await page.getByRole('button',{name:course === 'hanzi-starter' ? '查看山字卡' : '查看 apple 词卡'}).first().click();
+  await page.getByRole('dialog',{name:'课程条目'}).locator('.course-entry-detail .illo.is-loaded').waitFor();
+  assert.equal(await page.getByRole('dialog',{name:'课程条目'}).getByText('插画暂时无法显示').count(), 0);
   await page.getByRole('dialog',{name:'课程条目'}).getByRole('button',{name:'关闭'}).click();
   assert.equal(await page.evaluate(() => document.activeElement?.getAttribute('aria-label')),course === 'hanzi-starter' ? '查看山字卡' : '查看 apple 词卡');
   await page.getByRole('button',{name:'切换到浅色'}).click();
@@ -42,6 +44,7 @@ try {
     await detail.getByText('拼音：shān').waitFor();
   }
   await detail.locator('.plate').waitFor();
+  await detail.getByText('插画暂时无法显示').waitFor();
   await detail.getByRole('button',{name:course === 'hanzi-starter' ? '朗读 高山' : '朗读 apple'}).click();
   await detail.getByText('暂时无法播放，可以重试，也可以请家长读一读。').waitFor();
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),true);

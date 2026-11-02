@@ -9,6 +9,7 @@ interface IllustrationProps {
   className?: string;
   eager?: boolean;
   alt?: string;
+  fallbackMessage?: string;
 }
 
 /** A new source gets its own loading state, independent of the previous image. */
@@ -17,7 +18,7 @@ export function Illustration(props: IllustrationProps) {
 }
 
 /** Square illustration with a typographic plate as an intentional fallback. */
-function IllustrationImage({ src, word, topic = 0, className = "", eager = false, alt }: IllustrationProps) {
+function IllustrationImage({ src, word, topic = 0, className = "", eager = false, alt, fallbackMessage }: IllustrationProps) {
   const [state, setState] = useState<"loading" | "ok" | "error">("loading");
   const showImg = src && state !== "error";
   return (
@@ -39,6 +40,7 @@ function IllustrationImage({ src, word, topic = 0, className = "", eager = false
           <i className="plate-rule" />
         </div>
       )}
+      {!showImg && fallbackMessage && <figcaption className="illo-fallback-note" role="status">{fallbackMessage}</figcaption>}
     </figure>
   );
 }

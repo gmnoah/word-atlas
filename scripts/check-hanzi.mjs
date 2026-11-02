@@ -119,9 +119,7 @@ try {
     await page.getByRole("button", { name: "看过啦，下一个" }).click();
   await page.getByRole("heading", { name: "今天一起读了几页字。" }).waitFor();
   assert.match(await page.locator(".hanzi-life-tip").innerText(), /回家可以试试/);
-  assert.match(await page.locator(".mini-stats > div").nth(1).innerText(), /自己找对\s*0/);
-  assert.match(await page.locator(".mini-stats > div").nth(2).innerText(), /提示后找对\s*0/);
-  assert.match(await page.locator(".mini-stats > div").nth(3).innerText(), /一起找对\s*0/);
+  assert.equal(await page.locator(".preview-finish .mini-stats > div").count(), 1, "共读只展示看过，不展示认读成绩");
   checks.push("A finished co-read suggests a real-life activity and reports zero recognition");
   await page.getByRole("button", { name: "回到主题" }).click();
   await page.getByRole("heading", { name: "汉字启蒙", exact: true }).waitFor();

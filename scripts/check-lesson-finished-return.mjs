@@ -3,9 +3,9 @@ import assert from 'node:assert/strict';
 
 const browser = await chromium.launch({ headless: true, channel: process.env.PREVIEW_BROWSER || 'chrome' });
 try {
-  for (const [course, mode] of [['primary-starter', 'lesson'], ['hanzi-starter', 'co-read'], ['hanzi-starter', 'lesson']]) for (const view of ['journey', 'atlas']) for (const width of [375, 1280]) {
+  for (const [course, mode] of [['primary-starter', 'lesson'], ['hanzi-starter', 'co-read'], ['hanzi-starter', 'lesson']]) for (const view of ['journey', 'atlas']) for (const width of [375, 1280]) for (const theme of ['light', 'dark']) {
     const context = await browser.newContext({ viewport: { width, height: 850 }, serviceWorkers: 'block' });
-    await context.addInitScript(() => localStorage.setItem('word-atlas:settings', JSON.stringify({ onboarded: true, splash: false })));
+    await context.addInitScript(theme => localStorage.setItem('word-atlas:settings', JSON.stringify({ theme, onboarded: true, splash: false })), theme);
     const page = await context.newPage();
     await page.goto(`http://localhost:5188/#/explore?course=${course}&view=${view}`);
     const isHanzi = course === 'hanzi-starter';
@@ -19,6 +19,7 @@ try {
     }
     const finish = page.locator('.preview-finish');
     await finish.waitFor();
+    if (isHanzi) assert.equal(await finish.locator('.mini-stats > div').count(), mode === 'co-read' ? 1 : 4);
     await finish.getByRole('button', { name: view === 'journey' ? '回到旅程' : '回到主题', exact: true }).click();
     const nav = page.getByRole('navigation', { name: '课程导航' });
     const current = nav.getByRole('button', { name: view === 'journey' ? '今日旅程' : '主题图鉴' });

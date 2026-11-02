@@ -284,23 +284,25 @@ export function HanziLesson({ course, lesson, entries, profileId, mode, minutes,
                 ? "这次先休息一下，下次再一起读。"
                 : "回到生活里，找找刚才看到的字吧。"}
           </p>
-          <dl className="mini-stats is-detailed">
+          <dl className={`mini-stats is-detailed${coRead ? " is-coreading" : ""}`}>
             <div>
               <dt>一起看过</dt>
               <dd>{stats.introduced}<small>个</small></dd>
             </div>
-            <div>
-              <dt>自己找对</dt>
-              <dd>{coRead ? 0 : stats.independent}<small>个</small></dd>
-            </div>
-            <div>
-              <dt>提示后找对</dt>
-              <dd>{stats.hinted}<small>个</small></dd>
-            </div>
-            <div>
-              <dt>一起找对</dt>
-              <dd>{stats.assisted}<small>个</small></dd>
-            </div>
+            {!coRead && <>
+              <div>
+                <dt>自己找对</dt>
+                <dd>{stats.independent}<small>个</small></dd>
+              </div>
+              <div>
+                <dt>提示后找对</dt>
+                <dd>{stats.hinted}<small>个</small></dd>
+              </div>
+              <div>
+                <dt>一起找对</dt>
+                <dd>{stats.assisted}<small>个</small></dd>
+              </div>
+            </>}
           </dl>
           <p className="preview-disclosure">
             {coRead
@@ -390,6 +392,7 @@ export function HanziLesson({ course, lesson, entries, profileId, mode, minutes,
               {intro && <PrimaryFavorite profileId={profileId} courseId={course.manifest.id} entry={entry} />}
               {intro ? (
                 <HanziCard
+                  key={entry.id}
                   entry={entry}
                   course={course}
                   slow={slow}
