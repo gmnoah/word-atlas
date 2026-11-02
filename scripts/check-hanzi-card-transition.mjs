@@ -17,7 +17,10 @@ try {
     const page = await context.newPage();
     await page.goto('http://localhost:5188/#/explore?course=hanzi-starter&view=atlas');
     await page.locator('.hanzi-map-stop').first().getByRole('button', { name: '只读一读' }).click();
-    await page.locator('.hanzi-card-note summary').click();
+    const noteSummary = page.locator('.hanzi-card-note summary');
+    assert.equal(await noteSummary.locator('svg').count(), 1);
+    assert.ok(await noteSummary.evaluate(element => element.getBoundingClientRect().height >= 48));
+    await noteSummary.click();
     assert.equal(await page.locator('.hanzi-card-note').getAttribute('open'), '');
     await page.getByRole('button', { name: '朗读词语 高山' }).click();
     await page.getByRole('button', { name: '停止朗读' }).waitFor();

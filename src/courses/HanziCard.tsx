@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import type { Course } from "../atlas/types";
 import type { HanziEntry } from "./types";
 import { PreviewSpeak } from "./PreviewSpeak";
@@ -30,7 +30,10 @@ export function HanziCard({ entry, course, slow, coRead, onContinue }: {
       />
       <p className="hanzi-card-sentence">{entry.sentence}</p>
       <details className="hanzi-card-note">
-        <summary>给家长的小提示</summary>
+        <summary>
+          <span>给家长的小提示</span>
+          <ChevronDown className="hanzi-card-note-chevron" size={18} aria-hidden="true" />
+        </summary>
         <p>
           <b>{entry.pinyin}</b> · {entry.caregiverTip}
         </p>

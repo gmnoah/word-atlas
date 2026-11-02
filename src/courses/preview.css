@@ -1409,11 +1409,17 @@
 .hanzi-card-note summary {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 12px;
   min-height: 48px;
   color: var(--ink-3);
   font-size: 13px;
   cursor: pointer;
 }
+.hanzi-card-note summary:hover { color: var(--ink); }
+.hanzi-card-note summary:focus-visible { outline: 2px solid var(--terra); outline-offset: 2px; }
+.hanzi-card-note-chevron { flex: none; transform: rotate(-90deg); }
+.hanzi-card-note[open] .hanzi-card-note-chevron { transform: rotate(0); }
 .hanzi-card-note p {
   color: var(--ink-2);
   font-size: 14px;
