@@ -40,7 +40,7 @@ import {
 import { PreviewSpeak } from "./PreviewSpeak";
 import { exampleTargetParts } from "./example-target";
 import { PrimaryLesson } from "./PrimaryLesson";
-import { PrimaryFavorite, PrimaryJourney, PrimaryTodayButton } from "./PrimaryJourney";
+import { PrimaryFavorite, PrimaryFavoriteOverview, PrimaryJourney, PrimaryTodayButton } from "./PrimaryJourney";
 import { ActivitySummary } from "./ActivitySummary";
 import { readPrimaryProgress } from "../learning/primary-progress";
 import { journeyProgress, suggestedJourneyLessons } from "./journey-progress";
@@ -641,6 +641,8 @@ export default function CoursePreview() {
               </section>
               {course.manifest.id === "primary-starter" && <PrimaryJourney profileId={activeProfileId} courseId={course.manifest.id} contentVersion={course.manifest.version}
                 entries={todayEntries} hideAction onOpenSettings={() => setParentOpen(true)} onToday={() => setLesson({ id: "today", title: "今日小课", subtitle: "回顾与发现", entryIds: todayEntries.map((entry) => entry.id) })} />}
+              {course.manifest.subject === "hanzi" && <PrimaryFavoriteOverview profileId={activeProfileId} courseId={course.manifest.id} entries={courseEntries} unit="字"
+                onOpenEntry={(entry) => go({ page: "explore", courseId: course.manifest.id, view: "journey", entryId: entry.id })} />}
               <details open={mapOpen} className="course-galaxy-section panel" onToggle={(event) => setMapOpen(event.currentTarget.open)}>
                 <summary><span>探索知识星图</span><small>一颗星，是一个词或字</small></summary>
                 {mapOpen && <Suspense fallback={<p>正在展开星图…</p>}><CourseGalaxy key={`${activeProfileId}:${course.manifest.id}`} entries={courseEntries} lessons={course.lessons ?? []} profileId={activeProfileId} courseId={course.manifest.id} revision={progressRevision} onOpen={(entry) => go({ page: "explore", courseId: course.manifest.id, view: "journey", entryId: entry.id })} /></Suspense>}

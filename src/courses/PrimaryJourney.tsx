@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { Heart, ArrowRight } from "lucide-react";
+import { Heart, ArrowRight, ChevronRight } from "lucide-react";
 import { primaryReviewIds, readPrimaryProgress, togglePrimaryFavorite, withPrimaryLock, writePrimaryProgress, type PrimaryProgress } from "../learning/primary-progress";
 import { entryLabel, type LearningEntry } from "./types";
 import { readCheckpoint } from "./primary-checkpoint";
@@ -38,6 +38,34 @@ export function PrimaryFavorite({ profileId, courseId, entry }: { profileId: str
   return <div className="primary-favorite"><button type="button" className="btn btn-ghost" disabled={!progress} aria-pressed={favorite} onClick={() => void toggle(entry.id)}>
     <Heart size={18} fill={favorite ? "currentColor" : "none"} />{favorite ? "已收藏" : entry.kind === "hanzi" ? "收藏这个字" : "收藏这个词"}
   </button>{error && <p role="alert">收藏暂时无法保存，请稍后再试。</p>}</div>;
+}
+
+export function PrimaryFavoriteOverview({ profileId, courseId, entries, unit, onOpenEntry }: {
+  profileId: string;
+  courseId: string;
+  entries: LearningEntry[];
+  unit: "词" | "字";
+  onOpenEntry: (entry: LearningEntry) => void;
+}) {
+  const { progress, error, toggle } = usePrimaryProgress(profileId, courseId);
+  const favorites = progress ? entries.filter((entry) => progress.favorites.includes(entry.id)) : [];
+  return <section className="panel primary-journey primary-favorite-overview" aria-label={`收藏的${unit}`}>
+    <div>
+      <p className="eyebrow">SAVED {unit === "字" ? "CHARACTERS" : "WORDS"}</p>
+      <h2>收藏的{unit}</h2>
+      <p>从图鉴或小课里收藏，之后可以在这里再打开看看。</p>
+    </div>
+    <div className="primary-favorites">
+      {favorites.length ? <ul>{favorites.map((entry) => <li key={entry.id}>
+        <button type="button" className="primary-favorite-open" aria-label={`打开 ${entryLabel(entry)} ${unit}卡`} onClick={() => onOpenEntry(entry)}>
+          <span>{entryLabel(entry)}{entry.kind === "english" ? ` · ${entry.meaning}` : ` · ${entry.phrase}`}</span>
+          <ChevronRight size={16} aria-hidden="true" />
+        </button>
+        <button type="button" className="btn btn-ghost" onClick={() => void toggle(entry.id)} aria-label={`取消收藏 ${entryLabel(entry)}`}>取消收藏</button>
+      </li>)}</ul> : <p>{progress ? `还没有收藏的${unit}。在词字卡里遇到喜欢的内容时，点一下收藏。` : `收藏记录暂时无法读取。`}</p>}
+    </div>
+    {error && <div className="primary-journey-error" role="alert"><span>收藏暂时无法保存，原记录已保留。</span></div>}
+  </section>;
 }
 
 type TodayProps = {

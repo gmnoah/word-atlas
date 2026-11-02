@@ -76,10 +76,20 @@ try {
     await detail.getByText("山水之间 · 第 5 / 5 个字").waitFor();
     assert.equal(await detail.getByRole("button", { name: "下一字" }).isDisabled(), true);
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
+    await detail.getByRole("button", { name: "关闭" }).click();
+    await page.goto("http://localhost:5188/#/explore?course=hanzi-starter&view=journey");
+    const favoriteOverview = page.getByRole("region", { name: "收藏的字" });
+    await favoriteOverview.getByRole("button", { name: "打开 山 字卡" }).click();
+    detail = page.getByRole("dialog", { name: "课程条目" });
+    await detail.getByRole("heading", { name: "山", exact: true }).waitFor();
+    await detail.getByRole("button", { name: "关闭" }).click();
+    await favoriteOverview.getByRole("button", { name: "取消收藏 山" }).click();
+    await favoriteOverview.getByText("还没有收藏的字。在词字卡里遇到喜欢的内容时，点一下收藏。").waitFor();
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
 
     await context.close();
   }
-  console.log("两课程词字卡连续浏览、首尾禁用、图鉴收藏、朗读切换、返回历史及桌面/375px 深浅主题通过");
+  console.log("两课程词字卡连续浏览、图鉴收藏、汉字收藏回看、朗读切换、返回历史及桌面/375px 深浅主题通过");
 } finally {
   await browser.close();
 }
