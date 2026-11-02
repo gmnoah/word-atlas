@@ -4,13 +4,22 @@ import { primaryReviewIds, readPrimaryProgress, togglePrimaryFavorite, withPrima
 import { entryLabel, type LearningEntry } from "./types";
 import { readCheckpoint } from "./primary-checkpoint";
 
+type PrimaryProgressStatus = "loading" | "ready" | "read-error" | "write-error";
+
 function usePrimaryProgress(profileId: string, courseId: string) {
-  const [progress, setProgress] = useState<PrimaryProgress | null>(null);
-  const [error, setError] = useState(false);
+  const scope = `${profileId}:${courseId}`;
+  const [state, setState] = useState<{ scope: string; status: PrimaryProgressStatus; progress: PrimaryProgress | null }>({
+    scope,
+    status: "loading",
+    progress: null,
+  });
   const refresh = useCallback(() => {
     const result = readPrimaryProgress(localStorage, profileId, courseId);
-    setProgress(result.ok ? result.progress : null);
-    setError(!result.ok);
+    setState({
+      scope: `${profileId}:${courseId}`,
+      status: result.ok ? "ready" : "read-error",
+      progress: result.ok ? result.progress : null,
+    });
   }, [profileId, courseId]);
   useEffect(() => {
     refresh();
@@ -20,17 +29,35 @@ function usePrimaryProgress(profileId: string, courseId: string) {
   }, [refresh]);
   const toggle = async (id: string) => {
     try {
-      const ok = await withPrimaryLock(profileId, courseId, () => {
+      const result = await withPrimaryLock(profileId, courseId, () => {
         const current = readPrimaryProgress(localStorage, profileId, courseId);
-        return current.ok && writePrimaryProgress(localStorage, togglePrimaryFavorite(current.progress, id));
+        if (!current.ok) return "read-error" as const;
+        return writePrimaryProgress(localStorage, togglePrimaryFavorite(current.progress, id)) ? "saved" as const : "write-error" as const;
       });
-      if (!ok) { setError(true); return false; }
+      if (result === "read-error") {
+        setState({ scope, status: "read-error", progress: null });
+        return false;
+      }
+      if (result === "write-error") {
+        setState((current) => ({ ...current, scope, status: "write-error" }));
+        return false;
+      }
       window.dispatchEvent(new Event("primary-progress-changed"));
       return true;
-    } catch { setError(true); return false; }
+    } catch {
+      setState((current) => ({ ...current, scope, status: "write-error" }));
+      return false;
+    }
   };
-  const scopedProgress = progress?.profileId === profileId && progress.courseId === courseId ? progress : null;
-  return { progress: scopedProgress, error, toggle };
+  const current = state.scope === scope ? state : { scope, status: "loading" as const, progress: null };
+  const progress = current.progress?.profileId === profileId && current.progress.courseId === courseId ? current.progress : null;
+  return {
+    progress,
+    loading: current.status === "loading",
+    readError: current.status === "read-error",
+    writeError: current.status === "write-error",
+    toggle,
+  };
 }
 
 function FavoriteList({ entries, unit, onOpen, onRemove, emptyText }: {
@@ -77,11 +104,15 @@ function FavoriteList({ entries, unit, onOpen, onRemove, emptyText }: {
 }
 
 export function PrimaryFavorite({ profileId, courseId, entry }: { profileId: string; courseId: string; entry: LearningEntry }) {
-  const { progress, error, toggle } = usePrimaryProgress(profileId, courseId);
+  const { progress, loading, readError, writeError, toggle } = usePrimaryProgress(profileId, courseId);
   const favorite = progress?.favorites.includes(entry.id) ?? false;
-  return <div className="primary-favorite"><button type="button" className="btn btn-ghost" disabled={!progress} aria-pressed={favorite} onClick={() => void toggle(entry.id)}>
+  return <div className="primary-favorite"><button type="button" className="btn btn-ghost" disabled={loading || readError} aria-busy={loading} aria-pressed={favorite} onClick={() => void toggle(entry.id)}>
     <Heart size={18} fill={favorite ? "currentColor" : "none"} />{favorite ? "已收藏" : entry.kind === "hanzi" ? "收藏这个字" : "收藏这个词"}
-  </button>{error && <p role="alert">收藏暂时无法保存，请稍后再试。</p>}</div>;
+  </button>
+    {loading && <p role="status">正在读取收藏记录…</p>}
+    {readError && <p role="alert">收藏记录暂时无法读取，原记录已保留。</p>}
+    {writeError && <p role="alert">收藏暂时无法保存，原记录已保留。</p>}
+  </div>;
 }
 
 export function PrimaryFavoriteOverview({ profileId, courseId, entries, unit, onOpenEntry }: {
@@ -91,7 +122,7 @@ export function PrimaryFavoriteOverview({ profileId, courseId, entries, unit, on
   unit: "词" | "字";
   onOpenEntry: (entry: LearningEntry) => void;
 }) {
-  const { progress, error, toggle } = usePrimaryProgress(profileId, courseId);
+  const { progress, loading, readError, writeError, toggle } = usePrimaryProgress(profileId, courseId);
   const favorites = progress ? entries.filter((entry) => progress.favorites.includes(entry.id)) : [];
   return <section className="panel primary-journey primary-favorite-overview" aria-label={`收藏的${unit}`}>
     <div>
@@ -100,10 +131,12 @@ export function PrimaryFavoriteOverview({ profileId, courseId, entries, unit, on
       <p>从图鉴或小课里收藏，之后可以在这里再打开看看。</p>
     </div>
     <div className="primary-favorites">
-      <FavoriteList entries={favorites} unit={unit} onOpen={onOpenEntry} onRemove={toggle}
-        emptyText={progress ? `还没有收藏的${unit}。在词字卡里遇到喜欢的内容时，点一下收藏。` : "收藏记录暂时无法读取。"} />
+      {loading ? <p className="primary-favorites-empty" role="status">正在读取收藏记录…</p>
+        : readError ? <p className="primary-favorites-empty" role="alert">收藏记录暂时无法读取，原记录已保留。</p>
+          : <FavoriteList entries={favorites} unit={unit} onOpen={onOpenEntry} onRemove={toggle}
+            emptyText={`还没有收藏的${unit}。在词字卡里遇到喜欢的内容时，点一下收藏。`} />}
     </div>
-    {error && <div className="primary-journey-error" role="alert"><span>收藏暂时无法保存，原记录已保留。</span></div>}
+    {writeError && <div className="primary-journey-error" role="alert"><span>收藏暂时无法保存，原记录已保留。</span></div>}
   </section>;
 }
 
@@ -116,43 +149,48 @@ type TodayProps = {
   onOpenSettings?: () => void;
 };
 
-function todayState({ profileId, courseId, contentVersion, entries }: TodayProps, progress: PrimaryProgress | null) {
+function todayState({ profileId, courseId, contentVersion, entries }: TodayProps, progress: PrimaryProgress | null, status: PrimaryProgressStatus) {
   const known = new Set(entries.map((entry) => entry.id));
   const due = progress ? primaryReviewIds(progress, Date.now()).filter((id) => known.has(id)) : [];
   const fresh = progress ? entries.filter((entry) => !Object.hasOwn(progress.introduced, entry.id) && !progress.cards[entry.id]) : [];
   const checkpoint = readCheckpoint(localStorage, { profileId, courseId, lessonId: "today", contentVersion, entries }, Date.now());
   const hasCheckpoint = checkpoint.status === "ok" && !checkpoint.checkpoint.session.endReason;
   const hasFinishedCheckpoint = checkpoint.status === "ok" && !!checkpoint.checkpoint.session.endReason;
-  const actionLabel = hasCheckpoint ? "继续今日小课" : hasFinishedCheckpoint ? "查看上次小课" : "开始今日小课";
-  const description = !progress ? "学习记录暂时无法读取。" : checkpoint.status === "invalid" ? "今日小课记录暂时无法读取，可以先选择其他主题。" : hasCheckpoint ? "上次的小课还在这里，随时接着学习。" : hasFinishedCheckpoint ? "上次的小课还在这里，可以查看结果。" : due.length ? "先回顾认识过的词，再发现新朋友。" : fresh.length ? "从一个小小的发现开始。" : "今天先休息，之后再回来看看。";
+  const actionLabel = status === "loading" ? "正在读取学习记录" : hasCheckpoint ? "继续今日小课" : hasFinishedCheckpoint ? "查看上次小课" : "开始今日小课";
+  const description = status === "loading" ? "正在读取学习记录…" : status === "read-error" ? "学习记录暂时无法读取。" : checkpoint.status === "invalid" ? "今日小课记录暂时无法读取，可以先选择其他主题。" : hasCheckpoint ? "上次的小课还在这里，随时接着学习。" : hasFinishedCheckpoint ? "上次的小课还在这里，可以查看结果。" : due.length ? "先回顾认识过的词，再发现新朋友。" : fresh.length ? "从一个小小的发现开始。" : "今天先休息，之后再回来看看。";
   return { checkpoint, actionLabel, description, disabled: !progress || checkpoint.status === "invalid" || (!due.length && !fresh.length && !hasCheckpoint && !hasFinishedCheckpoint) };
 }
 
 /** The hero and the atlas use the same validated checkpoint rules. */
 export function PrimaryTodayButton(props: TodayProps) {
-  const { progress, error } = usePrimaryProgress(props.profileId, props.courseId);
-  const today = todayState(props, progress);
+  const { progress, loading, readError } = usePrimaryProgress(props.profileId, props.courseId);
+  const today = todayState(props, progress, loading ? "loading" : readError ? "read-error" : "ready");
   return <><button className="btn btn-primary btn-xl" disabled={today.disabled} onClick={props.onToday}>{today.actionLabel} <ArrowRight size={18} /></button>
-    {error ? <div className="journey-action-error" role="status"><span>学习进度暂时无法读取，原记录已保留。</span>
+    {readError ? <div className="journey-action-error" role="status"><span>学习进度暂时无法读取，原记录已保留。</span>
       {props.onOpenSettings && <button type="button" className="btn btn-glass" onClick={props.onOpenSettings}>打开家长设置</button>}</div>
       : today.checkpoint.status === "invalid" && <span className="journey-action-error" role="status">今日小课记录暂时无法读取，原记录已保留。可以选择其他主题。</span>}</>;
 }
 
 export function PrimaryJourney(props: TodayProps & { hideAction?: boolean; onOpenFavorite: (entry: LearningEntry) => void }) {
   const { profileId, courseId, entries, onToday, onOpenSettings, hideAction = false, onOpenFavorite } = props;
-  const { progress, error, toggle } = usePrimaryProgress(profileId, courseId);
+  const { progress, loading, readError, writeError, toggle } = usePrimaryProgress(profileId, courseId);
   const favorites = progress ? entries.filter((entry) => progress.favorites.includes(entry.id)) : [];
-  const today = todayState(props, progress);
+  const today = todayState(props, progress, loading ? "loading" : readError ? "read-error" : "ready");
   return <section className="panel primary-journey" aria-label="今日学习">
     <div><p className="eyebrow">TODAY / 今日小课</p><h2>今天一起看看什么？</h2>
       <p>{today.description}</p>
       {!hideAction && <button className="btn btn-primary" disabled={today.disabled} onClick={onToday}>{today.actionLabel} <ArrowRight size={18} /></button>}
     </div>
     <div className="primary-favorites"><h3>收藏的词{favorites.length > 0 && <span className="primary-favorites-count">{favorites.length}</span>}</h3>
-      <FavoriteList entries={favorites} unit="词" onOpen={onOpenFavorite} onRemove={toggle}
-        emptyText={progress ? "遇到喜欢的词，可以在词卡上收藏。" : "收藏记录暂时无法读取。"} />
+      {loading ? <p className="primary-favorites-empty" role="status">正在读取收藏记录…</p>
+        : readError ? <p className="primary-favorites-empty" role="alert">收藏记录暂时无法读取，原记录已保留。</p>
+          : <FavoriteList entries={favorites} unit="词" onOpen={onOpenFavorite} onRemove={toggle}
+            emptyText="遇到喜欢的词，可以在词卡上收藏。" />}
     </div>
-    {error && !hideAction && <div className="primary-journey-error" role="alert">
+    {writeError && <div className="primary-journey-error" role="alert">
+      <span>收藏暂时无法保存，原记录已保留。</span>
+    </div>}
+    {readError && !hideAction && <div className="primary-journey-error" role="alert">
       <span>学习进度暂时无法读取，原记录已保留。</span>
       {onOpenSettings && <button type="button" className="btn btn-ghost" onClick={onOpenSettings}>打开家长设置</button>}
     </div>}

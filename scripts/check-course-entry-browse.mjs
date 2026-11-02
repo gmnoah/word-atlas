@@ -111,6 +111,13 @@ try {
     await emptyFavorites.waitFor();
     await page.waitForFunction(() => document.activeElement?.classList.contains("primary-favorites-empty"));
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
+    const hanziProgressKey = "word-atlas:v3:primary-progress:learner-default:hanzi-starter";
+    await page.evaluate((key) => localStorage.setItem(key, "broken"), hanziProgressKey);
+    await page.reload();
+    await favoriteOverview.getByText("收藏记录暂时无法读取，原记录已保留。").waitFor();
+    assert.equal(await favoriteOverview.getByText("收藏记录暂时无法读取，原记录已保留。").count(), 1);
+    assert.equal(await favoriteOverview.getByText("收藏暂时无法保存，原记录已保留。").count(), 0);
+    assert.equal(await page.evaluate((key) => localStorage.getItem(key), hanziProgressKey), "broken");
 
     await context.close();
   }

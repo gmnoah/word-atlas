@@ -24,9 +24,11 @@ try {
   assert.equal(await hero.getByRole('button',{name:'开始今日小课'}).isDisabled(),true);
   assert.equal(await page.evaluate(key=>localStorage.getItem(key),key),'broken');
   await page.evaluate(()=>localStorage.setItem('word-atlas:v3:primary-progress:learner-default:primary-starter','broken'));
-  await page.reload(); await panel.getByText('收藏记录暂时无法读取。').waitFor();
+  await page.reload(); await panel.getByText('收藏记录暂时无法读取，原记录已保留。').waitFor();
   await hero.getByText('学习进度暂时无法读取，原记录已保留。').waitFor();
   assert.equal(await page.getByText('学习进度暂时无法读取，原记录已保留。').count(),1);
+  assert.equal(await page.getByText('收藏记录暂时无法读取，原记录已保留。').count(),1);
+  assert.equal(await page.getByText('收藏暂时无法保存，原记录已保留。').count(),0);
   const recovery=hero.getByRole('button',{name:'打开家长设置'});
   assert.ok(await recovery.evaluate(el=>el.getBoundingClientRect().height)>=48);
   await recovery.click();
@@ -40,7 +42,26 @@ try {
   await page.getByRole('dialog').getByText('备份与恢复').waitFor();
   await page.getByRole('button',{name:'关闭',exact:true}).click();
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
+
+  const progressKey='word-atlas:v3:primary-progress:learner-default:primary-starter';
+  await page.evaluate(progressKey=>localStorage.removeItem(progressKey),progressKey);
+  await page.goto('http://localhost:5188/#/explore?course=primary-starter&view=atlas');
+  await page.getByRole('button',{name:'查看 apple 词卡'}).first().click();
+  const detail=page.getByRole('dialog',{name:'课程条目'});
+  await page.evaluate(progressKey=>{
+    const original=Storage.prototype.setItem;
+    Storage.prototype.setItem=function(key,value){
+      if(key===progressKey) throw new DOMException('test quota','QuotaExceededError');
+      return original.call(this,key,value);
+    };
+  },progressKey);
+  await detail.getByRole('button',{name:'收藏这个词'}).click();
+  await detail.getByText('收藏暂时无法保存，原记录已保留。').waitFor();
+  await detail.getByRole('button',{name:'收藏这个词'}).waitFor();
+  assert.equal(await page.evaluate(progressKey=>localStorage.getItem(progressKey),progressKey),null);
+  assert.equal(await detail.getByText('收藏记录暂时无法读取，原记录已保留。').count(),0);
+  await detail.getByRole('button',{name:'关闭'}).click();
   await context.close();
  }
- console.log('英语今日小课状态、异常保护、桌面/375px 深浅主题通过');
+ console.log('英语今日小课状态、读取/写入异常区分与保护、桌面/375px 深浅主题通过');
 } finally {await browser.close();}
