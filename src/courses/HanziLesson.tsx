@@ -8,6 +8,7 @@ import { applyPrimarySession, primaryReviewIds, readPrimaryProgress, readRestore
 import { Illustration } from "../ui/Illustration";
 import { Sheet } from "../ui/Sheet";
 import { HanziCard } from "./HanziCard";
+import { LessonRecap } from "./LessonRecap";
 import { hanziPosition, hanziQuestionPrompt, isHanziMatchingQuestion, hanziRecognitionSession } from "./hanzi-question";
 import { createListenGate, type ListenStatus } from "./hanzi-listen";
 import { hanziPolicy, type HanziLessonMode } from "./hanzi-policy";
@@ -133,6 +134,9 @@ export function HanziLesson({ course, lesson, entries, profileId, mode, minutes,
   // session recovery, but do not count it as independent recognition.
   const recognitionSession = hanziRecognitionSession(session, lesson.id);
   const stats = learningSessionStats(recognitionSession);
+  const recapEntries = recognitionSession.introduced
+    .map((id) => entries.find((item) => item.id === id))
+    .filter((item): item is HanziEntry => !!item);
   const intro = step?.kind === "intro";
   const listenQuestion = step?.kind === "hanzi-listen";
   const pictureQuestion = step?.kind === "hanzi-picture";
@@ -324,6 +328,11 @@ export function HanziLesson({ course, lesson, entries, profileId, mode, minutes,
               </div>
             </>}
           </dl>
+          <LessonRecap
+            course={course}
+            entries={recapEntries}
+            subtitle={coRead ? "下次再和孩子一起读一读。" : "看过不等于已经独立认识。"}
+          />
           <p className="preview-disclosure">
             {coRead
               ? "共读只是看看字，不计识别成绩。"

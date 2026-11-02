@@ -941,6 +941,97 @@
   justify-content: center;
   margin-top: 28px;
 }
+.lesson-recap {
+  max-width: 760px;
+  margin: 28px auto 0;
+  padding: 20px;
+  text-align: left;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background:
+    linear-gradient(135deg, var(--card), var(--paper-2));
+}
+.lesson-recap-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+.lesson-recap-head .eyebrow {
+  margin: 0 0 5px;
+  color: var(--sage-ink);
+}
+.lesson-recap.is-hanzi .lesson-recap-head .eyebrow {
+  color: var(--terra-ink);
+}
+.lesson-recap-head h2 {
+  margin: 0;
+  font: 600 24px/1.3 var(--serif);
+}
+.lesson-recap-head > p {
+  margin: 0;
+  color: var(--ink-2);
+  font: 600 15px/1.4 var(--sans);
+  text-align: right;
+  white-space: nowrap;
+}
+.lesson-recap-head small {
+  display: block;
+  max-width: 260px;
+  margin-top: 3px;
+  color: var(--ink-3);
+  font: 400 12px/1.45 var(--sans);
+  white-space: normal;
+}
+.lesson-recap ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 10px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.lesson-recap li {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  padding: 9px;
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  background: var(--card);
+}
+.lesson-recap .illo {
+  width: 64px;
+  margin: 0;
+  border-radius: var(--r-sm);
+}
+.lesson-recap li > div {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+.lesson-recap strong {
+  overflow-wrap: anywhere;
+  color: var(--ink);
+  font: 600 22px/1.25 var(--serif);
+}
+.lesson-recap li.is-hanzi strong {
+  font: 500 30px/1.2 "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+.lesson-recap li > div > span {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  color: var(--ink-2);
+  font-size: 13px;
+  line-height: 1.45;
+  word-break: break-word;
+}
 .preview-parent {
   padding: 24px 0 8px;
 }
@@ -1159,6 +1250,24 @@
   }
   .preview-finish {
     padding: 32px 20px;
+  }
+  .lesson-recap {
+    padding: 16px;
+  }
+  .lesson-recap-head {
+    align-items: start;
+    flex-direction: column;
+    gap: 9px;
+  }
+  .lesson-recap-head > p {
+    text-align: left;
+  }
+  .lesson-recap-head small {
+    display: inline;
+    margin: 0 0 0 6px;
+  }
+  .lesson-recap ul {
+    grid-template-columns: 1fr;
   }
   .preview-footer {
     gap: 14px;

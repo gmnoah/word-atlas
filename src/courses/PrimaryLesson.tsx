@@ -7,6 +7,7 @@ import { checkpointRevision } from "../learning/session-persistence";
 import { Illustration } from "../ui/Illustration";
 import { Sheet } from "../ui/Sheet";
 import { EnglishWordCard } from "./EnglishWordCard";
+import { LessonRecap } from "./LessonRecap";
 import { PreviewSpeak } from "./PreviewSpeak";
 import { primaryVisualPolicy, type PrimaryStartingStage } from "./starting-point";
 import { entryLabel, type LearningEntry, type Lesson } from "./types";
@@ -82,6 +83,9 @@ export function PrimaryLesson({ course, lesson, entries, profileId, stage, spell
     : entry ? session.attempts[entry.id]?.result : undefined;
   const answered = !!step && !!session.answeredSteps[session.index];
   const stats = learningSessionStats(session);
+  const recapEntries = session.introduced
+    .map((id) => entries.find((item) => item.id === id))
+    .filter((item): item is LearningEntry => !!item);
   const intro = step?.kind === "intro";
   const audioQuestion = step?.kind === "listen-picture" || step?.kind === "listen-word";
   const spellQuestion = step?.kind === "spell";
@@ -184,6 +188,11 @@ export function PrimaryLesson({ course, lesson, entries, profileId, stage, spell
             <div><dt>提示后答对</dt><dd>{stats.hinted}<small>个</small></dd></div>
             <div><dt>一起答对</dt><dd>{stats.assisted}<small>个</small></dd></div>
           </dl>
+          <LessonRecap
+            course={course}
+            entries={recapEntries}
+            subtitle="再读一遍，也可以回到图鉴慢慢看。"
+          />
           <p className="preview-disclosure">仅统计首次答对；接触和答对不代表已经掌握。{saveError ? "本次小课未能保存。" : progressError ? "学习结果暂未保存，小课记录已保留。" : "学习记录保存在这台设备。"}</p>
           <div className="preview-actions">
             <button className="btn btn-primary btn-xl" onClick={() => leaveFinished(onExit)}>{returnToJourney ? "回到旅程" : "回到主题"} <ArrowRight size={18} /></button>
