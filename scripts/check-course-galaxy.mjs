@@ -11,6 +11,7 @@ try {
   const opening=page.getByRole('button',{name:'跳过开场'}); await opening.waitFor(); await opening.click();
   assert.equal(await opening.count(),0);
   const section=page.locator('.course-galaxy-section'); await section.locator('summary').click();
+  assert.match(await section.locator('summary').innerText(),/已看过 0 \/ 300 个[字词]\s*·\s*0 \/ (32|33) 个主题有足迹/);
   const map=page.getByRole('region',{name:'课程知识星图'}); await map.waitFor();
   if(await map.getByText(/拖动或用方向键旋转/).count()) webglVerified=true;
   await map.getByText('看过 0 / 300').waitFor();
@@ -27,6 +28,7 @@ try {
   await page.getByRole('button',{name:'返回旅程'}).click(); await page.getByRole('button',{name:'结束本次学习'}).click();
   if(!await page.locator('.course-galaxy-section').evaluate(el=>el.open)) await page.locator('.course-galaxy-section summary').click();
   await page.getByRole('region',{name:'课程知识星图'}).getByText('看过 1 / 300').waitFor();
+  assert.match(await section.locator('summary').innerText(),/已看过 1 \/ 300 个[字词]\s*·\s*1 \/ (32|33) 个主题有足迹/);
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true); assert.deepEqual(errors,[]);
   await page.reload(); assert.equal(await opening.count(),0);
   await context.close();
