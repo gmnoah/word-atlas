@@ -9,7 +9,7 @@ import { entryLabel, type HanziEntry, type LearningEntry, type Lesson } from "./
  * A flat theme map for preschoolers: large stops, no 3D, no scores.
  * It deliberately shows fewer labels than the primary course page.
  */
-export function HanziMap({ course, lessons, entries, exploration, matchingEntryIds, checkpointStatus, onOpenEntry, onStart, onCoRead }: {
+export function HanziMap({ course, lessons, entries, exploration, matchingEntryIds, checkpointStatus, onOpenEntry, onStart, onCoRead, onOpenSettings }: {
   course: Course;
   lessons: Lesson[];
   entries: LearningEntry[];
@@ -19,6 +19,7 @@ export function HanziMap({ course, lessons, entries, exploration, matchingEntryI
   onOpenEntry: (entry: HanziEntry) => void;
   onStart: (lesson: Lesson) => void;
   onCoRead: (lesson: Lesson) => void;
+  onOpenSettings?: () => void;
 }) {
   const entriesById = useMemo(() => new Map(entries.map((entry) => [entry.id, entry])), [entries]);
   return (
@@ -62,13 +63,16 @@ export function HanziMap({ course, lessons, entries, exploration, matchingEntryI
                 </p>
                 <div className="hanzi-map-actions">
                   <button className="btn btn-primary btn-xl" disabled={recognition === "invalid"} onClick={() => onStart(lesson)}>
-                    <BookOpen size={20} /> {recognition === "active" ? "继续认一认" : recognition === "finished" ? "查看认读结果" : "认一认"}
+                    <BookOpen size={20} /> {recognition === "invalid" ? "认读记录待恢复" : recognition === "active" ? "继续认一认" : recognition === "finished" ? "查看认读结果" : "认一认"}
                   </button>
                   <button className="btn btn-ghost" disabled={reading === "invalid"} onClick={() => onCoRead(lesson)}>
-                    {reading === "active" ? "继续共读" : reading === "finished" ? "查看共读结果" : "只读一读"}
+                    {reading === "invalid" ? "共读记录待恢复" : reading === "active" ? "继续共读" : reading === "finished" ? "查看共读结果" : "只读一读"}
                   </button>
                 </div>
-                {(recognition === "invalid" || reading === "invalid") && <p role="status">{recognition === "invalid" && reading === "invalid" ? "认读和共读" : recognition === "invalid" ? "认读" : "共读"}记录暂时无法读取，原记录已保留。可以选择其他活动或主题。</p>}
+                {(recognition === "invalid" || reading === "invalid") && <div className="journey-action-error" role="status">
+                  <span>{recognition === "invalid" && reading === "invalid" ? "认读和共读" : recognition === "invalid" ? "认读" : "共读"}记录暂时无法读取，原记录已保留。可以选择其他活动或主题。</span>
+                  {onOpenSettings && <button type="button" className="btn btn-ghost" onClick={onOpenSettings}>打开家长设置</button>}
+                </div>}
               </div>
             </li>
           );

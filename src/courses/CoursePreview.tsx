@@ -851,6 +851,7 @@ export default function CoursePreview() {
                   setHanziMode("co-read");
                   setLesson(next);
                 }}
+                onOpenSettings={() => setParentOpen(true)}
               />
             ) : (
               <>
@@ -914,9 +915,12 @@ export default function CoursePreview() {
                         disabled={!entries.length || checkpoint?.status === "invalid"}
                         onClick={() => setLesson(l)}
                       >
-                        {checkpoint?.status === "ok" ? checkpoint.checkpoint.session.endReason ? "查看上次小课" : "继续小课" : "开始小课"} <ArrowRight size={18} />
+                        {checkpoint?.status === "invalid" ? "小课记录待恢复" : checkpoint?.status === "ok" ? checkpoint.checkpoint.session.endReason ? "查看上次小课" : "继续小课" : "开始小课"} <ArrowRight size={18} />
                       </button>
-                      {checkpoint?.status === "invalid" && <p role="status">这次小课记录暂时无法读取，原记录已保留。可以选择其他主题。</p>}
+                      {checkpoint?.status === "invalid" && <div className="journey-action-error" role="status">
+                        <span>这次小课记录暂时无法读取，原记录已保留。可以选择其他主题。</span>
+                        <button type="button" className="btn btn-ghost" onClick={() => setParentOpen(true)}>打开家长设置</button>
+                      </div>}
                     </div>
                   </article>
                 );
