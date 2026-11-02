@@ -68,6 +68,16 @@ try {
   await page.getByText('首次未答对 1 次，不计入上面的答对次数。答错后可以重试；统计只保留第一次结果。').waitFor();
   assert.equal(await page.getByRole('list',{name:'首次答对分类'}).count(),0);
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),true);
+  await page.evaluate(courseId => {
+   localStorage.removeItem(`word-atlas:v3:activity:learner-default:${courseId}`);
+   localStorage.setItem(`word-atlas:v3:primary-progress:learner-default:${courseId}`,'{bad');
+  },course);
+  await page.reload();
+  await page.getByText('逐日详细记录目前为空，累计学习进度暂时无法读取；原记录已保留。').waitFor();
+  await page.getByText('旧版或早于逐日活动保存的数据无法补造日期。可回到今日旅程，或在家长设置中检查备份恢复。').waitFor();
+  assert.equal(await page.getByText('还没有详细活动记录。之后的小课会在这里留下记录。').count(),0);
+  assert.equal(await page.evaluate(courseId => localStorage.getItem(`word-atlas:v3:primary-progress:learner-default:${courseId}`),course),'{bad');
+  await page.evaluate(courseId => localStorage.removeItem(`word-atlas:v3:primary-progress:learner-default:${courseId}`),course);
   await page.evaluate(courseId => localStorage.setItem(`word-atlas:v3:activity:learner-default:${courseId}`, '{bad'), course);
   await page.reload();
   await page.getByText('详细记录暂时无法读取，原记录已保留。').waitFor();

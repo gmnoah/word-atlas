@@ -10,9 +10,17 @@ export function ActivitySummary({ profileId, courseId, emptyAction }: { profileI
   const archived = Object.values(result.record.archivedSessions ?? {});
   if (!sessions.length && !archived.length) {
     const progress = readPrimaryProgress(localStorage, profileId, courseId);
-    const seen = progress.ok ? Object.keys(progress.progress.introduced).length : 0;
-    const cards = progress.ok ? Object.keys(progress.progress.cards).length : 0;
-    const favorites = progress.ok ? progress.progress.favorites.length : 0;
+    if (!progress.ok) {
+      return <section className="activity-empty" aria-label="详细活动记录">
+        <h3>详细活动记录</h3>
+        <p role="alert">逐日详细记录目前为空，累计学习进度暂时无法读取；原记录已保留。</p>
+        <p>旧版或早于逐日活动保存的数据无法补造日期。可回到今日旅程，或在家长设置中检查备份恢复。</p>
+        {emptyAction}
+      </section>;
+    }
+    const seen = Object.keys(progress.progress.introduced).length;
+    const cards = Object.keys(progress.progress.cards).length;
+    const favorites = progress.progress.favorites.length;
     if (seen || cards || favorites) {
       const unit = courseId === "hanzi-starter" ? "字" : "词";
       return <section className="activity-empty" aria-label="详细活动记录">
