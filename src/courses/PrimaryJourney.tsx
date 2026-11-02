@@ -35,8 +35,8 @@ function usePrimaryProgress(profileId: string, courseId: string) {
 export function PrimaryFavorite({ profileId, courseId, entry }: { profileId: string; courseId: string; entry: LearningEntry }) {
   const { progress, error, toggle } = usePrimaryProgress(profileId, courseId);
   const favorite = progress?.favorites.includes(entry.id) ?? false;
-  return <div><button type="button" className="btn btn-ghost" disabled={!progress} aria-pressed={favorite} onClick={() => void toggle(entry.id)}>
-    <Heart size={18} fill={favorite ? "currentColor" : "none"} />{favorite ? "已收藏" : "收藏这个词"}
+  return <div className="primary-favorite"><button type="button" className="btn btn-ghost" disabled={!progress} aria-pressed={favorite} onClick={() => void toggle(entry.id)}>
+    <Heart size={18} fill={favorite ? "currentColor" : "none"} />{favorite ? "已收藏" : entry.kind === "hanzi" ? "收藏这个字" : "收藏这个词"}
   </button>{error && <p role="alert">收藏暂时无法保存，请稍后再试。</p>}</div>;
 }
 

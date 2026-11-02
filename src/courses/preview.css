@@ -1469,6 +1469,8 @@
 
 .course-entry-detail { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 24px; align-items: center; padding: 32px 8px 8px; }
 .course-entry-detail h2 { font-family: var(--serif); font-size: 2.5rem; }
+.course-entry-detail .primary-favorite { margin: 12px 0 4px; }
+.course-entry-detail .primary-favorite p { margin: 6px 0 0; }
 .course-entry-detail .illo-fallback-note { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); padding: 5px 10px; border-radius: 999px; background: var(--card); color: var(--ink-2); font-size: 13px; white-space: nowrap; }
 .course-entry-browse {
   display: grid;

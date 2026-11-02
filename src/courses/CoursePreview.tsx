@@ -40,7 +40,7 @@ import {
 import { PreviewSpeak } from "./PreviewSpeak";
 import { exampleTargetParts } from "./example-target";
 import { PrimaryLesson } from "./PrimaryLesson";
-import { PrimaryJourney, PrimaryTodayButton } from "./PrimaryJourney";
+import { PrimaryFavorite, PrimaryJourney, PrimaryTodayButton } from "./PrimaryJourney";
 import { ActivitySummary } from "./ActivitySummary";
 import { readPrimaryProgress } from "../learning/primary-progress";
 import { journeyProgress, suggestedJourneyLessons } from "./journey-progress";
@@ -852,6 +852,7 @@ export default function CoursePreview() {
             <div><p className="eyebrow">{lesson ? `${lesson.title} · 第 ${position + 1} / ${lesson.entryIds.length} 个${unit}` : "课程图鉴"}</p><h2>{entryLabel(entry)}</h2>
               <p>{entry.kind === "english" ? entry.meaning : entry.phrase}</p>
               <PreviewSpeak key={`course-entry:${entry.id}`} text={text} locale={entry.kind === "english" ? entry.media.locale : "zh-CN"} recording={course.audio(entry)} slow={preferences.slow} />
+              <PrimaryFavorite profileId={activeProfileId} courseId={course.manifest.id} entry={entry} />
               {entry.kind === "english" ? <div className="preview-example"><p lang="en">{example ? <>{example[0]}<mark className="example-target">{example[1]}</mark>{example[2]}</> : entry.example.text}</p><span>{entry.example.translation}</span></div>
                 : <><p>{entry.sentence}</p><details><summary>给家长的小提示</summary><p>拼音：{entry.pinyin}</p><p>{entry.caregiverTip}</p></details></>}
               <p className="preview-disclosure">内容为待审校草稿。{entry.kind === "hanzi" ? "普通话使用设备朗读，也可以请家长读一读。" : "例句和语音仍需审校。"}</p>
