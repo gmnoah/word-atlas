@@ -484,6 +484,9 @@
   font-size: 13px;
 }
 .atlas-progress-filter button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   min-height: 48px;
   padding: 7px 14px;
   color: var(--ink-2);
@@ -494,15 +497,30 @@
   font-size: 14px;
   cursor: pointer;
 }
+.atlas-progress-filter button small {
+  display: grid;
+  place-items: center;
+  min-width: 24px;
+  min-height: 24px;
+  padding: 0 6px;
+  color: var(--ink-2);
+  background: var(--paper-2);
+  border-radius: 999px;
+  font-size: 12px;
+  line-height: 1;
+}
 .atlas-progress-filter button:hover { color: var(--ink); background: var(--paper-2); }
 .atlas-progress-filter button[aria-pressed="true"] {
   color: var(--card);
   background: var(--ink);
   border-color: var(--ink);
 }
+.atlas-progress-filter button[aria-pressed="true"] small { color: var(--ink); background: var(--paper); }
 .atlas-progress-filter button:focus-visible { outline: 2px solid var(--terra); outline-offset: 2px; }
 .atlas-progress-filter button:disabled { opacity: 0.48; cursor: not-allowed; }
 .atlas-search p { margin: 8px 0 0; color: var(--ink-2); font-size: 14px; line-height: 1.55; }
+.atlas-search-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.atlas-search-actions .btn { min-height: 48px; }
 .preview-lessons {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

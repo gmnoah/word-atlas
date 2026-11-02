@@ -27,6 +27,9 @@ try {
       assert.equal(await button.evaluate(element=>element.getBoundingClientRect().height>=48),true);
     }
     assert.equal(await englishFilter.getByRole('button',{name:'全部'}).getAttribute('aria-pressed'),'true');
+    assert.equal(await englishFilter.getByRole('button',{name:'全部，33 个主题'}).count(),1);
+    assert.equal(await englishFilter.getByRole('button',{name:'还有没看，32 个主题'}).count(),1);
+    assert.equal(await englishFilter.getByRole('button',{name:'看过一些，2 个主题'}).count(),1);
     await englishFilter.getByRole('button',{name:'看过一些'}).click();
     await page.getByText('2 / 33 个主题里有看过内容 · 筛选后仍保留每个主题的完整词表。').waitFor();
     assert.equal(await page.locator('.preview-lesson-tile').count(),2);
@@ -42,7 +45,7 @@ try {
     await page.getByText(/显示 1 \/ 33 个匹配主题 · 1 \/ 300 个词。主题内未匹配的内容仍会显示。/).waitFor();
     await englishFilter.getByRole('button',{name:'看过一些'}).click();
     await page.getByText('当前“看过一些”范围中没有找到匹配内容。可以切换到“全部”或清空查找。').waitFor();
-    await englishFilter.getByRole('button',{name:'全部'}).click();
+    await page.getByRole('button',{name:'显示全部主题'}).click();
     await page.getByRole('heading', { name: '英语词汇 03' }).waitFor();
     const clearEnglish = page.getByRole('button', { name: '清空图鉴查找' });
     assert.equal(await clearEnglish.evaluate((element) => element.getBoundingClientRect().width >= 48 && element.getBoundingClientRect().height >= 48), true);
@@ -51,7 +54,7 @@ try {
     await page.getByRole('button', { name: '关闭' }).click();
     await english.fill('没有这个词xyz');
     await page.getByText('没有找到相关主题。换一个单词或中文，清空查找可恢复全部 33 个主题、300 个词。').waitFor();
-    await english.fill('');
+    await page.getByRole('button',{name:'清空查找'}).click();
     await page.getByText('全部 33 个主题 · 300 个词，按主题保留完整图鉴。').waitFor();
     await page.goto('http://localhost:5188/#/explore?course=hanzi-starter&view=atlas');
     const hanzi = page.getByRole('searchbox', { name: '查找主题或汉字' });
@@ -64,6 +67,10 @@ try {
     });
     await page.reload();
     const hanziFilter=page.getByRole('group',{name:'按图鉴进度筛选'});
+    await hanziFilter.getByRole('button',{name:'全部，32 个主题'}).waitFor();
+    assert.equal(await hanziFilter.getByRole('button',{name:'全部，32 个主题'}).count(),1);
+    assert.equal(await hanziFilter.getByRole('button',{name:'还有没看，31 个主题'}).count(),1);
+    assert.equal(await hanziFilter.getByRole('button',{name:'看过一些，2 个主题'}).count(),1);
     await hanziFilter.getByRole('button',{name:'看过一些'}).click();
     await page.getByText('2 / 32 个主题里有看过内容 · 筛选后仍保留每个主题的完整字表。').waitFor();
     assert.equal(await page.locator('.hanzi-map-stop').count(),2);

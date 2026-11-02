@@ -144,6 +144,19 @@ export default function CoursePreview() {
     return journeyProgress(primaryProgress.progress, course?.lessons ?? [], courseEntries.map((entry) => entry.id));
   }, [course, courseEntries, primaryProgress]);
   const activeAtlasFilter = exploration ? atlasFilter : "all";
+  const atlasFilterCounts = useMemo(() => {
+    if (!exploration) return { all: matchingLessons.length, unseen: null, seen: null };
+    const states = new Map(exploration.themes.map((theme) => [theme.id, theme]));
+    let unseen = 0;
+    let seen = 0;
+    for (const lesson of matchingLessons) {
+      const state = states.get(lesson.id);
+      if (!state) continue;
+      if (state.viewed < state.total) unseen += 1;
+      if (state.viewed > 0) seen += 1;
+    }
+    return { all: matchingLessons.length, unseen, seen };
+  }, [exploration, matchingLessons]);
   const visibleLessons = useMemo(() => {
     if (activeAtlasFilter === "all" || !exploration) return matchingLessons;
     const states = new Map(exploration.themes.map((theme) => [theme.id, theme]));
@@ -778,13 +791,27 @@ export default function CoursePreview() {
                   ["all", "全部"],
                   ["unseen", "还有没看"],
                   ["seen", "看过一些"],
-                ] as const).map(([value, label]) =>
-                  <button key={value} type="button" aria-pressed={activeAtlasFilter === value}
-                    disabled={!exploration && value !== "all"} onClick={() => setAtlasFilter(value)}>{label}</button>)}
+                ] as const).map(([value, label]) => {
+                  const count = atlasFilterCounts[value];
+                  return <button key={value} type="button" aria-pressed={activeAtlasFilter === value}
+                    aria-label={`${label}，${count === null ? "学习记录不可读取" : `${count} 个主题`}`}
+                    disabled={!exploration && value !== "all"} onClick={() => setAtlasFilter(value)}>
+                    <span>{label}</span><small aria-hidden="true">{count ?? "—"}</small>
+                  </button>;
+                })}
               </div>
               <p id="atlas-search-status" role="status" aria-live="polite">
                 {atlasStatus}
               </p>
+              {!visibleLessons.length && (queryActive || activeAtlasFilter !== "all") && (
+                <div className="atlas-search-actions">
+                  {queryActive && <button type="button" className="btn btn-ghost" onClick={() => {
+                    setAtlasQuery("");
+                    requestAnimationFrame(() => atlasSearchRef.current?.focus());
+                  }}>清空查找</button>}
+                  {activeAtlasFilter !== "all" && <button type="button" className="btn btn-ghost" onClick={() => setAtlasFilter("all")}>显示全部主题</button>}
+                </div>
+              )}
             </section>
             {course.manifest.subject === "hanzi" ? (
               <HanziMap
