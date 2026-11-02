@@ -139,6 +139,24 @@ try {
         .innerText(),
       /已看过 1 \/ 300 个[词字] · 本主题还有 4 个没看/,
     );
+    await progressPage.goto("http://localhost:5188/#/explore");
+    const courseCard = progressPage.locator(`[data-course-id="${course}"]`);
+    await courseCard.waitFor();
+    assert.match(
+      await courseCard.innerText(),
+      /已看过 1 \/ 300/,
+    );
+    assert.equal(
+      await courseCard
+        .getByRole("button", {
+          name:
+            course === "hanzi-starter"
+              ? "继续旅程：汉字启蒙"
+              : "继续旅程：基础英语",
+        })
+        .count(),
+      1,
+    );
     await progressContext.close();
   }
 
@@ -158,10 +176,17 @@ try {
       ),
     2,
   );
+  assert.equal(
+    await page
+      .locator('[data-course-id="primary-starter"]')
+      .getByRole("button", { name: "开始旅程：基础英语" })
+      .count(),
+    1,
+  );
   await context.close();
 
   console.log(
-    "两课程今日发现、真实进度轮换、词字卡键盘开关、减少动态、375/800/1280px 与深浅主题通过；800px 学习空间为两列",
+    "两课程今日发现、真实进度轮换、学习空间续学状态、词字卡键盘开关、减少动态、375/800/1280px 与深浅主题通过；800px 学习空间为两列",
   );
 } finally {
   await browser.close();

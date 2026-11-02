@@ -136,6 +136,24 @@ export default function CoursePreview() {
     if (!primaryProgress?.ok) return null;
     return journeyProgress(primaryProgress.progress, course?.lessons ?? [], courseEntries.map((entry) => entry.id));
   }, [course, courseEntries, primaryProgress]);
+  const overviewProgress = useMemo(() => {
+    void progressRevision;
+    const states = new Map<string, { ok: boolean; seen: number; hasHistory: boolean }>();
+    for (const registered of courseRegistry) {
+      if (registered.kind !== "preview") continue;
+      const result = readPrimaryProgress(localStorage, activeProfileId, registered.manifest.id);
+      if (!result.ok) {
+        states.set(registered.manifest.id, { ok: false, seen: 0, hasHistory: false });
+        continue;
+      }
+      const seen = Math.min(registered.count, Object.keys(result.progress.introduced).length);
+      const hasHistory = seen > 0
+        || Object.keys(result.progress.cards).length > 0
+        || result.progress.favorites.length > 0;
+      states.set(registered.manifest.id, { ok: true, seen, hasHistory });
+    }
+    return states;
+  }, [activeProfileId, progressRevision]);
   const primaryPreferences = useProfiles((snapshot) =>
     preferencesFor(snapshot, activeProfileId, "primary-starter"),
   );
@@ -364,6 +382,15 @@ export default function CoursePreview() {
                 {courseRegistry
                   .filter((c) => c.kind !== "planned")
                   .map((registered, i) => {
+                    const overview = registered.kind === "preview"
+                      ? overviewProgress.get(registered.manifest.id)
+                      : undefined;
+                    const journeyLabel = overview?.hasHistory ? "继续旅程" : "开始旅程";
+                    const recordLabel = overview
+                      ? overview.ok
+                        ? overview.seen > 0 ? ` · 已看过 ${overview.seen} / ${registered.count}` : ""
+                        : " · 学习记录待恢复"
+                      : "";
                     return (
                       <article
                         key={registered.manifest.id}
@@ -387,7 +414,7 @@ export default function CoursePreview() {
                           <div className="preview-space-meta">
                             {registered.kind === "legacy"
                               ? `${registered.count.toLocaleString("en-US")} 个词 · 原学习进度保留`
-                              : `${registered.count} ${registered.manifest.subject === "english" ? "个词" : "个字"} · ${registered.lessonCount} 个学习单元 · 内容待审校`}
+                              : `${registered.count} ${registered.manifest.subject === "english" ? "个词" : "个字"} · ${registered.lessonCount} 个学习单元 · 内容待审校${recordLabel}`}
                           </div>
                           {registered.kind === "legacy" ? (
                             <a className="btn btn-ghost" href={registered.href}>
@@ -396,10 +423,10 @@ export default function CoursePreview() {
                           ) : (
                             <><button
                               className="btn btn-primary"
-                              aria-label={`开始旅程：${registered.manifest.title}`}
+                              aria-label={`${journeyLabel}：${registered.manifest.title}`}
                               onClick={() => openCourse(registered.manifest.id, "journey")}
                             >
-                              开始旅程 <ArrowRight size={17} />
+                              {journeyLabel} <ArrowRight size={17} />
                             </button><button
                               className="btn btn-ghost"
                               aria-label={`打开图鉴：${registered.manifest.title}`}
