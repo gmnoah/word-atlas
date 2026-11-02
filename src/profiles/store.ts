@@ -25,6 +25,7 @@ const DEFAULT_PROFILE: LearnerProfile = {
   nickname: "小小探索家",
   createdAt: 0,
 };
+const LEGACY_DEFAULT_NICKNAME = "我的雅思";
 export const defaultLearningPreferences: LearningPreferences = Object.freeze({
   englishCount: 3,
   hanziCount: 2,
@@ -42,6 +43,13 @@ export function normalizeNickname(value: unknown): string | null {
   if (typeof value !== "string") return null;
   const nickname = value.replace(/[\u0000-\u001f\u007f]/g, "").trim();
   return nickname && Array.from(nickname).length <= 16 ? nickname : null;
+}
+
+/** Keep older auto-generated IELTS naming out of the multi-course interface. */
+export function displayProfileName(profile: Pick<LearnerProfile, "id" | "nickname" | "createdAt">): string {
+  return profile.id === DEFAULT_PROFILE.id && profile.createdAt === 0 && profile.nickname === LEGACY_DEFAULT_NICKNAME
+    ? DEFAULT_PROFILE.nickname
+    : profile.nickname;
 }
 
 export function sanitizeProfiles(value: unknown): Pick<ProfileState, "activeProfileId" | "profiles"> {

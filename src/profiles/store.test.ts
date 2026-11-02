@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import {
   defaultLearningPreferences,
+  displayProfileName,
   normalizeNickname,
   preferencesFor,
   profileStore,
@@ -9,6 +10,12 @@ import {
   sanitizeProfiles,
   type ProfileState,
 } from "./store";
+
+test("T08: the migrated IELTS default name reads neutrally in multi-course learning", () => {
+  assert.equal(displayProfileName({ id: "learner-default", nickname: "我的雅思", createdAt: 0 }), "小小探索家");
+  assert.equal(displayProfileName({ id: "learner-default", nickname: "月亮", createdAt: 0 }), "月亮");
+  assert.equal(displayProfileName({ id: "child", nickname: "我的雅思", createdAt: 1 }), "我的雅思");
+});
 
 test("T08: profile sanitizer keeps only bounded, unique local nicknames", () => {
   const profiles = sanitizeProfiles({

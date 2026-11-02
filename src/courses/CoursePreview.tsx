@@ -26,6 +26,7 @@ import { go, useLocation } from "../lib/router";
 import { loadCourse } from "../atlas/data";
 import { isLearningEntry, type Course } from "../atlas/types";
 import {
+  displayProfileName,
   preferencesFor,
   profileStore,
   useProfiles,
@@ -133,6 +134,9 @@ export default function CoursePreview() {
     (snapshot) =>
       snapshot.profiles.find((profile) => profile.id === snapshot.activeProfileId) ?? snapshot.profiles[0]!,
   );
+  const childCourse = course?.manifest.id === "primary-starter" || course?.manifest.id === "hanzi-starter";
+  const activeProfileDisplayName = childCourse ? displayProfileName(activeProfile) : activeProfile.nickname;
+  const profileDisplayName = (profile: typeof activeProfile) => childCourse ? displayProfileName(profile) : profile.nickname;
   const profiles = useProfiles((snapshot) => snapshot.profiles);
   const primaryProgress = useMemo(() => {
     void progressRevision;
@@ -261,7 +265,7 @@ export default function CoursePreview() {
       themeTotal: currentTheme?.total ?? lessonEntries.length,
     };
   }, [course, entriesById, exploration, primaryProgress]);
-  const [nicknameDraft, setNicknameDraft] = useState(activeProfile.nickname);
+  const [nicknameDraft, setNicknameDraft] = useState(activeProfileDisplayName);
   const [profileMessage, setProfileMessage] = useState<string | null>(null);
   const theme = useStore((s) => s.settings.theme);
   const openingEnabled = useStore((s) => s.settings.splash);
@@ -358,9 +362,9 @@ export default function CoursePreview() {
     window.scrollTo({ top: 0 });
   }, [courseId, lesson, run]);
   useEffect(() => {
-    setNicknameDraft(activeProfile.nickname);
+    setNicknameDraft(activeProfileDisplayName);
     setProfileMessage(null);
-  }, [activeProfile.id, activeProfile.nickname]);
+  }, [activeProfile.id, activeProfile.nickname, activeProfileDisplayName]);
 
   return (
     <div className={`app preview-app ${lesson ? "is-focus" : ""}`}>
@@ -662,7 +666,7 @@ export default function CoursePreview() {
               <button className="btn btn-ghost" aria-current={courseView === "records" ? "page" : undefined}
                 onClick={() => go({ page: "explore", courseId: course.manifest.id, view: "records" })}>学习记录</button>
             </nav>
-            {courseView === "records" ? <div className="panel course-records"><RecentActivity profileId={activeProfileId} profileName={activeProfile.nickname} currentCourseId={course.manifest.id} />
+            {courseView === "records" ? <div className="panel course-records"><RecentActivity profileId={activeProfileId} profileName={activeProfileDisplayName} currentCourseId={course.manifest.id} />
               <div className="course-records-heading"><p className="eyebrow">THIS COURSE / 当前课程</p>
                 <h2>{course.manifest.title} · 活动详情</h2>
                 <p>以下记录仅包含当前学习者在这门课程中的活动。</p></div>
@@ -1011,7 +1015,7 @@ export default function CoursePreview() {
       <Sheet open={parentOpen} onClose={closeParent} label="家长设置">
         <div className="preview-parent">
           <p className="eyebrow">陪伴，而不催促</p>
-          <h2>为 {activeProfile.nickname} 留一盏小灯</h2>
+          <h2>为 {activeProfileDisplayName} 留一盏小灯</h2>
           <p>昵称和小课偏好只留在这台设备；按孩子的兴趣调整，不需要一次完成整个主题。</p>
           <section className="preview-profile" aria-labelledby="profile-title">
             <div>
@@ -1023,7 +1027,7 @@ export default function CoursePreview() {
               >
                 {profiles.map((profile) => (
                   <option key={profile.id} value={profile.id}>
-                    {profile.nickname}
+                    {profileDisplayName(profile)}
                   </option>
                 ))}
               </select>
@@ -1136,7 +1140,7 @@ export default function CoursePreview() {
           <p className="preview-disclosure">
             小课偏好按学习者和课程分别保存；设备主题、音效及开场动画是本机共用设置，不改变雅思学习进度。
           </p>
-          <RecentActivity profileId={activeProfileId} profileName={activeProfile.nickname} />
+          <RecentActivity profileId={activeProfileId} profileName={activeProfileDisplayName} />
           <FamilyCourseNote course={course} />
           <FamilyBackup />
           <button className="btn btn-primary btn-xl" onClick={closeParent}>

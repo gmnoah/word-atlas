@@ -8,7 +8,7 @@ try {
   await page.goto(`http://localhost:5188/#/explore?course=${course}&view=records`);
   await page.getByRole('heading',{name:course === 'primary-starter' ? '基础英语 · 活动详情' : '汉字启蒙 · 活动详情'}).waitFor();
   await page.getByRole('heading',{name:'本机学习记录',level:2}).waitFor();
-  assert.match(await page.locator('.family-activity-profile').innerText(), /^当前学习者：\s*\S+$/);
+  assert.equal(await page.locator('.family-activity-profile').innerText(), '当前学习者：小小探索家');
   const currentSummary = page.locator('.family-activity dl > div.is-current');
   await currentSummary.getByText('当前课程').waitFor();
   await currentSummary.getByText('看过 0 / 300').waitFor();
@@ -26,6 +26,7 @@ try {
    localStorage.setItem(`word-atlas:v3:primary-progress:learner-default:${courseId}`,JSON.stringify(progress));
   },course);
   await page.reload();
+  assert.equal(await page.locator('.family-activity-profile').innerText(), '当前学习者：小小探索家');
   const unit=course === 'primary-starter' ? '词' : '字';
   await page.getByText(`累计学习记录中已有看过 2 个${unit}、复习卡 0 张、收藏 0 个，但还没有带日期的逐日小课明细。`).waitFor();
   await page.getByText('旧版或早于逐日活动保存的数据无法补造日期；之后完成小课，会在这里记录首次答题、近七天活动和主题足迹。').waitFor();
@@ -82,6 +83,7 @@ try {
   await progressSettingsAction.click();
   const progressDialog = page.getByRole('dialog', { name: '家长设置' });
   await progressDialog.waitFor();
+  await progressDialog.getByRole('heading', { name: '为 小小探索家 留一盏小灯' }).waitFor();
   await progressDialog.getByText('备份与恢复').waitFor();
   await progressDialog.getByRole('button', { name: '关闭' }).click();
   assert.equal(await progressSettingsAction.evaluate(element => document.activeElement === element), true);

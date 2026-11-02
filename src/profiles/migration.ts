@@ -153,7 +153,7 @@ function collectSnapshot(storage: StorageLike): Snapshot | MigrationResult {
 function ensureLegacyProfile(storage: StorageLike): { key: string; value: unknown } | MigrationResult {
   const current = readStored(storage, PROFILE_KEY);
   if ("error" in current) return { status: "failed", error: current.error };
-  const profile = { id: LEGACY_PROFILE_ID, nickname: "我的雅思", createdAt: 0 };
+  const profile = { id: LEGACY_PROFILE_ID, nickname: "小小探索家", createdAt: 0 };
   if (!current.exists)
     return { key: PROFILE_KEY, value: { version: 1, activeProfileId: LEGACY_PROFILE_ID, profiles: [profile] } };
   const safe = sanitizeProfiles(current.value);
