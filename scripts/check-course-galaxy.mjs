@@ -36,6 +36,8 @@ try {
   assert.equal(await page.getByRole('button',{name:'跳过开场'}).count(),0);
   await page.locator('.course-galaxy-section summary').click();
   await page.getByText(/此设备暂不支持三维画面/).waitFor();
+  assert.equal(await page.locator('.course-galaxy-sky').isVisible(),false);
+  await page.locator('.course-galaxy-fallback').getByText('看过 0 / 300').waitFor();
   assert.equal(await page.locator('.course-galaxy-sky canvas').getAttribute('tabindex'),'-1');
   assert.ok(await page.locator('.course-galaxy-entries button').count()>0);
   await context.close();

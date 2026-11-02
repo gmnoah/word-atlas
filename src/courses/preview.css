@@ -59,6 +59,8 @@
 .course-galaxy-section summary small { display: block; margin: 4px 0 0 25px; color: var(--ink-2); font: 14px/1.5 var(--sans); }
 .course-galaxy { margin-top: 18px; }
 .course-galaxy-sky { position: relative; height: clamp(280px, 42vw, 440px); overflow: hidden; border-radius: var(--r-lg); background: #0d1120; }
+.course-galaxy-fallback { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 16px; padding: 16px 18px; border: 1px solid var(--line); border-radius: var(--r); background: var(--paper-2); color: var(--ink-2); }
+.course-galaxy-fallback strong { color: var(--ink); font: 600 20px/1.3 var(--serif); }
 .course-galaxy-sky canvas { display: block; width: 100%; height: 100%; touch-action: none; }
 .course-galaxy-sky canvas:focus-visible { outline: 2px solid #f2ebdd; outline-offset: -5px; }
 .course-galaxy-markers { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; }

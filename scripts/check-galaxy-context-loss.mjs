@@ -19,6 +19,8 @@ try {
   assert.equal(supported,true,'测试设备需要 WEBGL_lose_context');
   await page.evaluate(()=>window.__mapLoss.loseContext());
   await map.getByText(/星图画面暂时中断/).waitFor();
+  assert.equal(await map.locator('.course-galaxy-sky').isVisible(),false);
+  await map.locator('.course-galaxy-fallback').getByText('看过 1 / 300').waitFor();
   assert.equal(await canvas.getAttribute('tabindex'),'-1');
   assert.equal(await map.getByRole('button',{name:'放大星图'}).count(),0);
   await map.locator('.course-galaxy-entries button').first().click(); await page.getByRole('dialog').waitFor(); await page.getByRole('button',{name:'关闭',exact:true}).click();
