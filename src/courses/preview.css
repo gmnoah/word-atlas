@@ -206,18 +206,51 @@
   overflow-wrap: anywhere;
 }
 .journey-discovery small {
-  color: rgba(255, 255, 255, 0.72);
-  font-size: 11px;
+  color: rgba(255, 255, 255, 0.84);
+  font-size: 12px;
   overflow-wrap: anywhere;
 }
 .journey-discovery-progress {
-  margin-top: 9px;
-  color: rgba(255, 255, 255, 0.76);
-  font-size: 12px;
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 10px 12px;
+  color: rgba(255, 255, 255, 0.86);
+  background: rgba(13, 17, 32, 0.58);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 12px;
+  font-size: 13px;
 }
 .journey-discovery-progress strong {
   color: #fffdf8;
   font: inherit;
+}
+.journey-discovery-progress-copy {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 3px 16px;
+}
+.journey-discovery-meter {
+  width: 100%;
+  height: 5px;
+  border: 0;
+  border-radius: 999px;
+  overflow: hidden;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.18);
+}
+.journey-discovery-meter::-webkit-progress-bar {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: inherit;
+}
+.journey-discovery-meter::-webkit-progress-value {
+  background: #e8b65a;
+  border-radius: inherit;
+}
+.journey-discovery-meter::-moz-progress-bar {
+  background: #e8b65a;
+  border-radius: inherit;
 }
 @media (prefers-reduced-motion: no-preference) {
   .journey-discovery li {

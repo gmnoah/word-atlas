@@ -26,6 +26,13 @@ try {
         await discovery.locator(".journey-discovery-progress").innerText(),
         new RegExp(`已看过 0 / 300 个${course === "hanzi-starter" ? "字" : "词"}`),
       );
+      const meter = discovery.locator(".journey-discovery-meter");
+      assert.equal(await meter.getAttribute("value"), "0");
+      assert.equal(await meter.getAttribute("max"), "5");
+      assert.match(
+        await meter.getAttribute("aria-label"),
+        /已看过 0 \/ 5 个[词字]/,
+      );
       const firstTheme = page.locator(".journey-stop").first();
       await firstTheme.waitFor();
       assert.equal(
@@ -147,8 +154,11 @@ try {
       await progressPage
         .locator(".journey-discovery-progress")
         .innerText(),
-      /已看过 1 \/ 300 个[词字] · 本主题还有 4 个没看/,
+      /已看过 1 \/ 300 个[词字]\s*·\s*本主题还有 4 个没看/,
     );
+    const progressMeter = progressPage.locator(".journey-discovery-meter");
+    assert.equal(await progressMeter.getAttribute("value"), "1");
+    assert.equal(await progressMeter.getAttribute("max"), "5");
     await progressPage.goto("http://localhost:5188/#/explore");
     const courseCard = progressPage.locator(`[data-course-id="${course}"]`);
     await courseCard.waitFor();
@@ -196,7 +206,7 @@ try {
   await context.close();
 
   console.log(
-    "两课程今日发现、真实进度轮换、学习空间续学状态、词字卡键盘开关、减少动态、375/800/1280px 与深浅主题通过；800px 学习空间为两列",
+    "两课程今日发现、主题进度、真实进度轮换、学习空间续学状态、词字卡键盘开关、减少动态、375/800/1280px 与深浅主题通过；800px 学习空间为两列",
   );
 } finally {
   await browser.close();

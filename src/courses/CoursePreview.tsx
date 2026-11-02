@@ -195,10 +195,13 @@ export default function CoursePreview() {
     const introduced = primaryProgress?.ok ? primaryProgress.progress.introduced : {};
     const unseen = lessonEntries.filter((entry) => !Object.hasOwn(introduced, entry.id));
     const seen = lessonEntries.filter((entry) => Object.hasOwn(introduced, entry.id));
+    const currentTheme = exploration?.themes.find((item) => item.id === lesson?.id);
     return {
       title: lesson?.title ?? "第一站",
       entries: [...unseen, ...seen].slice(0, 4),
       unseenCount: primaryProgress?.ok ? unseen.length : null,
+      themeViewed: currentTheme?.viewed ?? 0,
+      themeTotal: currentTheme?.total ?? lessonEntries.length,
     };
   }, [course, entriesById, exploration, primaryProgress]);
   const [nicknameDraft, setNicknameDraft] = useState(activeProfile.nickname);
@@ -608,10 +611,20 @@ export default function CoursePreview() {
                           <small>{entry.kind === "english" ? entry.meaning : entry.phrase}</small>
                         </button></li>)}
                     </ul>
-                    <p className="journey-discovery-progress">{exploration
-                      ? <>图鉴里已看过 <strong>{exploration.seen}</strong> / {exploration.total} {course.manifest.subject === "hanzi" ? "个字" : "个词"}
-                        {journeyDiscovery.unseenCount !== null && <> · {journeyDiscovery.unseenCount ? `本主题还有 ${journeyDiscovery.unseenCount} 个没看` : "本主题都看过了"}</>}</>
-                      : "学习记录暂时无法读取；仍可点开上面的词字看看。"}</p>
+                    <div className="journey-discovery-progress">{exploration
+                      ? <>
+                        <span className="journey-discovery-progress-copy">
+                          <span>图鉴里已看过 <strong>{exploration.seen}</strong> / {exploration.total} {course.manifest.subject === "hanzi" ? "个字" : "个词"}</span>
+                          {journeyDiscovery.unseenCount !== null && <span>· {journeyDiscovery.unseenCount ? `本主题还有 ${journeyDiscovery.unseenCount} 个没看` : "本主题都看过了"}</span>}
+                        </span>
+                        {journeyDiscovery.themeTotal > 0 && <progress
+                          className="journey-discovery-meter"
+                          value={journeyDiscovery.themeViewed}
+                          max={journeyDiscovery.themeTotal}
+                          aria-label={`${journeyDiscovery.title}已看过 ${journeyDiscovery.themeViewed} / ${journeyDiscovery.themeTotal} 个${course.manifest.subject === "hanzi" ? "字" : "词"}`}
+                        />}
+                      </>
+                      : <span>学习记录暂时无法读取；仍可点开上面的词字看看。</span>}</div>
                   </div>}
                   <div className="journey-actions">
                     {course.manifest.id === "primary-starter" && <PrimaryTodayButton profileId={activeProfileId} courseId={course.manifest.id} contentVersion={course.manifest.version}
