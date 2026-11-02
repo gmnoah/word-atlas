@@ -20,6 +20,11 @@ try {
     await page.getByRole('heading', { name: '水果篮子' }).waitFor();
     await page.goto('http://localhost:5188/#/explore?course=hanzi-starter&view=atlas');
     const hanzi = page.getByRole('searchbox', { name: '查找主题或汉字' });
+    await hanzi.fill('shan');
+    await page.getByRole('heading', { name: '山水之间' }).waitFor();
+    await page.getByRole('button', { name: '查看山字卡，符合查找' }).waitFor();
+    await hanzi.fill('shān');
+    await page.getByRole('button', { name: '查看山字卡，符合查找' }).waitFor();
     await hanzi.fill('苹果');
     await page.getByRole('heading', { name: '水果和点心' }).waitFor();
     await page.getByRole('button', { name: '查看苹字卡，符合查找' }).click();

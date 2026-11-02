@@ -72,7 +72,8 @@ export function Today() {
 
   const learned = Object.keys(progress.cards).length;
   const mastered = masteredCount(progress);
-  const teaser = (active ? active.newIds : plan.fresh).slice(0, 5).map((id) => atlas.byId.get(id)!).filter(Boolean);
+  const previewIds = active ? active.newIds : plan.fresh;
+  const teaser = previewIds.slice(0, 5).map((id) => atlas.byId.get(id)!).filter(Boolean);
 
   return (
     <div className="page today">
@@ -130,13 +131,14 @@ export function Today() {
                 {teaser.map((w, i) => (
                   <Illustration key={w.id} src={atlas.img(w, "thumb")} word={w.word} topic={w.topic} className={`teaser-${i}`} />
                 ))}
-                <span>今天会遇见它们</span>
+                <span>{active ? "本次旅程的新词" : "今天会遇见它们"}</span>
               </div>
-              <ul className="journey-words" aria-label="今天将遇见的新词">
+              <ul className="journey-words" aria-label={active ? "本次旅程的新词预览" : "今天的新词预览"}>
                 {teaser.map((w, i) => <li key={w.id} style={{ "--word-delay": `${i * 70}ms` } as React.CSSProperties}>
                   <button type="button" lang="en" onClick={() => openWord(w.id)} aria-label={`打开 ${w.word} 的词卡`}>{w.word}</button>
                 </li>)}
               </ul>
+              {previewIds.length > teaser.length && <p className="journey-preview-count">展示 {teaser.length} / {previewIds.length} 个新词</p>}
             </div>
           )}
           <div className="journey-actions">

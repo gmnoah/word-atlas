@@ -1602,6 +1602,7 @@ code {
 }
 .journey-words button:hover { background: rgba(18, 24, 42, 0.9); }
 .journey-words button:focus-visible { outline: 2px solid #fffdf8; outline-offset: 3px; }
+.journey-preview-count { margin: 8px 0 0; color: rgba(255, 255, 255, 0.82); font-size: 13px; }
 @media (prefers-reduced-motion: no-preference) {
   .journey-words li { animation: journey-word-arrive 450ms var(--word-delay) var(--ease) both; }
   @keyframes journey-word-arrive {

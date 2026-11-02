@@ -6,6 +6,7 @@ try {
   const context = await browser.newContext({viewport:{width,height:800}});
   const page = await context.newPage();
   await page.goto(`http://localhost:5188/#/explore?course=${course}&view=records`);
+  await page.getByRole('heading',{name:course === 'primary-starter' ? '基础英语 · 活动详情' : '汉字启蒙 · 活动详情'}).waitFor();
   await page.getByText('更早的逐日活动详情仍在完善。').waitFor();
   await page.evaluate(courseId => {
    const record = {version:1,profileId:'learner-default',courseId,since:Date.now(),sessions:{s:{sessionId:'s',contentVersion:'1',mode:'lesson',startedAt:1,updatedAt:2,introduced:['a'],answers:{a:'independent',b:'hinted',c:'assisted',d:'skipped',e:'resource-error'},retryEvents:{'retry-0':'skipped','retry-1':'resource-error'}}}};

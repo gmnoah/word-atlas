@@ -9,12 +9,13 @@ import { entryLabel, type HanziEntry, type LearningEntry, type Lesson } from "./
  * A flat theme map for preschoolers: large stops, no 3D, no scores.
  * It deliberately shows fewer labels than the primary course page.
  */
-export function HanziMap({ course, lessons, entries, exploration, matchingEntryIds, onOpenEntry, onStart, onCoRead }: {
+export function HanziMap({ course, lessons, entries, exploration, matchingEntryIds, checkpointStatus, onOpenEntry, onStart, onCoRead }: {
   course: Course;
   lessons: Lesson[];
   entries: LearningEntry[];
   exploration: ReturnType<typeof journeyProgress> | null;
   matchingEntryIds: ReadonlySet<string>;
+  checkpointStatus: (lesson: Lesson, mode: "lesson" | "co-read", entries: HanziEntry[]) => "empty" | "active" | "finished" | "invalid";
   onOpenEntry: (entry: HanziEntry) => void;
   onStart: (lesson: Lesson) => void;
   onCoRead: (lesson: Lesson) => void;
@@ -38,6 +39,8 @@ export function HanziMap({ course, lessons, entries, exploration, matchingEntryI
             .map((id) => entriesById.get(id))
             .filter((entry): entry is HanziEntry => !!entry && entry.kind === "hanzi");
           const first = lessonEntries[0];
+          const recognition = checkpointStatus(lesson, "lesson", lessonEntries);
+          const reading = checkpointStatus(lesson, "co-read", lessonEntries);
           return (
             <li key={lesson.id} className="hanzi-map-stop">
               <span className="hanzi-map-index" aria-hidden="true">
@@ -58,13 +61,14 @@ export function HanziMap({ course, lessons, entries, exploration, matchingEntryI
                   ))}
                 </p>
                 <div className="hanzi-map-actions">
-                  <button className="btn btn-primary btn-xl" onClick={() => onStart(lesson)}>
-                    <BookOpen size={20} /> 认一认
+                  <button className="btn btn-primary btn-xl" disabled={recognition === "invalid"} onClick={() => onStart(lesson)}>
+                    <BookOpen size={20} /> {recognition === "active" ? "继续认一认" : recognition === "finished" ? "查看认读结果" : "认一认"}
                   </button>
-                  <button className="btn btn-ghost" onClick={() => onCoRead(lesson)}>
-                    只读一读
+                  <button className="btn btn-ghost" disabled={reading === "invalid"} onClick={() => onCoRead(lesson)}>
+                    {reading === "active" ? "继续共读" : reading === "finished" ? "查看共读结果" : "只读一读"}
                   </button>
                 </div>
+                {(recognition === "invalid" || reading === "invalid") && <p role="status">{recognition === "invalid" && reading === "invalid" ? "认读和共读" : recognition === "invalid" ? "认读" : "共读"}记录暂时无法读取，原记录已保留。可以选择其他活动或主题。</p>}
               </div>
             </li>
           );

@@ -247,12 +247,12 @@ export function HanziLesson({ course, lesson, entries, profileId, mode, minutes,
       </div>
       {saveError && (
         <p role="alert" className="preview-disclosure">
-          这次共读暂时无法保存：本地记录不可用或已在其他页面更改。原有记录会保留。
+          这次{coRead ? "共读" : "认读"}暂时无法保存：本地记录不可用或已在其他页面更改。原有记录会保留。
         </p>
       )}
       {progressError && !saveError && (
         <p role="alert" className="preview-disclosure">
-          认识结果暂时无法保存，已保留本次共读记录，可稍后重新打开并重试。
+          认识结果暂时无法保存，已保留本次{coRead ? "共读" : "认读"}记录，可稍后重新打开并重试。
         </p>
       )}
       <div

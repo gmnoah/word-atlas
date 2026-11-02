@@ -63,6 +63,7 @@ import "./preview.css";
 
 const asset = (path: string) => `${import.meta.env.BASE_URL}${path}`;
 const CourseGalaxy = lazy(() => import("./CourseGalaxy"));
+const normalizePinyinSearch = (value: string) => value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/v/g, "u");
 interface Preferences {
   englishCount: number;
   hanziCount: number;
@@ -89,8 +90,9 @@ export default function CoursePreview() {
     const query = atlasQuery.trim().toLocaleLowerCase();
     if (!query) return new Set<string>();
     return new Set(courseEntries.filter((entry) => {
-      const fields = entry.kind === "english" ? [entry.word, entry.meaning] : [entry.character, entry.phrase, entry.pinyin];
-      return fields.some((text) => text.toLocaleLowerCase().includes(query));
+      const fields = entry.kind === "english" ? [entry.word, entry.meaning] : [entry.character, entry.phrase];
+      return fields.some((text) => text.toLocaleLowerCase().includes(query)) ||
+        (entry.kind === "hanzi" && normalizePinyinSearch(entry.pinyin).includes(normalizePinyinSearch(query)));
     }).map((entry) => entry.id));
   }, [atlasQuery, courseEntries]);
   const matchingLessons = useMemo(() => {
@@ -376,16 +378,18 @@ export default function CoursePreview() {
                           ) : (
                             <><button
                               className="btn btn-primary"
+                              aria-label={`开始旅程：${registered.manifest.title}`}
                               onClick={() => openCourse(registered.manifest.id, "journey")}
                             >
                               开始旅程 <ArrowRight size={17} />
                             </button><button
                               className="btn btn-ghost"
+                              aria-label={`打开图鉴：${registered.manifest.title}`}
                               onClick={() => openCourse(registered.manifest.id)}
                             >
                               打开图鉴 <ArrowRight size={17} />
                             </button>
-                            {import.meta.env.DEV && <button className="btn btn-ghost draft-review-entry" onClick={() => go({ page: "explore", courseId: registered.manifest.subject === "english" ? "draft-english" : "draft-hanzi" })}>
+                            {import.meta.env.DEV && <button className="btn btn-ghost draft-review-entry" aria-label={`检查课程内容：${registered.manifest.title}`} onClick={() => go({ page: "explore", courseId: registered.manifest.subject === "english" ? "draft-english" : "draft-hanzi" })}>
                               检查课程内容 <ArrowRight size={16} />
                             </button>}</>
                           )}
@@ -429,7 +433,7 @@ export default function CoursePreview() {
               </div>
             </div>
             <p className="preview-disclosure">
-              课程内容待教学审校；小学小课的记录保存在本机。
+              儿童课程内容待教学审校；学习记录保存在本机。
               <a href="#/about">
                 素材署名与项目说明 <ChevronRight size={13} />
               </a>
@@ -528,6 +532,9 @@ export default function CoursePreview() {
                 onClick={() => go({ page: "explore", courseId: course.manifest.id, view: "records" })}>学习记录</button>
             </nav>
             {courseView === "records" ? <div className="panel course-records"><RecentActivity profileId={activeProfileId} profileName={activeProfile.nickname} />
+              <div className="course-records-heading"><p className="eyebrow">THIS COURSE / 当前课程</p>
+                <h2>{course.manifest.title} · 活动详情</h2>
+                <p>以下记录仅包含当前学习者在这门课程中的活动。</p></div>
               <ActivitySummary profileId={activeProfileId} courseId={course.manifest.id} />
               <details className="course-theme-records"><summary>查看主题足迹</summary>
                 {exploration ? <><p>只统计看过的内容，并不表示已掌握。相同内容出现在多个主题时会分别显示。</p>
@@ -620,7 +627,7 @@ export default function CoursePreview() {
               <label htmlFor="atlas-search">查找主题或{course.manifest.subject === "hanzi" ? "汉字" : "单词"}</label>
               <div className="atlas-search-control"><Search size={20} aria-hidden="true" />
                 <input id="atlas-search" type="search" value={atlasQuery} onChange={(event) => setAtlasQuery(event.target.value)}
-                  placeholder={course.manifest.subject === "hanzi" ? "输入汉字、词语或主题" : "输入单词、中文或主题"} />
+                  placeholder={course.manifest.subject === "hanzi" ? "输入汉字、词语、拼音或主题" : "输入单词、中文或主题"} />
               </div>
               {atlasQuery.trim() && <p role="status">{matchingLessons.length ? `找到 ${matchingLessons.length} 个相关主题，展示主题内全部内容；匹配的词字会标出。` : "没有找到相关主题，试试其他词。"}</p>}
             </section>
@@ -631,6 +638,11 @@ export default function CoursePreview() {
                 matchingEntryIds={matchingEntryIds}
                 entries={courseEntries}
                 exploration={exploration}
+                checkpointStatus={(item, mode, entries) => {
+                  const result = readHanziCheckpoint(localStorage, { profileId: activeProfileId, courseId: course.manifest.id, lessonId: item.id,
+                    mode, contentVersion: course.manifest.version, entries, voiceAvailable: mandarinAvailable }, Date.now());
+                  return result.status === "ok" ? result.checkpoint.session.endReason ? "finished" : "active" : result.status;
+                }}
                 onOpenEntry={(entry) => go({ page: "explore", courseId: course.manifest.id, view: "atlas", entryId: entry.id })}
                 onStart={(next) => {
                   setHanziMode("lesson");
@@ -660,6 +672,10 @@ export default function CoursePreview() {
                 const entries = l.entryIds
                   .map((id) => entriesById.get(id))
                   .filter((e): e is LearningEntry => !!e);
+                const checkpoint = course.manifest.id === "primary-starter" ? readCheckpoint(localStorage, {
+                  profileId: activeProfileId, courseId: course.manifest.id, lessonId: l.id,
+                  contentVersion: course.manifest.version, entries: entriesFromStartingPoint(entries, startingWords[l.id]),
+                }, Date.now()) : null;
                 return (
                   <article className="panel preview-lesson-tile" key={l.id}>
                     <Illustration
@@ -683,7 +699,7 @@ export default function CoursePreview() {
                           <button type="button" key={e.id} className={`preview-entry-link${matchingEntryIds.has(e.id) ? " is-search-match" : ""}`} onClick={() => go({ page: "explore", courseId: course.manifest.id, view: "atlas", entryId: e.id })} aria-label={`查看 ${entryLabel(e)} 词卡${matchingEntryIds.has(e.id) ? "，符合查找" : ""}`}>{entryLabel(e)}</button>
                         ))}
                       </div>
-                      {course.manifest.id === "primary-starter" && entries.length > 0 && (
+                      {course.manifest.id === "primary-starter" && entries.length > 0 && checkpoint?.status === "empty" && (
                         <label className="preview-start-word">
                           <span>从哪个词开始</span>
                           <select aria-label={`${l.title}起始词`} value={startingWords[l.id] ?? entries[0].id}
@@ -692,13 +708,15 @@ export default function CoursePreview() {
                           </select>
                         </label>
                       )}
+                      {checkpoint?.status === "ok" && !checkpoint.checkpoint.session.endReason && <p>接着上次的小课继续。</p>}
                       <button
                         className="btn btn-primary"
-                        disabled={!entries.length}
+                        disabled={!entries.length || checkpoint?.status === "invalid"}
                         onClick={() => setLesson(l)}
                       >
-                        开始小课 <ArrowRight size={18} />
+                        {checkpoint?.status === "ok" ? checkpoint.checkpoint.session.endReason ? "查看上次小课" : "继续小课" : "开始小课"} <ArrowRight size={18} />
                       </button>
+                      {checkpoint?.status === "invalid" && <p role="status">这次小课记录暂时无法读取，原记录已保留。可以选择其他主题。</p>}
                     </div>
                   </article>
                 );
