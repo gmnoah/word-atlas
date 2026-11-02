@@ -452,7 +452,9 @@ export default function CoursePreview() {
                     const overview = registered.kind === "preview"
                       ? overviewProgress.get(registered.manifest.id)
                       : undefined;
-                    const journeyLabel = overview?.hasHistory ? "继续旅程" : "开始旅程";
+                    const journeyLabel = overview && !overview.ok
+                      ? "查看记录状态"
+                      : overview?.hasHistory ? "继续旅程" : "开始旅程";
                     const recordLabel = overview
                       ? overview.ok
                         ? overview.seen > 0 ? ` · 已看过 ${overview.seen} / ${registered.count}` : ""

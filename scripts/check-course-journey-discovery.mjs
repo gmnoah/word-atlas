@@ -22,6 +22,33 @@ try {
       assert.match(await meta.innerText(), new RegExp(`${count} .+ · ${lessons} 个主题`));
       assert.doesNotMatch(await meta.innerText(), /待审校/);
     }
+    await spacesPage.evaluate(() => {
+      localStorage.setItem(
+        "word-atlas:v3:primary-progress:learner-default:primary-starter",
+        "{damaged",
+      );
+    });
+    await spacesPage.reload();
+    const damagedPrimary = spacesPage.locator('[data-course-id="primary-starter"]');
+    await damagedPrimary.getByText("学习记录待恢复").waitFor();
+    assert.equal(
+      await damagedPrimary.getByRole("button", { name: "开始旅程：基础英语" }).count(),
+      0,
+    );
+    await damagedPrimary
+      .getByRole("button", { name: "查看记录状态：基础英语" })
+      .click();
+    await spacesPage
+      .getByText("学习进度暂时无法读取，原记录已保留。")
+      .waitFor();
+    assert.equal(
+      await spacesPage.evaluate(() =>
+        localStorage.getItem(
+          "word-atlas:v3:primary-progress:learner-default:primary-starter",
+        ),
+      ),
+      "{damaged",
+    );
   } finally {
     await spacesContext.close();
   }
