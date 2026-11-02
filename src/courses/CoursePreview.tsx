@@ -652,7 +652,11 @@ export default function CoursePreview() {
               <div className="course-records-heading"><p className="eyebrow">THIS COURSE / 当前课程</p>
                 <h2>{course.manifest.title} · 活动详情</h2>
                 <p>以下记录仅包含当前学习者在这门课程中的活动。</p></div>
-              <ActivitySummary profileId={activeProfileId} courseId={course.manifest.id} />
+              <ActivitySummary profileId={activeProfileId} courseId={course.manifest.id} emptyAction={
+                <button type="button" className="btn btn-ghost" onClick={() => go({ page: "explore", courseId: course.manifest.id, view: "journey" })}>
+                  去今日旅程 <ArrowRight size={16} />
+                </button>
+              } />
               <details className="course-theme-records"><summary>查看主题足迹</summary>
                 {exploration ? <><p>只统计看过的内容，并不表示已掌握。相同内容出现在多个主题时会分别显示。</p>
                   <ul>{(course.lessons ?? []).map((item) => {

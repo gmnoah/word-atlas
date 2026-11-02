@@ -15,6 +15,12 @@ try {
   assert.equal(await page.locator('.family-activity-progress').count(),2);
   await page.getByText('逐日记录只覆盖本机保留且带有日期的活动；更早或缺少日期的数据不会补造。').waitFor();
   await page.getByText('还没有详细活动记录。之后的小课会在这里留下记录。').waitFor();
+  const journeyAction = page.getByRole('button', { name: '去今日旅程' });
+  await journeyAction.waitFor();
+  assert.equal(await journeyAction.evaluate(element => element.getBoundingClientRect().height >= 48), true);
+  await journeyAction.click();
+  await page.locator('.journey-stops').waitFor();
+  await page.goto(`http://localhost:5188/#/explore?course=${course}&view=records`);
   await page.evaluate(courseId => {
    const progress={version:1,profileId:'learner-default',courseId,introduced:{a:1,b:2},cards:{},favorites:[],applied:{}};
    localStorage.setItem(`word-atlas:v3:primary-progress:learner-default:${courseId}`,JSON.stringify(progress));
