@@ -13,7 +13,7 @@ import { clearCheckpoint, readCheckpoint, saveCheckpoint } from "./primary-check
 import { applyPrimarySession, primaryReviewIds, readPrimaryProgress, readRestoreGeneration, withPrimaryLock, writePrimaryProgress } from "../learning/primary-progress";
 import { PrimaryFavorite } from "./PrimaryJourney";
 
-export function PrimaryLesson({ course, lesson, entries, profileId, stage, spellingEnabled, count, slow, returnToJourney, onExit, onRestart }: {
+export function PrimaryLesson({ course, lesson, entries, profileId, stage, spellingEnabled, count, slow, returnToJourney, onExit, onRestart, onOpenSettings }: {
   course: Course;
   lesson: Lesson;
   entries: LearningEntry[];
@@ -25,6 +25,7 @@ export function PrimaryLesson({ course, lesson, entries, profileId, stage, spell
   returnToJourney: boolean;
   onExit: () => void;
   onRestart: () => void;
+  onOpenSettings?: () => void;
 }) {
   const [loaded] = useState(() => readCheckpoint(localStorage, { profileId, courseId: course.manifest.id,
     lessonId: lesson.id, contentVersion: course.manifest.version, entries }, Date.now()));
@@ -193,7 +194,7 @@ export function PrimaryLesson({ course, lesson, entries, profileId, stage, spell
               {imageMissing && <p role="status">这幅图暂时没打开，可以先跳过。</p>}
             </div>
             <div className="preview-study-content">
-              {intro && <PrimaryFavorite profileId={profileId} courseId={course.manifest.id} entry={entry} />}
+              {intro && <PrimaryFavorite profileId={profileId} courseId={course.manifest.id} entry={entry} onOpenSettings={onOpenSettings} />}
               {intro ? (
                 entry.kind === "english" ? <EnglishWordCard key={entry.id} entry={entry} course={course}
                   stage={sessionStage} slow={slow} onContinue={() => dispatch({ type: "next" })} /> : null

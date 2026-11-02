@@ -279,6 +279,10 @@ export default function CoursePreview() {
   const closeEntry = useCallback(() => {
     if (route.page === "explore") go({ page: "explore", courseId: route.courseId, view: route.view }, null, true);
   }, [route]);
+  const openParentFromEntry = useCallback(() => {
+    closeEntry();
+    window.requestAnimationFrame(() => setParentOpen(true));
+  }, [closeEntry]);
   const dark =
     theme === "dark" ||
     (theme === "system" && matchMedia("(prefers-color-scheme: dark)").matches);
@@ -590,6 +594,7 @@ export default function CoursePreview() {
             returnToJourney={courseView === "journey"}
             onExit={() => setLesson(null)}
             onRestart={() => setRun((r) => r + 1)}
+            onOpenSettings={() => setParentOpen(true)}
           />
         ) : course.manifest.subject === "hanzi" ? (
           <HanziLesson
@@ -612,6 +617,7 @@ export default function CoursePreview() {
             returnToJourney={courseView === "journey"}
             onExit={() => setLesson(null)}
             onRestart={() => setRun((r) => r + 1)}
+            onOpenSettings={() => setParentOpen(true)}
           />
         ) : (
           <PreviewLesson
@@ -710,7 +716,7 @@ export default function CoursePreview() {
                       </>
                       : <span>学习记录暂时无法读取。</span>}</div>
                   </div>}
-                  {!exploration && <div className="journey-action-error journey-progress-recovery" role="status">
+                  {!exploration && course.manifest.id !== "primary-starter" && <div className="journey-action-error journey-progress-recovery" role="status">
                     <span>学习记录暂时无法读取，仍可浏览词字；请先恢复记录再开始新的学习。</span>
                     <button type="button" className="btn btn-glass" onClick={() => setParentOpen(true)}>打开家长设置</button>
                   </div>}
@@ -982,7 +988,7 @@ export default function CoursePreview() {
             <div><p className="eyebrow">{lesson ? `${lesson.title} · 第 ${position + 1} / ${lesson.entryIds.length} 个${unit}` : "课程图鉴"}</p><h2>{entryLabel(entry)}</h2>
               <p>{entry.kind === "english" ? entry.meaning : entry.phrase}</p>
               <PreviewSpeak key={`course-entry:${entry.id}`} text={text} locale={entry.kind === "english" ? entry.media.locale : "zh-CN"} recording={course.audio(entry)} slow={preferences.slow} />
-              <PrimaryFavorite profileId={activeProfileId} courseId={course.manifest.id} entry={entry} />
+              <PrimaryFavorite profileId={activeProfileId} courseId={course.manifest.id} entry={entry} onOpenSettings={openParentFromEntry} />
               {entry.kind === "english" ? <div className="preview-example"><p lang="en">{example ? <>{example[0]}<mark className="example-target">{example[1]}</mark>{example[2]}</> : entry.example.text}</p><span>{entry.example.translation}</span></div>
                 : <><p>{entry.sentence}</p><details><summary>给家长的小提示</summary><p>拼音：{entry.pinyin}</p><p>{entry.caregiverTip}</p></details></>}
               <p className="preview-disclosure">课程内容持续审校中。{entry.kind === "hanzi" ? "普通话优先使用设备朗读，也可以请家长读一读。" : "例句与录音会在人工核对后更新。"}</p>

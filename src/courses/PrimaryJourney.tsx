@@ -103,15 +103,26 @@ function FavoriteList({ entries, unit, onOpen, onRemove, emptyText }: {
   </li>)}</ul>;
 }
 
-export function PrimaryFavorite({ profileId, courseId, entry }: { profileId: string; courseId: string; entry: LearningEntry }) {
+export function PrimaryFavorite({ profileId, courseId, entry, onOpenSettings }: {
+  profileId: string;
+  courseId: string;
+  entry: LearningEntry;
+  onOpenSettings?: () => void;
+}) {
   const { progress, loading, readError, writeError, toggle } = usePrimaryProgress(profileId, courseId);
   const favorite = progress?.favorites.includes(entry.id) ?? false;
   return <div className="primary-favorite"><button type="button" className="btn btn-ghost" disabled={loading || readError} aria-busy={loading} aria-pressed={favorite} onClick={() => void toggle(entry.id)}>
     <Heart size={18} fill={favorite ? "currentColor" : "none"} />{favorite ? "已收藏" : entry.kind === "hanzi" ? "收藏这个字" : "收藏这个词"}
   </button>
     {loading && <p role="status">正在读取收藏记录…</p>}
-    {readError && <p role="alert">收藏记录暂时无法读取，原记录已保留。</p>}
-    {writeError && <p role="alert">收藏暂时无法保存，原记录已保留。</p>}
+    {readError && <div className="primary-favorite-error" role="alert">
+      <span>收藏记录暂时无法读取，原记录已保留。</span>
+      {onOpenSettings && <button type="button" className="btn btn-ghost" onClick={onOpenSettings}>打开家长设置</button>}
+    </div>}
+    {writeError && <div className="primary-favorite-error" role="alert">
+      <span>收藏暂时无法保存，原记录已保留。</span>
+      <button type="button" className="btn btn-ghost" onClick={() => void toggle(entry.id)}>再试一次</button>
+    </div>}
   </div>;
 }
 
@@ -180,7 +191,7 @@ export function PrimaryTodayButton(props: TodayProps) {
   const { progress, loading, readError } = usePrimaryProgress(props.profileId, props.courseId);
   const today = todayState(props, progress, loading ? "loading" : readError ? "read-error" : "ready");
   return <><button className="btn btn-primary btn-xl" disabled={today.disabled} onClick={props.onToday}>{today.actionLabel} <ArrowRight size={18} /></button>
-    {readError ? <div className="journey-action-error" role="status"><span>学习进度暂时无法读取，原记录已保留。</span>
+    {readError ? <div className="journey-action-error journey-progress-recovery" role="status"><span>学习进度暂时无法读取，原记录已保留。</span>
       {props.onOpenSettings && <button type="button" className="btn btn-glass" onClick={props.onOpenSettings}>打开家长设置</button>}</div>
       : today.checkpoint.status === "invalid" && <div className="journey-action-error" role="status"><span>今日小课记录暂时无法读取，原记录已保留。可以选择其他主题。</span>
         {props.onOpenSettings && <button type="button" className="btn btn-glass" onClick={props.onOpenSettings}>打开家长设置</button>}</div>}</>;

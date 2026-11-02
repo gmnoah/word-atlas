@@ -19,7 +19,7 @@ import { entryLabel, type HanziEntry, type LearningEntry, type Lesson } from "./
  * Preschool Hanzi lesson. Co-reading browses characters and never grades a
  * recall; a lesson asks "which character means this?" without pinyin or typing.
  */
-export function HanziLesson({ course, lesson, entries, profileId, mode, minutes, count, slow, returnToJourney, onExit, onRestart }: {
+export function HanziLesson({ course, lesson, entries, profileId, mode, minutes, count, slow, returnToJourney, onExit, onRestart, onOpenSettings }: {
   course: Course;
   lesson: Lesson;
   entries: HanziEntry[];
@@ -31,6 +31,7 @@ export function HanziLesson({ course, lesson, entries, profileId, mode, minutes,
   returnToJourney: boolean;
   onExit: () => void;
   onRestart: () => void;
+  onOpenSettings?: () => void;
 }) {
   const [voiceAvailable, setVoiceAvailable] = useState(() =>
     hasMandarinVoice(typeof window === "undefined" ? undefined : window),
@@ -389,7 +390,7 @@ export function HanziLesson({ course, lesson, entries, profileId, mode, minutes,
               {imageMissing && <p role="status">这幅图暂时没打开，可以先跳过。</p>}
             </div>
             <div className="preview-study-content">
-              {intro && <PrimaryFavorite profileId={profileId} courseId={course.manifest.id} entry={entry} />}
+              {intro && <PrimaryFavorite profileId={profileId} courseId={course.manifest.id} entry={entry} onOpenSettings={onOpenSettings} />}
               {intro ? (
                 <HanziCard
                   key={entry.id}

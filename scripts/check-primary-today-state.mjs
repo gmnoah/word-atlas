@@ -64,6 +64,10 @@ try {
   await detail.getByRole('button',{name:'收藏这个词'}).click();
   await detail.getByText('收藏暂时无法保存，原记录已保留。').waitFor();
   await detail.getByRole('button',{name:'收藏这个词'}).waitFor();
+  const retry=detail.getByRole('button',{name:'再试一次'});
+  assert.ok(await retry.evaluate(el=>el.getBoundingClientRect().height)>=48);
+  await retry.click();
+  await detail.getByText('收藏暂时无法保存，原记录已保留。').waitFor();
   assert.equal(await page.evaluate(progressKey=>localStorage.getItem(progressKey),progressKey),null);
   assert.equal(await detail.getByText('收藏记录暂时无法读取，原记录已保留。').count(),0);
   await detail.getByRole('button',{name:'关闭'}).click();

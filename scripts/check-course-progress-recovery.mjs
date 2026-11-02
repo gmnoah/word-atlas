@@ -20,7 +20,9 @@ try {
         const discovery = page.locator(".journey-discovery");
         await discovery.getByText("学习记录暂时无法读取。").waitFor();
         const progressRecovery = page.locator(".journey-progress-recovery");
-        await progressRecovery.getByText("学习记录暂时无法读取，仍可浏览词字；请先恢复记录再开始新的学习。").waitFor();
+        await progressRecovery.getByText(course === "hanzi-starter"
+          ? "学习记录暂时无法读取，仍可浏览词字；请先恢复记录再开始新的学习。"
+          : "学习进度暂时无法读取，原记录已保留。").waitFor();
         const recoveryButton = progressRecovery.getByRole("button", { name: "打开家长设置" });
         assert.equal(await recoveryButton.evaluate(element => element.getBoundingClientRect().height >= 48), true);
         await recoveryButton.click();
@@ -78,6 +80,20 @@ try {
             assert.equal(await blockedAtlasStarts.nth(index).isDisabled(), true);
           }
         }
+
+        const browseButton = page.locator(course === "hanzi-starter" ? ".hanzi-entry-link" : ".preview-entry-link").first();
+        await browseButton.click();
+        const entryDialog = page.getByRole("dialog", { name: "课程条目" });
+        await entryDialog.getByText("收藏记录暂时无法读取，原记录已保留。").waitFor();
+        const inlineRecovery = entryDialog.getByRole("button", { name: "打开家长设置" });
+        await page.waitForTimeout(350);
+        const inlineRecoveryRect = await inlineRecovery.evaluate(element => element.getBoundingClientRect().toJSON());
+        assert.equal(inlineRecoveryRect.height >= 47.9, true,
+          `${course}/${width}/${theme} 的词卡恢复入口应至少 48px：${JSON.stringify(inlineRecoveryRect)}`);
+        await inlineRecovery.click();
+        await dialog.getByText("备份与恢复").waitFor();
+        await dialog.getByRole("button", { name: "关闭" }).click();
+        assert.equal(await entryDialog.count(), 0);
         assert.equal(await page.evaluate(key => localStorage.getItem(key), key), "{damaged");
         assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
         await context.close();

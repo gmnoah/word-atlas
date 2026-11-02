@@ -1203,6 +1203,8 @@
 .primary-favorite-open:hover { color: var(--terra-ink); }
 .primary-favorite-open:focus-visible { outline: 2px solid var(--terra); outline-offset: 2px; }
 .primary-favorite-overview .primary-favorites { align-self: start; }
+.primary-favorite-error { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-top: 8px; color: var(--terra-ink); font-size: 14px; }
+.primary-favorite-error .btn { min-height: 48px; }
 @media (min-width: 760px) { .primary-journey { grid-template-columns: 1fr 1fr; } }
 
 /* ---------- P4: preschool Hanzi ---------- */
