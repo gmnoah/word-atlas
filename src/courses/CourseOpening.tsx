@@ -23,8 +23,26 @@ export function CourseOpening({ courseId, profileId, enabled }: { courseId: stri
     return () => window.clearTimeout(timer);
   }, [courseId, profileId, enabled]);
   if (!visible) return null;
-  return <div className="course-opening" aria-label="学习旅程开场">
-    <div className="course-opening-content" aria-hidden="true"><Mark size={52} /><span>词光 · {courseId === "hanzi-starter" ? "汉字启蒙" : "基础英语"}</span><small>一起打开今天的发现</small></div>
+  const hanzi = courseId === "hanzi-starter";
+  return <div className={`course-opening is-${hanzi ? "hanzi" : "english"}`} role="region" aria-label="学习旅程开场">
+    <div className="course-opening-stars" aria-hidden="true"><i /><i /><i /></div>
+    <div className="course-opening-card" aria-hidden="true">
+      <div className="course-opening-orbit">
+        <i className="course-opening-node is-one" />
+        <i className="course-opening-node is-two" />
+        <i className="course-opening-node is-three" />
+        <span className="course-opening-emblem"><Mark size={52} /></span>
+      </div>
+      <p className="course-opening-kicker">
+        {hanzi ? "FIRST CHARACTERS / 亲子探索" : "LITTLE EXPLORERS / 今日探索"}
+      </p>
+      <strong>词光 · {hanzi ? "汉字启蒙" : "基础英语"}</strong>
+      <p className="course-opening-guide">
+        {hanzi ? "看一看 · 听一听 · 找一找" : "LOOK · LISTEN · REMEMBER"}
+      </p>
+      <small>一起打开今天的发现</small>
+    </div>
+    <div className="course-opening-track" aria-hidden="true"><span /></div>
     <button ref={skipRef} type="button" className="course-opening-skip" onClick={dismiss}>跳过开场</button>
   </div>;
 }

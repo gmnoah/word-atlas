@@ -35,12 +35,38 @@
 .preview-hero.journey {
   min-height: 380px;
 }
-.course-opening { position: absolute; inset: 0; z-index: 4; display: grid; place-items: center; color: #f2ebdd; background: #151b2d; pointer-events: none; animation: course-opening-fade 1.8s var(--ease) both; }
-.course-opening-content { display: grid; justify-items: center; gap: 12px; font: 600 clamp(22px, 3vw, 32px)/1.3 var(--serif); animation: course-opening-arrive 650ms var(--ease) both; }
-.course-opening-content small { font: 14px/1.4 var(--sans); color: #c8c1b3; }
+.course-opening { position: absolute; inset: 0; z-index: 4; display: grid; place-items: center; overflow: hidden; isolation: isolate; color: #f2ebdd; background: radial-gradient(circle at 50% 42%, #293652 0, #151b2d 48%, #0d1120 100%); pointer-events: none; animation: course-opening-fade 1.8s var(--ease) both; }
+.course-opening::before { content: ""; position: absolute; inset: -20%; z-index: -1; background: conic-gradient(from 130deg at 50% 50%, transparent, rgba(232,182,90,.11), transparent 31%, rgba(143,178,204,.1), transparent 70%); animation: course-opening-sweep 4s linear both; }
+.course-opening::after { content: ""; position: absolute; inset: 0; z-index: -1; opacity: .18; background-image: radial-gradient(circle, #f2ebdd 0 .7px, transparent .9px); background-size: 19px 19px; mask-image: radial-gradient(circle at 50% 48%, #000 0, transparent 72%); }
+.course-opening-stars { position: absolute; inset: 0; animation: course-opening-breathe 1.8s var(--ease) both; }
+.course-opening-stars i { position: absolute; width: 5px; height: 5px; border-radius: 50%; background: #e8b65a; box-shadow: 0 0 14px rgba(232,182,90,.85); }
+.course-opening-stars i:nth-child(1) { left: 19%; top: 31%; }
+.course-opening-stars i:nth-child(2) { right: 21%; top: 24%; width: 3px; height: 3px; background: #8fb2cc; }
+.course-opening-stars i:nth-child(3) { right: 27%; bottom: 23%; width: 4px; height: 4px; background: #e57c5a; }
+.course-opening-card { position: relative; display: grid; justify-items: center; gap: 10px; padding: 24px; text-align: center; animation: course-opening-arrive 650ms var(--ease) both; }
+.course-opening-orbit { position: relative; display: grid; place-items: center; width: 142px; aspect-ratio: 1; margin-bottom: 8px; border: 1px solid rgba(232,182,90,.34); border-radius: 50%; }
+.course-opening-orbit::before, .course-opening-orbit::after { content: ""; position: absolute; border-radius: 50%; border: 1px solid rgba(242,235,221,.16); }
+.course-opening-orbit::before { inset: 13px; }
+.course-opening-orbit::after { inset: -9px 18px; transform: rotate(-18deg); border-color: rgba(143,178,204,.24); animation: course-opening-ring 5s linear infinite; }
+.course-opening-emblem { display: grid; place-items: center; width: 90px; aspect-ratio: 1; border-radius: 50%; background: rgba(21,27,45,.9); box-shadow: 0 0 0 8px rgba(232,182,90,.07), 0 0 42px rgba(232,182,90,.18); }
+.course-opening-node { position: absolute; width: 7px; height: 7px; border-radius: 50%; background: #e8b65a; box-shadow: 0 0 12px rgba(232,182,90,.85); }
+.course-opening-node.is-one { top: 9px; right: 28px; }
+.course-opening-node.is-two { left: 5px; bottom: 35px; width: 5px; height: 5px; background: #8fb2cc; }
+.course-opening-node.is-three { right: 3px; bottom: 21px; width: 4px; height: 4px; background: #e57c5a; }
+.course-opening-kicker { margin: 0; color: #e8b65a; font: 600 10px/1.4 var(--mono); letter-spacing: .16em; text-transform: uppercase; }
+.course-opening-card strong { color: #f2ebdd; font: 600 clamp(24px, 3vw, 34px)/1.2 var(--serif); }
+.course-opening-guide { margin: 0; color: #c8c1b3; font: 600 12px/1.4 var(--mono); letter-spacing: .11em; }
+.course-opening-card small { color: #8d8c94; font: 14px/1.4 var(--sans); }
+.course-opening.is-hanzi .course-opening-guide { font: 500 15px/1.4 var(--sans); letter-spacing: .08em; }
+.course-opening-track { position: absolute; left: 50%; bottom: 32px; width: min(220px, 46vw); height: 1px; overflow: hidden; background: rgba(242,235,221,.15); }
+.course-opening-track span { display: block; width: 100%; height: 100%; background: linear-gradient(90deg, #e57c5a, #e8b65a); transform-origin: left; animation: course-opening-track 1.8s var(--ease) both; }
 .course-opening-skip { position: absolute; top: 16px; right: 16px; min-height: 48px; padding: 8px 16px; color: #f2ebdd; background: #151b2d; border: 1px solid rgba(242,235,221,.55); border-radius: 999px; pointer-events: auto; cursor: pointer; }
 @keyframes course-opening-fade { 0% { opacity: 0; } 20%, 65% { opacity: 1; } 100% { opacity: 0; } }
-@keyframes course-opening-arrive { from { opacity: 0; transform: translateY(12px) scale(.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes course-opening-arrive { from { opacity: 0; transform: translateY(14px) scale(.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes course-opening-sweep { from { transform: rotate(-8deg) scale(.98); } to { transform: rotate(12deg) scale(1.04); } }
+@keyframes course-opening-breathe { 0%, 100% { opacity: .45; } 45% { opacity: 1; } }
+@keyframes course-opening-ring { to { transform: rotate(342deg); } }
+@keyframes course-opening-track { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 @media (prefers-reduced-motion: reduce) { .course-opening { display: none; animation: none; } }
 .preview-hero .journey-body {
   max-width: 650px;
