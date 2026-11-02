@@ -142,6 +142,37 @@
   color: var(--ink-3);
   padding: 18px 0;
 }
+.preview-space-progress {
+  width: 100%;
+  height: 6px;
+  margin: -8px 0 16px;
+  overflow: hidden;
+  border: 0;
+  border-radius: 999px;
+  background: var(--paper-2);
+  accent-color: var(--sage);
+}
+.preview-space-progress::-webkit-progress-bar {
+  background: var(--paper-2);
+  border-radius: inherit;
+}
+.preview-space-progress::-webkit-progress-value {
+  background: var(--sage);
+  border-radius: inherit;
+}
+.preview-space-progress::-moz-progress-bar {
+  background: var(--sage);
+  border-radius: inherit;
+}
+.preview-space-hanzi .preview-space-progress {
+  accent-color: var(--terra);
+}
+.preview-space-hanzi .preview-space-progress::-webkit-progress-value {
+  background: var(--terra);
+}
+.preview-space-hanzi .preview-space-progress::-moz-progress-bar {
+  background: var(--terra);
+}
 .preview-space .btn {
   width: 100%;
   justify-content: space-between;

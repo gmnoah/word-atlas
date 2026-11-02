@@ -218,6 +218,13 @@ try {
       await courseCard.innerText(),
       /已看过 1 \/ 300/,
     );
+    const courseProgress = courseCard.locator(".preview-space-progress");
+    assert.equal(await courseProgress.getAttribute("value"), "1");
+    assert.equal(await courseProgress.getAttribute("max"), "300");
+    assert.equal(
+      await courseProgress.getAttribute("aria-label"),
+      `${course === "hanzi-starter" ? "汉字启蒙" : "基础英语"}已看过 1 / 300`,
+    );
     assert.equal(
       await courseCard
         .getByRole("button", {
@@ -229,6 +236,14 @@ try {
         .count(),
       1,
     );
+    await progressPage.setViewportSize({ width: 375, height: 900 });
+    assert.equal(
+      await progressPage.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+      true,
+    );
+    await progressPage.setViewportSize({ width: 1280, height: 900 });
     if (course === "primary-starter") {
       await progressPage.goto(
         "http://localhost:5188/#/explore?course=primary-starter&view=atlas",

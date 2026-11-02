@@ -485,6 +485,12 @@ export default function CoursePreview() {
                               ? `${registered.count.toLocaleString("en-US")} 个词 · 原学习进度保留`
                               : `${registered.count} ${registered.manifest.subject === "english" ? "个词" : "个字"} · ${registered.lessonCount} 个主题${recordLabel}`}
                           </div>
+                          {overview?.ok && overview.seen > 0 && <progress
+                            className="preview-space-progress"
+                            value={overview.seen}
+                            max={registered.count}
+                            aria-label={`${registered.manifest.title}已看过 ${overview.seen} / ${registered.count}`}
+                          />}
                           {registered.kind === "legacy" ? (
                             <a className="btn btn-ghost" href={registered.href}>
                               继续雅思旅程 <ArrowRight size={17} />
