@@ -8,7 +8,8 @@ export function ActivitySummary({ profileId, courseId }: { profileId: string; co
   const archived = Object.values(result.record.archivedSessions ?? {});
   if (!sessions.length && !archived.length) return <p>还没有详细活动记录。之后的小课会在这里留下记录。</p>;
   const counts = summarizeActivity(result.record);
-  const hasRecognition = counts.independent + counts.hinted + counts.assisted + counts.incorrect > 0;
+  const hasFirstAnswer = counts.independent + counts.hinted + counts.assisted + counts.incorrect > 0;
+  const hasFirstCorrect = counts.independent + counts.hinted + counts.assisted > 0;
   const recent = recentRecognitionDays(result.record, new Date());
   const maxDailyRecognition = Math.max(1, ...recent.days.map((day) => day.count));
   const maxDailyIntroduced = Math.max(1, ...recent.days.map((day) => day.introduced));
@@ -18,14 +19,15 @@ export function ActivitySummary({ profileId, courseId }: { profileId: string; co
   const sinceDate = new Date(result.record.since);
   const sinceDay = `${sinceDate.getFullYear()}-${String(sinceDate.getMonth() + 1).padStart(2, "0")}-${String(sinceDate.getDate()).padStart(2, "0")}`;
   return <section aria-label="详细活动记录">
-    <h3>首次答对的记录</h3>
-    {hasRecognition ? <div className="activity-totals" role="list" aria-label="首次答对分类">
+    <h3>首次答题记录</h3>
+    {hasFirstCorrect ? <div className="activity-totals" role="list" aria-label="首次答对分类">
       <span className="activity-total" role="listitem">独立答对 <strong>{counts.independent}</strong> 次</span>
       <span className="activity-total-separator" aria-hidden="true"> · </span>
       <span className="activity-total" role="listitem">提示后答对 <strong>{counts.hinted}</strong> 次</span>
       <span className="activity-total-separator" aria-hidden="true"> · </span>
       <span className="activity-total" role="listitem">家长一起答对 <strong>{counts.assisted}</strong> 次</span>
-    </div> : <p>目前记录中还没有识别作答。{courseId === "hanzi-starter" ? "共读、跳过和资源故障" : "跳过和资源故障"}不会算作识别作答。</p>}
+    </div> : <p>{hasFirstAnswer ? "目前还没有首次答对记录；首次答对后会显示独立、提示或家长协助的分类。" : `目前记录中还没有识别作答。${courseId === "hanzi-starter" ? "共读、跳过和资源故障" : "跳过和资源故障"}不会算作识别作答。`}</p>}
+    {counts.incorrect > 0 && <p className="activity-incorrect-note">首次未答对 <strong>{counts.incorrect}</strong> 次，不计入上面的答对次数。答错后可以重试；统计只保留第一次结果。</p>}
     {courseId === "hanzi-starter" && <p>一起共读 {counts.coReadSessions} 次</p>}
     <p>已记录：初见先跳过 {counts.introSkipped} 次 · 识别题先跳过 {counts.skipped} 次 · 识别题资源暂不可用 {counts.resourceErrors} 次</p>
     <p>已记录：重试时跳过 {counts.retrySkipped} 次 · 重试时资源暂不可用 {counts.retryResourceErrors} 次</p>
