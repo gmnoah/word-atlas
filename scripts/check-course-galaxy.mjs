@@ -12,7 +12,7 @@ try {
   assert.equal(await opening.count(),0);
   const section=page.locator('.course-galaxy-section'); await section.locator('summary').click();
   const map=page.getByRole('region',{name:'课程知识星图'}); await map.waitFor();
-  if(await map.getByText(/拖动旋转，双指缩放/).count()) webglVerified=true;
+  if(await map.getByText(/拖动或用方向键旋转/).count()) webglVerified=true;
   await map.getByText('看过 0 / 300').waitFor();
   const canvas=map.getByRole('img',{name:/知识星图，共 300/}); await canvas.waitFor();
   assert.ok(await map.getByRole('button',{name:'放大星图'}).evaluate(el=>el.getBoundingClientRect().height)>=48);
@@ -36,6 +36,7 @@ try {
   assert.equal(await page.getByRole('button',{name:'跳过开场'}).count(),0);
   await page.locator('.course-galaxy-section summary').click();
   await page.getByText(/此设备暂不支持三维画面/).waitFor();
+  assert.equal(await page.locator('.course-galaxy-sky canvas').getAttribute('tabindex'),'-1');
   assert.ok(await page.locator('.course-galaxy-entries button').count()>0);
   await context.close();
   const disabled=await browser.newContext({serviceWorkers:'block'});

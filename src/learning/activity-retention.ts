@@ -106,12 +106,17 @@ export function compactActivityRecord(record: ActivityRecord, now: number, prote
     const preview = activityArchivePreview(record, [id]).totals;
     const { sessions: _sessions, introductionEvents: _introductions, ...totals } = preview;
     const recognitionByDay: Record<string, number> = {};
+    const introducedByDay: Record<string, number> = {};
+    for (const entryId of session.introduced) {
+      const day = session.introducedDays![entryId];
+      introducedByDay[day] = (introducedByDay[day] ?? 0) + 1;
+    }
     for (const [entryId, outcome] of Object.entries(session.answers)) {
       if (outcome === "skipped" || outcome === "resource-error") continue;
       const day = session.answerDays![entryId];
       recognitionByDay[day] = (recognitionByDay[day] ?? 0) + 1;
     }
-    const summary: ArchivedActivitySummary = { sessionId: id, contentVersions: session.contentVersions ?? [session.contentVersion], mode: session.mode, endedAt: session.endedAt!, totals, recognitionByDay,
+    const summary: ArchivedActivitySummary = { sessionId: id, contentVersions: session.contentVersions ?? [session.contentVersion], mode: session.mode, endedAt: session.endedAt!, totals, recognitionByDay, introducedByDay,
       coReadDays: session.mode === "co-read" ? [...new Set(Object.values(session.introducedDays ?? {}))] : [], introHistoryKnown: session.introSkipped !== undefined, retryHistoryKnown: session.retryEvents !== undefined && !session.retryHistoryIncomplete };
     archivedSessions[id] = summary;
     delete sessions[id];

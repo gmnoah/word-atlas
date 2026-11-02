@@ -7,6 +7,7 @@ import {
   Compass,
   Leaf,
   Moon,
+  Search,
   Settings2,
   Sun,
   Volume2,
@@ -80,8 +81,24 @@ export default function CoursePreview() {
   const courseView = route.page === "explore" ? route.view : undefined;
   const [course, setCourse] = useState<Course | null>(null);
   const [courseEntries, setCourseEntries] = useState<LearningEntry[]>([]);
+  const [atlasQuery, setAtlasQuery] = useState("");
+  useEffect(() => setAtlasQuery(""), [courseId]);
   const entriesById = useMemo(() => new Map(courseEntries.map((entry) => [entry.id, entry])), [courseEntries]);
   const todayEntries = useMemo(() => recommendedPrimaryEntries(courseEntries, course?.lessons ?? []), [courseEntries, course]);
+  const matchingEntryIds = useMemo(() => {
+    const query = atlasQuery.trim().toLocaleLowerCase();
+    if (!query) return new Set<string>();
+    return new Set(courseEntries.filter((entry) => {
+      const fields = entry.kind === "english" ? [entry.word, entry.meaning] : [entry.character, entry.phrase, entry.pinyin];
+      return fields.some((text) => text.toLocaleLowerCase().includes(query));
+    }).map((entry) => entry.id));
+  }, [atlasQuery, courseEntries]);
+  const matchingLessons = useMemo(() => {
+    const query = atlasQuery.trim().toLocaleLowerCase();
+    const lessons = course?.lessons ?? [];
+    if (!query) return lessons;
+    return lessons.filter((item) => [item.title, item.subtitle].some((text) => text.toLocaleLowerCase().includes(query)) || item.entryIds.some((id) => matchingEntryIds.has(id)));
+  }, [atlasQuery, course, matchingEntryIds]);
   const [courseLoading, setCourseLoading] = useState(false);
   const [courseError, setCourseError] = useState<string | null>(null);
   const [lesson, setLesson] = useState<Lesson | null>(null);
@@ -150,6 +167,7 @@ export default function CoursePreview() {
   const [profileMessage, setProfileMessage] = useState<string | null>(null);
   const theme = useStore((s) => s.settings.theme);
   const openingEnabled = useStore((s) => s.settings.splash);
+  const settingsSaveError = useStore((s) => s.saveError);
   const preferences: Preferences =
     course?.manifest.id === "hanzi-starter" ? hanziPreferences : primaryPreferences;
   const lessonPreferences: Preferences = course?.manifest.id === "primary-starter"
@@ -593,15 +611,24 @@ export default function CoursePreview() {
                     <span><strong>试试拼写</strong><small>可选，需要输入英文；不方便输入时可以跳过。</small></span>
                   </label>
                 )}
-                <p className="preview-stage-note">两种节奏暂用同一组体验词，结合看图和听音练习；实际词数还受家长设置影响。</p>
+                <p className="preview-stage-note">两种节奏都可以学习全部主题，结合看图和听音练习；每次学习的词数还受家长设置影响。</p>
               </section>
             )}
             {course.manifest.id === "primary-starter" && <PrimaryJourney profileId={activeProfileId} courseId={course.manifest.id} contentVersion={course.manifest.version}
               entries={todayEntries} onToday={() => setLesson({ id: "today", title: "今日小课", subtitle: "回顾与发现", entryIds: todayEntries.map((entry) => entry.id) })} />}
+            <section className="atlas-search" aria-label="查找图鉴内容">
+              <label htmlFor="atlas-search">查找主题或{course.manifest.subject === "hanzi" ? "汉字" : "单词"}</label>
+              <div className="atlas-search-control"><Search size={20} aria-hidden="true" />
+                <input id="atlas-search" type="search" value={atlasQuery} onChange={(event) => setAtlasQuery(event.target.value)}
+                  placeholder={course.manifest.subject === "hanzi" ? "输入汉字、词语或主题" : "输入单词、中文或主题"} />
+              </div>
+              {atlasQuery.trim() && <p role="status">{matchingLessons.length ? `找到 ${matchingLessons.length} 个相关主题，展示主题内全部内容；匹配的词字会标出。` : "没有找到相关主题，试试其他词。"}</p>}
+            </section>
             {course.manifest.subject === "hanzi" ? (
               <HanziMap
                 course={course}
-                lessons={course.lessons ?? []}
+                lessons={matchingLessons}
+                matchingEntryIds={matchingEntryIds}
                 entries={courseEntries}
                 exploration={exploration}
                 onOpenEntry={(entry) => go({ page: "explore", courseId: course.manifest.id, view: "atlas", entryId: entry.id })}
@@ -628,7 +655,8 @@ export default function CoursePreview() {
               </span>
             </div>
             <div className="preview-lessons">
-              {(course.lessons ?? []).map((l, i) => {
+              {matchingLessons.map((l) => {
+                const i = (course.lessons ?? []).findIndex((item) => item.id === l.id);
                 const entries = l.entryIds
                   .map((id) => entriesById.get(id))
                   .filter((e): e is LearningEntry => !!e);
@@ -652,7 +680,7 @@ export default function CoursePreview() {
                       <p>{l.subtitle}</p>
                       <div className="preview-word-list">
                         {entries.map((e) => (
-                          <button type="button" key={e.id} className="preview-entry-link" onClick={() => go({ page: "explore", courseId: course.manifest.id, view: "atlas", entryId: e.id })} aria-label={`查看 ${entryLabel(e)} 词卡`}>{entryLabel(e)}</button>
+                          <button type="button" key={e.id} className={`preview-entry-link${matchingEntryIds.has(e.id) ? " is-search-match" : ""}`} onClick={() => go({ page: "explore", courseId: course.manifest.id, view: "atlas", entryId: e.id })} aria-label={`查看 ${entryLabel(e)} 词卡${matchingEntryIds.has(e.id) ? "，符合查找" : ""}`}>{entryLabel(e)}</button>
                         ))}
                       </div>
                       {course.manifest.id === "primary-starter" && entries.length > 0 && (
@@ -832,8 +860,14 @@ export default function CoursePreview() {
               }
             />
           </label>
+          <label className="preview-toggle">
+            <span>显示旅程开场动画</span>
+            <input type="checkbox" checked={openingEnabled} onChange={(event) => store.settings({ splash: event.target.checked })} />
+          </label>
+          <p className="preview-disclosure">开场动画开关在这台设备的三个学习空间共用；系统设置为减少动态效果时，儿童旅程不会播放开场。</p>
+          {settingsSaveError && <p role="alert" className="preview-disclosure">设备设置暂时无法保存。如果刚恢复备份，请刷新页面后重试。</p>}
           <p className="preview-disclosure">
-            小课偏好按学习者和课程分别保存；设备主题、音效等仍是本机设备设置。这里不会改写雅思进度与旧设置。
+            小课偏好按学习者和课程分别保存；设备主题、音效及开场动画是本机共用设置，不改变雅思学习进度。
           </p>
           <RecentActivity profileId={activeProfileId} profileName={activeProfile.nickname} />
           <FamilyCourseNote course={course} />

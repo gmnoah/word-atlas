@@ -23,6 +23,8 @@ try {
   assert.equal(await page.locator(".preview-space-grid [data-course-id]").count(), 3);
   await page.getByRole("button", { name: "探索基础英语" }).click();
   await page.getByRole("heading", { name: "基础英语", exact: true }).waitFor();
+  await page.getByRole("button", { name: "主题图鉴" }).click();
+  await page.locator(".preview-lesson-tile").first().waitFor();
   assert.equal(await page.locator(".preview-lesson-tile").count(), 33);
   await page.getByRole("button", { name: "开始小课", exact: true }).first().click();
   await page.getByRole("heading", { name: "看看这位新朋友" }).waitFor();

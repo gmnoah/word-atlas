@@ -60,14 +60,21 @@
 .course-galaxy { margin-top: 18px; }
 .course-galaxy-sky { position: relative; height: clamp(280px, 42vw, 440px); overflow: hidden; border-radius: var(--r-lg); background: #0d1120; }
 .course-galaxy-sky canvas { display: block; width: 100%; height: 100%; touch-action: none; }
+.course-galaxy-sky canvas:focus-visible { outline: 2px solid #f2ebdd; outline-offset: -5px; }
+.course-galaxy-markers { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; }
+.course-galaxy-markers circle { fill: none; stroke: #f2ebdd; stroke-width: 1.5; visibility: hidden; }
 .course-galaxy-caption { position: absolute; top: 20px; left: 20px; display: grid; gap: 4px; color: #f2ebdd; pointer-events: none; }
 .course-galaxy-caption strong { font: 600 22px/1.3 var(--serif); }
 .course-galaxy-caption span { font-size: 13px; }
+.course-galaxy-preview { position: absolute; left: 12px; bottom: 12px; display: grid; gap: 3px; max-width: calc(100% - 190px); padding: 10px 14px; color: #f2ebdd; background: #151b2d; border: 1px solid rgba(242,235,221,.4); border-radius: var(--r-sm); pointer-events: none; }
+.course-galaxy-preview strong { font: 600 19px/1.25 var(--serif); overflow-wrap: anywhere; }
+.course-galaxy-preview span, .course-galaxy-preview small { font-size: 13px; overflow-wrap: anywhere; }
 .course-galaxy-controls { position: absolute; right: 12px; bottom: 12px; display: flex; gap: 8px; }
 .course-galaxy-controls button { display: grid; place-items: center; min-width: 48px; min-height: 48px; color: #f2ebdd; border: 1px solid rgba(242,235,221,.5); border-radius: 50%; background: #151b2d; cursor: pointer; }
 .course-galaxy > p { color: var(--ink-2); }
 .course-galaxy-filter { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; font-weight: 600; }
 .course-galaxy-filter select { min-height: 48px; max-width: 100%; padding: 8px 12px; color: var(--ink); background: var(--card); border: 1px solid var(--line-strong); border-radius: var(--r-sm); }
+.course-galaxy-filter .btn { min-height: 48px; }
 .course-galaxy-entries { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; list-style: none; }
 .course-galaxy-entries button { display: flex; align-items: center; gap: 8px; min-height: 48px; padding: 8px 12px; color: var(--ink); background: var(--card); border: 1px solid var(--line-strong); border-radius: var(--r-sm); cursor: pointer; }
 .course-galaxy-entries small { color: var(--sage-ink); }
@@ -301,6 +308,38 @@
 .preview-course-note svg {
   flex: none;
 }
+.atlas-search {
+  margin: 28px 0 20px;
+  max-width: 520px;
+}
+.atlas-search label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.atlas-search-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 0 16px;
+  color: var(--ink-2);
+  background: var(--card);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r);
+}
+.atlas-search-control:focus-within { outline: 2px solid var(--terra); outline-offset: 2px; }
+.atlas-search-control input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+}
+.atlas-search p { margin: 8px 0 0; color: var(--ink-2); font-size: 14px; }
 .preview-lessons {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1255,6 +1294,11 @@
 .course-view-nav { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 24px; }
 .course-view-nav [aria-current="page"] { background: var(--paper-2); border-color: var(--line-strong); }
 .course-records { padding: 24px; }
+.activity-totals { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.activity-total { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 4px; padding: 14px; color: var(--ink-2); background: var(--paper-2); border: 1px solid var(--line); border-radius: var(--r); }
+.activity-total strong { color: var(--ink); font: 600 26px/1.2 var(--serif); font-variant-numeric: tabular-nums; }
+.activity-total-separator { display: none; }
+@media (max-width: 560px) { .activity-totals { grid-template-columns: 1fr; gap: 8px; } .activity-total { padding: 10px 14px; } }
 
 .journey-stops { margin: 32px 0; }
 .journey-stops-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 16px; margin: 16px 0; }
@@ -1281,6 +1325,7 @@
 .preview-entry-link, .hanzi-entry-link { color: var(--ink); background: var(--paper-2); border: 1px solid var(--line); border-radius: var(--r-sm); cursor: pointer; }
 .preview-entry-link { padding: 6px 10px; }
 .hanzi-entry-link { min-width: 48px; min-height: 48px; padding: 4px; }
+.preview-entry-link.is-search-match, .hanzi-entry-link.is-search-match { color: var(--terra-ink); background: var(--terra-soft); border-color: var(--terra); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
 .preview-entry-link:focus-visible, .hanzi-entry-link:focus-visible { outline: 2px solid var(--terra); outline-offset: 2px; }
 
 /* Quiet feedback for explored stations; the text also communicates the state. */

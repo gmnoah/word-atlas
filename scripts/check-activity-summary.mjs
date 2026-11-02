@@ -13,6 +13,7 @@ try {
   },course);
   await page.reload();
   await page.getByText('独立答对 1 次 · 提示后答对 1 次 · 家长一起答对 1 次').waitFor();
+  assert.equal(await page.getByRole('list',{name:'首次答对分类'}).getByRole('listitem').count(),3);
   await page.getByText('已记录：初见先跳过 0 次 · 识别题先跳过 1 次 · 识别题资源暂不可用 1 次').waitFor();
   await page.getByText('已记录：重试时跳过 1 次 · 重试时资源暂不可用 1 次').waitFor();
   await page.getByText('部分早期会话未保存初见跳过详情，上述次数仅包含已有记录。').waitFor();

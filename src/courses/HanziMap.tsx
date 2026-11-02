@@ -9,11 +9,12 @@ import { entryLabel, type HanziEntry, type LearningEntry, type Lesson } from "./
  * A flat theme map for preschoolers: large stops, no 3D, no scores.
  * It deliberately shows fewer labels than the primary course page.
  */
-export function HanziMap({ course, lessons, entries, exploration, onOpenEntry, onStart, onCoRead }: {
+export function HanziMap({ course, lessons, entries, exploration, matchingEntryIds, onOpenEntry, onStart, onCoRead }: {
   course: Course;
   lessons: Lesson[];
   entries: LearningEntry[];
   exploration: ReturnType<typeof journeyProgress> | null;
+  matchingEntryIds: ReadonlySet<string>;
   onOpenEntry: (entry: HanziEntry) => void;
   onStart: (lesson: Lesson) => void;
   onCoRead: (lesson: Lesson) => void;
@@ -30,7 +31,9 @@ export function HanziMap({ course, lessons, entries, exploration, onOpenEntry, o
         <Compass size={30} strokeWidth={1.2} aria-hidden="true" />
       </div>
       <ol className="hanzi-map-path">
-        {lessons.map((lesson, index) => {
+        {lessons.map((lesson) => {
+          const index = (course.lessons ?? []).findIndex((item) => item.id === lesson.id);
+          const theme = exploration?.themes.find((item) => item.id === lesson.id);
           const lessonEntries = lesson.entryIds
             .map((id) => entriesById.get(id))
             .filter((entry): entry is HanziEntry => !!entry && entry.kind === "hanzi");
@@ -47,11 +50,11 @@ export function HanziMap({ course, lessons, entries, exploration, onOpenEntry, o
               )}
               <div className="hanzi-map-body">
                 <h3>{lesson.title}</h3>
-                {exploration && <p>{exploration.themes[index]?.state === "visited" ? "这一站都看过了" : exploration.themes[index]?.state === "partial" ? "来过这里" : "等你来探索"}</p>}
+                {theme && <p>{theme.state === "visited" ? "这一站都看过了" : theme.state === "partial" ? "来过这里" : "等你来探索"}</p>}
                 <p>{lesson.subtitle}</p>
                 <p className="hanzi-map-chars" aria-label="这一站的字">
                   {lessonEntries.map((entry) => (
-                    <button type="button" key={entry.id} className="hanzi-entry-link" onClick={() => onOpenEntry(entry)} aria-label={`查看${entry.character}字卡`}><span lang="zh-CN">{entryLabel(entry)}</span></button>
+                    <button type="button" key={entry.id} className={`hanzi-entry-link${matchingEntryIds.has(entry.id) ? " is-search-match" : ""}`} onClick={() => onOpenEntry(entry)} aria-label={`查看${entry.character}字卡${matchingEntryIds.has(entry.id) ? "，符合查找" : ""}`}><span lang="zh-CN">{entryLabel(entry)}</span></button>
                   ))}
                 </p>
                 <div className="hanzi-map-actions">

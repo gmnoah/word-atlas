@@ -30,7 +30,7 @@ export function readCheckpoint(storage: Storage, scope: { profileId: string; cou
     // Only existing versions and lesson scopes can be carried forward. Each
     // restored question is validated against the current entries and policy.
     if (restored.status === "rejected" && scope.courseId === "primary-starter" && scope.contentVersion === "0.4.0-draft") {
-      const originalLesson = ["fruit", "animals", "nature", "school", "breakfast", "home"].includes(scope.lessonId);
+      const originalLesson = ["today", "fruit", "animals", "nature", "school", "breakfast", "home"].includes(scope.lessonId);
       const versions = originalLesson ? ["0.3.0-draft", "0.2.0-draft", "0.1.0-draft"] : ["0.3.0-draft", "0.2.0-draft"];
       for (const version of versions) {
         restored = restoreLearningSession(saved.session, { courseId: scope.courseId, contentVersion: version,

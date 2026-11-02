@@ -46,6 +46,20 @@ test("an original lesson checkpoint survives the expansion without losing its an
   }
 });
 
+test("a 0.1 today checkpoint resumes after expansion without replacing stored bytes", () => {
+  const { storage, checkpoint } = fixture();
+  checkpoint.lessonId = "today";
+  checkpoint.session.contentVersion = "0.1.0-draft";
+  const raw = saveCheckpoint(storage, checkpoint, null)!;
+  const restored = readCheckpoint(storage, { ...scope, lessonId: "today", entries: course.entries }, 50000);
+  assert.equal(restored.status, "ok");
+  if (restored.status === "ok") {
+    assert.equal(restored.checkpoint.session.contentVersion, scope.contentVersion);
+    assert.deepEqual(restored.checkpoint.session.attempts, checkpoint.session.attempts);
+  }
+  assert.equal(storage.getItem(checkpointKey(scope.profileId, scope.courseId, "today")), raw);
+});
+
 test("a 0.2 lesson keeps its answer after the example is updated", () => {
   const { storage, checkpoint } = fixture();
   checkpoint.session.contentVersion = "0.2.0-draft";

@@ -111,6 +111,7 @@ test("compaction preserves categorized totals, daily activity, provenance, and r
  assert.deepEqual(record,before);
  assert.deepEqual(summarizeActivity(result),summarizeActivity(record));
  assert.deepEqual(recentRecognitionDays(result,new Date(2025,0,2)),recentRecognitionDays(record,new Date(2025,0,2)));
+ assert.equal(result.archivedSessions?.reading.introducedByDay?.[day],2);
  assert.deepEqual(result.archivedSessions?.lesson.contentVersions,["old","new"]);
  assert.throws(()=>putActivitySnapshot(result,lesson));
  assert.ok(parseActivityRecord(JSON.parse(JSON.stringify(result)),"child","course"));

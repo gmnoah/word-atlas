@@ -128,6 +128,20 @@ test("co-reading on two days is tracked by actual first viewing without duplicat
  assert.equal(days.find(d=>d.key === "2026-10-27")?.coRead, 1);
  assert.equal(days.find(d=>d.key === "2026-10-28")?.coRead, 1);
  assert.equal(next.sessions.s.introducedDays?.a, "2026-10-27");
+ assert.equal(days.find(d=>d.key === "2026-10-27")?.introduced, 1);
+ assert.equal(days.find(d=>d.key === "2026-10-28")?.introduced, 2);
+});
+
+test("daily introductions count events and report missing dates without inventing history", async () => {
+ const { recentRecognitionDays } = await import("./activity-record");
+ const record:ActivityRecord={version:1,profileId:"child",courseId:"course",since:1,sessions:{
+  a:{sessionId:"a",contentVersion:"1",mode:"lesson",startedAt:1,updatedAt:2,introduced:["apple","pear"],introducedDays:{apple:"2026-10-28"},answers:{}},
+  b:{sessionId:"b",contentVersion:"1",mode:"lesson",startedAt:1,updatedAt:2,introduced:["apple"],introducedDays:{apple:"2026-10-28"},answers:{}}
+ }};
+ const result=recentRecognitionDays(record,new Date(2026,9,28,12));
+ assert.equal(result.days.find(day=>day.key==="2026-10-28")?.introduced,2);
+ assert.equal(result.undatedIntroductions,1);
+ assert.equal(result.archiveIntroductionsUnknown,false);
 });
 
 test("invalid calendar days in imported activity records are rejected", () => {

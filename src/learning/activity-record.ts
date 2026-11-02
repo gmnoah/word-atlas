@@ -38,6 +38,7 @@ export interface ArchivedActivitySummary {
   endedAt: number;
   totals: { independent: number; hinted: number; assisted: number; incorrect: number; skipped: number; resourceErrors: number; introSkipped: number; retrySkipped: number; retryResourceErrors: number; coReadSessions: number };
   recognitionByDay: Record<string, number>;
+  introducedByDay?: Record<string, number>;
   coReadDays: string[];
   introHistoryKnown: boolean;
   retryHistoryKnown: boolean;
@@ -66,6 +67,7 @@ export function parseActivityRecord(value: unknown, profileId: string, courseId:
       const keys = ["independent", "hinted", "assisted", "incorrect", "skipped", "resourceErrors", "introSkipped", "retrySkipped", "retryResourceErrors", "coReadSessions"];
       if (Object.keys(entry.totals).length !== keys.length || !keys.every((key) => Number.isSafeInteger(entry.totals && (entry.totals as Record<string, unknown>)[key]) && ((entry.totals as Record<string, number>)[key] >= 0))) return null;
       if (!Object.entries(entry.recognitionByDay).every(([day, count]) => validDay(day) && Number.isSafeInteger(count) && (count as number) > 0)) return null;
+      if (entry.introducedByDay !== undefined && (!object(entry.introducedByDay) || !Object.entries(entry.introducedByDay).every(([day, count]) => validDay(day) && Number.isSafeInteger(count) && (count as number) > 0) || !Number.isSafeInteger(Object.values(entry.introducedByDay).reduce<number>((sum, count) => sum + (count as number), 0)))) return null;
       const totals = entry.totals as ArchivedActivitySummary["totals"];
       const dayCount = Object.values(entry.recognitionByDay).reduce<number>((sum, count) => sum + (count as number), 0);
       if (!Number.isSafeInteger(dayCount) || dayCount !== totals.independent + totals.hinted + totals.assisted + totals.incorrect || totals.coReadSessions > 1 || (entry.mode === "lesson" && (totals.coReadSessions !== 0 || entry.coReadDays.length !== 0)) || (entry.mode === "co-read" && (dayCount !== 0 || totals.skipped !== 0 || totals.resourceErrors !== 0 || (entry.coReadDays.length > 0) !== (totals.coReadSessions === 1)))) return null;
@@ -247,10 +249,11 @@ export function recentRecognitionDays(record: ActivityRecord, now: Date) {
   const days = Array.from({ length: 7 }, (_, index) => {
     const date = new Date(now.getFullYear(), now.getMonth(), now.getDate() - (6 - index), 12);
     const key = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
-    return { key, count: 0, coRead: 0 };
+    return { key, count: 0, coRead: 0, introduced: 0 };
   });
   const byDay = new Map(days.map((day) => [day.key, day]));
   let undated = 0;
+  let undatedIntroductions = 0;
   for (const session of Object.values(record.sessions)) for (const [id, answer] of Object.entries(session.answers)) {
     if (answer === "skipped" || answer === "resource-error") continue;
     const day = session.answerDays?.[id];
@@ -259,6 +262,12 @@ export function recentRecognitionDays(record: ActivityRecord, now: Date) {
     if (bucket) bucket.count++;
   }
   for (const session of Object.values(record.sessions)) {
+    for (const id of session.introduced) {
+      const day = session.introducedDays?.[id];
+      if (!day) { undatedIntroductions++; continue; }
+      const bucket = byDay.get(day);
+      if (bucket) bucket.introduced++;
+    }
     if (session.mode !== "co-read") continue;
     for (const day of new Set(Object.values(session.introducedDays ?? {}))) {
       const bucket = byDay.get(day);
@@ -267,7 +276,8 @@ export function recentRecognitionDays(record: ActivityRecord, now: Date) {
   }
   for (const session of Object.values(record.archivedSessions ?? {})) {
     for (const [day, count] of Object.entries(session.recognitionByDay)) { const bucket = byDay.get(day); if (bucket) bucket.count += count; }
+    for (const [day, count] of Object.entries(session.introducedByDay ?? {})) { const bucket = byDay.get(day); if (bucket) bucket.introduced += count; }
     for (const day of session.coReadDays) { const bucket = byDay.get(day); if (bucket) bucket.coRead++; }
   }
-  return { days, undated };
+  return { days, undated, undatedIntroductions, archiveIntroductionsUnknown: Object.values(record.archivedSessions ?? {}).some(session => session.introducedByDay === undefined) };
 }

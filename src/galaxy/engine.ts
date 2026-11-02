@@ -274,6 +274,7 @@ export class GalaxyEngine {
   /** Frame a set of stars immediately (no animation). */
   frameStars(indices: number[], dist = 1.15) {
     if (!indices.length) return;
+    this.cancelCameraMotion();
     const p = this.layout.positions;
     let x = 0;
     let y = 0;
@@ -287,6 +288,11 @@ export class GalaxyEngine {
     Object.assign(this.cam, { tx: (x / n) * 0.6, ty: y / n, tz: (z / n) * 0.6, dist });
   }
 
+  /** Stop an in-flight camera transition when the learner takes control. */
+  cancelCameraMotion() {
+    this.goal = null;
+  }
+
   /** Smoothly move the camera toward a word. */
   flyTo(i: number, dist = 0.75) {
     const p = this.layout.positions;
@@ -295,6 +301,17 @@ export class GalaxyEngine {
 
   reset() {
     this.goal = { tx: 0, ty: 0, tz: 0, dist: this.baseDist(), pitch: 1.12 };
+  }
+
+  /** Restore the initial view without starting an animation loop. */
+  resetImmediately() {
+    this.cancelCameraMotion();
+    Object.assign(this.cam, { yaw: 0.6, pitch: 1.12, dist: this.baseDist(), tx: 0, ty: 0, tz: 0 });
+  }
+
+  /** Draw a static frame after an explicit change; does not start an animation loop. */
+  drawOnce() {
+    this.frame(performance.now());
   }
 
   replayIntro() {
