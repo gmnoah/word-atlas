@@ -3,6 +3,7 @@ import {
   ArrowRight,
   BookOpen,
   Check,
+  ChevronDown,
   ChevronLeft,
   ChevronRight,
   Compass,
@@ -997,7 +998,16 @@ export default function CoursePreview() {
               <PreviewSpeak key={`course-entry:${entry.id}`} text={text} locale={entry.kind === "english" ? entry.media.locale : "zh-CN"} recording={course.audio(entry)} slow={preferences.slow} />
               <PrimaryFavorite profileId={activeProfileId} courseId={course.manifest.id} entry={entry} onOpenSettings={openParentFromEntry} />
               {entry.kind === "english" ? <div className="preview-example"><p lang="en">{example ? <>{example[0]}<mark className="example-target">{example[1]}</mark>{example[2]}</> : entry.example.text}</p><span>{entry.example.translation}</span></div>
-                : <><p>{entry.sentence}</p><details><summary>给家长的小提示</summary><p>拼音：{entry.pinyin}</p><p>{entry.caregiverTip}</p></details></>}
+                : <><p>{entry.sentence}</p>
+                  <details className="hanzi-card-note">
+                    <summary>
+                      <span>给家长的小提示</span>
+                      <ChevronDown className="hanzi-card-note-chevron" size={18} aria-hidden="true" />
+                    </summary>
+                    <p>拼音：{entry.pinyin}</p>
+                    <p>{entry.caregiverTip}</p>
+                    <small>拼音只在家长提示里出现；孩子不需要会拼音，也不需要写字。</small>
+                  </details></>}
               <p className="preview-disclosure">课程内容持续审校中。{entry.kind === "hanzi" ? "普通话优先使用设备朗读，也可以请家长读一读。" : "例句与录音会在人工核对后更新。"}</p>
               {lesson && lesson.entryIds.length > 1 && <div className="course-entry-browse" aria-label={`在${lesson.title}中浏览`}>
                 <button type="button" className="btn btn-ghost" disabled={!previousId} onClick={() => previousId && browseTo(previousId)}>
