@@ -63,7 +63,7 @@ try {
   await page.getByRole("button", { name: "家长设置" }).click();
   await page.getByLabel("英语小课的词数").selectOption("2");
   await page.getByRole("button", { name: "设置好了" }).click();
-  await page.getByRole("button", { name: "探索基础英语" }).click();
+  await page.getByRole("button", { name: "打开图鉴：基础英语" }).click();
   const advancedStage = page.getByRole("button", { name: /多认识一些/ });
   await advancedStage.click();
   assert.equal(await advancedStage.getAttribute("aria-pressed"), "true");
@@ -98,19 +98,36 @@ try {
   assert.equal(await page.locator(".english-word-card-details .preview-example p").innerText(), "I like apples.");
   checks.push("Explicit example form highlights apples while preserving the full sentence");
   await page.getByRole("button", { name: "返回主题" }).click();
-  await page.getByRole("button", { name: "结束体验" }).click();
+  await page.getByRole("button", { name: "结束本次学习" }).click();
   // This isolated fixture starts a new scenario; production users keep their checkpoint.
-  await page.evaluate(() => Object.keys(localStorage).filter((key) => key.startsWith("word-atlas:v3:primary-session:")).forEach((key) => localStorage.removeItem(key)));
+  await page.evaluate(() => {
+    for (const key of Object.keys(localStorage)) {
+      if (key.startsWith("word-atlas:v3:primary-session:") || key === "word-atlas:v3:primary-progress:learner-default:primary-starter")
+        localStorage.removeItem(key);
+    }
+  });
+  await page.reload();
+  await page.getByRole("heading", { name: "基础英语", exact: true }).waitFor();
+  await page.getByRole("button", { name: /多认识一些/ }).click();
   await page.getByLabel("水果篮子起始词").selectOption("en-apple");
   await page.getByRole("button", { name: "家长设置" }).click();
   await page.getByLabel("英语小课的词数").selectOption("5");
   await page.getByRole("button", { name: "设置好了" }).click();
   await page.getByRole("button", { name: "开始小课" }).first().click();
-  for (let i = 0; i < 3; i++) await page.getByRole("button", { name: "认识了，继续" }).click();
+  for (let i = 0; i < 6 && (await page.locator(".preview-study-card.is-intro").count()); i++)
+    await page.getByRole("button", { name: "认识了，继续" }).click();
+  await page.locator(".preview-study-card.is-recall").waitFor();
   assert.equal(await page.locator(".preview-option").count(), 3, "advanced policy uses 3 options after a 3-word group");
   await page.getByRole("button", { name: "返回主题" }).click();
-  await page.getByRole("button", { name: "结束体验" }).click();
-  await page.evaluate(() => Object.keys(localStorage).filter((key) => key.startsWith("word-atlas:v3:primary-session:")).forEach((key) => localStorage.removeItem(key)));
+  await page.getByRole("button", { name: "结束本次学习" }).click();
+  await page.evaluate(() => {
+    for (const key of Object.keys(localStorage)) {
+      if (key.startsWith("word-atlas:v3:primary-session:") || key === "word-atlas:v3:primary-progress:learner-default:primary-starter")
+        localStorage.removeItem(key);
+    }
+  });
+  await page.reload();
+  await page.getByRole("heading", { name: "基础英语", exact: true }).waitFor();
   await page.getByRole("button", { name: /小步启蒙/ }).click();
   await page.getByRole("button", { name: "开始小课" }).first().click();
   assert.equal(await page.locator(".english-word-card-details").getAttribute("open"), null);
@@ -121,7 +138,7 @@ try {
   await page.getByRole("button", { name: "认识了，继续" }).click();
   assert.equal(await page.locator(".preview-option").count(), 2, "starter policy uses 2 options after a 2-word group");
   await page.getByRole("button", { name: "返回主题" }).click();
-  await page.getByRole("button", { name: "结束体验" }).click();
+  await page.getByRole("button", { name: "结束本次学习" }).click();
   await page.evaluate(() => Object.keys(localStorage).filter((key) => key.startsWith("word-atlas:v3:primary-session:")).forEach((key) => localStorage.removeItem(key)));
   await page.getByRole("button", { name: "家长设置" }).click();
   await page.getByLabel("英语小课的词数").selectOption("2");
@@ -168,6 +185,7 @@ try {
   await page.getByRole("button", { name: "回到主题" }).click();
   await page.getByRole("button", { name: "学习空间", exact: true }).click();
   await page.getByRole("button", { name: "一起认汉字" }).click();
+  await page.getByRole("button", { name: "主题图鉴" }).click();
   await page.locator(".hanzi-map-stop").first().getByRole("button", { name: "认一认" }).click();
   await page.setViewportSize({ width: 375, height: 812 });
   await page.screenshot({
@@ -221,21 +239,22 @@ try {
   checks.push(
     "375px mobile, both themes, no horizontal overflow; reload safely resets preview",
   );
-  await page.route("**/atlas/img/apple.webp*", (route) => route.abort());
-  await page.getByRole("button", { name: "探索基础英语" }).click();
+  await page.route("**/*.webp*", (route) => route.abort());
+  await page.getByRole("button", { name: "打开图鉴：基础英语" }).click();
   await page.getByRole("button", { name: "开始小课" }).first().click();
   await page.getByText("这幅图暂时没打开，可以先跳过。").waitFor();
   await page.getByRole("button", { name: "先跳过，下次再认识" }).click();
-  await page.route("**/atlas/audio/uk/banana.mp3*", (route) => route.abort());
-  await page.getByRole("button", { name: "朗读 banana", exact: true }).click();
+  await page.unroute("**/*.webp*");
+  await page.route("**/*.mp3*", (route) => route.abort());
+  await page.locator(".preview-study-card .preview-voice button").click();
   await page
     .getByText("暂时无法播放，可以重试，也可以请家长读一读。")
     .waitFor();
-  await page.unroute("**/atlas/audio/uk/banana.mp3*");
+  await page.unroute("**/*.mp3*");
   await page.getByRole("button", { name: "返回主题" }).click();
   await page.getByRole("button", { name: "继续这次小课" }).click();
   await page.getByRole("button", { name: "返回主题" }).click();
-  await page.getByRole("button", { name: "结束体验" }).click();
+  await page.getByRole("button", { name: "结束本次学习" }).click();
   await page.getByRole("heading", { name: "基础英语", exact: true }).waitFor();
   checks.push("Image/audio failure, skip, cancel exit and confirmed exit");
   await page.unroute("**/atlas/img/apple.webp*");

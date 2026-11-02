@@ -9,7 +9,7 @@ try {
   else await page.locator('.hanzi-map-stop').first().getByRole('button',{name:'只读一读'}).click();
   await page.getByRole('button',{name:course==='primary-starter' ? '认识了，继续' : '看过啦，下一个'}).click();
   await page.getByRole('button',{name:'返回主题'}).click();
-  await page.getByRole('button',{name:'结束体验'}).click();
+  await page.getByRole('button',{name:'结束本次学习'}).click();
   const previous=course==='primary-starter' ? '0.3.0-draft' : '0.6.0-draft';
   const current=course==='primary-starter' ? '0.4.0-draft' : '0.7.0-draft';
   await page.evaluate(({course,previous})=>{

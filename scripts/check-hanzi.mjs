@@ -29,7 +29,7 @@ try {
   await page.screenshot({ path: `${evidence}/hanzi-map-desktop-light.png`, fullPage: true, animations: "disabled" });
 
   // Co-reading never grades and never shows pinyin outside the caregiver note.
-  await page.locator(".hanzi-map-stop").first().getByRole("button", { name: "只读一读" }).click();
+  await page.locator(".hanzi-map-stop").first().getByRole("button", { name: /只读一读|继续共读/ }).click();
   await page.getByRole("heading", { name: "一个字，一个小发现" }).waitFor();
   const art = page.locator(".hanzi-study-card .preview-study-art > .illo");
   await art.locator("img").waitFor();
@@ -45,7 +45,7 @@ try {
   assert.equal(await page.getByRole("button", { name: /拼音/ }).count(), 0, "no pinyin drill for the child");
   await page.getByRole("button", { name: "看过啦，下一个" }).click();
   await page.getByRole("button", { name: "返回主题" }).click();
-  await page.getByRole("button", { name: "结束体验" }).click();
+  await page.getByRole("button", { name: "结束本次学习" }).click();
   await page.getByRole("heading", { name: "汉字启蒙", exact: true }).waitFor();
   checks.push("Co-reading shows one large character and keeps pinyin inside the caregiver note");
 
@@ -66,7 +66,7 @@ try {
   await page.getByText("这次是一起找到的，不计作独立识别。").waitFor();
   await page.getByRole("button", { name: "继续", exact: true }).click();
   await page.getByRole("button", { name: "返回主题" }).click();
-  await page.getByRole("button", { name: "结束体验" }).click();
+  await page.getByRole("button", { name: "结束本次学习" }).click();
   await page.getByRole("heading", { name: "汉字启蒙", exact: true }).waitFor();
   checks.push("Hanzi recall records caregiver assistance without independent success");
 
@@ -84,7 +84,7 @@ try {
   assert.match(await page.locator(".family-activity").innerText(), /汉字启蒙/);
   assert.match(await page.locator(".family-activity-note").innerText(), /提示后的首次答题会更新复习卡/);
   assert.match(await page.locator(".family-activity-note").innerText(), /家长协助、跳过、拼写和照样找字不会更新/);
-  assert.match(await page.locator(".family-activity").innerText(), /看过 [1-9] 个/);
+  assert.match(await page.locator(".family-activity").innerText(), /看过 [1-9]\d* \/ 300/);
   assert.doesNotMatch(await page.locator(".family-activity dl").innerText(), /欠复习|排名|连续/);
   assert.equal(await page.getByRole("button", { name: "导出全部档案" }).count(), 1);
   await page.getByRole("button", { name: "设置好了" }).click();
@@ -114,7 +114,7 @@ try {
   checks.push("Preschool controls are at least 48px and show no countdown or ranking");
 
   // A finished co-read offers one real-life activity, never a score or a streak.
-  await page.locator(".hanzi-map-stop").first().getByRole("button", { name: "只读一读" }).click();
+  await page.locator(".hanzi-map-stop").first().getByRole("button", { name: /只读一读|继续共读/ }).click();
   for (let i = 0; i < 6 && (await page.getByRole("button", { name: "看过啦，下一个" }).count()); i++)
     await page.getByRole("button", { name: "看过啦，下一个" }).click();
   await page.getByRole("heading", { name: "今天一起读了几页字。" }).waitFor();
@@ -152,7 +152,7 @@ try {
   await page.getByRole("button", { name: "新建学习者" }).click();
   await page.getByRole("button", { name: "设置好了" }).click();
   await page.getByRole("button", { name: "家长设置" }).click();
-  assert.match(await page.locator(".family-activity").innerText(), /看过 0 个/);
+  assert.match(await page.locator(".family-activity").innerText(), /看过 0 \/ 300/);
   await page.getByRole("button", { name: "设置好了" }).click();
   checks.push("A new learner starts with no inherited Hanzi activity");
 

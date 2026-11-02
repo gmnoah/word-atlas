@@ -37,7 +37,7 @@ try {
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
   await page.getByRole("button", { name: "继续", exact: true }).click();
   await page.getByRole("button", { name: "返回主题" }).click();
-  await page.getByRole("button", { name: "结束体验" }).click();
+  await page.getByRole("button", { name: "结束本次学习" }).click();
   await page.getByRole("button", { name: "开始小课" }).first().click();
   assert.notEqual(await page.locator(".preview-study-card").getAttribute("data-content-id"), target);
   assert.deepEqual(errors, []);

@@ -321,7 +321,7 @@ export function HanziLesson({ course, lesson, entries, profileId, mode, minutes,
             <button className="btn btn-primary btn-xl" onClick={() => leaveFinished(onExit)}>
               {returnToJourney ? "回到旅程" : "回到主题"} <ArrowRight size={18} />
             </button>
-            <button className="btn btn-ghost" onClick={() => leaveFinished(onRestart)}>再体验一次</button>
+            <button className="btn btn-ghost" onClick={() => leaveFinished(onRestart)}>重新开始</button>
           </div>
         </section>
       ) : (
@@ -487,7 +487,7 @@ export function HanziLesson({ course, lesson, entries, profileId, mode, minutes,
             </button>
           )}
           <p className="preview-disclosure">
-            字卡与插画为体验草稿；普通话优先使用设备朗读，失败时请家长共读。
+            共读浏览会记录本机学习足迹；普通话优先使用设备朗读，失败时请家长共读。
             {!sessionVoice && " 这台设备没有可用的普通话声音。"}
           </p>
         </>
@@ -498,7 +498,7 @@ export function HanziLesson({ course, lesson, entries, profileId, mode, minutes,
           <p>{saveError ? "当前小课暂时无法保存，返回后本次进度可能无法恢复；原有记录会保留。" : progressError ? "学习结果暂时无法保存，本次小课记录已保留；返回后可重新打开并重试。" : "返回后，下次打开同一活动可以接着进行。学习记录保存在这台设备。"}</p>
           <div className="preview-actions">
             <button className="btn btn-primary" onClick={closeExit}>继续这次{coRead ? "共读" : "认读"}</button>
-            <button className="btn btn-ghost" onClick={onExit}>结束体验</button>
+            <button className="btn btn-ghost" onClick={onExit}>结束本次学习</button>
           </div>
         </div>
       </Sheet>

@@ -37,7 +37,7 @@ try {
  const raw=await page.evaluate(()=>JSON.parse(localStorage.getItem('word-atlas:v3:activity:learner-default:primary-starter')));
  assert.equal(Object.values(raw.sessions).reduce((n,s)=>n+Object.values(s.retryEvents??{}).filter(x=>x==='resource-error').length,0),1);
  await page.getByRole('button',{name:'返回主题'}).click();
- if (await page.getByRole('dialog').isVisible()) await page.getByRole('button',{name:'结束体验'}).click();
+  if (await page.getByRole('dialog').isVisible()) await page.getByRole('button',{name:'结束本次学习'}).click();
  await page.getByRole('button',{name:'学习记录'}).click();
  await page.getByText('已记录：重试时跳过 0 次 · 重试时资源暂不可用 1 次').waitFor();
  await page.reload();

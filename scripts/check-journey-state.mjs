@@ -16,7 +16,7 @@ try {
   await card.getByRole('button',{name:course === 'hanzi-starter' ? '一起读一读' : '开始小课'}).click();
   await page.getByRole('button',{name:course === 'hanzi-starter' ? '看过啦，下一个' : '认识了，继续'}).click();
   await page.getByRole('button',{name:'返回旅程'}).click();
-  await page.getByRole('button',{name:'结束体验'}).click();
+  await page.getByRole('button',{name:'结束本次学习'}).click();
   const visited=page.locator('.journey-stop[data-state=partial]').first();
   await visited.waitFor();
   assert.equal(await visited.getByRole('progressbar').getAttribute('value'),'1');

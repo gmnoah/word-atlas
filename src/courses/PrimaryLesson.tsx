@@ -160,7 +160,7 @@ export function PrimaryLesson({ course, lesson, entries, profileId, stage, spell
           <p className="preview-disclosure">仅统计首次答对；接触和答对不代表已经掌握。{saveError ? "本次小课未能保存。" : progressError ? "学习结果暂未保存，小课记录已保留。" : "学习记录保存在这台设备。"}</p>
           <div className="preview-actions">
             <button className="btn btn-primary btn-xl" onClick={() => leaveFinished(onExit)}>{returnToJourney ? "回到旅程" : "回到主题"} <ArrowRight size={18} /></button>
-            <button className="btn btn-ghost" onClick={() => leaveFinished(onRestart)}>再体验一次</button>
+            <button className="btn btn-ghost" onClick={() => leaveFinished(onRestart)}>重新开始</button>
           </div>
         </section>
       ) : (
@@ -247,7 +247,7 @@ export function PrimaryLesson({ course, lesson, entries, profileId, stage, spell
           {!answered && <button className="btn preview-skip" onClick={() => dispatch({ type: resourceFailed && !intro ? "resource-error" : "skip" })}>
             先跳过，下次再认识
           </button>}
-          <p className="preview-disclosure">图片与内容为体验草稿；{saveError ? "本次小课暂时无法保存。" : progressError ? "学习结果暂未保存，小课记录已保留。" : "小课保存在这台设备，再次打开同一主题可继续。"}</p>
+          <p className="preview-disclosure">浏览与答题只记录本机学习足迹；{saveError ? "本次小课暂时无法保存。" : progressError ? "学习结果暂未保存，小课记录已保留。" : "再次打开同一主题可以继续。"}</p>
         </>
       )}
       <Sheet open={exitOpen} onClose={closeExit} label="暂时结束小课">
@@ -256,7 +256,7 @@ export function PrimaryLesson({ course, lesson, entries, profileId, stage, spell
           <p>{saveError ? "当前小课暂时无法保存，返回后本次进度可能无法恢复；原有记录会保留。" : progressError ? "学习结果暂时无法保存，本次小课记录已保留；返回后可重新打开并重试。" : "返回后，下次打开同一小课可以接着进行。学习记录保存在这台设备。"}</p>
           <div className="preview-actions">
             <button className="btn btn-primary" onClick={closeExit}>继续这次小课</button>
-            <button className="btn btn-ghost" onClick={onExit}>结束体验</button>
+            <button className="btn btn-ghost" onClick={onExit}>结束本次学习</button>
           </div>
         </div>
       </Sheet>

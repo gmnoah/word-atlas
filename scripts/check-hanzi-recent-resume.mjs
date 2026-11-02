@@ -13,7 +13,7 @@ try {
   await page.getByRole('button',{name:index === 0 ? '看过啦，下一个' : '认识了，继续'}).click();
   await page.waitForTimeout(1200);
   await page.getByRole('button',{name:'返回主题'}).click();
-  await page.getByRole('button',{name:'结束体验'}).click();
+  await page.getByRole('button',{name:'结束本次学习'}).click();
   await page.getByRole('heading',{name:'汉字启蒙',exact:true}).waitFor();
   if(index===1){
    await page.getByRole('button',{name:'今日旅程'}).click();

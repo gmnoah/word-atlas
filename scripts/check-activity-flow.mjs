@@ -9,7 +9,7 @@ try {
  await page.getByRole('heading',{name:'一个字，一个小发现'}).waitFor();
  await page.getByRole('button',{name:'看过啦，下一个'}).click();
  await page.getByRole('button',{name:'返回主题'}).click();
- await page.getByRole('button',{name:'结束体验'}).click();
+await page.getByRole('button',{name:'结束本次学习'}).click();
  await page.getByRole('button',{name:'今日旅程'}).click();
  await page.locator('.preview-hero').getByRole('button',{name:/继续共读/}).waitFor();
  await page.getByRole('button',{name:'学习记录'}).click();
@@ -45,7 +45,7 @@ try {
  await englishPage.locator(`[data-option-id="${target}"]`).click();
  await englishPage.getByText('找到了！').waitFor();
  await englishPage.getByRole('button',{name:'返回主题'}).click();
- await englishPage.getByRole('button',{name:'结束体验'}).click();
+await englishPage.getByRole('button',{name:'结束本次学习'}).click();
  await englishPage.getByRole('button',{name:'学习记录'}).click();
  await englishPage.getByText('独立答对 1 次 · 提示后答对 0 次 · 家长一起答对 0 次').waitFor();
  await englishPage.getByText('查看主题足迹').click();

@@ -33,7 +33,7 @@ try {
   await page.waitForFunction(() => document.querySelector(".preview-study-card .illo img")?.naturalWidth > 0);
   assert.ok(await englishImage.evaluate((image) => image.getBoundingClientRect().width > 100));
   await page.getByRole("button", { name: "返回主题" }).click();
-  await page.getByRole("button", { name: "结束体验" }).click();
+  await page.getByRole("button", { name: "结束本次学习" }).click();
   await page.getByRole("heading", { name: "基础英语", exact: true }).waitFor();
   await page.goto(`${base}#/explore?course=hanzi-starter`);
   await page.getByRole("heading", { name: "汉字启蒙", exact: true }).waitFor();

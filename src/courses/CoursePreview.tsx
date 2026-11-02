@@ -376,7 +376,7 @@ export default function CoursePreview() {
           </a>
         )}
         <span className="preview-edition">
-          学习空间 <i /> 体验版
+          学习空间 <i /> 本机保存
         </span>
         <div className="preview-tools">
           {!lesson && (
@@ -481,7 +481,7 @@ export default function CoursePreview() {
                           <div className="preview-space-meta">
                             {registered.kind === "legacy"
                               ? `${registered.count.toLocaleString("en-US")} 个词 · 原学习进度保留`
-                              : `${registered.count} ${registered.manifest.subject === "english" ? "个词" : "个字"} · ${registered.lessonCount} 个学习单元 · 内容待审校${recordLabel}`}
+                              : `${registered.count} ${registered.manifest.subject === "english" ? "个词" : "个字"} · ${registered.lessonCount} 个主题${recordLabel}`}
                           </div>
                           {registered.kind === "legacy" ? (
                             <a className="btn btn-ghost" href={registered.href}>
@@ -909,10 +909,10 @@ export default function CoursePreview() {
             )}
             </>}
             <p className="preview-disclosure">
-              内容为待审校草稿。
+              课程内容持续审校中。
               {course.manifest.subject === "hanzi"
-                ? "普通话使用设备朗读预览，也可以由家长读一读；共读只浏览，不计识别成绩。"
-                : "单词播放原项目英音，例句内容待审校。"}
+                ? "普通话优先使用设备朗读，也可以由家长读一读；共读只浏览，不计识别成绩。"
+                : "单词与例句来自现有课程，儿童适龄表达仍在逐条核对。"}
               {course.manifest.id === "primary-starter"
                 ? "小学学习记录保存在本机。"
                 : "汉字学习记录按学习者和课程保存在本机。"}
@@ -944,7 +944,7 @@ export default function CoursePreview() {
               <PrimaryFavorite profileId={activeProfileId} courseId={course.manifest.id} entry={entry} />
               {entry.kind === "english" ? <div className="preview-example"><p lang="en">{example ? <>{example[0]}<mark className="example-target">{example[1]}</mark>{example[2]}</> : entry.example.text}</p><span>{entry.example.translation}</span></div>
                 : <><p>{entry.sentence}</p><details><summary>给家长的小提示</summary><p>拼音：{entry.pinyin}</p><p>{entry.caregiverTip}</p></details></>}
-              <p className="preview-disclosure">内容为待审校草稿。{entry.kind === "hanzi" ? "普通话使用设备朗读，也可以请家长读一读。" : "例句和语音仍需审校。"}</p>
+              <p className="preview-disclosure">课程内容持续审校中。{entry.kind === "hanzi" ? "普通话优先使用设备朗读，也可以请家长读一读。" : "例句与录音会在人工核对后更新。"}</p>
               {lesson && lesson.entryIds.length > 1 && <div className="course-entry-browse" aria-label={`在${lesson.title}中浏览`}>
                 <button type="button" className="btn btn-ghost" disabled={!previousId} onClick={() => previousId && browseTo(previousId)}>
                   <ChevronLeft size={18} aria-hidden="true" /> 上一{unit}
@@ -1200,14 +1200,14 @@ function PreviewLesson({
             {stats.skipped > 0
               ? `这次跳过了 ${stats.skipped} 个，没关系，下次再认识。`
               : "接触和找对不代表已经掌握。"}
-            样板结果仅供本次体验。
+            本次结果只在当前页面显示。
           </p>
           <div className="preview-actions">
             <button className="btn btn-primary btn-xl" onClick={onExit}>
               回到主题 <ArrowRight size={18} />
             </button>
             <button className="btn btn-ghost" onClick={onRestart}>
-              再体验一次
+              再读一次
             </button>
           </div>
         </section>
@@ -1402,20 +1402,20 @@ function PreviewLesson({
           )}
           <p className="preview-disclosure">
             <Volume2 size={14} />{" "}
-            图片与内容为体验草稿；随时可以返回主题，刷新会结束这次体验。
+            这里是只读词字浏览；随时可以返回主题，刷新会结束这次浏览。
           </p>
         </>
       )}
       <Sheet open={exitOpen} onClose={closeExit} label="暂时结束小课">
         <div className="preview-parent">
           <h2>先休息一下吗？</h2>
-          <p>这次体验不会记录正式进度。返回主题后，下次会重新开始。</p>
+          <p>这里只浏览词字，不会写入学习进度。返回主题后，下次会重新开始。</p>
           <div className="preview-actions">
             <button className="btn btn-primary" onClick={closeExit}>
               继续这次小课
             </button>
             <button className="btn btn-ghost" onClick={onExit}>
-              结束体验
+              结束浏览
             </button>
           </div>
         </div>

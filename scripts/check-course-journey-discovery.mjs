@@ -7,6 +7,25 @@ const browser = await chromium.launch({
 });
 
 try {
+  const spacesContext = await browser.newContext({
+    viewport: { width: 1280, height: 900 },
+    serviceWorkers: "block",
+  });
+  try {
+    const spacesPage = await spacesContext.newPage();
+    await spacesPage.goto("http://localhost:5188/#/explore");
+    await spacesPage.locator('[data-course-id="primary-starter"]').waitFor();
+    assert.match(await spacesPage.locator(".preview-edition").innerText(), /学习空间\s*本机保存/);
+    assert.equal(await spacesPage.getByText("体验版", { exact: true }).count(), 0);
+    for (const [courseId, count, lessons] of [["primary-starter", 300, 33], ["hanzi-starter", 300, 32]]) {
+      const meta = spacesPage.locator(`[data-course-id="${courseId}"] .preview-space-meta`);
+      assert.match(await meta.innerText(), new RegExp(`${count} .+ · ${lessons} 个主题`));
+      assert.doesNotMatch(await meta.innerText(), /待审校/);
+    }
+  } finally {
+    await spacesContext.close();
+  }
+
   for (const course of ["primary-starter", "hanzi-starter"]) {
     for (const width of [375, 800, 1280]) {
       const context = await browser.newContext({
@@ -20,6 +39,7 @@ try {
       );
       const discovery = page.locator(".journey-discovery");
       await discovery.waitFor();
+      assert.match(await page.locator(".preview-disclosure").last().innerText(), /课程内容持续审校中/);
       const chips = discovery.getByRole("button");
       assert.equal(await chips.count(), 4);
       assert.match(
@@ -60,6 +80,7 @@ try {
       await chips.first().click();
       const dialog = page.getByRole("dialog", { name: "课程条目" });
       await dialog.waitFor();
+      await page.waitForFunction(() => !!document.activeElement?.closest("[role=dialog]"));
       assert.equal(
         await page.evaluate(() => !!document.activeElement?.closest("[role=dialog]")),
         true,
@@ -141,7 +162,7 @@ try {
       })
       .click();
     await progressPage.getByRole("button", { name: "返回旅程" }).click();
-    await progressPage.getByRole("button", { name: "结束体验" }).click();
+    await progressPage.getByRole("button", { name: "结束本次学习" }).click();
     await progressPage.locator(".journey-discovery").waitFor();
     assert.notEqual(
       await progressPage

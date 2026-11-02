@@ -8,7 +8,7 @@ try {
  await page.locator('.hanzi-map-stop').first().getByRole('button',{name:'只读一读'}).click();
  await page.getByRole('button',{name:'看过啦，下一个'}).click();
  await page.getByRole('button',{name:'返回主题'}).click();
- await page.getByRole('button',{name:'结束体验'}).click();
+await page.getByRole('button',{name:'结束本次学习'}).click();
  await page.getByRole('button',{name:'家长设置'}).click();
  const downloadPromise = page.waitForEvent('download');
  await page.getByRole('button',{name:'导出全部档案'}).click();

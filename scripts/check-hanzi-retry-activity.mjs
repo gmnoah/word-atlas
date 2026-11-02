@@ -26,7 +26,7 @@ try {
  }
  await page.waitForFunction(()=>{const raw=localStorage.getItem('word-atlas:v3:activity:learner-default:hanzi-starter');return raw && Object.values(JSON.parse(raw).sessions).some(s=>Object.values(s.retryEvents??{}).includes('skipped'));});
  await page.getByRole('button',{name:'返回主题'}).click();
- if(await page.getByRole('dialog').isVisible()) await page.getByRole('button',{name:'结束体验'}).click();
+if(await page.getByRole('dialog').isVisible()) await page.getByRole('button',{name:'结束本次学习'}).click();
  await page.getByRole('button',{name:'学习记录'}).click();
  await page.getByText('已记录：重试时跳过 1 次 · 重试时资源暂不可用 0 次').waitFor();
  await page.getByText('独立答对 0 次 · 提示后答对 0 次 · 家长一起答对 0 次').waitFor();

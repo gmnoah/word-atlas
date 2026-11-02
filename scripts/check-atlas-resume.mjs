@@ -13,7 +13,7 @@ try {
     await card.getByRole('button', { name: isHanzi ? '只读一读' : '开始小课', exact: true }).click();
     await page.getByRole('button', { name: isHanzi ? '看过啦，下一个' : '认识了，继续' }).click();
     await page.getByRole('button', { name: '返回主题' }).click();
-    await page.getByRole('button', { name: '结束体验' }).click();
+    await page.getByRole('button', { name: '结束本次学习' }).click();
     await card.getByRole('button', { name: isHanzi ? '继续共读' : '继续小课', exact: true }).waitFor();
     if (!isHanzi) assert.equal(await card.getByText('从哪个词开始').count(), 0);
     if (isHanzi) assert.equal(await card.getByRole('button', { name: '认一认', exact: true }).isEnabled(), true);

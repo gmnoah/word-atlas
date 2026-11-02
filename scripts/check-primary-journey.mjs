@@ -22,7 +22,7 @@ try {
   await page.getByText("找到了！").waitFor();
   await page.waitForFunction((id) => Object.keys(localStorage).some((key) => key.startsWith("word-atlas:v3:primary-progress:") && JSON.parse(localStorage.getItem(key)).cards[id]?.reps === 1), target);
   await page.getByRole("button", { name: "返回主题" }).click();
-  await page.getByRole("button", { name: "结束体验" }).click();
+  await page.getByRole("button", { name: "结束本次学习" }).click();
   await page.getByText("apple · 苹果").waitFor();
   await page.screenshot({ path: "output/preview-check/journey-desktop-dark.png", fullPage: true, animations: "disabled" });
   await page.getByRole("button", { name: "切换到浅色" }).click();

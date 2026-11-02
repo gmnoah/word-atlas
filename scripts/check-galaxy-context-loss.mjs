@@ -10,7 +10,7 @@ try {
   const stop=page.locator('.journey-stop').first();
   await stop.getByRole('button',{name:course==='hanzi-starter'?'一起读一读':'开始小课'}).click();
   await page.getByRole('button',{name:course==='hanzi-starter'?'看过啦，下一个':'认识了，继续'}).click();
-  await page.getByRole('button',{name:'返回旅程'}).click(); await page.getByRole('button',{name:'结束体验'}).click();
+  await page.getByRole('button',{name:'返回旅程'}).click(); await page.getByRole('button',{name:'结束本次学习'}).click();
   await page.locator('.course-galaxy-section summary').click();
   const map=page.getByRole('region',{name:'课程知识星图'}), canvas=map.locator('canvas');
   await map.getByText('看过 1 / 300').waitFor();

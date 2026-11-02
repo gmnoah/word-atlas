@@ -10,7 +10,7 @@ try {
   else await page.locator('.hanzi-map-stop').first().getByRole('button',{name:'只读一读'}).click();
   await page.getByRole('button',{name:'先跳过，下次再认识'}).click();
   await page.getByRole('button',{name:'返回主题'}).click();
-  await page.getByRole('button',{name:'结束体验'}).click();
+  await page.getByRole('button',{name:'结束本次学习'}).click();
   await page.getByRole('button',{name:'学习记录'}).click();
   await page.getByText('已记录：初见先跳过 1 次 · 识别题先跳过 0 次 · 识别题资源暂不可用 0 次').waitFor();
   await page.reload();

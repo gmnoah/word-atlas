@@ -11,7 +11,7 @@ try {
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto(`${base}#/about`);
   await page.getByRole("heading", { name: "一词一画，一起发现。" }).waitFor();
-  await page.getByText(/小学英语和汉字启蒙体验样板/).waitFor();
+  await page.getByText(/学习空间还包括基础英语与汉字启蒙课程/).waitFor();
   for (const size of [{ width: 1440, height: 1000 }, { width: 375, height: 812 }]) {
     await page.setViewportSize(size);
     for (const theme of ["light", "dark"]) {

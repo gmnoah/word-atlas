@@ -12,7 +12,7 @@ try {
     if (view === 'journey') await page.locator('.journey-stop').first().getByRole('button', { name: isHanzi ? '一起读一读' : '开始小课' }).click();
     else await page.locator(isHanzi ? '.hanzi-map-stop' : '.preview-lesson-tile').first().getByRole('button', { name: isHanzi ? '只读一读' : '开始小课', exact: true }).click();
     await page.getByRole('button', { name: view === 'journey' ? '返回旅程' : '返回主题', exact: true }).click();
-    await page.getByRole('button', { name: '结束体验' }).click();
+    await page.getByRole('button', { name: '结束本次学习' }).click();
     await page.getByRole('navigation', { name: '课程导航' }).getByRole('button', { name: view === 'journey' ? '今日旅程' : '主题图鉴' }).waitFor();
     assert.equal(await page.getByRole('navigation', { name: '课程导航' }).getByRole('button', { name: view === 'journey' ? '今日旅程' : '主题图鉴' }).getAttribute('aria-current'), 'page');
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
