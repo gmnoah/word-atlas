@@ -33,12 +33,12 @@ try {
   assert.deepEqual(Object.values(snapshot.introducedOffsets),[-480,-480]);
   await page.reload();
   const summary=page.getByRole('region',{name:'详细活动记录'});
-  await summary.locator('.activity-week li').filter({hasText:'10-28'}).getByText(/有日期看过 1 次/).waitFor();
-  await summary.locator('.activity-week li').filter({hasText:'10-29'}).getByText(/有日期看过 1 次/).waitFor();
+  await summary.locator('.activity-week li').filter({hasText:'10-28'}).getByText(/看过 1/).waitFor();
+  await summary.locator('.activity-week li').filter({hasText:'10-29'}).getByText(/看过 1/).waitFor();
   const other=await contextAt('America/Los_Angeles',saved); const p2=await other.newPage();
   await p2.goto(`http://localhost:5188/#/explore?course=${course}&view=records`);
   const s2=p2.getByRole('region',{name:'详细活动记录'});
-  const expected=course==='hanzi-starter'?'有日期看过 1 次 · 识别 0 次 · 共读 1 次':'有日期看过 1 次 · 识别 1 次';
+  const expected=course==='hanzi-starter'?'看过 1 · 识别 0 · 共读 1':'看过 1 · 识别 1';
   await s2.locator('.activity-week li').filter({hasText:'10-28'}).getByText(expected).waitFor();
   await s2.locator('.activity-week li').filter({hasText:'10-29'}).getByText(expected).waitFor();
   const replay=await p2.evaluate(async({key,session,mode,second})=>{const {putActivitySnapshot,snapshotFromSession}=await import('/src/learning/activity-record.ts');return putActivitySnapshot(JSON.parse(localStorage.getItem(key)),snapshotFromSession(session,mode,second)).sessions['timezone-test'];},{...saved,second});
