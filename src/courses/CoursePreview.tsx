@@ -731,7 +731,7 @@ export default function CoursePreview() {
                       {first && <Illustration src={course.img(first)} word={entryLabel(first)} />}
                       <div><h3>{item.title}</h3><p>{state ? state.state === "visited" ? "这一站都看过了" : state.state === "partial" ? "来过这里" : "等你来探索" : "学习记录暂不可用"}</p>
                         {itemEntries.length > 0 && <ul className="journey-stop-preview" aria-label={`${item.title}的内容预览`}>
-                          {itemEntries.slice(0, 3).map((entry) => <li key={entry.id} lang={entry.kind === "english" ? "en" : "zh-CN"}>{entryLabel(entry)}</li>)}
+                          {itemEntries.slice(0, 3).map((entry) => <li key={entry.id}><EntryPreviewLabel entry={entry} /></li>)}
                           {itemEntries.length > 3 && <li className="journey-stop-preview-more" aria-label={`另有 ${itemEntries.length - 3} 个内容`}>+{itemEntries.length - 3}</li>}
                         </ul>}
                         {state && state.total > 0 && <div className="journey-stop-progress">
@@ -1101,6 +1101,12 @@ export default function CoursePreview() {
       <Toasts />
     </div>
   );
+}
+
+function EntryPreviewLabel({ entry }: { entry: LearningEntry }) {
+  return entry.kind === "english"
+    ? <><span lang="en">{entry.word}</span> · <span lang="zh-CN">{entry.meaning}</span></>
+    : <><span lang="zh-CN">{entry.character}</span> · <span lang="zh-CN">{entry.phrase}</span></>;
 }
 
 function PreviewLesson({

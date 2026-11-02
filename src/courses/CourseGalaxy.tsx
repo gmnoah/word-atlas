@@ -153,6 +153,6 @@ export default function CourseGalaxy({ entries, lessons, profileId, courseId, re
     <div className="course-galaxy-filter"><label htmlFor="course-galaxy-topic">选择主题</label><select id="course-galaxy-topic" value={chosen?.id ?? ""} onChange={event => { setTopic(event.target.value); setFocusedTopic(null); }}>{lessons.map(lesson => <option key={lesson.id} value={lesson.id}>{lesson.title}</option>)}</select>
       {webgl && <button type="button" className="btn btn-ghost" disabled={!visible.length} onClick={focusTopic} aria-label={`在星图中定位${chosen?.title ?? "当前主题"}`}><Crosshair size={17} /> 定位主题</button>}
     </div>
-    <ul className="course-galaxy-entries">{visible.map(entry => <li key={entry.id}><button type="button" onClick={() => onOpen(entry)} aria-label={`查看${entryLabel(entry)}${entry.kind === "hanzi" ? "字卡" : "词卡"}${seen.has(entry.id) ? "，看过" : ""}`}><span lang={entry.kind === "hanzi" ? "zh-CN" : "en"}>{entryLabel(entry)}</span>{seen.has(entry.id) && <small>看过</small>}</button></li>)}</ul>
+    <ul className="course-galaxy-entries">{visible.map(entry => <li key={entry.id}><button type="button" onClick={() => onOpen(entry)} aria-label={`查看${entryLabel(entry)}${entry.kind === "hanzi" ? "字卡" : "词卡"}${seen.has(entry.id) ? "，看过" : ""}`}><span className="course-galaxy-entry-copy"><span lang={entry.kind === "hanzi" ? "zh-CN" : "en"}>{entryLabel(entry)}</span><small>{entry.kind === "hanzi" ? entry.phrase : entry.meaning}</small></span>{seen.has(entry.id) && <small className="is-seen">看过</small>}</button></li>)}</ul>
   </section>;
 }

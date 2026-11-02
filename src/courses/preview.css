@@ -79,8 +79,10 @@
 .course-galaxy-filter select { min-height: 48px; max-width: 100%; padding: 8px 12px; color: var(--ink); background: var(--card); border: 1px solid var(--line-strong); border-radius: var(--r-sm); }
 .course-galaxy-filter .btn { min-height: 48px; }
 .course-galaxy-entries { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; list-style: none; }
-.course-galaxy-entries button { display: flex; align-items: center; gap: 8px; min-height: 48px; padding: 8px 12px; color: var(--ink); background: var(--card); border: 1px solid var(--line-strong); border-radius: var(--r-sm); cursor: pointer; }
-.course-galaxy-entries small { color: var(--sage-ink); }
+.course-galaxy-entries button { display: flex; align-items: flex-start; gap: 8px; min-height: 48px; padding: 8px 12px; color: var(--ink); text-align: start; background: var(--card); border: 1px solid var(--line-strong); border-radius: var(--r-sm); cursor: pointer; }
+.course-galaxy-entry-copy { display: grid; gap: 2px; min-width: 0; }
+.course-galaxy-entry-copy small { max-width: 12em; color: var(--ink-2); font: 12px/1.35 var(--sans); overflow-wrap: anywhere; }
+.course-galaxy-entries .is-seen { flex: none; color: var(--sage-ink); }
 .preview-section-heading {
   margin: 40px 0 20px;
   display: flex;

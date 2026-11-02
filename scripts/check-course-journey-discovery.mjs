@@ -60,6 +60,10 @@ try {
         4,
       );
       assert.match(
+        await firstTheme.locator(".journey-stop-preview li").first().innerText(),
+        course === "hanzi-starter" ? /山\s*·\s*高山/ : /apple\s*·\s*苹果/,
+      );
+      assert.match(
         await firstTheme.locator(".journey-stop-preview-more").getAttribute("aria-label"),
         /另有 \d+ 个内容/,
       );

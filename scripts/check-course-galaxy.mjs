@@ -18,6 +18,8 @@ try {
   assert.ok(await map.getByRole('button',{name:'放大星图'}).evaluate(el=>el.getBoundingClientRect().height)>=48);
   await map.getByRole('button',{name:'放大星图'}).click(); await map.getByRole('button',{name:'缩小星图'}).click(); await map.getByRole('button',{name:'重置星图'}).click();
   const select=map.getByLabel('选择主题'); const opts=await select.locator('option').count(); assert.ok(opts>1); await select.selectOption({index:1});
+  const firstEntryText=await map.locator('.course-galaxy-entries button').first().innerText();
+  assert.match(firstEntryText,course==='hanzi-starter'?/人\s*行人/:/cat\s*猫/);
   await map.locator('.course-galaxy-entries button').first().click(); await page.getByRole('dialog').waitFor(); await page.getByRole('button',{name:'关闭',exact:true}).click();
   const stop=page.locator('.journey-stop').first();
   await stop.getByRole('button',{name:course==='hanzi-starter'?'一起读一读':'开始小课'}).click();
