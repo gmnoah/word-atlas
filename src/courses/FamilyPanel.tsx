@@ -30,7 +30,8 @@ export function RecentActivity({ profileId, profileName }: { profileId: string; 
   return (
     <section className="family-activity" aria-labelledby="family-activity-title">
       <p className="eyebrow" id="family-activity-title">学习记录</p>
-      <h3>{profileName} 在这台设备上的记录</h3>
+      <h2>本机学习记录</h2>
+      <p className="family-activity-profile">当前学习者：{profileName}</p>
       <dl>
         {rows.map((row) => (
           <div key={row.id}>

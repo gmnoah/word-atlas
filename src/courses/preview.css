@@ -1175,9 +1175,14 @@
   padding-top: 18px;
   border-top: 1px solid var(--line);
 }
-.family-activity h3 {
-  margin: 6px 0 12px;
+.family-activity h2 {
+  margin: 6px 0 4px;
   font: 600 20px/1.4 var(--serif);
+}
+.family-activity-profile {
+  margin: 0 0 12px;
+  color: var(--ink-2);
+  font-size: 13px;
 }
 .family-activity dl {
   display: grid;
