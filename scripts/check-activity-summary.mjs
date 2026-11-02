@@ -81,8 +81,23 @@ try {
   await page.evaluate(courseId => localStorage.setItem(`word-atlas:v3:activity:learner-default:${courseId}`, '{bad'), course);
   await page.reload();
   await page.getByText('详细记录暂时无法读取，原记录已保留。').waitFor();
+  await page.getByText('可以先返回今日旅程；如需尝试恢复，请在家长设置中检查备份。恢复前不会覆盖现有记录。').waitFor();
+  const recoveryJourneyAction = page.getByRole('button', { name: '去今日旅程' });
+  const settingsAction = page.getByRole('button', { name: '打开家长设置' });
+  assert.equal(await recoveryJourneyAction.evaluate(element => element.getBoundingClientRect().height >= 48), true);
+  assert.equal(await settingsAction.evaluate(element => element.getBoundingClientRect().height >= 48), true);
+  await recoveryJourneyAction.click();
+  await page.locator('.journey-stops').waitFor();
+  await page.goto(`http://localhost:5188/#/explore?course=${course}&view=records`);
+  await page.getByRole('heading', { name: course === 'primary-starter' ? '基础英语 · 活动详情' : '汉字启蒙 · 活动详情' }).waitFor();
+  await page.getByRole('button', { name: '打开家长设置' }).click();
+  const parentDialog = page.getByRole('dialog', { name: '家长设置' });
+  await parentDialog.waitFor();
+  await parentDialog.getByText('备份与恢复').waitFor();
   assert.equal(await page.evaluate(courseId => localStorage.getItem(`word-atlas:v3:activity:learner-default:${courseId}`), course), '{bad');
+  await parentDialog.getByRole('button', { name: '关闭' }).click();
+  assert.equal(await settingsAction.evaluate(element => document.activeElement === element), true);
   await context.close();
  }
- console.log('活动记录：两门课程模拟数据、桌面及 375px 双主题通过');
+ console.log('活动记录：两门课程模拟数据、损坏恢复入口、桌面及 375px 双主题通过');
 } finally { await browser.close(); }

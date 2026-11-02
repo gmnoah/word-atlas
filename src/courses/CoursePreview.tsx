@@ -660,7 +660,7 @@ export default function CoursePreview() {
               <div className="course-records-heading"><p className="eyebrow">THIS COURSE / 当前课程</p>
                 <h2>{course.manifest.title} · 活动详情</h2>
                 <p>以下记录仅包含当前学习者在这门课程中的活动。</p></div>
-              <ActivitySummary profileId={activeProfileId} courseId={course.manifest.id} emptyAction={
+              <ActivitySummary profileId={activeProfileId} courseId={course.manifest.id} onOpenSettings={() => setParentOpen(true)} emptyAction={
                 <button type="button" className="btn btn-ghost" onClick={() => go({ page: "explore", courseId: course.manifest.id, view: "journey" })}>
                   去今日旅程 <ArrowRight size={16} />
                 </button>

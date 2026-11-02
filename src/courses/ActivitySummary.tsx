@@ -3,9 +3,24 @@ import { readActivityRecord, summarizeActivity, recentRecognitionDays } from "..
 import { readPrimaryProgress } from "../learning/primary-progress";
 
 /** These totals describe recorded first answers, not mastered content. */
-export function ActivitySummary({ profileId, courseId, emptyAction }: { profileId: string; courseId: string; emptyAction?: ReactNode }) {
+export function ActivitySummary({ profileId, courseId, emptyAction, onOpenSettings }: {
+  profileId: string;
+  courseId: string;
+  emptyAction?: ReactNode;
+  onOpenSettings?: () => void;
+}) {
   const result = readActivityRecord(localStorage, profileId, courseId, Date.now());
-  if (!result.ok) return <p role="alert">详细记录暂时无法读取，原记录已保留。</p>;
+  if (!result.ok) {
+    return <section className="activity-empty" aria-label="详细活动记录">
+      <h3>详细活动记录</h3>
+      <p role="alert">详细记录暂时无法读取，原记录已保留。</p>
+      <p>可以先返回今日旅程；如需尝试恢复，请在家长设置中检查备份。恢复前不会覆盖现有记录。</p>
+      <div className="activity-empty-actions">
+        {emptyAction}
+        {onOpenSettings && <button type="button" className="btn btn-ghost" onClick={onOpenSettings}>打开家长设置</button>}
+      </div>
+    </section>;
+  }
   const sessions = Object.values(result.record.sessions);
   const archived = Object.values(result.record.archivedSessions ?? {});
   if (!sessions.length && !archived.length) {

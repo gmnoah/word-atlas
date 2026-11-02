@@ -1552,6 +1552,8 @@
 .activity-empty h3 { margin: 0 0 6px; color: var(--ink); font: 600 18px/1.35 var(--serif); }
 .activity-empty p { margin: 6px 0; }
 .activity-empty .btn { min-height: 48px; margin-top: 8px; }
+.activity-empty-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+.activity-empty-actions .btn { margin-top: 0; }
 .activity-totals { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
 .activity-total { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 4px; padding: 14px; color: var(--ink-2); background: var(--paper-2); border: 1px solid var(--line); border-radius: var(--r); }
 .activity-total strong { color: var(--ink); font: 600 26px/1.2 var(--serif); font-variant-numeric: tabular-nums; }
