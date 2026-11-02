@@ -1,4 +1,5 @@
 import { readActivityRecord, summarizeActivity, recentRecognitionDays } from "../learning/activity-record";
+import { readPrimaryProgress } from "../learning/primary-progress";
 
 /** These totals describe recorded first answers, not mastered content. */
 export function ActivitySummary({ profileId, courseId }: { profileId: string; courseId: string }) {
@@ -6,7 +7,21 @@ export function ActivitySummary({ profileId, courseId }: { profileId: string; co
   if (!result.ok) return <p role="alert">详细记录暂时无法读取，原记录已保留。</p>;
   const sessions = Object.values(result.record.sessions);
   const archived = Object.values(result.record.archivedSessions ?? {});
-  if (!sessions.length && !archived.length) return <p>还没有详细活动记录。之后的小课会在这里留下记录。</p>;
+  if (!sessions.length && !archived.length) {
+    const progress = readPrimaryProgress(localStorage, profileId, courseId);
+    const seen = progress.ok ? Object.keys(progress.progress.introduced).length : 0;
+    const cards = progress.ok ? Object.keys(progress.progress.cards).length : 0;
+    const favorites = progress.ok ? progress.progress.favorites.length : 0;
+    if (seen || cards || favorites) {
+      const unit = courseId === "hanzi-starter" ? "字" : "词";
+      return <section aria-label="详细活动记录">
+        <h3>详细活动记录</h3>
+        <p>累计学习记录中已有看过 {seen} 个{unit}、复习卡 {cards} 张、收藏 {favorites} 个，但还没有带日期的逐日小课明细。</p>
+        <p>旧版或早于逐日活动保存的数据无法补造日期；之后完成小课，会在这里记录首次答题、近七天活动和主题足迹。</p>
+      </section>;
+    }
+    return <p>还没有详细活动记录。之后的小课会在这里留下记录。</p>;
+  }
   const counts = summarizeActivity(result.record);
   const hasFirstAnswer = counts.independent + counts.hinted + counts.assisted + counts.incorrect > 0;
   const hasFirstCorrect = counts.independent + counts.hinted + counts.assisted > 0;

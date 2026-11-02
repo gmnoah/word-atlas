@@ -14,6 +14,15 @@ try {
   await currentSummary.getByText('看过 0 / 300').waitFor();
   assert.equal(await page.locator('.family-activity-progress').count(),2);
   await page.getByText('逐日记录只覆盖本机保留且带有日期的活动；更早或缺少日期的数据不会补造。').waitFor();
+  await page.getByText('还没有详细活动记录。之后的小课会在这里留下记录。').waitFor();
+  await page.evaluate(courseId => {
+   const progress={version:1,profileId:'learner-default',courseId,introduced:{a:1,b:2},cards:{},favorites:[],applied:{}};
+   localStorage.setItem(`word-atlas:v3:primary-progress:learner-default:${courseId}`,JSON.stringify(progress));
+  },course);
+  await page.reload();
+  const unit=course === 'primary-starter' ? '词' : '字';
+  await page.getByText(`累计学习记录中已有看过 2 个${unit}、复习卡 0 张、收藏 0 个，但还没有带日期的逐日小课明细。`).waitFor();
+  await page.getByText('旧版或早于逐日活动保存的数据无法补造日期；之后完成小课，会在这里记录首次答题、近七天活动和主题足迹。').waitFor();
   await page.evaluate(courseId => {
    const progress={version:1,profileId:'learner-default',courseId,introduced:{a:1,b:2},cards:{},favorites:[],applied:{}};
    localStorage.setItem(`word-atlas:v3:primary-progress:learner-default:${courseId}`,JSON.stringify(progress));
