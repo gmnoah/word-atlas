@@ -440,7 +440,7 @@
   align-items: center;
   gap: 10px;
   min-height: 48px;
-  padding: 0 16px;
+  padding: 0 4px 0 16px;
   color: var(--ink-2);
   background: var(--card);
   border: 1px solid var(--line-strong);
@@ -456,7 +456,22 @@
   color: var(--ink);
   font: inherit;
 }
-.atlas-search p { margin: 8px 0 0; color: var(--ink-2); font-size: 14px; }
+.atlas-search-clear {
+  flex: none;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  color: var(--ink-2);
+  background: transparent;
+  border: 0;
+  border-radius: calc(var(--r) - 4px);
+  cursor: pointer;
+}
+.atlas-search-clear:hover { color: var(--ink); background: var(--paper-2); }
+.atlas-search-clear:focus-visible { outline: 2px solid var(--terra); outline-offset: -4px; }
+.atlas-search p { margin: 8px 0 0; color: var(--ink-2); font-size: 14px; line-height: 1.55; }
 .preview-lessons {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

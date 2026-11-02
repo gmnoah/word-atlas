@@ -11,8 +11,9 @@ import {
   Settings2,
   Sun,
   Volume2,
+  X,
 } from "lucide-react";
-import { lazy, Suspense, useCallback, useEffect, useMemo, useReducer, useState } from "react";
+import { lazy, Suspense, useCallback, useEffect, useMemo, useReducer, useRef, useState } from "react";
 import { Illustration } from "../ui/Illustration";
 import { Logo } from "../ui/Logo";
 import { Sheet } from "../ui/Sheet";
@@ -83,6 +84,7 @@ export default function CoursePreview() {
   const [course, setCourse] = useState<Course | null>(null);
   const [courseEntries, setCourseEntries] = useState<LearningEntry[]>([]);
   const [atlasQuery, setAtlasQuery] = useState("");
+  const atlasSearchRef = useRef<HTMLInputElement>(null);
   useEffect(() => setAtlasQuery(""), [courseId]);
   const entriesById = useMemo(() => new Map(courseEntries.map((entry) => [entry.id, entry])), [courseEntries]);
   const todayEntries = useMemo(() => recommendedPrimaryEntries(courseEntries, course?.lessons ?? []), [courseEntries, course]);
@@ -706,9 +708,21 @@ export default function CoursePreview() {
               <label htmlFor="atlas-search">查找主题或{course.manifest.subject === "hanzi" ? "汉字" : "单词"}</label>
               <div className="atlas-search-control"><Search size={20} aria-hidden="true" />
                 <input id="atlas-search" type="search" value={atlasQuery} onChange={(event) => setAtlasQuery(event.target.value)}
+                  ref={atlasSearchRef}
+                  aria-describedby="atlas-search-status"
                   placeholder={course.manifest.subject === "hanzi" ? "输入汉字、词语、拼音或主题" : "输入单词、中文或主题"} />
+                {atlasQuery && <button type="button" className="atlas-search-clear" aria-label="清空图鉴查找" onClick={() => {
+                  setAtlasQuery("");
+                  requestAnimationFrame(() => atlasSearchRef.current?.focus());
+                }}><X size={18} aria-hidden="true" /></button>}
               </div>
-              {atlasQuery.trim() && <p role="status">{matchingLessons.length ? `找到 ${matchingLessons.length} 个相关主题，展示主题内全部内容；匹配的词字会标出。` : "没有找到相关主题，试试其他词。"}</p>}
+              <p id="atlas-search-status" role="status" aria-live="polite">
+                {!atlasQuery.trim()
+                  ? `全部 ${course.lessons?.length ?? 0} 个主题 · ${courseEntries.length} 个${course.manifest.subject === "hanzi" ? "字" : "词"}，按主题保留完整图鉴。`
+                  : matchingLessons.length
+                    ? `显示 ${matchingLessons.length} / ${course.lessons?.length ?? 0} 个匹配主题 · ${matchingEntryIds.size} / ${courseEntries.length} 个${course.manifest.subject === "hanzi" ? "字" : "词"}。主题内未匹配的内容仍会显示。`
+                    : `没有找到相关主题。换一个${course.manifest.subject === "hanzi" ? "汉字、词语、拼音" : "单词或中文"}，清空查找可恢复全部 ${course.lessons?.length ?? 0} 个主题、${courseEntries.length} 个${course.manifest.subject === "hanzi" ? "字" : "词"}。`}
+              </p>
             </section>
             {course.manifest.subject === "hanzi" ? (
               <HanziMap
