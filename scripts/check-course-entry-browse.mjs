@@ -47,6 +47,12 @@ try {
     await page.goBack();
     await page.getByRole("heading", { name: "水果篮子" }).waitFor();
     assert.equal(await page.getByRole("dialog", { name: "课程条目" }).count(), 0);
+    await page.goto("http://localhost:5188/#/explore?course=primary-starter&view=journey");
+    const englishJourney = page.getByRole("region", { name: "今日学习" });
+    await englishJourney.getByRole("button", { name: "打开 apple 词卡" }).click();
+    detail = page.getByRole("dialog", { name: "课程条目" });
+    await detail.getByRole("heading", { name: "apple", exact: true }).waitFor();
+    await detail.getByRole("button", { name: "关闭" }).click();
 
     await page.goto("http://localhost:5188/#/explore?course=primary-starter&view=journey&entry=en-apple");
     detail = page.getByRole("dialog", { name: "课程条目" });
@@ -89,7 +95,7 @@ try {
 
     await context.close();
   }
-  console.log("两课程词字卡连续浏览、图鉴收藏、汉字收藏回看、朗读切换、返回历史及桌面/375px 深浅主题通过");
+  console.log("两课程词字卡连续浏览、图鉴收藏、英语与汉字收藏回看、朗读切换、返回历史及桌面/375px 深浅主题通过");
 } finally {
   await browser.close();
 }

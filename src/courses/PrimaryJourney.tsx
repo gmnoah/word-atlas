@@ -99,8 +99,8 @@ export function PrimaryTodayButton(props: TodayProps) {
       : today.checkpoint.status === "invalid" && <span className="journey-action-error" role="status">今日小课记录暂时无法读取，原记录已保留。可以选择其他主题。</span>}</>;
 }
 
-export function PrimaryJourney(props: TodayProps & { hideAction?: boolean }) {
-  const { profileId, courseId, entries, onToday, onOpenSettings, hideAction = false } = props;
+export function PrimaryJourney(props: TodayProps & { hideAction?: boolean; onOpenFavorite?: (entry: LearningEntry) => void }) {
+  const { profileId, courseId, entries, onToday, onOpenSettings, hideAction = false, onOpenFavorite } = props;
   const { progress, error, toggle } = usePrimaryProgress(profileId, courseId);
   const favorites = progress ? entries.filter((entry) => progress.favorites.includes(entry.id)) : [];
   const today = todayState(props, progress);
@@ -110,7 +110,10 @@ export function PrimaryJourney(props: TodayProps & { hideAction?: boolean }) {
       {!hideAction && <button className="btn btn-primary" disabled={today.disabled} onClick={onToday}>{today.actionLabel} <ArrowRight size={18} /></button>}
     </div>
     <div className="primary-favorites"><h3>收藏的词</h3>
-      {favorites.length ? <ul>{favorites.map((entry) => <li key={entry.id}><span>{entryLabel(entry)}{entry.kind === "english" ? ` · ${entry.meaning}` : ""}</span>
+      {favorites.length ? <ul>{favorites.map((entry) => <li key={entry.id}>
+        {onOpenFavorite ? <button type="button" className="primary-favorite-open" aria-label={`打开 ${entryLabel(entry)} 词卡`} onClick={() => onOpenFavorite(entry)}>
+          <span>{entryLabel(entry)}{entry.kind === "english" ? ` · ${entry.meaning}` : ""}</span><ChevronRight size={16} aria-hidden="true" />
+        </button> : <span>{entryLabel(entry)}{entry.kind === "english" ? ` · ${entry.meaning}` : ""}</span>}
         <button className="btn btn-ghost" onClick={() => void toggle(entry.id)} aria-label={`取消收藏 ${entryLabel(entry)}`}>取消收藏</button></li>)}</ul> : <p>{progress ? "遇到喜欢的词，可以在词卡上收藏。" : "收藏记录暂时无法读取。"}</p>}
     </div>
     {error && !hideAction && <div className="primary-journey-error" role="alert">
