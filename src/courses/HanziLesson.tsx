@@ -65,6 +65,8 @@ export function HanziLesson({ course, lesson, entries, profileId, mode, minutes,
   const blocked = useRef(loaded.status === "invalid");
   const [saveError, setSaveError] = useState(loaded.status === "invalid");
   const [progressError, setProgressError] = useState(false);
+  const [saveRetry, setSaveRetry] = useState(0);
+  const [saveRetrying, setSaveRetrying] = useState(false);
   const progressFailure = useRef(false);
   const [sessionMode] = useState(loaded.status === "ok" ? loaded.checkpoint.mode : mode);
   const [sessionVoice] = useState(loaded.status === "ok" ? loaded.checkpoint.voiceAvailable : voiceAvailable);
@@ -184,8 +186,8 @@ export function HanziLesson({ course, lesson, entries, profileId, mode, minutes,
     }, generation.current).catch(() => {
       blocked.current = true;
       setSaveError(true);
-    });
-  }, [session, profileId, course.manifest.id, lesson.id, sessionMode, sessionVoice, sessionMinutes, saveError]);
+    }).finally(() => setSaveRetrying(false));
+  }, [session, profileId, course.manifest.id, lesson.id, sessionMode, sessionVoice, sessionMinutes, saveError, saveRetry]);
 
   const leaveFinished = async (action: () => void) => {
     if (progressError && !saveError) {
@@ -248,14 +250,18 @@ export function HanziLesson({ course, lesson, entries, profileId, mode, minutes,
         <span>{session.endedAt ? "这次的小发现" : "慢慢来"}</span>
       </div>
       {saveError && (
-        <p role="alert" className="preview-disclosure">
-          这次{coRead ? "共读" : "认读"}暂时无法保存：本地记录不可用或已在其他页面更改。原有记录会保留。
-        </p>
+        <div role="alert" className="preview-disclosure preview-save-error">
+          <span>这次{coRead ? "共读" : "认读"}暂时无法保存：本地记录不可用或已在其他页面更改。原有记录会保留。</span>
+          {onOpenSettings && <button type="button" className="btn btn-ghost" onClick={onOpenSettings}>打开家长设置</button>}
+        </div>
       )}
       {progressError && !saveError && (
-        <p role="alert" className="preview-disclosure">
-          认识结果暂时无法保存，已保留本次{coRead ? "共读" : "认读"}记录，可稍后重新打开并重试。
-        </p>
+        <div role="alert" className="preview-disclosure preview-save-error">
+          <span>认识结果暂时无法保存，已保留本次{coRead ? "共读" : "认读"}记录。可以先重试；仍失败时可在家长设置检查备份恢复。</span>
+          <button type="button" className="btn btn-ghost" disabled={saveRetrying} aria-busy={saveRetrying}
+            onClick={() => { setSaveRetrying(true); setSaveRetry((value) => value + 1); }}>重试保存</button>
+          {onOpenSettings && <button type="button" className="btn btn-ghost" onClick={onOpenSettings}>打开家长设置</button>}
+        </div>
       )}
       <div
         className="preview-progress"

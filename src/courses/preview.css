@@ -64,6 +64,8 @@
 .course-galaxy-fallback strong { color: var(--ink); font: 600 20px/1.3 var(--serif); }
 .course-galaxy-recovery { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin-top: 12px; padding: 12px 14px; color: var(--ink-2); background: var(--paper-2); border: 1px solid var(--line); border-radius: var(--r); }
 .course-galaxy-recovery .btn { min-height: 48px; }
+.preview-save-error { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
+.preview-save-error .btn { min-height: 48px; }
 .course-galaxy-sky canvas { display: block; width: 100%; height: 100%; touch-action: none; }
 .course-galaxy-sky canvas:focus-visible { outline: 2px solid #f2ebdd; outline-offset: -5px; }
 .course-galaxy-markers { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; }

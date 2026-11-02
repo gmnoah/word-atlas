@@ -24,6 +24,23 @@ try {
       if (fault === 'progress') await page.getByRole('button', { name: '认识了，继续' }).click();
       const alert = page.locator('.preview-study [role="alert"]');
       await alert.waitFor();
+      if (fault === 'checkpoint') {
+        const recovery = alert.getByRole('button', { name: '打开家长设置' });
+        assert.ok(await recovery.evaluate(element => element.getBoundingClientRect().height >= 47.9));
+        await recovery.click();
+        const settings = page.getByRole('dialog', { name: '家长设置' });
+        await settings.getByText('备份与恢复').waitFor();
+        await settings.getByRole('button', { name: '关闭', exact: true }).click();
+        assert.equal(await recovery.evaluate(element => document.activeElement === element), true);
+      } else {
+        const retry = alert.getByRole('button', { name: '重试保存' });
+        assert.ok(await retry.evaluate(element => element.getBoundingClientRect().height >= 47.9));
+        await retry.click();
+        await page.waitForFunction(() => !document.querySelector('.preview-save-error button[aria-busy="true"]'));
+        assert.equal(await alert.count(), 1);
+        const recovery = alert.getByRole('button', { name: '打开家长设置' });
+        assert.ok(await recovery.evaluate(element => element.getBoundingClientRect().height >= 47.9));
+      }
       await page.getByRole('button', { name: '返回主题' }).click();
       const sheet = page.getByRole('dialog');
       await sheet.waitFor({ state: 'visible' });

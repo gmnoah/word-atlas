@@ -35,6 +35,8 @@ export function PrimaryLesson({ course, lesson, entries, profileId, stage, spell
   const progressFailure = useRef(false);
   const [saveError, setSaveError] = useState(loaded.status === "invalid");
   const [progressError, setProgressError] = useState(false);
+  const [saveRetry, setSaveRetry] = useState(0);
+  const [saveRetrying, setSaveRetrying] = useState(false);
   const [sessionStage] = useState(loaded.status === "ok" ? loaded.checkpoint.stage : stage);
   const [sessionSpelling] = useState(loaded.status === "ok" ? loaded.checkpoint.spellingEnabled : spellingEnabled);
   const [session, dispatchRaw] = useReducer(learningReducer, undefined, () => {
@@ -106,8 +108,9 @@ export function PrimaryLesson({ course, lesson, entries, profileId, stage, spell
         setProgressError(!ok);
         if (ok && changed) window.dispatchEvent(new Event("primary-progress-changed"));
       } catch { progressFailure.current = true; setProgressError(true); }
-    }, generation.current).catch(() => { blocked.current = true; setSaveError(true); });
-  }, [session, profileId, course.manifest.id, lesson.id, sessionStage, sessionSpelling, saveError]);
+    }, generation.current).catch(() => { blocked.current = true; setSaveError(true); })
+      .finally(() => setSaveRetrying(false));
+  }, [session, profileId, course.manifest.id, lesson.id, sessionStage, sessionSpelling, saveError, saveRetry]);
   const leaveFinished = async (action: () => void) => {
     if (progressError && !saveError) { action(); return; }
     const cleared = saveError || await withPrimaryLock(profileId, course.manifest.id, () => progressFailure.current || clearCheckpoint(localStorage, { profileId, courseId: course.manifest.id, lessonId: lesson.id }, expected.current), generation.current).catch(() => false);
@@ -140,8 +143,16 @@ export function PrimaryLesson({ course, lesson, entries, profileId, stage, spell
         <span>{lesson.title}</span>
         <span>{session.endedAt ? "这次的小发现" : `${session.index + 1} / ${session.steps.length}`}</span>
       </div>
-      {saveError && <p role="alert" className="preview-disclosure">这次小课暂时无法保存：本地记录不可用或已在其他页面更改。原有记录会保留，本页的后续操作可能无法恢复。</p>}
-      {progressError && !saveError && <p role="alert" className="preview-disclosure">学习结果暂时无法保存，已保留本次小课记录，可稍后重新打开并重试。</p>}
+      {saveError && <div role="alert" className="preview-disclosure preview-save-error">
+        <span>这次小课暂时无法保存：本地记录不可用或已在其他页面更改。原有记录会保留，本页的后续操作可能无法恢复。</span>
+        {onOpenSettings && <button type="button" className="btn btn-ghost" onClick={onOpenSettings}>打开家长设置</button>}
+      </div>}
+      {progressError && !saveError && <div role="alert" className="preview-disclosure preview-save-error">
+        <span>学习结果暂时无法保存，已保留本次小课记录。可以先重试；仍失败时可在家长设置检查备份恢复。</span>
+        <button type="button" className="btn btn-ghost" disabled={saveRetrying} aria-busy={saveRetrying}
+          onClick={() => { setSaveRetrying(true); setSaveRetry((value) => value + 1); }}>重试保存</button>
+        {onOpenSettings && <button type="button" className="btn btn-ghost" onClick={onOpenSettings}>打开家长设置</button>}
+      </div>}
       <div className="preview-progress" role="progressbar" aria-label="小课进度"
         aria-valuenow={session.index} aria-valuemin={0} aria-valuemax={session.steps.length || 1}>
         <span style={{ width: `${session.steps.length ? (session.index / session.steps.length) * 100 : 0}%` }} />
