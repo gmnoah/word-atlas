@@ -1403,6 +1403,9 @@
 .journey-stop h3 { margin: 0; }
 .journey-stop p { color: var(--ink-2); }
 .journey-stop .btn { min-height: 48px; }
+.journey-stop-preview { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 0; padding: 0; list-style: none; }
+.journey-stop-preview li { max-width: 100%; padding: 4px 9px; color: var(--ink); background: var(--paper-2); border: 1px solid var(--line); border-radius: 999px; font: 600 13px/1.4 var(--serif); overflow-wrap: anywhere; }
+.journey-stop-preview .journey-stop-preview-more { color: var(--ink-3); font-family: var(--sans); }
 .journey-stop-progress { display: grid; gap: 7px; margin: 12px 0 16px; color: var(--ink-2); font-size: 14px; }
 .journey-stop-progress progress { width: 100%; height: 6px; border: 0; border-radius: 999px; overflow: hidden; background: var(--paper-2); accent-color: var(--sage); }
 .journey-stop-progress progress::-webkit-progress-bar { background: var(--paper-2); border-radius: inherit; }

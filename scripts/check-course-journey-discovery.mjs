@@ -26,6 +26,16 @@ try {
         await discovery.locator(".journey-discovery-progress").innerText(),
         new RegExp(`已看过 0 / 300 个${course === "hanzi-starter" ? "字" : "词"}`),
       );
+      const firstTheme = page.locator(".journey-stop").first();
+      await firstTheme.waitFor();
+      assert.equal(
+        await firstTheme.locator(".journey-stop-preview li").count(),
+        4,
+      );
+      assert.match(
+        await firstTheme.locator(".journey-stop-preview-more").getAttribute("aria-label"),
+        /另有 \d+ 个内容/,
+      );
       assert.equal(
         await page.evaluate(
           () => document.documentElement.scrollWidth <= innerWidth,
