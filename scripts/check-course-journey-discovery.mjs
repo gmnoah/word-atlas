@@ -177,6 +177,22 @@ try {
         .count(),
       1,
     );
+    if (course === "primary-starter") {
+      await progressPage.goto(
+        "http://localhost:5188/#/explore?course=primary-starter&view=atlas",
+      );
+      const firstTheme = progressPage.locator(".preview-lesson-tile").first();
+      await firstTheme.getByText("看过 1 / 5 个词").waitFor();
+      const startSelect = firstTheme.getByLabel("水果篮子起始词");
+      const optionValues = await startSelect.locator("option").evaluateAll((options) =>
+        options.map((option) => option.value),
+      );
+      assert.notEqual(
+        await startSelect.inputValue(),
+        optionValues[0],
+        "a returning learner should default to the next unseen word",
+      );
+    }
     await progressContext.close();
   }
 
@@ -206,7 +222,7 @@ try {
   await context.close();
 
   console.log(
-    "两课程今日发现、主题进度、真实进度轮换、学习空间续学状态、词字卡键盘开关、减少动态、375/800/1280px 与深浅主题通过；800px 学习空间为两列",
+    "两课程今日发现、主题进度、真实进度轮换、英语主题未看起点、学习空间续学状态、词字卡键盘开关、减少动态、375/800/1280px 与深浅主题通过；800px 学习空间为两列",
   );
 } finally {
   await browser.close();

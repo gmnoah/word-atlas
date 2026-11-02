@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { sampleCourses } from "./samples";
 import { createPreviewSession } from "./preview-session";
-import { entriesFromStartingPoint, primaryPreviewCount, primaryVisualPolicy, recommendedPrimaryEntries } from "./starting-point";
+import { entriesFromStartingPoint, primaryPreviewCount, primaryStartingPointId, primaryVisualPolicy, recommendedPrimaryEntries } from "./starting-point";
 import { createLearningSession, currentStep, learningReducer } from "../learning/session";
 
 const entries = sampleCourses[0].entries.slice(0, 5);
@@ -19,6 +19,14 @@ test("T20: preview stage limits respect the caregiver's smaller selection", () =
   assert.equal(primaryPreviewCount(5, "starter"), 3);
   assert.equal(primaryPreviewCount(5, "advanced"), 5);
   assert.equal(primaryPreviewCount(2, "advanced"), 2);
+});
+
+test("a returning learner starts the theme at the next unseen item", () => {
+  const introduced = new Set([entries[0].id, entries[1].id]);
+  assert.equal(primaryStartingPointId(entries, introduced), entries[2].id);
+  assert.equal(primaryStartingPointId(entries, introduced, entries[0].id), entries[0].id);
+  assert.equal(primaryStartingPointId(entries, new Set(entries.map((entry) => entry.id))), entries[0].id);
+  assert.equal(primaryStartingPointId([], introduced), undefined);
 });
 
 test("T20: stages drive actual P2 session limits, grouping and visual question eligibility", () => {

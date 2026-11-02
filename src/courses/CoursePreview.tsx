@@ -54,7 +54,7 @@ import { watchMandarinVoice } from "./hanzi-voice";
 import { FamilyBackup, FamilyCourseNote, RecentActivity } from "./FamilyPanel";
 import { CourseOpening } from "./CourseOpening";
 import type { HanziLessonMode } from "./hanzi-policy";
-import { entriesFromStartingPoint, primaryPreviewCount, recommendedPrimaryEntries, type PrimaryStartingStage } from "./starting-point";
+import { entriesFromStartingPoint, primaryPreviewCount, primaryStartingPointId, recommendedPrimaryEntries, type PrimaryStartingStage } from "./starting-point";
 import {
   entryLabel,
   type HanziEntry,
@@ -139,6 +139,10 @@ export default function CoursePreview() {
     if (!primaryProgress?.ok) return null;
     return journeyProgress(primaryProgress.progress, course?.lessons ?? [], courseEntries.map((entry) => entry.id));
   }, [course, courseEntries, primaryProgress]);
+  const introducedIds = useMemo(
+    () => new Set(primaryProgress?.ok ? Object.keys(primaryProgress.progress.introduced) : []),
+    [primaryProgress],
+  );
   const overviewProgress = useMemo(() => {
     void progressRevision;
     const states = new Map<string, { ok: boolean; seen: number; hasHistory: boolean }>();
@@ -231,6 +235,13 @@ export default function CoursePreview() {
   const leaveCourse = () => {
     setLesson(null);
     go({ page: "explore" });
+  };
+  const primaryStartFor = (lessonId: string) => {
+    const lessonEntries = (course?.lessons ?? [])
+      .find((item) => item.id === lessonId)?.entryIds
+      .map((id) => entriesById.get(id))
+      .filter((entry): entry is LearningEntry => !!entry) ?? [];
+    return primaryStartingPointId(lessonEntries, introducedIds, startingWords[lessonId]);
   };
 
   useEffect(() => {
@@ -512,7 +523,7 @@ export default function CoursePreview() {
             profileId={activeProfileId}
             entries={entriesFromStartingPoint(
               lesson.entryIds.map((id) => courseEntries.find((entry) => entry.id === id))
-                .filter((entry): entry is LearningEntry => !!entry), startingWords[lesson.id],
+                .filter((entry): entry is LearningEntry => !!entry), primaryStartFor(lesson.id),
             )}
             stage={startingStage}
             spellingEnabled={spellingEnabled}
@@ -549,7 +560,7 @@ export default function CoursePreview() {
             entries={entriesFromStartingPoint(
               lesson.entryIds.map((id) => courseEntries.find((entry) => entry.id === id))
                 .filter((entry): entry is LearningEntry => !!entry),
-              course.manifest.id === "primary-starter" ? startingWords[lesson.id] : undefined,
+              course.manifest.id === "primary-starter" ? primaryStartFor(lesson.id) : undefined,
             )}
             preferences={lessonPreferences}
             onExit={() => setLesson(null)}
@@ -770,9 +781,10 @@ export default function CoursePreview() {
                 const entries = l.entryIds
                   .map((id) => entriesById.get(id))
                   .filter((e): e is LearningEntry => !!e);
+                const startId = primaryStartFor(l.id);
                 const checkpoint = course.manifest.id === "primary-starter" ? readCheckpoint(localStorage, {
                   profileId: activeProfileId, courseId: course.manifest.id, lessonId: l.id,
-                  contentVersion: course.manifest.version, entries: entriesFromStartingPoint(entries, startingWords[l.id]),
+                  contentVersion: course.manifest.version, entries: entriesFromStartingPoint(entries, startId),
                 }, Date.now()) : null;
                 return (
                   <article className="panel preview-lesson-tile" key={l.id}>
@@ -800,7 +812,7 @@ export default function CoursePreview() {
                       {course.manifest.id === "primary-starter" && entries.length > 0 && checkpoint?.status === "empty" && (
                         <label className="preview-start-word">
                           <span>从哪个词开始</span>
-                          <select aria-label={`${l.title}起始词`} value={startingWords[l.id] ?? entries[0].id}
+                          <select aria-label={`${l.title}起始词`} value={startId ?? entries[0].id}
                             onChange={(event) => setStartingWords((current) => ({ ...current, [l.id]: event.target.value }))}>
                             {entries.map((entry) => <option key={entry.id} value={entry.id}>{entryLabel(entry)}</option>)}
                           </select>

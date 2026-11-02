@@ -23,6 +23,16 @@ export function entriesFromStartingPoint(
   return [...entries.slice(start), ...entries.slice(0, start)];
 }
 
+/** Prefer the next unseen item while preserving an explicit user choice. */
+export function primaryStartingPointId(
+  entries: readonly Pick<LearningEntry, "id">[],
+  introduced: ReadonlySet<string>,
+  selectedId?: string,
+): string | undefined {
+  if (entries.some((entry) => entry.id === selectedId)) return selectedId;
+  return entries.find((entry) => !introduced.has(entry.id))?.id ?? entries[0]?.id;
+}
+
 /** The starting stage limits this preview only; it does not claim proficiency. */
 export function primaryPreviewCount(requested: number, stage: PrimaryStartingStage): number {
   const safe = Number.isFinite(requested) ? Math.max(1, Math.floor(requested)) : 3;
