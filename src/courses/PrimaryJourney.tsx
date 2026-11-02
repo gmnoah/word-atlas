@@ -8,10 +8,18 @@ type PrimaryProgressStatus = "loading" | "ready" | "read-error" | "write-error";
 
 function usePrimaryProgress(profileId: string, courseId: string) {
   const scope = `${profileId}:${courseId}`;
-  const [state, setState] = useState<{ scope: string; status: PrimaryProgressStatus; progress: PrimaryProgress | null }>({
-    scope,
-    status: "loading",
-    progress: null,
+  const [state, setState] = useState<{ scope: string; status: PrimaryProgressStatus; progress: PrimaryProgress | null }>(() => {
+    try {
+      if (typeof localStorage !== "undefined") {
+        const result = readPrimaryProgress(localStorage, profileId, courseId);
+        return {
+          scope,
+          status: result.ok ? "ready" : "read-error",
+          progress: result.ok ? result.progress : null,
+        };
+      }
+    } catch {}
+    return { scope, status: "loading", progress: null };
   });
   const refresh = useCallback(() => {
     const result = readPrimaryProgress(localStorage, profileId, courseId);

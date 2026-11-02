@@ -36,7 +36,7 @@ try {
     const finish = page.locator('.preview-finish');
     await finish.waitFor();
     await finish.getByRole('button', { name: '回到旅程' }).click();
-    await page.getByRole('button', { name: '学习记录' }).click();
+    await page.getByRole('button', { name: '学习记录', exact: true }).click();
     const record = page.getByRole('region', { name: '详细活动记录' });
     await record.waitFor();
     const raw = await page.evaluate(course => localStorage.getItem(`word-atlas:v3:activity:learner-default:${course}`), course);
