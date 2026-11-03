@@ -1651,6 +1651,21 @@
   gap: 10px;
   margin-top: 12px;
 }
+.family-reset {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+.family-reset p {
+  color: var(--ink-2);
+  font-size: 13px;
+}
+.family-reset-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
 @media (max-width: 759px) {
   .hanzi-map-path {
     grid-template-columns: 1fr;

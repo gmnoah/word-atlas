@@ -1,6 +1,7 @@
-import { Download, Upload } from "lucide-react";
+import { Download, RotateCcw, Trash2, Upload } from "lucide-react";
 import { useRef, useState } from "react";
 import { readPrimaryProgress } from "../learning/primary-progress";
+import { resetCourseProgress, resetAllLearningProgress } from "../learning/reset-progress";
 import { applyRestoreWithLock, exportFullBackup, preflightRestore } from "../profiles/backup";
 import { toast } from "../ui/Toast";
 import { dayKey } from "../store/store";
@@ -9,6 +10,7 @@ import { findCourse } from "./registry";
 
 const COURSES = [
   { id: "primary-starter", label: "基础英语" },
+  { id: "middle-english", label: "初中英语" },
   { id: "hanzi-starter", label: "汉字启蒙" },
 ] as const;
 
@@ -132,5 +134,60 @@ export function FamilyCourseNote({ course }: { course: Course | null }) {
     <p className="family-hanzi-note">
       汉字共读不要求拼音、认读速度或书写；设备没有普通话声音时，请家长直接读给孩子听。
     </p>
+  );
+}
+
+/** Provides safe, explicit progress reset options inside the family settings panel. */
+export function FamilyReset({
+  profileId,
+  profileName,
+  currentCourse,
+  onReset,
+}: {
+  profileId: string;
+  profileName: string;
+  currentCourse: Course | null;
+  onReset?: () => void;
+}) {
+  const resetCurrent = () => {
+    if (!currentCourse) return;
+    const title = currentCourse.manifest.title;
+    const ok = confirm(
+      `确定清空【${profileName}】在「${title}」的学习记录吗？\n\n这会清除已学进度、小课断点和生词收藏，从头开始。建议先导出备份。`,
+    );
+    if (!ok) return;
+    resetCourseProgress(localStorage, profileId, currentCourse.manifest.id);
+    toast(`「${title}」学习记录已清空，可从头开始。`, "ok");
+    onReset?.();
+  };
+
+  const resetAll = () => {
+    const ok = confirm(
+      `确定清空这台设备上的所有学习进度吗？\n\n将重置基础英语、初中英语、汉字启蒙及雅思的全部已学进度；学习者档案与设备外观设置将保留。\n\n此操作不可撤销，确定从头开始吗？`,
+    );
+    if (!ok) return;
+    resetAllLearningProgress(localStorage);
+    toast("全部学习记录已清空，正在重置页面…", "ok");
+    onReset?.();
+    setTimeout(() => {
+      window.location.reload();
+    }, 800);
+  };
+
+  return (
+    <section className="family-reset" aria-labelledby="family-reset-title">
+      <p className="eyebrow" id="family-reset-title">重置与从头开始</p>
+      <p>重新体验时可以清空进度从第一课开始；此操作只影响本地记录，不会上传。</p>
+      <div className="family-reset-actions">
+        {currentCourse && (
+          <button type="button" className="btn btn-ghost btn-danger" onClick={resetCurrent}>
+            <RotateCcw size={16} /> 重置「{currentCourse.manifest.title}」记录
+          </button>
+        )}
+        <button type="button" className="btn btn-ghost btn-danger" onClick={resetAll}>
+          <Trash2 size={16} /> 清空全部课程记录
+        </button>
+      </div>
+    </section>
   );
 }

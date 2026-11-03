@@ -53,7 +53,7 @@ import { readHanziCheckpoint } from "./hanzi-checkpoint";
 import { readCheckpoint } from "./primary-checkpoint";
 import { checkpointSavedAt } from "./resume-order";
 import { watchMandarinVoice } from "./hanzi-voice";
-import { FamilyBackup, FamilyCourseNote, RecentActivity } from "./FamilyPanel";
+import { FamilyBackup, FamilyCourseNote, FamilyReset, RecentActivity } from "./FamilyPanel";
 import { CourseOpening } from "./CourseOpening";
 import type { HanziLessonMode } from "./hanzi-policy";
 import { entriesFromStartingPoint, primaryPreviewCount, primaryStartingPointId, recommendedPrimaryEntries, type PrimaryStartingStage } from "./starting-point";
@@ -1165,9 +1165,15 @@ export default function CoursePreview() {
           <p className="preview-disclosure">
             小课偏好按学习者和课程分别保存；设备主题、音效及开场动画是本机共用设置，不改变雅思学习进度。
           </p>
-          <RecentActivity profileId={activeProfileId} profileName={activeProfileDisplayName} />
+          <RecentActivity profileId={activeProfileId} profileName={activeProfileDisplayName} currentCourseId={course?.manifest.id} />
           <FamilyCourseNote course={course} />
           <FamilyBackup />
+          <FamilyReset
+            profileId={activeProfileId}
+            profileName={activeProfileDisplayName}
+            currentCourse={course}
+            onReset={() => setProgressRevision((r) => r + 1)}
+          />
           <button className="btn btn-primary btn-xl" onClick={closeParent}>
             设置好了 <Check size={18} />
           </button>
