@@ -1,0 +1,2286 @@
+{
+  "manifest": {
+    "id": "middle-english",
+    "version": "0.1.0-draft",
+    "title": "初中英语",
+    "subject": "english",
+    "stage": "middle",
+    "status": "preview",
+    "description": "在句子里理解词义，积累常用搭配。",
+    "attribution": "Word Atlas contributors（词光）· CC BY 4.0"
+  },
+  "lessons": [
+    {
+      "id": "campus-life",
+      "title": "校园生活与日常",
+      "subtitle": "课桌、同窗与响起的下课铃",
+      "entryIds": [
+        "mid-grade",
+        "mid-classmate",
+        "mid-project",
+        "mid-exam",
+        "mid-library",
+        "mid-rule",
+        "mid-homework",
+        "mid-subject",
+        "mid-bell",
+        "mid-uniform"
+      ]
+    },
+    {
+      "id": "friendship",
+      "title": "友谊与真诚交往",
+      "subtitle": "彼此信任，分享少年的心事",
+      "entryIds": [
+        "mid-trust",
+        "mid-honest",
+        "mid-humour",
+        "mid-share",
+        "mid-secret",
+        "mid-gentle",
+        "mid-cheer",
+        "mid-promise",
+        "mid-support",
+        "mid-partner"
+      ]
+    },
+    {
+      "id": "hobbies",
+      "title": "爱好与热爱之事",
+      "subtitle": "操场上的汗水，琴弦上的节拍",
+      "entryIds": [
+        "mid-guitar",
+        "mid-practice",
+        "mid-chess",
+        "mid-score",
+        "mid-talent",
+        "mid-athlete",
+        "mid-match",
+        "mid-stage",
+        "mid-craft",
+        "mid-collect"
+      ]
+    },
+    {
+      "id": "nature-earth",
+      "title": "大自然与蓝色星球",
+      "subtitle": "森林里的清风，需要守护的生命",
+      "entryIds": [
+        "mid-forest",
+        "mid-climate",
+        "mid-protect",
+        "mid-stream",
+        "mid-creature",
+        "mid-shadow",
+        "mid-breeze",
+        "mid-sunrise",
+        "mid-planet",
+        "mid-survive"
+      ]
+    },
+    {
+      "id": "science-tech",
+      "title": "科学探索与未来",
+      "subtitle": "机器运转，向未知宇宙发问",
+      "entryIds": [
+        "mid-invent",
+        "mid-machine",
+        "mid-discover",
+        "mid-space",
+        "mid-future",
+        "mid-energy",
+        "mid-solve",
+        "mid-experiment",
+        "mid-screen",
+        "mid-robot"
+      ]
+    },
+    {
+      "id": "feelings",
+      "title": "情绪与内心世界",
+      "subtitle": "好奇、忐忑与被理解的温柔",
+      "entryIds": [
+        "mid-curious",
+        "mid-calm",
+        "mid-proud",
+        "mid-nervous",
+        "mid-lonely",
+        "mid-grateful",
+        "mid-cheerful",
+        "mid-brave",
+        "mid-patient",
+        "mid-wonder"
+      ]
+    },
+    {
+      "id": "daily-routine",
+      "title": "生活习惯与节奏",
+      "subtitle": "整理书桌，找到专注的小秩序",
+      "entryIds": [
+        "mid-habit",
+        "mid-prepare",
+        "mid-choose",
+        "mid-organize",
+        "mid-focus",
+        "mid-balance",
+        "mid-relax",
+        "mid-remind",
+        "mid-mirror",
+        "mid-finish"
+      ]
+    },
+    {
+      "id": "food-culture",
+      "title": "滋味、节日与传统",
+      "subtitle": "餐桌上的香气，远方客人的故事",
+      "entryIds": [
+        "mid-flavour",
+        "mid-traditional",
+        "mid-invite",
+        "mid-recipe",
+        "mid-festival",
+        "mid-delicious",
+        "mid-spoon",
+        "mid-feast",
+        "mid-custom",
+        "mid-guest"
+      ]
+    },
+    {
+      "id": "travel-places",
+      "title": "远方足迹与旅程",
+      "subtitle": "带上地图，去海平线那一端",
+      "entryIds": [
+        "mid-journey",
+        "mid-ticket",
+        "mid-map",
+        "mid-luggage",
+        "mid-guide",
+        "mid-bridge",
+        "mid-horizon",
+        "mid-harbour",
+        "mid-view",
+        "mid-explore"
+      ]
+    },
+    {
+      "id": "dreams-future",
+      "title": "理想、成长与启程",
+      "subtitle": "迈过难关，走向发光的自己",
+      "entryIds": [
+        "mid-dream",
+        "mid-ambition",
+        "mid-challenge",
+        "mid-achieve",
+        "mid-effort",
+        "mid-courage",
+        "mid-decision",
+        "mid-path",
+        "mid-growth",
+        "mid-shine"
+      ]
+    }
+  ],
+  "entries": [
+    {
+      "kind": "english",
+      "id": "mid-grade",
+      "topicId": "campus-life",
+      "word": "grade",
+      "meaning": "成绩，等级；年级；评分，分级",
+      "example": {
+        "text": "I got a good grade on my science project.",
+        "translation": "我的科学课项目得了个好成绩。",
+        "targetForm": "grade"
+      },
+      "caregiverTip": "表示年级时多用于美式英语；英式英语常用year。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/grade.webp",
+        "recording": "atlas/audio/uk/grade.mp3",
+        "exampleRecording": "atlas/audio/ex/grade.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-classmate",
+      "topicId": "campus-life",
+      "word": "classmate",
+      "meaning": "同班同学",
+      "example": {
+        "text": "My classmate lent me a pencil before the lesson.",
+        "translation": "上课前，我的同班同学借给我一支铅笔。",
+        "targetForm": "classmate"
+      },
+      "caregiverTip": "classmate指同班同学，schoolmate指同校同学。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/classmate.webp",
+        "recording": "atlas/audio/uk/classmate.mp3",
+        "exampleRecording": "atlas/audio/ex/classmate.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-project",
+      "topicId": "campus-life",
+      "word": "project",
+      "meaning": "项目，工程，课题；预计，预测；投射，放映",
+      "example": {
+        "text": "Our garden project started with three pots of herbs.",
+        "translation": "我们的园艺项目是从三盆香草开始的。",
+        "targetForm": "project"
+      },
+      "caregiverTip": "名词重音在前，动词重音在后；音标按此顺序列出。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/project.webp",
+        "recording": "atlas/audio/uk/project.mp3",
+        "exampleRecording": "atlas/audio/ex/project.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-exam",
+      "topicId": "campus-life",
+      "word": "exam",
+      "meaning": "考试，测验",
+      "example": {
+        "text": "I have a maths exam on Friday morning.",
+        "translation": "我周五上午有一场数学考试。",
+        "targetForm": "exam"
+      },
+      "caregiverTip": "exam是examination的常用缩写；参加考试用take。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/exam.webp",
+        "recording": "atlas/audio/uk/exam.mp3",
+        "exampleRecording": "atlas/audio/ex/exam.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-library",
+      "topicId": "campus-life",
+      "word": "library",
+      "meaning": "图书馆，藏书室；资料库，收藏",
+      "example": {
+        "text": "I borrowed three books from the library after school.",
+        "translation": "放学后，我从图书馆借了三本书。",
+        "targetForm": "library"
+      },
+      "caregiverTip": "library是借阅书籍的图书馆，bookshop是售书的书店。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/library.webp",
+        "recording": "atlas/audio/uk/library.mp3",
+        "exampleRecording": "atlas/audio/ex/library.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-rule",
+      "topicId": "campus-life",
+      "word": "rule",
+      "meaning": "规则，规定；统治，管辖；统治，裁定",
+      "example": {
+        "text": "Our main rule is to leave muddy shoes outside.",
+        "translation": "我们最主要的规矩是把沾泥的鞋子留在外面。",
+        "targetForm": "rule"
+      },
+      "caregiverTip": "as a rule意为“通常”；rule out意为“排除”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/rule.webp",
+        "recording": "atlas/audio/uk/rule.mp3",
+        "exampleRecording": "atlas/audio/ex/rule.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-homework",
+      "topicId": "campus-life",
+      "word": "homework",
+      "meaning": "家庭作业；事前准备工作",
+      "example": {
+        "text": "I finished my homework before dinner and went outside.",
+        "translation": "我在晚饭前做完了作业，然后出门了。",
+        "targetForm": "homework"
+      },
+      "caregiverTip": "不可数名词；一项作业用a piece of homework。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/homework.webp",
+        "recording": "atlas/audio/uk/homework.mp3",
+        "exampleRecording": "atlas/audio/ex/homework.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-subject",
+      "topicId": "campus-life",
+      "word": "subject",
+      "meaning": "话题，主题，学科；受……影响的，取决于；使遭受，使经历",
+      "example": {
+        "text": "Science was my favourite subject when I was younger.",
+        "translation": "我小时候最喜欢的学科是科学。",
+        "targetForm": "subject"
+      },
+      "caregiverTip": "动词重音在后：/səbˈdʒekt/；常用subject A to B。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/subject.webp",
+        "recording": "atlas/audio/uk/subject.mp3",
+        "exampleRecording": "atlas/audio/ex/subject.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-bell",
+      "topicId": "campus-life",
+      "word": "bell",
+      "meaning": "铃，钟；铃声，钟声",
+      "example": {
+        "text": "The bicycle bell rang as a cyclist approached.",
+        "translation": "一位骑车人靠近时，自行车铃响了。",
+        "targetForm": "bell"
+      },
+      "caregiverTip": "ring a bell也可表示“听着耳熟；似曾相识”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/bell.webp",
+        "recording": "atlas/audio/uk/bell.mp3",
+        "exampleRecording": "atlas/audio/ex/bell.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-uniform",
+      "topicId": "campus-life",
+      "word": "uniform",
+      "meaning": "制服，校服；一致的，均匀的",
+      "example": {
+        "text": "My school uniform is still drying by the window.",
+        "translation": "我的校服还在窗边晾着。",
+        "targetForm": "uniform"
+      },
+      "caregiverTip": "开头是辅音/j/，所以说a uniform，不用an。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/uniform.webp",
+        "recording": "atlas/audio/uk/uniform.mp3",
+        "exampleRecording": "atlas/audio/ex/uniform.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-trust",
+      "topicId": "friendship",
+      "word": "trust",
+      "meaning": "信任，信赖；信任，相信；信托，信托机构",
+      "example": {
+        "text": "I trust my neighbour to feed our cat.",
+        "translation": "我信得过邻居，放心让他喂我们的猫。",
+        "targetForm": "trust"
+      },
+      "caregiverTip": "trust sb to do sth表示相信某人能可靠地做某事。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/trust.webp",
+        "recording": "atlas/audio/uk/trust.mp3",
+        "exampleRecording": "atlas/audio/ex/trust.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-honest",
+      "topicId": "friendship",
+      "word": "honest",
+      "meaning": "诚实的，正直的；坦率的，真诚的",
+      "example": {
+        "text": "The honest cashier returned the money I had overpaid.",
+        "translation": "那位诚实的收银员退还了我多付的钱。",
+        "targetForm": "honest"
+      },
+      "caregiverTip": "h不发音，因此说an honest person。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/honest.webp",
+        "recording": "atlas/audio/uk/honest.mp3",
+        "exampleRecording": "atlas/audio/ex/honest.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-humour",
+      "topicId": "friendship",
+      "word": "humour",
+      "meaning": "幽默，幽默感；心情，情绪；迁就，顺着",
+      "example": {
+        "text": "Her gentle humour made everyone at dinner feel relaxed.",
+        "translation": "她温和的幽默让晚餐时的每个人都放松了下来。",
+        "targetForm": "humour"
+      },
+      "caregiverTip": "英式拼写humour，美式humor；作动词表示迁就。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/humour.webp",
+        "recording": "atlas/audio/uk/humour.mp3",
+        "exampleRecording": "atlas/audio/ex/humour.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-share",
+      "topicId": "friendship",
+      "word": "share",
+      "meaning": "分享，共用，分担；一份，份额；股份",
+      "example": {
+        "text": "My sister and I share a desk by the window.",
+        "translation": "我和姐姐共用窗边的一张书桌。",
+        "targetForm": "share"
+      },
+      "caregiverTip": "与某人分享用share something with someone。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/share.webp",
+        "recording": "atlas/audio/uk/share.mp3",
+        "exampleRecording": "atlas/audio/ex/share.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-secret",
+      "topicId": "friendship",
+      "word": "secret",
+      "meaning": "秘密的，保密的；秘密；秘诀，诀窍",
+      "example": {
+        "text": "We planned a secret picnic for our grandparents.",
+        "translation": "我们悄悄为祖父母策划了一次野餐。",
+        "targetForm": "secret"
+      },
+      "caregiverTip": "秘诀常用the secret to，to后接名词或动名词。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/secret.webp",
+        "recording": "atlas/audio/uk/secret.mp3",
+        "exampleRecording": "atlas/audio/ex/secret.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-gentle",
+      "topicId": "friendship",
+      "word": "gentle",
+      "meaning": "温柔的，温和的；轻柔的，不强烈的；坡度平缓的",
+      "example": {
+        "text": "Be gentle when you pick up the little kitten.",
+        "translation": "抱起那只小猫时，动作要轻柔。",
+        "targetForm": "gentle"
+      },
+      "caregiverTip": "对人温柔用be gentle with sb。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/gentle.webp",
+        "recording": "atlas/audio/uk/gentle.mp3",
+        "exampleRecording": "atlas/audio/ex/gentle.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-cheer",
+      "topicId": "friendship",
+      "word": "cheer",
+      "meaning": "欢呼，喝彩；欢呼声，喝彩声；使振奋，使高兴",
+      "example": {
+        "text": "We cheered as our neighbour crossed the finish line.",
+        "translation": "邻居冲过终点线时，我们欢呼起来。",
+        "targetForm": "cheered"
+      },
+      "caregiverTip": "cheer on指加油助威；cheer up指振作或使高兴。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/cheer.webp",
+        "recording": "atlas/audio/uk/cheer.mp3",
+        "exampleRecording": "atlas/audio/ex/cheer.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-promise",
+      "topicId": "friendship",
+      "word": "promise",
+      "meaning": "承诺，答应；承诺，诺言；潜力，前景",
+      "example": {
+        "text": "I promise to return your bicycle before dinner.",
+        "translation": "我保证晚饭前把自行车还给你。",
+        "targetForm": "promise"
+      },
+      "caregiverTip": "用promise to do，不用promise doing。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/promise.webp",
+        "recording": "atlas/audio/uk/promise.mp3",
+        "exampleRecording": "atlas/audio/ex/promise.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-support",
+      "topicId": "friendship",
+      "word": "support",
+      "meaning": "支持，帮助，供养；支撑，承托；支持，援助，支撑",
+      "example": {
+        "text": "My sister supports me whenever I try something new.",
+        "translation": "每当我尝试新事物时，姐姐都会支持我。",
+        "targetForm": "supports"
+      },
+      "caregiverTip": "support是及物动词；名词常用support for。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/support.webp",
+        "recording": "atlas/audio/uk/support.mp3",
+        "exampleRecording": "atlas/audio/ex/support.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-partner",
+      "topicId": "friendship",
+      "word": "partner",
+      "meaning": "搭档，合作伙伴，合伙人；配偶，伴侣；与…搭档，合作",
+      "example": {
+        "text": "My dance partner waited patiently while I practised.",
+        "translation": "我练习时，我的舞伴耐心地等着。",
+        "targetForm": "partner"
+      },
+      "caregiverTip": "partner不表明性别；作动词常用partner with。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/partner.webp",
+        "recording": "atlas/audio/uk/partner.mp3",
+        "exampleRecording": "atlas/audio/ex/partner.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-guitar",
+      "topicId": "hobbies",
+      "word": "guitar",
+      "meaning": "吉他",
+      "example": {
+        "text": "My sister plays the guitar beside the window every evening.",
+        "translation": "我姐姐每天晚上都在窗边弹吉他。",
+        "targetForm": "guitar"
+      },
+      "caregiverTip": "表示弹吉他，通常说play the guitar。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/guitar.webp",
+        "recording": "atlas/audio/uk/guitar.mp3",
+        "exampleRecording": "atlas/audio/ex/guitar.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-practice",
+      "topicId": "hobbies",
+      "word": "practice",
+      "meaning": "练习，训练；惯例，做法；实践，实际应用",
+      "example": {
+        "text": "Daily practice helped me play the guitar more confidently.",
+        "translation": "每天练习让我弹吉他时更加自信。",
+        "targetForm": "practice"
+      },
+      "caregiverTip": "英式名词用practice，动词用practise；美式均用practice。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/practice.webp",
+        "recording": "atlas/audio/uk/practice.mp3",
+        "exampleRecording": "atlas/audio/ex/practice.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-chess",
+      "topicId": "hobbies",
+      "word": "chess",
+      "meaning": "国际象棋",
+      "example": {
+        "text": "My grandfather taught me chess during the winter holidays.",
+        "translation": "寒假期间，爷爷教我下国际象棋。",
+        "targetForm": "chess"
+      },
+      "caregiverTip": "说play chess，不加冠词the。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/chess.webp",
+        "recording": "atlas/audio/uk/chess.mp3",
+        "exampleRecording": "atlas/audio/ex/chess.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-score",
+      "topicId": "hobbies",
+      "word": "score",
+      "meaning": "得分，分数；得分，获得分数；配乐，乐谱",
+      "example": {
+        "text": "My score improved after a week of practice.",
+        "translation": "练习一周后，我的分数提高了。",
+        "targetForm": "score"
+      },
+      "caregiverTip": "score可作名词或动词；score a goal指进球得分。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/score.webp",
+        "recording": "atlas/audio/uk/score.mp3",
+        "exampleRecording": "atlas/audio/ex/score.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-talent",
+      "topicId": "hobbies",
+      "word": "talent",
+      "meaning": "天赋，才能；人才，有才能的人",
+      "example": {
+        "text": "My cousin has a real talent for drawing animals.",
+        "translation": "我的表亲画动物很有天赋。",
+        "targetForm": "talent"
+      },
+      "caregiverTip": "表示某方面的天赋，用a talent for加名词或动名词。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/talent.webp",
+        "recording": "atlas/audio/uk/talent.mp3",
+        "exampleRecording": "atlas/audio/ex/talent.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-athlete",
+      "topicId": "hobbies",
+      "word": "athlete",
+      "meaning": "运动员",
+      "example": {
+        "text": "The athlete stretched her legs before the morning race.",
+        "translation": "那位运动员在早上的比赛前伸展了双腿。",
+        "targetForm": "athlete"
+      },
+      "caregiverTip": "athlete常泛指运动员，不只指田径选手。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/athlete.webp",
+        "recording": "atlas/audio/uk/athlete.mp3",
+        "exampleRecording": "atlas/audio/ex/athlete.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-match",
+      "topicId": "hobbies",
+      "word": "match",
+      "meaning": "比赛；相配，匹配，比得上；火柴",
+      "example": {
+        "text": "We watched a football match at the local park.",
+        "translation": "我们在附近的公园看了一场足球比赛。",
+        "targetForm": "match"
+      },
+      "caregiverTip": "match强调搭配协调；fit常指尺寸合适。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/match.webp",
+        "recording": "atlas/audio/uk/match.mp3",
+        "exampleRecording": "atlas/audio/ex/match.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-stage",
+      "topicId": "hobbies",
+      "word": "stage",
+      "meaning": "阶段，时期；舞台；上演，举办，组织",
+      "example": {
+        "text": "The cake is cooling at this stage of preparation.",
+        "translation": "制作进行到这个阶段，蛋糕正在冷却。",
+        "targetForm": "stage"
+      },
+      "caregiverTip": "表示阶段常用at a stage；表示在舞台上用on stage。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/stage.webp",
+        "recording": "atlas/audio/uk/stage.mp3",
+        "exampleRecording": "atlas/audio/ex/stage.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-craft",
+      "topicId": "hobbies",
+      "word": "craft",
+      "meaning": "手艺，手工艺；精心制作；船，飞行器",
+      "example": {
+        "text": "My neighbour teaches the craft of weaving willow baskets.",
+        "translation": "我的邻居教授用柳条编篮子的手艺。",
+        "targetForm": "craft"
+      },
+      "caregiverTip": "表示船或飞行器时，craft的单复数形式相同。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/craft.webp",
+        "recording": "atlas/audio/uk/craft.mp3",
+        "exampleRecording": "atlas/audio/ex/craft.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-collect",
+      "topicId": "hobbies",
+      "word": "collect",
+      "meaning": "收集，收藏；领取，接走；募集，收取",
+      "example": {
+        "text": "I collect smooth stones whenever we visit the beach.",
+        "translation": "每次去海边，我都会收集光滑的石头。",
+        "targetForm": "collect"
+      },
+      "caregiverTip": "英式英语collect someone可指去接某人。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/collect.webp",
+        "recording": "atlas/audio/uk/collect.mp3",
+        "exampleRecording": "atlas/audio/ex/collect.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-forest",
+      "topicId": "nature-earth",
+      "word": "forest",
+      "meaning": "森林，林区",
+      "example": {
+        "text": "We followed a narrow path deep into the forest.",
+        "translation": "我们沿着一条狭窄的小路走进森林深处。",
+        "targetForm": "forest"
+      },
+      "caregiverTip": "forest通常指大片森林；wood也可指较小树林。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/forest.webp",
+        "recording": "atlas/audio/uk/forest.mp3",
+        "exampleRecording": "atlas/audio/ex/forest.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-climate",
+      "topicId": "nature-earth",
+      "word": "climate",
+      "meaning": "气候；社会环境，风气，氛围",
+      "example": {
+        "text": "These plants grow well in a warm, dry climate.",
+        "translation": "这些植物在温暖干燥的气候中长得很好。",
+        "targetForm": "climate"
+      },
+      "caregiverTip": "climate指长期气候，weather指具体天气。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/climate.webp",
+        "recording": "atlas/audio/uk/climate.mp3",
+        "exampleRecording": "atlas/audio/ex/climate.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-protect",
+      "topicId": "nature-earth",
+      "word": "protect",
+      "meaning": "保护，防护",
+      "example": {
+        "text": "Wear thick gloves to protect your hands from thorns.",
+        "translation": "戴上厚手套，保护双手不被刺扎伤。",
+        "targetForm": "protect"
+      },
+      "caregiverTip": "常用protect sb/sth from或against，表示免受伤害。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/protect.webp",
+        "recording": "atlas/audio/uk/protect.mp3",
+        "exampleRecording": "atlas/audio/ex/protect.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-stream",
+      "topicId": "nature-earth",
+      "word": "stream",
+      "meaning": "小溪，溪流；连续不断的人流或事物；流动，在线播放",
+      "example": {
+        "text": "We crossed the shallow stream on flat stones.",
+        "translation": "我们踩着扁平的石头穿过了那条浅溪。",
+        "targetForm": "stream"
+      },
+      "caregiverTip": "a stream of可指接连不断的人或事物。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/stream.webp",
+        "recording": "atlas/audio/uk/stream.mp3",
+        "exampleRecording": "atlas/audio/ex/stream.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-creature",
+      "topicId": "nature-earth",
+      "word": "creature",
+      "meaning": "动物，生物；虚构生物，怪物",
+      "example": {
+        "text": "A tiny creature crawled out from under the leaf.",
+        "translation": "一只小生物从叶子底下爬了出来。",
+        "targetForm": "creature"
+      },
+      "caregiverTip": "creature常指动物，也可指想象中的生物。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/creature.webp",
+        "recording": "atlas/audio/uk/creature.mp3",
+        "exampleRecording": "atlas/audio/ex/creature.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-shadow",
+      "topicId": "nature-earth",
+      "word": "shadow",
+      "meaning": "影子，阴影；跟随观察，跟岗学习",
+      "example": {
+        "text": "The cat chased its shadow across the sunny kitchen floor.",
+        "translation": "猫在阳光照着的厨房地板上追逐自己的影子。",
+        "targetForm": "shadow"
+      },
+      "caregiverTip": "shadow指具体影子；shade多指遮阳的阴凉处。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/shadow.webp",
+        "recording": "atlas/audio/uk/shadow.mp3",
+        "exampleRecording": "atlas/audio/ex/shadow.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-breeze",
+      "topicId": "nature-earth",
+      "word": "breeze",
+      "meaning": "微风；轻而易举的事；轻松通过，轻快走动",
+      "example": {
+        "text": "A cool breeze lifted the curtains beside my bed.",
+        "translation": "一阵凉风吹起了我床边的窗帘。",
+        "targetForm": "breeze"
+      },
+      "caregiverTip": "be a breeze是口语，表示“轻而易举”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/breeze.webp",
+        "recording": "atlas/audio/uk/breeze.mp3",
+        "exampleRecording": "atlas/audio/ex/breeze.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-sunrise",
+      "topicId": "nature-earth",
+      "word": "sunrise",
+      "meaning": "日出，日出时分",
+      "example": {
+        "text": "We woke early to watch the sunrise over the lake.",
+        "translation": "我们早早醒来，观看湖上的日出。",
+        "targetForm": "sunrise"
+      },
+      "caregiverTip": "在日出时用at sunrise；日落是sunset。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/sunrise.webp",
+        "recording": "atlas/audio/uk/sunrise.mp3",
+        "exampleRecording": "atlas/audio/ex/sunrise.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-planet",
+      "topicId": "nature-earth",
+      "word": "planet",
+      "meaning": "行星",
+      "example": {
+        "text": "We watched a bright planet through the telescope tonight.",
+        "translation": "今晚我们用望远镜观察了一颗明亮的行星。",
+        "targetForm": "planet"
+      },
+      "caregiverTip": "planet是行星，star是恒星；the planet常指地球。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/planet.webp",
+        "recording": "atlas/audio/uk/planet.mp3",
+        "exampleRecording": "atlas/audio/ex/planet.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-survive",
+      "topicId": "nature-earth",
+      "word": "survive",
+      "meaning": "幸存，存活；继续存在，挺过；比…活得长",
+      "example": {
+        "text": "Our little cactus survived three weeks without water.",
+        "translation": "我们的小仙人掌三个星期没浇水也活下来了。",
+        "targetForm": "survived"
+      },
+      "caregiverTip": "表示从事故中幸存，直接说survive an accident。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/survive.webp",
+        "recording": "atlas/audio/uk/survive.mp3",
+        "exampleRecording": "atlas/audio/ex/survive.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-invent",
+      "topicId": "science-tech",
+      "word": "invent",
+      "meaning": "发明，创造；编造，虚构",
+      "example": {
+        "text": "My sister invented a clever tool for picking apples.",
+        "translation": "我姐姐发明了一种巧妙的摘苹果工具。",
+        "targetForm": "invented"
+      },
+      "caregiverTip": "invent是创造新事物；discover是发现已有事物。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/invent.webp",
+        "recording": "atlas/audio/uk/invent.mp3",
+        "exampleRecording": "atlas/audio/ex/invent.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-machine",
+      "topicId": "science-tech",
+      "word": "machine",
+      "meaning": "机器，机械装置；用机器加工",
+      "example": {
+        "text": "The washing machine shook loudly during its final spin.",
+        "translation": "洗衣机在最后脱水时剧烈晃动，声音很大。",
+        "targetForm": "machine"
+      },
+      "caregiverTip": "machine是可数名词；machinery是不可数集合名词。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/machine.webp",
+        "recording": "atlas/audio/uk/machine.mp3",
+        "exampleRecording": "atlas/audio/ex/machine.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-discover",
+      "topicId": "science-tech",
+      "word": "discover",
+      "meaning": "发现",
+      "example": {
+        "text": "We discovered a quiet beach behind the cliffs.",
+        "translation": "我们在悬崖后面发现了一片安静的海滩。",
+        "targetForm": "discovered"
+      },
+      "caregiverTip": "discover发现原本存在的事物；invent创造新事物。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/discover.webp",
+        "recording": "atlas/audio/uk/discover.mp3",
+        "exampleRecording": "atlas/audio/ex/discover.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-space",
+      "topicId": "science-tech",
+      "word": "space",
+      "meaning": "空间，空地，间隔；太空；使隔开，留间隔",
+      "example": {
+        "text": "There is enough space for your bike beside mine.",
+        "translation": "我的自行车旁边有足够的地方放你的车。",
+        "targetForm": "space"
+      },
+      "caregiverTip": "泛指空间、太空时不可数；具体车位等可数。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/space.webp",
+        "recording": "atlas/audio/uk/space.mp3",
+        "exampleRecording": "atlas/audio/ex/space.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-future",
+      "topicId": "science-tech",
+      "word": "future",
+      "meaning": "未来，前途；未来的，将来的",
+      "example": {
+        "text": "We talked about our future while walking home.",
+        "translation": "我们走路回家时聊了聊我们的未来。",
+        "targetForm": "future"
+      },
+      "caregiverTip": "in the future指将来；英式in future常指从今以后。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/future.webp",
+        "recording": "atlas/audio/uk/future.mp3",
+        "exampleRecording": "atlas/audio/ex/future.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-energy",
+      "topicId": "science-tech",
+      "word": "energy",
+      "meaning": "精力，活力；能量，能源",
+      "example": {
+        "text": "After a short nap, I had energy to cook.",
+        "translation": "小睡一会儿后，我有精力做饭了。",
+        "targetForm": "energy"
+      },
+      "caregiverTip": "表示精力或能源时通常不可数，不说 an energy。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/energy.webp",
+        "recording": "atlas/audio/uk/energy.mp3",
+        "exampleRecording": "atlas/audio/ex/energy.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-solve",
+      "topicId": "science-tech",
+      "word": "solve",
+      "meaning": "解决，解答",
+      "example": {
+        "text": "We solved the puzzle together after dinner last night.",
+        "translation": "昨晚晚饭后，我们一起解开了那道谜题。",
+        "targetForm": "solved"
+      },
+      "caregiverTip": "solve直接接问题；“溶解”用dissolve。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/solve.webp",
+        "recording": "atlas/audio/uk/solve.mp3",
+        "exampleRecording": "atlas/audio/ex/solve.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-experiment",
+      "topicId": "science-tech",
+      "word": "experiment",
+      "meaning": "实验，试验；做实验，尝试",
+      "example": {
+        "text": "Our science experiment showed how roots grow towards water.",
+        "translation": "我们的科学实验展示了植物根部如何朝水源生长。",
+        "targetForm": "experiment"
+      },
+      "caregiverTip": "动词接with表示尝试；名词重音在第二音节。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/experiment.webp",
+        "recording": "atlas/audio/uk/experiment.mp3",
+        "exampleRecording": "atlas/audio/ex/experiment.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-screen",
+      "topicId": "science-tech",
+      "word": "screen",
+      "meaning": "屏幕，银幕；筛查，审查；放映，播出",
+      "example": {
+        "text": "I wiped the fingerprints off my laptop screen.",
+        "translation": "我擦掉了笔记本电脑屏幕上的指纹。",
+        "targetForm": "screen"
+      },
+      "caregiverTip": "screen A for B表示检查A是否存在B问题。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/screen.webp",
+        "recording": "atlas/audio/uk/screen.mp3",
+        "exampleRecording": "atlas/audio/ex/screen.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-robot",
+      "topicId": "science-tech",
+      "word": "robot",
+      "meaning": "机器人，自动机械",
+      "example": {
+        "text": "A small robot cleaned the floor while we ate breakfast.",
+        "translation": "我们吃早饭时，一台小机器人清扫了地板。",
+        "targetForm": "robot"
+      },
+      "caregiverTip": "robot是可数名词；robotics指机器人学。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/robot.webp",
+        "recording": "atlas/audio/uk/robot.mp3",
+        "exampleRecording": "atlas/audio/ex/robot.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-curious",
+      "topicId": "feelings",
+      "word": "curious",
+      "meaning": "好奇的，求知欲强的；奇怪的，不寻常的",
+      "example": {
+        "text": "The curious kitten peered into my open shopping bag.",
+        "translation": "那只好奇的小猫探头看我敞开的购物袋。",
+        "targetForm": "curious"
+      },
+      "caregiverTip": "be curious about表示“对……好奇”。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/curious.webp",
+        "recording": "atlas/audio/uk/curious.mp3",
+        "exampleRecording": "atlas/audio/ex/curious.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-calm",
+      "topicId": "feelings",
+      "word": "calm",
+      "meaning": "镇静的，平静的；使镇静，平静下来；平静，宁静",
+      "example": {
+        "text": "She stayed calm when the lights suddenly went out.",
+        "translation": "灯突然熄灭时，她依然保持镇静。",
+        "targetForm": "calm"
+      },
+      "caregiverTip": "calm中的l不发音；calm down表示平静下来。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/calm.webp",
+        "recording": "atlas/audio/uk/calm.mp3",
+        "exampleRecording": "atlas/audio/ex/calm.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-proud",
+      "topicId": "feelings",
+      "word": "proud",
+      "meaning": "自豪的，骄傲的；自负的，高傲的",
+      "example": {
+        "text": "He felt proud of the cake he baked himself.",
+        "translation": "他为自己亲手烤出的蛋糕感到自豪。",
+        "targetForm": "proud"
+      },
+      "caregiverTip": "be proud of后接名词或动名词，表示为……自豪。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/proud.webp",
+        "recording": "atlas/audio/uk/proud.mp3",
+        "exampleRecording": "atlas/audio/ex/proud.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-nervous",
+      "topicId": "feelings",
+      "word": "nervous",
+      "meaning": "紧张的，忐忑不安的；神经的，神经系统的",
+      "example": {
+        "text": "I felt nervous before my first swimming lesson yesterday.",
+        "translation": "昨天第一次上游泳课前，我感到很紧张。",
+        "targetForm": "nervous"
+      },
+      "caregiverTip": "nervous about后接名词或动名词，表示对某事紧张。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/nervous.webp",
+        "recording": "atlas/audio/uk/nervous.mp3",
+        "exampleRecording": "atlas/audio/ex/nervous.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-lonely",
+      "topicId": "feelings",
+      "word": "lonely",
+      "meaning": "孤独的，寂寞的；偏僻的，荒凉的",
+      "example": {
+        "text": "I felt lonely until my neighbour invited me for tea.",
+        "translation": "我一直觉得孤单，直到邻居邀请我去喝茶。",
+        "targetForm": "lonely"
+      },
+      "caregiverTip": "alone强调独自一人；lonely强调内心孤独。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/lonely.webp",
+        "recording": "atlas/audio/uk/lonely.mp3",
+        "exampleRecording": "atlas/audio/ex/lonely.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-grateful",
+      "topicId": "feelings",
+      "word": "grateful",
+      "meaning": "感激的，感谢的",
+      "example": {
+        "text": "I am grateful for your help with the move.",
+        "translation": "谢谢你帮我搬家。",
+        "targetForm": "grateful"
+      },
+      "caregiverTip": "be grateful to某人 for某事；注意不是greatful。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/grateful.webp",
+        "recording": "atlas/audio/uk/grateful.mp3",
+        "exampleRecording": "atlas/audio/ex/grateful.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-cheerful",
+      "topicId": "feelings",
+      "word": "cheerful",
+      "meaning": "快乐的，乐观的；令人愉快的，明快的",
+      "example": {
+        "text": "Our cheerful neighbour waved as we left the house.",
+        "translation": "我们出门时，开朗的邻居向我们挥了挥手。",
+        "targetForm": "cheerful"
+      },
+      "caregiverTip": "既可形容人心情开朗，也可形容环境明快。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/cheerful.webp",
+        "recording": "atlas/audio/uk/cheerful.mp3",
+        "exampleRecording": "atlas/audio/ex/cheerful.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-brave",
+      "topicId": "feelings",
+      "word": "brave",
+      "meaning": "勇敢的；勇敢面对，冒着",
+      "example": {
+        "text": "You were brave to speak in front of everyone.",
+        "translation": "你敢在大家面前发言，真勇敢。",
+        "targetForm": "brave"
+      },
+      "caregiverTip": "brave并非毫不害怕，而是害怕仍敢面对。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/brave.webp",
+        "recording": "atlas/audio/uk/brave.mp3",
+        "exampleRecording": "atlas/audio/ex/brave.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-patient",
+      "topicId": "feelings",
+      "word": "patient",
+      "meaning": "病人，患者；有耐心的，能忍耐的",
+      "example": {
+        "text": "The nurse brought the patient a glass of water.",
+        "translation": "护士给病人端来了一杯水。",
+        "targetForm": "patient"
+      },
+      "caregiverTip": "作名词是“患者”；作形容词常接with。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/patient.webp",
+        "recording": "atlas/audio/uk/patient.mp3",
+        "exampleRecording": "atlas/audio/ex/patient.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-wonder",
+      "topicId": "feelings",
+      "word": "wonder",
+      "meaning": "想知道，琢磨；惊叹，惊奇；奇观，奇迹",
+      "example": {
+        "text": "I wonder why the cat keeps watching that cupboard.",
+        "translation": "我想知道那只猫为什么一直盯着那个橱柜。",
+        "targetForm": "wonder"
+      },
+      "caregiverTip": "wonder后接疑问词从句时，用陈述语序。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/wonder.webp",
+        "recording": "atlas/audio/uk/wonder.mp3",
+        "exampleRecording": "atlas/audio/ex/wonder.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-habit",
+      "topicId": "daily-routine",
+      "word": "habit",
+      "meaning": "习惯，习性",
+      "example": {
+        "text": "Checking my phone before breakfast has become a habit.",
+        "translation": "早餐前查看手机已经成了我的习惯。",
+        "targetForm": "habit"
+      },
+      "caregiverTip": "表示做某事的习惯，用habit of doing。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/habit.webp",
+        "recording": "atlas/audio/uk/habit.mp3",
+        "exampleRecording": "atlas/audio/ex/habit.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-prepare",
+      "topicId": "daily-routine",
+      "word": "prepare",
+      "meaning": "准备，做好准备；制作，拟订",
+      "example": {
+        "text": "I prepare my lunch before leaving home each morning.",
+        "translation": "我每天早上出门前都会准备好午餐。",
+        "targetForm": "prepare"
+      },
+      "caregiverTip": "prepare for后接名词；prepare to后接动词原形。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/prepare.webp",
+        "recording": "atlas/audio/uk/prepare.mp3",
+        "exampleRecording": "atlas/audio/ex/prepare.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-choose",
+      "topicId": "daily-routine",
+      "word": "choose",
+      "meaning": "选择，挑选；决定，选择去做",
+      "example": {
+        "text": "You can choose a seat beside the window.",
+        "translation": "你可以选一个靠窗的座位。",
+        "targetForm": "choose"
+      },
+      "caregiverTip": "过去式chose，过去分词chosen；后接to do。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/choose.webp",
+        "recording": "atlas/audio/uk/choose.mp3",
+        "exampleRecording": "atlas/audio/ex/choose.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-organize",
+      "topicId": "daily-routine",
+      "word": "organize",
+      "meaning": "组织，筹办；整理，使有条理",
+      "example": {
+        "text": "Our neighbours organized a picnic by the river.",
+        "translation": "我们的邻居组织了一次河边野餐。",
+        "targetForm": "organized"
+      },
+      "caregiverTip": "英式也常拼作organise；organize是规范拼写。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/organize.webp",
+        "recording": "atlas/audio/uk/organize.mp3",
+        "exampleRecording": "atlas/audio/ex/organize.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-focus",
+      "topicId": "daily-routine",
+      "word": "focus",
+      "meaning": "集中注意力，聚焦；重点，关注中心；清晰度，焦点",
+      "example": {
+        "text": "Please turn the music down so I can focus.",
+        "translation": "请把音乐调小一点，好让我集中注意力。",
+        "targetForm": "focus"
+      },
+      "caregiverTip": "focus on后接名词或动名词；不要说focus in。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/focus.webp",
+        "recording": "atlas/audio/uk/focus.mp3",
+        "exampleRecording": "atlas/audio/ex/focus.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-balance",
+      "topicId": "daily-routine",
+      "word": "balance",
+      "meaning": "平衡，均衡；保持平衡，兼顾；账户余额，结欠款",
+      "example": {
+        "text": "She lost her balance while stepping off the bus.",
+        "translation": "她下公交车时失去了平衡。",
+        "targetForm": "balance"
+      },
+      "caregiverTip": "兼顾两者用balance A with B；均衡饮食用balanced。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/balance.webp",
+        "recording": "atlas/audio/uk/balance.mp3",
+        "exampleRecording": "atlas/audio/ex/balance.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-relax",
+      "topicId": "daily-routine",
+      "word": "relax",
+      "meaning": "放松，休息；放松肌肉，松弛；放宽，放松限制",
+      "example": {
+        "text": "I like to relax with music after dinner.",
+        "translation": "我喜欢晚饭后听音乐放松。",
+        "targetForm": "relax"
+      },
+      "caregiverTip": "人感到放松用relaxed；事物令人放松用relaxing。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/relax.webp",
+        "recording": "atlas/audio/uk/relax.mp3",
+        "exampleRecording": "atlas/audio/ex/relax.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-remind",
+      "topicId": "daily-routine",
+      "word": "remind",
+      "meaning": "提醒；使想起",
+      "example": {
+        "text": "Please remind me to take my umbrella before we leave.",
+        "translation": "出门前请提醒我带伞。",
+        "targetForm": "remind"
+      },
+      "caregiverTip": "提醒去做用remind sb to do；使想起用of。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/remind.webp",
+        "recording": "atlas/audio/uk/remind.mp3",
+        "exampleRecording": "atlas/audio/ex/remind.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-mirror",
+      "topicId": "daily-routine",
+      "word": "mirror",
+      "meaning": "镜子；反映，与……相似",
+      "example": {
+        "text": "He checked his hair in the mirror before leaving.",
+        "translation": "他离开前照镜子检查了一下头发。",
+        "targetForm": "mirror"
+      },
+      "caregiverTip": "照镜子用look in the mirror，不用look the mirror。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/mirror.webp",
+        "recording": "atlas/audio/uk/mirror.mp3",
+        "exampleRecording": "atlas/audio/ex/mirror.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-finish",
+      "topicId": "daily-routine",
+      "word": "finish",
+      "meaning": "完成，结束，吃完；结尾，终点；表面处理，光洁度",
+      "example": {
+        "text": "I'll finish washing the dishes before we go.",
+        "translation": "我们出门前，我会把碗洗完。",
+        "targetForm": "finish"
+      },
+      "caregiverTip": "表示做完某事用finish doing，不用finish to do。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/finish.webp",
+        "recording": "atlas/audio/uk/finish.mp3",
+        "exampleRecording": "atlas/audio/ex/finish.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-flavour",
+      "topicId": "food-culture",
+      "word": "flavour",
+      "meaning": "风味，味道；给……调味；特色，风格",
+      "example": {
+        "text": "Fresh basil gives this soup a lovely flavour.",
+        "translation": "新鲜罗勒让这道汤有了宜人的风味。",
+        "targetForm": "flavour"
+      },
+      "caregiverTip": "英式拼写flavour，美式拼写flavor。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/flavour.webp",
+        "recording": "atlas/audio/uk/flavour.mp3",
+        "exampleRecording": "atlas/audio/ex/flavour.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-traditional",
+      "topicId": "food-culture",
+      "word": "traditional",
+      "meaning": "传统的，沿袭已久的",
+      "example": {
+        "text": "We cooked a traditional meal for the family gathering.",
+        "translation": "我们为家庭聚会做了一顿传统饭菜。",
+        "targetForm": "traditional"
+      },
+      "caregiverTip": "traditional强调传承已久，不一定表示落后。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/traditional.webp",
+        "recording": "atlas/audio/uk/traditional.mp3",
+        "exampleRecording": "atlas/audio/ex/traditional.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-invite",
+      "topicId": "food-culture",
+      "word": "invite",
+      "meaning": "邀请；征求，引起",
+      "example": {
+        "text": "Let's invite our new neighbours over for dinner.",
+        "translation": "我们邀请新邻居过来吃晚饭吧。",
+        "targetForm": "invite"
+      },
+      "caregiverTip": "invite sb to＋活动；invite sb to do＋动作。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/invite.webp",
+        "recording": "atlas/audio/uk/invite.mp3",
+        "exampleRecording": "atlas/audio/ex/invite.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-recipe",
+      "topicId": "food-culture",
+      "word": "recipe",
+      "meaning": "食谱，烹饪方法；促成某结果的方法或因素",
+      "example": {
+        "text": "This soup recipe needs only a few simple ingredients.",
+        "translation": "这个汤的食谱只需要几种简单的食材。",
+        "targetForm": "recipe"
+      },
+      "caregiverTip": "recipe指做菜方法；menu是菜单，prescription是处方。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/recipe.webp",
+        "recording": "atlas/audio/uk/recipe.mp3",
+        "exampleRecording": "atlas/audio/ex/recipe.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-festival",
+      "topicId": "food-culture",
+      "word": "festival",
+      "meaning": "节日，庆祝活动；艺术节，系列展演活动",
+      "example": {
+        "text": "Our town holds a lantern festival every autumn.",
+        "translation": "我们镇每年秋天都会举办灯会。",
+        "targetForm": "festival"
+      },
+      "caregiverTip": "festival强调庆祝或系列活动，不一定是放假的holiday。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/festival.webp",
+        "recording": "atlas/audio/uk/festival.mp3",
+        "exampleRecording": "atlas/audio/ex/festival.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-delicious",
+      "topicId": "food-culture",
+      "word": "delicious",
+      "meaning": "美味的，可口的",
+      "example": {
+        "text": "This delicious vegetable pie is still warm from the oven.",
+        "translation": "这份美味的蔬菜派刚出炉，还热乎着。",
+        "targetForm": "delicious"
+      },
+      "caregiverTip": "delicious本身语气较强，常用absolutely加强。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/delicious.webp",
+        "recording": "atlas/audio/uk/delicious.mp3",
+        "exampleRecording": "atlas/audio/ex/delicious.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-spoon",
+      "topicId": "food-culture",
+      "word": "spoon",
+      "meaning": "匙，勺子；用勺舀",
+      "example": {
+        "text": "She stirred her soup with a wooden spoon.",
+        "translation": "她用木勺搅了搅汤。",
+        "targetForm": "spoon"
+      },
+      "caregiverTip": "一勺的量通常用 a spoonful of 表达。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/spoon.webp",
+        "recording": "atlas/audio/uk/spoon.mp3",
+        "exampleRecording": "atlas/audio/ex/spoon.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-feast",
+      "topicId": "food-culture",
+      "word": "feast",
+      "meaning": "盛宴，丰盛的一餐；感官盛宴；尽情享用，饱餐",
+      "example": {
+        "text": "We prepared a feast for the whole family.",
+        "translation": "我们为全家准备了一顿盛宴。",
+        "targetForm": "feast"
+      },
+      "caregiverTip": "动词常用feast on，表示尽情享用某种食物。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/feast.webp",
+        "recording": "atlas/audio/uk/feast.mp3",
+        "exampleRecording": "atlas/audio/ex/feast.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-custom",
+      "topicId": "food-culture",
+      "word": "custom",
+      "meaning": "风俗，惯例；定制的；惠顾，光顾",
+      "example": {
+        "text": "Sharing a meal is an important custom in our family.",
+        "translation": "一起吃饭是我们家的一项重要惯例。",
+        "targetForm": "custom"
+      },
+      "caregiverTip": "custom指风俗或惯例；customs还可指海关。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/custom.webp",
+        "recording": "atlas/audio/uk/custom.mp3",
+        "exampleRecording": "atlas/audio/ex/custom.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-guest",
+      "topicId": "food-culture",
+      "word": "guest",
+      "meaning": "客人，受邀嘉宾；旅馆住客",
+      "example": {
+        "text": "Each guest brought a dish to share at dinner.",
+        "translation": "每位客人都带了一道菜，在晚餐时与大家分享。",
+        "targetForm": "guest"
+      },
+      "caregiverTip": "guest可指受邀客人，也可指付费的酒店住客。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/guest.webp",
+        "recording": "atlas/audio/uk/guest.mp3",
+        "exampleRecording": "atlas/audio/ex/guest.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-journey",
+      "topicId": "travel-places",
+      "word": "journey",
+      "meaning": "旅行，行程；发展历程；旅行",
+      "example": {
+        "text": "The train journey took us through snowy mountains.",
+        "translation": "这趟火车旅程带我们穿过了白雪覆盖的群山。",
+        "targetForm": "journey"
+      },
+      "caregiverTip": "journey侧重路途；trip常指包含往返的出行。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/journey.webp",
+        "recording": "atlas/audio/uk/journey.mp3",
+        "exampleRecording": "atlas/audio/ex/journey.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-ticket",
+      "topicId": "travel-places",
+      "word": "ticket",
+      "meaning": "票，入场券；交通违章罚单；向……开交通罚单",
+      "example": {
+        "text": "I bought a return ticket from the station machine.",
+        "translation": "我在车站的售票机上买了一张往返票。",
+        "targetForm": "ticket"
+      },
+      "caregiverTip": "英式single/return ticket分别指单程票和往返票。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/ticket.webp",
+        "recording": "atlas/audio/uk/ticket.mp3",
+        "exampleRecording": "atlas/audio/ex/ticket.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-map",
+      "topicId": "travel-places",
+      "word": "map",
+      "meaning": "地图；绘制地图，标出分布",
+      "example": {
+        "text": "We spread the map across the table before leaving.",
+        "translation": "出发前，我们把地图铺在桌上。",
+        "targetForm": "map"
+      },
+      "caregiverTip": "map作动词时，过去式mapped，分词mapping。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/map.webp",
+        "recording": "atlas/audio/uk/map.mp3",
+        "exampleRecording": "atlas/audio/ex/map.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-luggage",
+      "topicId": "travel-places",
+      "word": "luggage",
+      "meaning": "行李",
+      "example": {
+        "text": "Our luggage barely fitted into the small taxi.",
+        "translation": "我们的行李勉强塞进了那辆小出租车。",
+        "targetForm": "luggage"
+      },
+      "caregiverTip": "不可数；一件行李用a piece of luggage。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/luggage.webp",
+        "recording": "atlas/audio/uk/luggage.mp3",
+        "exampleRecording": "atlas/audio/ex/luggage.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-guide",
+      "topicId": "travel-places",
+      "word": "guide",
+      "meaning": "导游，向导；指南，入门书；引导，指导",
+      "example": {
+        "text": "Our guide led us through the narrow market streets.",
+        "translation": "导游带我们穿过市场里狭窄的街道。",
+        "targetForm": "guide"
+      },
+      "caregiverTip": "指南用a guide to；指导某人完成用guide someone through。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/guide.webp",
+        "recording": "atlas/audio/uk/guide.mp3",
+        "exampleRecording": "atlas/audio/ex/guide.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-bridge",
+      "topicId": "travel-places",
+      "word": "bridge",
+      "meaning": "桥，桥梁；弥合，连接；桥牌",
+      "example": {
+        "text": "We crossed the wooden bridge and entered the village.",
+        "translation": "我们走过木桥，进了村子。",
+        "targetForm": "bridge"
+      },
+      "caregiverTip": "bridge the gap常指缩小群体或事物间的差距。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/bridge.webp",
+        "recording": "atlas/audio/uk/bridge.mp3",
+        "exampleRecording": "atlas/audio/ex/bridge.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-horizon",
+      "topicId": "travel-places",
+      "word": "horizon",
+      "meaning": "地平线；眼界，见识范围",
+      "example": {
+        "text": "We watched a small boat disappear beyond the horizon.",
+        "translation": "我们看着一条小船消失在地平线之外。",
+        "targetForm": "horizon"
+      },
+      "caregiverTip": "表示眼界通常用复数：broaden your horizons。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/horizon.webp",
+        "recording": "atlas/audio/uk/horizon.mp3",
+        "exampleRecording": "atlas/audio/ex/horizon.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-harbour",
+      "topicId": "travel-places",
+      "word": "harbour",
+      "meaning": "海港，港湾；心怀，藏有；藏匿，庇护",
+      "example": {
+        "text": "Small fishing boats returned to the harbour before sunset.",
+        "translation": "小渔船在日落前回到了港湾。",
+        "targetForm": "harbour"
+      },
+      "caregiverTip": "英式拼写harbour，美式拼写harbor。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/harbour.webp",
+        "recording": "atlas/audio/uk/harbour.mp3",
+        "exampleRecording": "atlas/audio/ex/harbour.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-view",
+      "topicId": "travel-places",
+      "word": "view",
+      "meaning": "观点，看法；景色，视野；看待，观看",
+      "example": {
+        "text": "My view is that we should leave earlier.",
+        "translation": "我的看法是我们应该早点出发。",
+        "targetForm": "view"
+      },
+      "caregiverTip": "观点用view on；把某事视为用view…as…。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/view.webp",
+        "recording": "atlas/audio/uk/view.mp3",
+        "exampleRecording": "atlas/audio/ex/view.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-explore",
+      "topicId": "travel-places",
+      "word": "explore",
+      "meaning": "探索，探访；探讨，研究",
+      "example": {
+        "text": "We spent the afternoon exploring narrow streets near the harbour.",
+        "translation": "我们花了一下午探访港口附近的狭窄街巷。",
+        "targetForm": "exploring"
+      },
+      "caregiverTip": "作及物动词时直接接地点或问题，不加about。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/explore.webp",
+        "recording": "atlas/audio/uk/explore.mp3",
+        "exampleRecording": "atlas/audio/ex/explore.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-dream",
+      "topicId": "dreams-future",
+      "word": "dream",
+      "meaning": "梦，梦境；梦想，理想；做梦，梦想",
+      "example": {
+        "text": "Last night, I had a dream about flying over mountains.",
+        "translation": "昨晚我做了一个飞越群山的梦。",
+        "targetForm": "dream"
+      },
+      "caregiverTip": "dream of/about后接名词或动名词；过去式可用dreamt或dreamed。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/dream.webp",
+        "recording": "atlas/audio/uk/dream.mp3",
+        "exampleRecording": "atlas/audio/ex/dream.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-ambition",
+      "topicId": "dreams-future",
+      "word": "ambition",
+      "meaning": "志向，抱负；进取心，雄心",
+      "example": {
+        "text": "Her childhood ambition was to design bridges across rivers.",
+        "translation": "她儿时的志向是设计跨河大桥。",
+        "targetForm": "ambition"
+      },
+      "caregiverTip": "具体志向可数，进取心不可数；常接to do。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/ambition.webp",
+        "recording": "atlas/audio/uk/ambition.mp3",
+        "exampleRecording": "atlas/audio/ex/ambition.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-challenge",
+      "topicId": "dreams-future",
+      "word": "challenge",
+      "meaning": "挑战，艰巨任务；质疑，提出异议；向…挑战，考验",
+      "example": {
+        "text": "Cooking dinner for twelve guests was quite a challenge.",
+        "translation": "给十二位客人做晚饭真是个不小的挑战。",
+        "targetForm": "challenge"
+      },
+      "caregiverTip": "challenge作动词可直接接观点，表示质疑。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/challenge.webp",
+        "recording": "atlas/audio/uk/challenge.mp3",
+        "exampleRecording": "atlas/audio/ex/challenge.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-achieve",
+      "topicId": "dreams-future",
+      "word": "achieve",
+      "meaning": "实现，取得，达到",
+      "example": {
+        "text": "With daily practice, she finally achieved her swimming goal.",
+        "translation": "通过每天练习，她终于实现了自己的游泳目标。",
+        "targetForm": "achieved"
+      },
+      "caregiverTip": "直接接目标或成果，不说achieve to do。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/achieve.webp",
+        "recording": "atlas/audio/uk/achieve.mp3",
+        "exampleRecording": "atlas/audio/ex/achieve.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-effort",
+      "topicId": "dreams-future",
+      "word": "effort",
+      "meaning": "努力，精力；尝试，有组织的行动",
+      "example": {
+        "text": "It took considerable effort to push the sofa upstairs.",
+        "translation": "把沙发推上楼费了好大力气。",
+        "targetForm": "effort"
+      },
+      "caregiverTip": "表示精力时不可数；表示一次尝试时可数。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/effort.webp",
+        "recording": "atlas/audio/uk/effort.mp3",
+        "exampleRecording": "atlas/audio/ex/effort.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-courage",
+      "topicId": "dreams-future",
+      "word": "courage",
+      "meaning": "勇气，胆量",
+      "example": {
+        "text": "It took courage to admit my mistake in class.",
+        "translation": "在课堂上承认自己的错误需要勇气。",
+        "targetForm": "courage"
+      },
+      "caregiverTip": "通常不可数；做某事的勇气用courage to do。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/courage.webp",
+        "recording": "atlas/audio/uk/courage.mp3",
+        "exampleRecording": "atlas/audio/ex/courage.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-decision",
+      "topicId": "dreams-future",
+      "word": "decision",
+      "meaning": "决定，抉择",
+      "example": {
+        "text": "Moving closer to work was a good decision.",
+        "translation": "搬到离工作地点更近的地方是个明智的决定。",
+        "targetForm": "decision"
+      },
+      "caregiverTip": "作决定用make a decision，不用do。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/decision.webp",
+        "recording": "atlas/audio/uk/decision.mp3",
+        "exampleRecording": "atlas/audio/ex/decision.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-path",
+      "topicId": "dreams-future",
+      "word": "path",
+      "meaning": "小路，小径；路线，轨迹；途径，发展道路",
+      "example": {
+        "text": "We followed a narrow path down to the beach.",
+        "translation": "我们沿着一条狭窄的小路走向海滩。",
+        "targetForm": "path"
+      },
+      "caregiverTip": "表示实现目标的途径，用a path to，to后接名词。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/path.webp",
+        "recording": "atlas/audio/uk/path.mp3",
+        "exampleRecording": "atlas/audio/ex/path.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-growth",
+      "topicId": "dreams-future",
+      "word": "growth",
+      "meaning": "增长，增加；生长，成长，发展；赘生物，肿块",
+      "example": {
+        "text": "The rapid growth of our town surprised my grandparents.",
+        "translation": "我们小镇的迅速扩张让我的祖父母感到惊讶。",
+        "targetForm": "growth"
+      },
+      "caregiverTip": "表示增长通常不可数；a growth可指一个肿块。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/growth.webp",
+        "recording": "atlas/audio/uk/growth.mp3",
+        "exampleRecording": "atlas/audio/ex/growth.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    },
+    {
+      "kind": "english",
+      "id": "mid-shine",
+      "topicId": "dreams-future",
+      "word": "shine",
+      "meaning": "发光，照耀；擦亮；光泽，光亮",
+      "example": {
+        "text": "The sun shone through my bedroom window this morning.",
+        "translation": "今天早上，阳光透过我卧室的窗户照了进来。",
+        "targetForm": "shone"
+      },
+      "caregiverTip": "发光的过去式常用shone；擦亮的过去式用shined。",
+      "reviewStatus": "draft",
+      "media": {
+        "image": "atlas/img/shine.webp",
+        "recording": "atlas/audio/uk/shine.mp3",
+        "exampleRecording": "atlas/audio/ex/shine.mp3",
+        "locale": "en-GB",
+        "source": "Word Atlas contributors（词光）· CC BY 4.0；复用词光初中高频词汇例句、插画与英式录音，内容适龄性待审校"
+      }
+    }
+  ]
+}

@@ -147,10 +147,9 @@ test(
 test("T07: planned and unknown courses reject with clear, safe error messages", async () => {
   clearCourseCache();
 
-  await assert.rejects(
-    async () => loadCourse("middle-english"),
-    /课程“初中英语”尚未开放/,
-  );
+  const middle = await loadCourse("middle-english");
+  assert.equal(middle.manifest.id, "middle-english");
+  assert.equal(middle.count, 100);
 
   await assert.rejects(
     async () => loadCourse("high-english"),

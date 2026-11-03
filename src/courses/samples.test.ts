@@ -40,10 +40,10 @@ test("corrected 头发 uses fà while the previous archive stays unchanged", () 
   assert.equal(current?.kind === "hanzi" && current.phrase, "头发");
 });
 
-test("course packs have 300 English words and 300 Hanzi, each in exactly one lesson", () => {
+test("course packs have 300 Primary, 300 Hanzi, and 100 Middle English words, each in exactly one lesson", () => {
   assert.deepEqual(
     sampleCourses.map((c) => c.entries.length),
-    [300, 300],
+    [300, 300, 100],
   );
   for (const course of sampleCourses) {
     assert.equal(course.manifest.status, "preview");

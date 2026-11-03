@@ -21,6 +21,16 @@ export const hanziManifest: CourseManifest & { status: "preview" } = {
   description: "和孩子一起，在生活里遇见汉字。",
   attribution,
 };
+export const middleManifest: CourseManifest & { status: "preview" } = {
+  id: "middle-english",
+  version: "0.1.0-draft",
+  title: "初中英语",
+  subject: "english",
+  stage: "middle",
+  status: "preview",
+  description: "在句子里理解词义，积累常用搭配。",
+  attribution,
+};
 interface Presentation {
   cover: string;
   eyebrow: string;
@@ -83,20 +93,13 @@ export const courseRegistry: readonly CourseRegistration[] = [
     lessonCount: 32,
   },
   {
-    kind: "planned",
-    manifest: {
-      id: "middle-english",
-      version: "planned",
-      title: "初中英语",
-      subject: "english",
-      stage: "middle",
-      status: "planned",
-      description: "在句子里理解词义，积累常用搭配。",
-      attribution,
-    },
-    cover: "brand/topic-education.webp",
-    eyebrow: "MIDDLE SCHOOL",
-    badge: "待开放",
+    kind: "preview",
+    manifest: middleManifest,
+    cover: "atlas/img/project.webp",
+    eyebrow: "MIDDLE HORIZONS",
+    badge: "初中衔接",
+    count: 100,
+    lessonCount: 10,
   },
   {
     kind: "planned",

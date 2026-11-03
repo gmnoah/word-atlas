@@ -430,7 +430,9 @@ export async function loadCourse(courseId: string, options?: CourseLoadOptions):
         ? (await import("../courses/primary-full")).primaryFull
         : courseId === "hanzi-starter"
           ? (await import("../courses/hanzi-full")).hanziFull
-          : undefined;
+          : courseId === "middle-english"
+            ? (await import("../courses/middle-full")).middleFull
+            : undefined;
       if (!pack) throw new Error(`未能找到体验课程包：${courseId}`);
 
       const byId = new Map(pack.entries.map((e) => [e.id, e]));

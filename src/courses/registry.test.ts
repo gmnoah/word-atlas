@@ -31,7 +31,7 @@ test("every preview resolves to its pack and shares the registered manifest", ()
   }
 });
 test("planned and unknown courses never return a playable course action", () => {
-  for (const id of ["middle-english", "high-english"])
+  for (const id of ["high-english"])
     assert.deepEqual(courseAction(id), {
       kind: "unavailable",
       reason: "planned",
