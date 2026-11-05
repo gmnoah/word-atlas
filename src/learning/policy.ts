@@ -1,7 +1,12 @@
 import type { AttemptSupport, Stage, Subject } from "../courses/types";
 import type { QuestionKind } from "./questions";
 
-export type PolicyId = "ielts" | "primary-starter" | "primary-advanced" | "hanzi-parent";
+export type PolicyId =
+  | "ielts"
+  | "primary-starter"
+  | "primary-advanced"
+  | "middle-starter"
+  | "hanzi-parent";
 
 /**
  * A policy is the only place that decides how much content a session may hold,
@@ -88,12 +93,30 @@ export const PRIMARY_ADVANCED_POLICY = freeze({
   showCountdown: false,
 }) satisfies LearningPolicy;
 
+export const MIDDLE_STARTER_POLICY = freeze({
+  id: "middle-starter",
+  label: "初中衔接",
+  subject: "english",
+  stage: "middle",
+  newContentLimit: 5,
+  reviewLimit: 15,
+  introGroupSize: 3,
+  allowedKinds: ["context-meaning", "listen-word", "meaning", "spell"],
+  optionCount: 3,
+  minOptions: 2,
+  maxPracticeRetries: 2,
+  timeLimitMs: 12 * 60_000,
+  timingAffectsGrade: false,
+  supports: ["hinted", "assisted"],
+  showCountdown: false,
+}) satisfies LearningPolicy;
+
 export const HANZI_PARENT_POLICY = freeze({
   id: "hanzi-parent",
   label: "汉字亲子",
   subject: "hanzi",
   stage: "preschool",
-  newContentLimit: 2,
+  newContentLimit: 5,
   reviewLimit: 4,
   introGroupSize: 2,
   allowedKinds: ["hanzi-listen", "hanzi-picture", "hanzi-question"],
@@ -110,6 +133,7 @@ export const learningPolicies: readonly LearningPolicy[] = [
   IELTS_POLICY,
   PRIMARY_STARTER_POLICY,
   PRIMARY_ADVANCED_POLICY,
+  MIDDLE_STARTER_POLICY,
   HANZI_PARENT_POLICY,
 ];
 
@@ -154,6 +178,9 @@ export function policyForCourse(
 ): LearningPolicy {
   if (course.subject === "hanzi") return withPolicyOverrides(HANZI_PARENT_POLICY, overrides);
   if (course.stage === "ielts") return withPolicyOverrides(IELTS_POLICY, overrides);
+  if (course.stage === "middle" || course.id === "middle-english") {
+    return withPolicyOverrides(MIDDLE_STARTER_POLICY, overrides);
+  }
   if (course.id === "primary-advanced") {
     return withPolicyOverrides(PRIMARY_ADVANCED_POLICY, overrides);
   }

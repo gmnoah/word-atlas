@@ -47,6 +47,30 @@ export function validateCourseInput(raw: unknown, mediaExists: (path: string) =>
     if (entry.kind === "english") {
       if (!text(entry.word) || !entry.word.trim() || !text(entry.meaning) || !entry.meaning.trim() || !object(entry.example) || !text(entry.example.text) || !entry.example.text.trim() || !text(entry.example.translation) || !entry.example.translation.trim() ||
           !(entry.example.targetForm === undefined || text(entry.example.targetForm))) fail("invalid-english", "英语条目字段无效", entryId);
+      if (entry.partOfSpeech !== undefined && (!text(entry.partOfSpeech) || !entry.partOfSpeech.trim())) {
+        fail("invalid-part-of-speech", "词性格式无效", entryId);
+      }
+      if (entry.lessonMeaning !== undefined && (!text(entry.lessonMeaning) || !entry.lessonMeaning.trim())) {
+        fail("invalid-lesson-meaning", "本课义项格式无效", entryId);
+      }
+      if (entry.collocation !== undefined) {
+        if (!object(entry.collocation) || !text(entry.collocation.phrase) || !entry.collocation.phrase.trim() ||
+            !text(entry.collocation.translation) || !entry.collocation.translation.trim()) {
+          fail("invalid-collocation", "搭配短语格式无效", entryId);
+        }
+      }
+      if (entry.contextQuestion !== undefined) {
+        if (!object(entry.contextQuestion) ||
+            !(entry.contextQuestion.sentence === undefined || (text(entry.contextQuestion.sentence) && !!entry.contextQuestion.sentence.trim())) ||
+            !(entry.contextQuestion.targetForm === undefined || (text(entry.contextQuestion.targetForm) && !!entry.contextQuestion.targetForm.trim())) ||
+            !(entry.contextQuestion.explanation === undefined || text(entry.contextQuestion.explanation)) ||
+            !Array.isArray(entry.contextQuestion.distractors) ||
+            entry.contextQuestion.distractors.length < 1 ||
+            entry.contextQuestion.distractors.length > 3 ||
+            !entry.contextQuestion.distractors.every((d) => text(d) && !!d.trim())) {
+          fail("invalid-context-question", "语境选择题格式无效", entryId);
+        }
+      }
     } else if (entry.kind === "hanzi") {
       if (![entry.character, entry.pinyin, entry.phrase, entry.sentence, entry.question].every((value) => text(value) && !!value.trim()) ||
           (text(entry.character) && text(entry.phrase) && !entry.phrase.includes(entry.character))) fail("invalid-hanzi", "汉字条目字段无效", entryId);

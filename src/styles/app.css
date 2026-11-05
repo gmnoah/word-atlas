@@ -580,6 +580,18 @@ code {
 .mark {
   flex: none;
 }
+.logo-img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  flex: none;
+  border-radius: 7px;
+  display: block;
+}
+.footer .logo-img {
+  width: 24px;
+  height: 24px;
+}
 .logo-text {
   display: flex;
   align-items: baseline;

@@ -450,6 +450,14 @@
   background: var(--sage-soft);
   border-color: var(--sage);
 }
+.middle-starting-stage {
+  border-left: 3px solid var(--sky);
+}
+.middle-starting-stage .preview-stage-options button.is-selected {
+  color: var(--sky-ink, var(--ink));
+  background: var(--sky-soft, var(--paper-2));
+  border-color: var(--sky);
+}
 .preview-stage-options span {
   font-size: 12px;
   color: var(--ink-2);
@@ -552,6 +560,65 @@
 }
 .atlas-search-clear:hover { color: var(--ink); background: var(--paper-2); }
 .atlas-search-clear:focus-visible { outline: 2px solid var(--terra); outline-offset: -4px; }
+.atlas-grade-filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+.atlas-grade-label {
+  margin-right: 2px;
+  color: var(--ink-3);
+  font-size: 13px;
+  font-weight: 500;
+}
+.atlas-grade-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 8px 16px;
+  color: var(--ink-2);
+  background: var(--card);
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background var(--ease), color var(--ease), border-color var(--ease);
+}
+.atlas-grade-btn small {
+  display: grid;
+  place-items: center;
+  min-width: 24px;
+  min-height: 24px;
+  padding: 0 6px;
+  color: var(--ink-2);
+  background: var(--paper-2);
+  border-radius: 999px;
+  font-size: 12px;
+  line-height: 1;
+}
+.atlas-grade-btn:hover {
+  color: var(--ink);
+  background: var(--paper-2);
+}
+.atlas-grade-btn.is-active,
+.atlas-grade-btn[aria-pressed="true"] {
+  color: var(--card);
+  background: var(--ink);
+  border-color: var(--ink);
+}
+.atlas-grade-btn.is-active small,
+.atlas-grade-btn[aria-pressed="true"] small {
+  color: var(--ink);
+  background: var(--paper);
+}
+.atlas-grade-btn:focus-visible {
+  outline: 2px solid var(--terra);
+  outline-offset: 2px;
+}
 .atlas-progress-filter {
   display: flex;
   flex-wrap: wrap;
@@ -878,6 +945,93 @@
     500 54px/1.2 "PingFang SC",
     "Microsoft YaHei",
     sans-serif;
+}
+.preview-options.is-context-meaning {
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+.preview-options.is-context-meaning .preview-option {
+  min-height: 56px;
+  font: 500 17px/1.4 var(--sans);
+  text-align: left;
+  justify-content: flex-start;
+  padding: 14px 18px;
+}
+.primary-context-prompt {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  padding: 24px;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  aspect-ratio: 1;
+}
+.primary-context-prompt .eyebrow {
+  color: var(--sage-ink);
+  letter-spacing: 0.08em;
+  font-size: 13px;
+}
+.primary-context-sentence {
+  font: 500 22px/1.5 var(--serif);
+  color: var(--ink);
+}
+.primary-context-sentence .example-target {
+  background: var(--ochre-soft);
+  color: var(--ochre-ink);
+  padding: 1px 6px;
+  border-radius: var(--r-sm);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.primary-context-hint {
+  font-size: 14px;
+  color: var(--ink-3);
+  margin: 0;
+}
+.context-collocation-note {
+  margin-top: 4px;
+  font-size: 14px;
+  color: var(--ink-2);
+}
+.context-collocation-note strong {
+  font-size: 14px;
+  color: var(--ink);
+}
+.preview-pos {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--terra-ink);
+  background: var(--terra-soft);
+  padding: 1px 6px;
+  border-radius: 4px;
+  margin-right: 8px;
+}
+.preview-collocation {
+  margin: 12px 0 16px;
+  padding: 10px 14px;
+  background: var(--paper-2);
+  border-radius: var(--r-sm);
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.preview-collocation-label {
+  font-size: 12px;
+  color: var(--ink-3);
+  text-transform: uppercase;
+}
+.preview-collocation-phrase {
+  font-weight: 600;
+  color: var(--ink);
+}
+.preview-collocation-trans {
+  color: var(--ink-2);
 }
 .preview-feedback {
   min-height: 110px;

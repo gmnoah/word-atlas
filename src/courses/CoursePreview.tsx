@@ -31,6 +31,7 @@ import {
   preferencesFor,
   profileStore,
   useProfiles,
+  type LearningCount,
 } from "../profiles/store";
 import { contextCoordinator } from "../profiles/isolation";
 import { courseRegistry, courseAction } from "./registry";
@@ -88,10 +89,12 @@ export default function CoursePreview() {
   const [courseEntries, setCourseEntries] = useState<LearningEntry[]>([]);
   const [atlasQuery, setAtlasQuery] = useState("");
   const [atlasFilter, setAtlasFilter] = useState<"all" | "unseen" | "seen">("all");
+  const [middleGradeFilter, setMiddleGradeFilter] = useState<"all" | "grade7" | "grade8" | "grade9">("all");
   const atlasSearchRef = useRef<HTMLInputElement>(null);
   useEffect(() => {
     setAtlasQuery("");
     setAtlasFilter("all");
+    setMiddleGradeFilter("all");
   }, [courseId]);
   const entriesById = useMemo(() => new Map(courseEntries.map((entry) => [entry.id, entry])), [courseEntries]);
   const todayEntries = useMemo(() => recommendedPrimaryEntries(courseEntries, course?.lessons ?? []), [courseEntries, course]);
@@ -148,29 +151,66 @@ export default function CoursePreview() {
     if (!primaryProgress?.ok) return null;
     return journeyProgress(primaryProgress.progress, course?.lessons ?? [], courseEntries.map((entry) => entry.id));
   }, [course, courseEntries, primaryProgress]);
+  const lessonIndexMap = useMemo(() => {
+    const map = new Map<string, number>();
+    (course?.lessons ?? []).forEach((item, index) => map.set(item.id, index));
+    return map;
+  }, [course]);
+  const middleGradeFilterCounts = useMemo(() => {
+    if (course?.manifest.id !== "middle-english") {
+      return { all: matchingLessons.length, grade7: 0, grade8: 0, grade9: 0 };
+    }
+    let g7 = 0;
+    let g8 = 0;
+    let g9 = 0;
+    for (const lesson of matchingLessons) {
+      const idx = lessonIndexMap.get(lesson.id) ?? 0;
+      if (idx < 30) g7++;
+      else if (idx < 70) g8++;
+      else g9++;
+    }
+    return {
+      all: matchingLessons.length,
+      grade7: g7,
+      grade8: g8,
+      grade9: g9,
+    };
+  }, [course, matchingLessons, lessonIndexMap]);
+  const filteredByGradeLessons = useMemo(() => {
+    if (course?.manifest.id !== "middle-english" || middleGradeFilter === "all") {
+      return matchingLessons;
+    }
+    return matchingLessons.filter((lesson) => {
+      const idx = lessonIndexMap.get(lesson.id) ?? 0;
+      if (middleGradeFilter === "grade7") return idx >= 0 && idx < 30;
+      if (middleGradeFilter === "grade8") return idx >= 30 && idx < 70;
+      if (middleGradeFilter === "grade9") return idx >= 70 && idx < 110;
+      return true;
+    });
+  }, [course, matchingLessons, middleGradeFilter, lessonIndexMap]);
   const activeAtlasFilter = exploration ? atlasFilter : "all";
   const atlasFilterCounts = useMemo(() => {
-    if (!exploration) return { all: matchingLessons.length, unseen: null, seen: null };
+    if (!exploration) return { all: filteredByGradeLessons.length, unseen: null, seen: null };
     const states = new Map(exploration.themes.map((theme) => [theme.id, theme]));
     let unseen = 0;
     let seen = 0;
-    for (const lesson of matchingLessons) {
+    for (const lesson of filteredByGradeLessons) {
       const state = states.get(lesson.id);
       if (!state) continue;
       if (state.viewed < state.total) unseen += 1;
       if (state.viewed > 0) seen += 1;
     }
-    return { all: matchingLessons.length, unseen, seen };
-  }, [exploration, matchingLessons]);
+    return { all: filteredByGradeLessons.length, unseen, seen };
+  }, [exploration, filteredByGradeLessons]);
   const visibleLessons = useMemo(() => {
-    if (activeAtlasFilter === "all" || !exploration) return matchingLessons;
+    if (activeAtlasFilter === "all" || !exploration) return filteredByGradeLessons;
     const states = new Map(exploration.themes.map((theme) => [theme.id, theme]));
-    return matchingLessons.filter((lesson) => {
+    return filteredByGradeLessons.filter((lesson) => {
       const state = states.get(lesson.id);
       if (!state) return false;
       return activeAtlasFilter === "unseen" ? state.viewed < state.total : state.viewed > 0;
     });
-  }, [activeAtlasFilter, exploration, matchingLessons]);
+  }, [activeAtlasFilter, exploration, filteredByGradeLessons]);
   const visibleMatchingEntryIds = useMemo(() => {
     const ids = new Set<string>();
     for (const lesson of visibleLessons) {
@@ -280,9 +320,12 @@ export default function CoursePreview() {
       : course?.manifest.id === "middle-english"
         ? middlePreferences
         : primaryPreferences;
-  const lessonPreferences: Preferences = course?.manifest.subject === "english"
-    ? { ...preferences, englishCount: primaryPreviewCount(preferences.englishCount, startingStage) }
-    : preferences;
+  const lessonPreferences: Preferences =
+    course?.manifest.id === "middle-english"
+      ? middlePreferences
+      : course?.manifest.subject === "english"
+        ? { ...preferences, englishCount: primaryPreviewCount(preferences.englishCount, startingStage) }
+        : preferences;
   const openCourse = (id: string, view?: "journey" | "atlas") => {
     const action = courseAction(id);
     if (action.kind === "preview") go({ page: "explore", courseId: action.courseId, view });
@@ -386,7 +429,7 @@ export default function CoursePreview() {
               event.preventDefault();
               leaveCourse();
             }}
-            aria-label="词光学习空间"
+            aria-label="遇安学习空间"
           >
             <Logo />
           </a>
@@ -802,7 +845,51 @@ export default function CoursePreview() {
               </section>
               <p className="preview-disclosure">主题进度来自本机学习记录；看过不代表掌握。</p>
             </> : <>
-            {course.manifest.subject === "english" && (
+            {course.manifest.id === "middle-english" ? (
+              <section className="preview-starting-stage middle-starting-stage" aria-labelledby="middle-stage-title">
+                <div>
+                  <p className="eyebrow">JUNIOR HIGH CURRICULUM</p>
+                  <h2 id="middle-stage-title">初中核心词汇 · 110 单元语境突破</h2>
+                  <p>按单元掌握新课标必考词，在完整例句中理解真实词义与地道搭配。</p>
+                </div>
+                <div className="preview-stage-options" role="group" aria-label="选择学习节奏">
+                  <button
+                    type="button"
+                    className={middlePreferences.englishCount === 5 ? "is-selected" : ""}
+                    aria-pressed={middlePreferences.englishCount === 5}
+                    onClick={() =>
+                      profileStore.setCoursePreferences(activeProfile.id, "middle-english", { englishCount: 5 })
+                    }
+                  >
+                    <strong>稳步积累</strong><span>每次 5 个词（半个单元）</span>
+                  </button>
+                  <button
+                    type="button"
+                    className={middlePreferences.englishCount === 10 ? "is-selected" : ""}
+                    aria-pressed={middlePreferences.englishCount === 10}
+                    onClick={() =>
+                      profileStore.setCoursePreferences(activeProfile.id, "middle-english", { englishCount: 10 })
+                    }
+                  >
+                    <strong>高效冲刺</strong><span>每次 10 个词（完整单元）</span>
+                  </button>
+                </div>
+                <label className="preview-spelling-toggle">
+                  <input
+                    type="checkbox"
+                    checked={spellingEnabled}
+                    onChange={(event) => setSpellingEnabled(event.target.checked)}
+                  />
+                  <span>
+                    <strong>开启拼写挑战</strong>
+                    <small>强化中考拼写手感；遇到不便打字时可随时跳过。</small>
+                  </span>
+                </label>
+                <p className="preview-stage-note">
+                  每单元精选 10 个核心词汇，结合语境释义、例句目标词划线与常用搭配强化；可随时在小课中练习。
+                </p>
+              </section>
+            ) : course.manifest.subject === "english" ? (
               <section className="preview-starting-stage" aria-labelledby="starting-stage-title">
                 <div>
                   <p className="eyebrow">YOUR STARTING POINT</p>
@@ -827,7 +914,7 @@ export default function CoursePreview() {
                 )}
                 <p className="preview-stage-note">两种节奏都可以学习全部主题，结合看图和听音练习；每次学习的词数还受家长设置影响。</p>
               </section>
-            )}
+            ) : null}
             {course.manifest.subject === "english" && <PrimaryJourney profileId={activeProfileId} courseId={course.manifest.id} contentVersion={course.manifest.version}
               entries={todayEntries} onOpenFavorite={(entry) => go({ page: "explore", courseId: course.manifest.id, view: "atlas", entryId: entry.id })}
               onOpenSettings={() => setParentOpen(true)} onToday={() => setLesson({ id: "today", title: "今日小课", subtitle: "回顾与发现", entryIds: todayEntries.map((entry) => entry.id) })} />}
@@ -843,6 +930,31 @@ export default function CoursePreview() {
                   requestAnimationFrame(() => atlasSearchRef.current?.focus());
                 }}><X size={18} aria-hidden="true" /></button>}
               </div>
+              {course.manifest.id === "middle-english" && (
+                <div className="atlas-grade-filter" role="group" aria-label="按年级学段筛选单元">
+                  <span className="atlas-grade-label">学段导航</span>
+                  {([
+                    ["all", "全部单元"],
+                    ["grade7", "七年级基础"],
+                    ["grade8", "八年级拓展"],
+                    ["grade9", "九年级中考冲刺"],
+                  ] as const).map(([gradeKey, gradeLabel]) => {
+                    const count = middleGradeFilterCounts[gradeKey];
+                    return (
+                      <button
+                        key={gradeKey}
+                        type="button"
+                        className={`atlas-grade-btn${middleGradeFilter === gradeKey ? " is-active" : ""}`}
+                        aria-pressed={middleGradeFilter === gradeKey}
+                        onClick={() => setMiddleGradeFilter(gradeKey)}
+                      >
+                        <span>{gradeLabel}</span>
+                        <small aria-hidden="true">{count}</small>
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
               <div className="atlas-progress-filter" role="group" aria-label="按图鉴进度筛选">
                 <span>按进度</span>
                 {([
@@ -861,13 +973,14 @@ export default function CoursePreview() {
               <p id="atlas-search-status" role="status" aria-live="polite">
                 {atlasStatus}
               </p>
-              {!visibleLessons.length && (queryActive || activeAtlasFilter !== "all") && (
+              {!visibleLessons.length && (queryActive || activeAtlasFilter !== "all" || middleGradeFilter !== "all") && (
                 <div className="atlas-search-actions">
                   {queryActive && <button type="button" className="btn btn-ghost" onClick={() => {
                     setAtlasQuery("");
                     requestAnimationFrame(() => atlasSearchRef.current?.focus());
                   }}>清空查找</button>}
-                  {activeAtlasFilter !== "all" && <button type="button" className="btn btn-ghost" onClick={() => setAtlasFilter("all")}>显示全部主题</button>}
+                  {activeAtlasFilter !== "all" && <button type="button" className="btn btn-ghost" onClick={() => setAtlasFilter("all")}>显示全部进度</button>}
+                  {middleGradeFilter !== "all" && <button type="button" className="btn btn-ghost" onClick={() => setMiddleGradeFilter("all")}>显示全部单元</button>}
                 </div>
               )}
             </section>
@@ -899,12 +1012,9 @@ export default function CoursePreview() {
             <div className="preview-course-note">
               <Compass size={20} />
               <span>
-                选一个感兴趣的主题，每次认识{" "}
-                {course.manifest.subject === "english"
-                  ? lessonPreferences.englishCount
-                  : preferences.hanziCount}{" "}
-                {course.manifest.subject === "english" ? "个词" : "个字"}
-                。随时可以停下来。
+                {course.manifest.id === "middle-english"
+                  ? `选一个单元开启学习，每次研读 ${middlePreferences.englishCount} 个词。配有例句划线与常用搭配，随时可暂停或继续。`
+                  : `选一个感兴趣的主题，每次认识 ${course.manifest.subject === "english" ? lessonPreferences.englishCount : preferences.hanziCount} ${course.manifest.subject === "english" ? "个词" : "个字"}。随时可以停下来。`}
               </span>
             </div>
             <div className="preview-lessons">
@@ -928,10 +1038,9 @@ export default function CoursePreview() {
                     />
                     <div>
                       <p className="eyebrow">
-                        主题 {String(i + 1).padStart(2, "0")} · {entries.length}{" "}
-                        {course.manifest.subject === "english"
-                          ? "个词"
-                          : "个字"}
+                        {course.manifest.id === "middle-english"
+                          ? `${i < 30 ? "七年级" : i < 70 ? "八年级" : "九年级"} · 单元 ${String(i + 1).padStart(2, "0")} · ${entries.length} 个词`
+                          : `主题 ${String(i + 1).padStart(2, "0")} · ${entries.length} ${course.manifest.subject === "english" ? "个词" : "个字"}`}
                       </p>
                       <h2>{l.title}</h2>
                       {exploration && <p>看过 {exploration.themes[i]?.viewed ?? 0} / {exploration.themes[i]?.total ?? 0} 个词</p>}
@@ -1003,7 +1112,17 @@ export default function CoursePreview() {
           return <div className="course-entry-detail">
             <Illustration src={course.img(entry)} word={entryLabel(entry)} fallbackMessage="插画暂时无法显示" />
             <div><p className="eyebrow">{lesson ? `${lesson.title} · 第 ${position + 1} / ${lesson.entryIds.length} 个${unit}` : "课程图鉴"}</p><h2>{entryLabel(entry)}</h2>
-              <p>{entry.kind === "english" ? entry.meaning : entry.phrase}</p>
+              <p>
+                {entry.kind === "english" && entry.partOfSpeech && <span className="preview-pos">{entry.partOfSpeech}</span>}
+                {entry.kind === "english" ? (entry.lessonMeaning || entry.meaning) : entry.phrase}
+              </p>
+              {entry.kind === "english" && entry.collocation && (
+                <div className="preview-collocation">
+                  <span className="preview-collocation-label">常用搭配</span>
+                  <span className="preview-collocation-phrase" lang="en">{entry.collocation.phrase}</span>
+                  <span className="preview-collocation-trans">{entry.collocation.translation}</span>
+                </div>
+              )}
               <PreviewSpeak key={`course-entry:${entry.id}`} text={text} locale={entry.kind === "english" ? entry.media.locale : "zh-CN"} recording={course.audio(entry)} slow={preferences.slow} />
               <PrimaryFavorite profileId={activeProfileId} courseId={course.manifest.id} entry={entry} onOpenSettings={openParentFromEntry} />
               {entry.kind === "english" ? <div className="preview-example"><p lang="en">{example ? <>{example[0]}<mark className="example-target">{example[1]}</mark>{example[2]}</> : entry.example.text}</p><span>{entry.example.translation}</span></div>
@@ -1087,18 +1206,34 @@ export default function CoursePreview() {
             {profileMessage && <p className="preview-profile-message" role="status">{profileMessage}</p>}
           </section>
           <label>
-            英语小课的词数
+            小学英语小课的词数
             <select
               value={primaryPreferences.englishCount}
               onChange={(e) =>
                 profileStore.setCoursePreferences(activeProfile.id, "primary-starter", {
-                  englishCount: Number(e.target.value) as 2 | 3 | 5,
+                  englishCount: Number(e.target.value) as LearningCount,
                 })
               }
             >
               <option value={2}>2 个词</option>
               <option value={3}>3 个词</option>
-              <option value={5}>5 个词</option>
+              <option value={5}>5 个词（默认）</option>
+              <option value={10}>10 个词</option>
+            </select>
+          </label>
+          <label>
+            初中英语小课的词数
+            <select
+              value={middlePreferences.englishCount}
+              onChange={(e) =>
+                profileStore.setCoursePreferences(activeProfile.id, "middle-english", {
+                  englishCount: Number(e.target.value) as LearningCount,
+                })
+              }
+            >
+              <option value={3}>3 个词</option>
+              <option value={5}>5 个词（默认）</option>
+              <option value={10}>10 个词（整单元）</option>
             </select>
           </label>
           <label>
@@ -1107,13 +1242,14 @@ export default function CoursePreview() {
               value={hanziPreferences.hanziCount}
               onChange={(e) =>
                 profileStore.setCoursePreferences(activeProfile.id, "hanzi-starter", {
-                  hanziCount: Number(e.target.value) as 2 | 3 | 5,
+                  hanziCount: Number(e.target.value) as LearningCount,
                 })
               }
             >
               <option value={2}>2 个字</option>
               <option value={3}>3 个字</option>
-              <option value={5}>5 个字</option>
+              <option value={5}>5 个字（默认）</option>
+              <option value={10}>10 个字</option>
             </select>
           </label>
           <label>

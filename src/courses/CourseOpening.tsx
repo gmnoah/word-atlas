@@ -36,7 +36,7 @@ export function CourseOpening({ courseId, profileId, enabled }: { courseId: stri
       <p className="course-opening-kicker">
         {hanzi ? "FIRST CHARACTERS / 亲子探索" : "LITTLE EXPLORERS / 今日探索"}
       </p>
-      <strong>词光 · {hanzi ? "汉字启蒙" : "基础英语"}</strong>
+      <strong>遇安 · {hanzi ? "汉字启蒙" : courseId === "middle-english" ? "初中英语" : "基础英语"}</strong>
       <p className="course-opening-guide">
         {hanzi ? "看一看 · 听一听 · 找一找" : "LOOK · LISTEN · REMEMBER"}
       </p>

@@ -35,8 +35,8 @@ export function primaryStartingPointId(
 
 /** The starting stage limits this preview only; it does not claim proficiency. */
 export function primaryPreviewCount(requested: number, stage: PrimaryStartingStage): number {
-  const safe = Number.isFinite(requested) ? Math.max(1, Math.floor(requested)) : 3;
-  return Math.min(safe, primaryVisualPolicy(stage).newContentLimit);
+  const safe = Number.isFinite(requested) ? Math.max(1, Math.floor(requested)) : 5;
+  return stage === "starter" ? Math.min(safe, 3) : safe;
 }
 
 /** Keep familiar, concrete sample themes first without hiding other course entries. */

@@ -46,7 +46,7 @@ export function Me({ privateAvailable }: { privateAvailable: boolean }) {
     if (f.size > 30 * 1024 * 1024) return toast("文件太大，不像是学习备份。", "warn");
     const checked = preflightRestore(await f.text());
     if (!checked.ok) return toast(checked.error, "warn");
-    const scope = `将替换这台设备中“词光”的全部本地档案数据：${checked.plan.profileCount} 位学习者、${checked.plan.courses.length} 门课程。其他网站数据不会受影响。`;
+    const scope = `将替换这台设备中“遇安”的全部本地档案数据：${checked.plan.profileCount} 位学习者、${checked.plan.courses.length} 门课程。其他网站数据不会受影响。`;
     if (!confirm(`${scope}\n\n建议先导出当前备份。确定恢复吗？`)) return;
     const result = await applyRestoreWithLock(localStorage, checked.plan);
     toast(result.ok ? `已恢复 ${result.courses.length} 门课程的数据，请刷新页面继续。` : result.error, result.ok ? "ok" : "warn");
@@ -186,7 +186,7 @@ export function Me({ privateAvailable }: { privateAvailable: boolean }) {
 
         <section className="panel">
           <h3 className="eyebrow">数据</h3>
-          <p className="muted">导出会包含这台设备的全部词光档案、课程设置和进度。恢复前会先说明替换范围；不会影响其他网站数据。</p>
+          <p className="muted">导出会包含这台设备的全部遇安档案、课程设置和进度。恢复前会先说明替换范围；不会影响其他网站数据。</p>
           {saveError && <p className="warn-text">学习记录暂时无法保存。如果刚恢复了备份，请刷新页面后继续；否则请检查浏览器存储空间并及时备份。</p>}
           <div className="data-actions">
             <button className="btn btn-ghost" onClick={download}>

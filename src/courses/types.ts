@@ -34,10 +34,34 @@ interface EntryBase {
   caregiverTip: string;
 }
 
+export interface Collocation {
+  phrase: string;
+  translation: string;
+}
+
+export interface ContextQuestion {
+  /** Optional override sentence; defaults to example.text if omitted */
+  sentence?: string;
+  /** Explicit target form in the question sentence; defaults to example.targetForm || word */
+  targetForm?: string;
+  /** Verified semantic distractors (must have 1 to 3 valid distinct meanings different from the target) */
+  distractors: string[];
+  /** Post-answer explanation showing why this meaning fits the sentence context */
+  explanation?: string;
+}
+
 export interface EnglishEntry extends EntryBase {
   kind: "english";
   word: string;
   meaning: string;
+  /** Part of speech, e.g. "n.", "v.", "adj.", "adv.", "prep." */
+  partOfSpeech?: string;
+  /** The specific meaning taught in this lesson's sentence context */
+  lessonMeaning?: string;
+  /** High-frequency collocation or phrase */
+  collocation?: Collocation;
+  /** Verified context multiple-choice question configuration */
+  contextQuestion?: ContextQuestion;
   example: {
     text: string;
     translation: string;

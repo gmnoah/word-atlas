@@ -115,6 +115,26 @@ function answerKeysMatch(
     const option = entriesById.get(id);
     return id !== entry.id && !!option && sameHanziPronunciation(entry, option);
   })) return false;
+  if (step.kind === "context-meaning") {
+    if (entry.kind !== "english" || !entry.contextQuestion) return false;
+    const targetKey = normalize(answerLabel(entry, "context-meaning"));
+    if (!targetKey) return false;
+    const distractors = entry.contextQuestion.distractors;
+    const keys = step.options.map((id) => {
+      if (id === entry.id) return targetKey;
+      if (id.startsWith("distractor:")) {
+        const idx = parseInt(id.slice("distractor:".length), 10);
+        return Number.isFinite(idx) && idx >= 0 && idx < distractors.length ? normalize(distractors[idx]) : null;
+      }
+      const option = entriesById.get(id);
+      if (option && option.kind === "english") {
+        return normalize(answerLabel(option, "context-meaning"));
+      }
+      return null;
+    });
+    if (keys.some((key) => !key)) return false;
+    return new Set(keys).size === keys.length && keys.filter((key) => key === targetKey).length === 1;
+  }
   const keys = step.options.map((id) => {
     const option = entriesById.get(id);
     if (!option || option.kind !== entry.kind) return null;
@@ -155,6 +175,7 @@ function validStep(
   )
     return false;
   if (raw.kind === "hanzi-question" && entry.kind === "hanzi" && !entry.question) return false;
+  if (raw.kind === "context-meaning" && (entry.kind !== "english" || !entry.contextQuestion || entry.contextQuestion.distractors.length < 1)) return false;
   const step = raw as unknown as LearningStep;
   if (definition.input) return !step.options?.length && answerKeysMatch(step, entry, entriesById);
   return answerKeysMatch(step, entry, entriesById);

@@ -7,43 +7,82 @@ import { primarySample } from "./primary-sample";
 import { hanziSample } from "./hanzi-sample";
 
 test("expanded courses retain the original entries and lessons unchanged", () => {
-  for (const [full, original] of [[sampleCourses[0], primarySample], [sampleCourses[1], hanziSample]]) {
-    assert.deepEqual(full.lessons.slice(0, original.lessons.length), original.lessons);
-    assert.deepEqual(full.entries.slice(0, original.entries.length), original.entries);
+  for (const [full, original] of [
+    [sampleCourses[0], primarySample],
+    [sampleCourses[1], hanziSample],
+  ]) {
+    assert.deepEqual(
+      full.lessons.slice(0, original.lessons.length),
+      original.lessons,
+    );
+    assert.deepEqual(
+      full.entries.slice(0, original.entries.length),
+      original.entries,
+    );
   }
 });
 
 test("the 150-character expansion preserves the archived 100-character course", () => {
-  const previous = JSON.parse(readFileSync("public/courses/hanzi-starter/0.2.0-draft/course.json", "utf8"));
+  const previous = JSON.parse(
+    readFileSync(
+      "public/courses/hanzi-starter/0.2.0-draft/course.json",
+      "utf8",
+    ),
+  );
   assert.deepEqual(sampleCourses[1].lessons.slice(0, 12), previous.lessons);
-  const expanded = JSON.parse(readFileSync("public/courses/hanzi-starter/0.3.0-draft/course.json", "utf8"));
+  const expanded = JSON.parse(
+    readFileSync(
+      "public/courses/hanzi-starter/0.3.0-draft/course.json",
+      "utf8",
+    ),
+  );
   assert.deepEqual(expanded.entries.slice(0, 100), previous.entries);
   for (const entry of sampleCourses[1].entries.slice(100)) {
     assert.equal(entry.kind, "hanzi");
-    if (entry.kind === "hanzi") assert.ok(entry.sentence.includes(entry.character), entry.id);
+    if (entry.kind === "hanzi")
+      assert.ok(entry.sentence.includes(entry.character), entry.id);
   }
 });
 
 test("the 300-character expansion preserves the archived 150-character course", () => {
-  const previous = JSON.parse(readFileSync("public/courses/hanzi-starter/0.3.0-draft/course.json", "utf8"));
+  const previous = JSON.parse(
+    readFileSync(
+      "public/courses/hanzi-starter/0.3.0-draft/course.json",
+      "utf8",
+    ),
+  );
   assert.deepEqual(sampleCourses[1].lessons.slice(0, 17), previous.lessons);
-  const expanded = JSON.parse(readFileSync("public/courses/hanzi-starter/0.4.0-draft/course.json", "utf8"));
+  const expanded = JSON.parse(
+    readFileSync(
+      "public/courses/hanzi-starter/0.4.0-draft/course.json",
+      "utf8",
+    ),
+  );
   assert.deepEqual(expanded.entries.slice(0, 150), previous.entries);
 });
 
 test("corrected 头发 uses fà while the previous archive stays unchanged", () => {
-  const previous = JSON.parse(readFileSync("public/courses/hanzi-starter/0.4.0-draft/course.json", "utf8"));
-  const old = previous.entries.find((entry: { character?: string }) => entry.character === "发");
-  const current = sampleCourses[1].entries.find((entry) => entry.kind === "hanzi" && entry.character === "发");
+  const previous = JSON.parse(
+    readFileSync(
+      "public/courses/hanzi-starter/0.4.0-draft/course.json",
+      "utf8",
+    ),
+  );
+  const old = previous.entries.find(
+    (entry: { character?: string }) => entry.character === "发",
+  );
+  const current = sampleCourses[1].entries.find(
+    (entry) => entry.kind === "hanzi" && entry.character === "发",
+  );
   assert.equal(old.pinyin, "fā");
   assert.equal(current?.kind === "hanzi" && current.pinyin, "fà");
   assert.equal(current?.kind === "hanzi" && current.phrase, "头发");
 });
 
-test("course packs have 300 Primary, 300 Hanzi, and 100 Middle English words, each in exactly one lesson", () => {
+test("course packs have 300 Primary, 300 Hanzi, and 1100 Middle English words, each in exactly one lesson", () => {
   assert.deepEqual(
     sampleCourses.map((c) => c.entries.length),
-    [300, 300, 100],
+    [300, 300, 1100],
   );
   for (const course of sampleCourses) {
     assert.equal(course.manifest.status, "preview");
@@ -93,11 +132,18 @@ test("course packs have 300 Primary, 300 Hanzi, and 100 Middle English words, ea
 });
 
 test("sample vocabulary revisions preserve other entries and the prior archive", () => {
-  const previous = JSON.parse(readFileSync("public/courses/hanzi-starter/0.6.0-draft/course.json", "utf8"));
+  const previous = JSON.parse(
+    readFileSync(
+      "public/courses/hanzi-starter/0.6.0-draft/course.json",
+      "utf8",
+    ),
+  );
   const current = sampleCourses[1];
   const revised = new Set(["hanzi-u6c34", "hanzi-u8db3", "hanzi-u76ee"]);
   for (const entry of current.entries) {
-    const old = previous.entries.find((item: { id: string }) => item.id === entry.id);
+    const old = previous.entries.find(
+      (item: { id: string }) => item.id === entry.id,
+    );
     assert.ok(old, entry.id);
     if (!revised.has(entry.id)) assert.deepEqual(entry, old, entry.id);
     else {
@@ -108,15 +154,38 @@ test("sample vocabulary revisions preserve other entries and the prior archive",
       assert.deepEqual(entry.media, old.media);
     }
   }
-  assert.equal(previous.entries.find((item: { id: string }) => item.id === "hanzi-u8db3").phrase, "双足");
-  assert.equal((current.entries.find((item) => item.id === "hanzi-u8db3") as { phrase: string }).phrase, "足迹");
+  assert.equal(
+    previous.entries.find((item: { id: string }) => item.id === "hanzi-u8db3")
+      .phrase,
+    "双足",
+  );
+  assert.equal(
+    (
+      current.entries.find((item) => item.id === "hanzi-u8db3") as {
+        phrase: string;
+      }
+    ).phrase,
+    "足迹",
+  );
 });
 
 test("English sample keeps the previous archive while correcting the cat's example", () => {
-  const previous = JSON.parse(readFileSync("public/courses/primary-starter/0.2.0-draft/course.json", "utf8"));
-  const current = JSON.parse(readFileSync("public/courses/primary-starter/0.3.0-draft/course.json", "utf8"));
+  const previous = JSON.parse(
+    readFileSync(
+      "public/courses/primary-starter/0.2.0-draft/course.json",
+      "utf8",
+    ),
+  );
+  const current = JSON.parse(
+    readFileSync(
+      "public/courses/primary-starter/0.3.0-draft/course.json",
+      "utf8",
+    ),
+  );
   for (const entry of current.entries) {
-    const old = previous.entries.find((item: { id: string }) => item.id === entry.id);
+    const old = previous.entries.find(
+      (item: { id: string }) => item.id === entry.id,
+    );
     assert.ok(old, entry.id);
     if (entry.id !== "en-cat") assert.deepEqual(entry, old, entry.id);
     else {
@@ -130,16 +199,30 @@ test("English sample keeps the previous archive while correcting the cat's examp
   }
 });
 
-
 test("sample picture-context edits preserve other English entries and old archives", () => {
-  const previous = JSON.parse(readFileSync("public/courses/primary-starter/0.3.0-draft/course.json", "utf8"));
+  const previous = JSON.parse(
+    readFileSync(
+      "public/courses/primary-starter/0.3.0-draft/course.json",
+      "utf8",
+    ),
+  );
   const revised = new Set(["en-pear", "en-grape", "en-dog", "en-fish"]);
   for (const entry of sampleCourses[0].entries) {
-    const old = previous.entries.find((item: { id: string }) => item.id === entry.id);
+    const old = previous.entries.find(
+      (item: { id: string }) => item.id === entry.id,
+    );
     assert.ok(old, entry.id);
     if (!revised.has(entry.id)) assert.deepEqual(entry, old, entry.id);
-    else { assert.deepEqual(entry.media, old.media); assert.equal(entry.reviewStatus, "draft"); }
+    else {
+      assert.deepEqual(entry.media, old.media);
+      assert.equal(entry.reviewStatus, "draft");
+    }
   }
-  const grapes = sampleCourses[0].entries.find((item) => item.id === "en-grape");
-  assert.equal(grapes?.kind === "english" && grapes.example.targetForm, "grapes");
+  const grapes = sampleCourses[0].entries.find(
+    (item) => item.id === "en-grape",
+  );
+  assert.equal(
+    grapes?.kind === "english" && grapes.example.targetForm,
+    "grapes",
+  );
 });

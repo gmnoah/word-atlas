@@ -1,9 +1,11 @@
 import { useSyncExternalStore } from "react";
 import type { LearnerProfile } from "../courses/types";
 
+export type LearningCount = 2 | 3 | 5 | 10;
+
 export interface LearningPreferences {
-  englishCount: 2 | 3 | 5;
-  hanziCount: 2 | 3 | 5;
+  englishCount: LearningCount;
+  hanziCount: LearningCount;
   slow: boolean;
   /** Caregiver session length in minutes; 0 follows the stage default. */
   minutes: number;
@@ -27,15 +29,16 @@ const DEFAULT_PROFILE: LearnerProfile = {
 };
 const LEGACY_DEFAULT_NICKNAME = "我的雅思";
 export const defaultLearningPreferences: LearningPreferences = Object.freeze({
-  englishCount: 3,
-  hanziCount: 2,
+  englishCount: 5,
+  hanziCount: 5,
   slow: true,
   minutes: 0,
 });
 
 const isObject = (value: unknown): value is Record<string, unknown> =>
   !!value && typeof value === "object" && !Array.isArray(value);
-const isCount = (value: unknown): value is 2 | 3 | 5 => value === 2 || value === 3 || value === 5;
+const isCount = (value: unknown): value is LearningCount =>
+  value === 2 || value === 3 || value === 5 || value === 10;
 const isMinutes = (value: unknown): value is number =>
   typeof value === "number" && Number.isFinite(value) && value >= 0 && value <= 30;
 

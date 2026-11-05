@@ -19,6 +19,7 @@ test("T20: preview stage limits respect the caregiver's smaller selection", () =
   assert.equal(primaryPreviewCount(5, "starter"), 3);
   assert.equal(primaryPreviewCount(5, "advanced"), 5);
   assert.equal(primaryPreviewCount(2, "advanced"), 2);
+  assert.equal(primaryPreviewCount(10, "advanced"), 10);
 });
 
 test("a returning learner starts the theme at the next unseen item", () => {

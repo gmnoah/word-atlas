@@ -67,7 +67,7 @@ function validRecords(records: unknown): records is Record<string, unknown> {
 export function preflightRestore(text: string): { ok: true; plan: RestorePlan } | { ok: false; error: string } {
   let data: unknown;
   try { data = JSON.parse(text); } catch { return { ok: false, error: "文件不是有效的 JSON。" }; }
-  if (!isObject(data) || data.app !== APP) return { ok: false, error: "这不是词光的备份。" };
+  if (!isObject(data) || data.app !== APP) return { ok: false, error: "这不是遇安的备份。" };
   if (data.version === 3 && data.scope === "all-local-data" && validRecords(data.records)) {
     // Both the IELTS progress keys and the new-course keys belong to the scope,
     // so the restore confirmation counts every course that will be replaced.

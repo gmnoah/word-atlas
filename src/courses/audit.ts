@@ -58,9 +58,30 @@ export function auditCourse(
           entry.question;
     if (!textComplete || !entry.caregiverTip)
       result.errors.push(issue("missing-text", "条目缺少必需文本", entry.id));
-    if (course.manifest.stage === "primary" && entry.kind === "english" &&
+    if ((course.manifest.stage === "primary" || course.manifest.stage === "middle") && entry.kind === "english" &&
         !exampleTargetParts(entry.example.text, entry.example.targetForm))
       result.errors.push(issue("invalid-example-target", "例句须明确标注且唯一包含目标词形", entry.id));
+    if (entry.kind === "english" && entry.contextQuestion) {
+      const targetMeaning = (entry.lessonMeaning || entry.meaning).trim().toLowerCase();
+      const distractors = entry.contextQuestion.distractors.map((d) => d.trim());
+      const seen = new Set<string>();
+      for (const distractor of distractors) {
+        const lower = distractor.toLowerCase();
+        if (seen.has(lower)) {
+          result.errors.push(issue("duplicate-distractor", "语境题干扰项存在重复", entry.id));
+        }
+        seen.add(lower);
+        if (lower === targetMeaning || distractor === entry.meaning.trim() || (entry.lessonMeaning && distractor === entry.lessonMeaning.trim())) {
+          result.errors.push(issue("distractor-matches-target", "语境题干扰项不能与正确义项相同", entry.id));
+        }
+      }
+      if (entry.contextQuestion.sentence) {
+        const qTarget = entry.contextQuestion.targetForm || entry.example.targetForm || entry.word;
+        if (!exampleTargetParts(entry.contextQuestion.sentence, qTarget)) {
+          result.errors.push(issue("invalid-context-sentence-target", "语境题独立短句须明确且唯一包含目标词形", entry.id));
+        }
+      }
+    }
     if (entry.media.locale !== (entry.kind === "english" ? "en-GB" : "zh-CN"))
       result.errors.push(
         issue("wrong-locale", "朗读语言与学科不一致", entry.id),

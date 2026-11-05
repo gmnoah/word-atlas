@@ -68,14 +68,18 @@ test("T08: creating a learner and changing a course preference does not touch an
   assert.equal(created.ok, true);
   if (!created.ok) return;
 
-  profileStore.setCoursePreferences(created.profile.id, "primary-starter", { englishCount: 5 });
+  profileStore.setCoursePreferences(created.profile.id, "primary-starter", { englishCount: 10, hanziCount: 10 });
   assert.equal(
     preferencesFor(profileStore.get(), created.profile.id, "primary-starter").englishCount,
-    5,
+    10,
+  );
+  assert.equal(
+    preferencesFor(profileStore.get(), created.profile.id, "primary-starter").hanziCount,
+    10,
   );
   assert.equal(
     preferencesFor(profileStore.get(), originalId, "primary-starter").englishCount,
-    3,
+    5,
   );
   profileStore.select(originalId);
 });

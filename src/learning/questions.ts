@@ -13,7 +13,8 @@ export type QuestionKind =
   | "listen-word"
   | "hanzi-listen"
   | "hanzi-picture"
-  | "hanzi-question";
+  | "hanzi-question"
+  | "context-meaning";
 
 export type PromptMode =
   | "word"
@@ -22,6 +23,7 @@ export type PromptMode =
   | "image"
   | "character"
   | "question"
+  | "sentence"
   | "spell";
 export type AnswerMode = "text" | "image" | "input";
 
@@ -134,6 +136,15 @@ export const questionTypes: Record<QuestionKind, QuestionTypeDefinition> = {
     optionImages: false,
     input: false,
   },
+  "context-meaning": {
+    subject: "english",
+    prompt: "sentence",
+    answer: "text",
+    targetImage: false,
+    targetAudio: false,
+    optionImages: false,
+    input: false,
+  },
 };
 
 export interface QuestionPlan {
@@ -153,6 +164,7 @@ export interface BuildQuestionOptions {
 /** The text a learner taps for a text-answer question. */
 export function answerLabel(entry: LearningEntry, kind: QuestionKind): string {
   if (kind === "meaning") return entry.kind === "english" ? entry.meaning : entry.phrase;
+  if (kind === "context-meaning") return entry.kind === "english" ? (entry.lessonMeaning || entry.meaning) : "";
   return entryLabel(entry);
 }
 
@@ -180,6 +192,14 @@ function supportsTarget(entry: LearningEntry, kind: QuestionKind): boolean {
     return false;
   if (kind === "hanzi-question" && entry.kind === "hanzi" && !entry.question) return false;
   if (kind === "meaning" && entry.kind === "english" && !entry.meaning) return false;
+  if (kind === "context-meaning") {
+    if (entry.kind !== "english") return false;
+    const sentence = entry.contextQuestion?.sentence || entry.example?.text;
+    const targetForm = entry.contextQuestion?.targetForm || entry.example?.targetForm || entry.word;
+    if (!sentence || !targetForm) return false;
+    if (!entry.contextQuestion?.distractors || entry.contextQuestion.distractors.length < 1) return false;
+    return true;
+  }
   return true;
 }
 
@@ -208,6 +228,40 @@ export function evaluateQuestion(
 ): QuestionPlan | null {
   const definition = questionTypes[kind];
   if (!supportsTarget(target, kind)) return null;
+
+  if (kind === "context-meaning" && target.kind === "english" && target.contextQuestion) {
+    const distractors = target.contextQuestion.distractors;
+    const targetKey = answerKey(target, kind);
+    if (!targetKey) return null;
+
+    const minOptions = Math.max(
+      2,
+      Number.isFinite(policy.minOptions) ? Math.floor(policy.minOptions) : 2,
+    );
+    const desired = Math.max(
+      minOptions,
+      Number.isFinite(policy.optionCount) ? Math.floor(policy.optionCount) : minOptions,
+    );
+    const chosenDistractors: string[] = [];
+    const seen = new Set<string>([targetKey]);
+    for (let i = 0; i < distractors.length && chosenDistractors.length < desired - 1; i++) {
+      const d = distractors[i];
+      const norm = normalize(d);
+      if (norm && !seen.has(norm)) {
+        seen.add(norm);
+        chosenDistractors.push(`distractor:${i}`);
+      }
+    }
+    const options = [target.id, ...chosenDistractors];
+    if (options.length < minOptions) return null;
+
+    return {
+      kind,
+      prompt: definition.prompt,
+      answer: definition.answer,
+      options: shuffle(options, seed + 1),
+    };
+  }
 
   if (definition.input) {
     const expected = answerLabel(target, kind);

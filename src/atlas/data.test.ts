@@ -93,63 +93,75 @@ test(
   }),
 );
 
-test(
-  "T07: preview sample courses load under unified boundary without requesting IELTS index",
-  async () => {
-    clearCourseCache();
-    let requestedIeltsIndex = false;
-    const originalFetch = globalThis.fetch;
-    globalThis.fetch = async (input: RequestInfo | URL) => {
-      if (String(input).includes("atlas/index.json")) {
-        requestedIeltsIndex = true;
-      }
-      return new Response("Not found", { status: 404 });
-    };
-
-    try {
-      // Primary starter
-      const primary = await loadCourse("primary-starter");
-      assert.equal(primary.manifest.id, "primary-starter");
-      assert.equal(primary.manifest.subject, "english");
-      assert.equal(primary.manifest.stage, "primary");
-      assert.equal(primary.count, 300);
-      assert.equal(primary.lessons?.length, 33);
-
-      const apple = await primary.entry("en-apple");
-      assert.equal(apple.id, "en-apple");
-      assert.equal(primary.img(apple), "/courses/primary-starter/0.4.0-draft/media/atlas/img/apple.webp");
-      assert.equal(primary.audio(apple, "recording"), "/courses/primary-starter/0.4.0-draft/media/atlas/audio/uk/apple.mp3");
-      assert.notEqual(primary.img(apple), versionedCourseMedia("/atlas/img/apple.webp", { ...primary.manifest, version: "0.2.0" }));
-      assert.equal(versionedCourseMedia("https://example.com/signed?x=1", primary.manifest), "https://example.com/signed?x=1");
-
-      // Hanzi starter
-      const hanzi = await loadCourse("hanzi-starter");
-      assert.equal(hanzi.manifest.id, "hanzi-starter");
-      assert.equal(hanzi.manifest.subject, "hanzi");
-      assert.equal(hanzi.manifest.stage, "preschool");
-      assert.equal(hanzi.count, 300);
-
-      const shan = await hanzi.entry("hanzi-u5c71");
-      assert.equal(shan.id, "hanzi-u5c71");
-
-      assert.equal(
-        requestedIeltsIndex,
-        false,
-        "preview courses must not load IELTS index",
-      );
-    } finally {
-      globalThis.fetch = originalFetch;
-      clearCourseCache();
+test("T07: preview sample courses load under unified boundary without requesting IELTS index", async () => {
+  clearCourseCache();
+  let requestedIeltsIndex = false;
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = async (input: RequestInfo | URL) => {
+    if (String(input).includes("atlas/index.json")) {
+      requestedIeltsIndex = true;
     }
-  },
-);
+    return new Response("Not found", { status: 404 });
+  };
+
+  try {
+    // Primary starter
+    const primary = await loadCourse("primary-starter");
+    assert.equal(primary.manifest.id, "primary-starter");
+    assert.equal(primary.manifest.subject, "english");
+    assert.equal(primary.manifest.stage, "primary");
+    assert.equal(primary.count, 300);
+    assert.equal(primary.lessons?.length, 33);
+
+    const apple = await primary.entry("en-apple");
+    assert.equal(apple.id, "en-apple");
+    assert.equal(
+      primary.img(apple),
+      "/courses/primary-starter/0.4.0-draft/media/atlas/img/apple.webp",
+    );
+    assert.equal(
+      primary.audio(apple, "recording"),
+      "/courses/primary-starter/0.4.0-draft/media/atlas/audio/uk/apple.mp3",
+    );
+    assert.notEqual(
+      primary.img(apple),
+      versionedCourseMedia("/atlas/img/apple.webp", {
+        ...primary.manifest,
+        version: "0.2.0",
+      }),
+    );
+    assert.equal(
+      versionedCourseMedia("https://example.com/signed?x=1", primary.manifest),
+      "https://example.com/signed?x=1",
+    );
+
+    // Hanzi starter
+    const hanzi = await loadCourse("hanzi-starter");
+    assert.equal(hanzi.manifest.id, "hanzi-starter");
+    assert.equal(hanzi.manifest.subject, "hanzi");
+    assert.equal(hanzi.manifest.stage, "preschool");
+    assert.equal(hanzi.count, 300);
+
+    const shan = await hanzi.entry("hanzi-u5c71");
+    assert.equal(shan.id, "hanzi-u5c71");
+
+    assert.equal(
+      requestedIeltsIndex,
+      false,
+      "preview courses must not load IELTS index",
+    );
+  } finally {
+    globalThis.fetch = originalFetch;
+    clearCourseCache();
+  }
+});
 
 test("T07: planned and unknown courses reject with clear, safe error messages", async () => {
   clearCourseCache();
 
   const middle = await loadCourse("middle-english");
   assert.equal(middle.manifest.id, "middle-english");
-  assert.equal(middle.count, 100);
+  assert.equal(middle.count, middle.lessons!.flatMap((l) => l.entryIds).length);
 
   await assert.rejects(
     async () => loadCourse("high-english"),
@@ -188,21 +200,29 @@ test("T07: concurrent calls deduplicate in-flight loads and retry on error", asy
       loadCourse("word-atlas-open"),
     ]);
     assert.equal(c1, c2);
-    assert.equal(fetchCount, 1, "fetch called exactly once for concurrent requests");
+    assert.equal(
+      fetchCount,
+      1,
+      "fetch called exactly once for concurrent requests",
+    );
 
     // Clear cache, test failure cleanup
     clearCourseCache();
-    globalThis.fetch = async () => new Response("Server error", { status: 500 });
+    globalThis.fetch = async () =>
+      new Response("Server error", { status: 500 });
     await assert.rejects(async () => loadCourse("word-atlas-open"), /500/);
 
     // After failure, pending cache must be cleared so subsequent call can retry
     globalThis.fetch = async (input: RequestInfo | URL) => {
       const url = String(input);
       if (url.includes("/atlas/index.json")) {
-        return new Response(fs.readFileSync("public/atlas/index.json", "utf8"), {
-          status: 200,
-          headers: { "content-type": "application/json" },
-        });
+        return new Response(
+          fs.readFileSync("public/atlas/index.json", "utf8"),
+          {
+            status: 200,
+            headers: { "content-type": "application/json" },
+          },
+        );
       }
       return new Response("Not found", { status: 404 });
     };
@@ -241,15 +261,24 @@ test("T07: AbortSignal lets one caller leave an in-flight shared load without po
   };
 
   try {
-    const abandoned = loadCourse("word-atlas-open", { signal: controller.signal });
+    const abandoned = loadCourse("word-atlas-open", {
+      signal: controller.signal,
+    });
     await started;
     controller.abort();
-    await assert.rejects(abandoned, (err: unknown) => (err as Error).name === "AbortError");
+    await assert.rejects(
+      abandoned,
+      (err: unknown) => (err as Error).name === "AbortError",
+    );
 
     releaseFetch?.();
     const course = await loadCourse("word-atlas-open");
     assert.equal(course.manifest.id, "word-atlas-open");
-    assert.equal(fetchCount, 1, "the shared request completes and is cached once");
+    assert.equal(
+      fetchCount,
+      1,
+      "the shared request completes and is cached once",
+    );
   } finally {
     globalThis.fetch = originalFetch;
     clearCourseCache();
@@ -260,9 +289,23 @@ test("T07: private course retains matching open-atlas CEFR and topic metadata", 
   clearCourseCache();
   const originalFetch = globalThis.fetch;
   const open = {
-    words: [{ id: "cat", word: "cat", zh: "猫", ipa: "", cefr: 4, topic: 1, media: 0, order: 0 }],
+    words: [
+      {
+        id: "cat",
+        word: "cat",
+        zh: "猫",
+        ipa: "",
+        cefr: 4,
+        topic: 1,
+        media: 0,
+        order: 0,
+      },
+    ],
     cefr: ["A1", "A2", "B1", "B2", "C1", "C2"],
-    topics: [["general", "综合"], ["animals", "动物"]],
+    topics: [
+      ["general", "综合"],
+      ["animals", "动物"],
+    ],
   } as unknown as Atlas;
 
   globalThis.fetch = async () =>
@@ -339,10 +382,7 @@ test("T07: untrusted / malformed index and chunk data are caught cleanly", async
         headers: { "content-type": "application/json" },
       });
 
-    await assert.rejects(
-      async () => loadOpenAtlas(),
-      /词库索引格式错误/,
-    );
+    await assert.rejects(async () => loadOpenAtlas(), /词库索引格式错误/);
   } finally {
     globalThis.fetch = originalFetch;
   }
@@ -402,10 +442,16 @@ test("T07: resolveMediaUrl correctly handles learning entries, legacy entries an
   };
 
   assert.equal(resolveMediaUrl(dummyEntry, "img"), "/atlas/img/moon.webp");
-  assert.equal(resolveMediaUrl(dummyEntry, "thumb", "thumb"), "/atlas/thumb/moon.webp");
+  assert.equal(
+    resolveMediaUrl(dummyEntry, "thumb", "thumb"),
+    "/atlas/thumb/moon.webp",
+  );
   assert.equal(resolveMediaUrl(dummyEntry, "uk"), "/atlas/audio/uk/moon.mp3");
 
   const learning = entryToEnglishEntry(dummyEntry);
   assert.equal(resolveMediaUrl(learning, "img"), "/atlas/img/moon.webp");
-  assert.equal(resolveMediaUrl(learning, "recording"), "/atlas/audio/uk/moon.mp3");
+  assert.equal(
+    resolveMediaUrl(learning, "recording"),
+    "/atlas/audio/uk/moon.mp3",
+  );
 });

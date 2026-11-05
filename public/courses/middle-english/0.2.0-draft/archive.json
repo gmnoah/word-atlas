@@ -1,0 +1,1208 @@
+{
+  "schemaVersion": 1,
+  "courseId": "middle-english",
+  "version": "0.2.0-draft",
+  "contentSha256": "ea228ab29080c9c7eb95f2232fda6679905d94d0b2c9770960bcb810d6d123ff",
+  "media": [
+    {
+      "path": "atlas/audio/ex/achieve.mp3",
+      "sha256": "e921586fc325120b418aeaef8b718b1317083e1d09c92d39f9c364fab91f70f6"
+    },
+    {
+      "path": "atlas/audio/ex/ambition.mp3",
+      "sha256": "0ada993c174dd08454f5b2790d4729b60da7726c8d36defc67307629c714b3f0"
+    },
+    {
+      "path": "atlas/audio/ex/athlete.mp3",
+      "sha256": "de9325282b8f520b03a663a1bebb58050494ba84ca9af0a16e334900bb4fcbe4"
+    },
+    {
+      "path": "atlas/audio/ex/balance.mp3",
+      "sha256": "cc7d66f6c84f5315908f098207fce46ad71acef70fd5f6aa0aeacc6b4f2e3544"
+    },
+    {
+      "path": "atlas/audio/ex/bell.mp3",
+      "sha256": "e64fe0458be70f040af4aa58ff93f1d7353a031d8864cf30124f141ac27b592b"
+    },
+    {
+      "path": "atlas/audio/ex/brave.mp3",
+      "sha256": "4ec3addb45f1fd46c16d60f147deeceaba1a789543878d8d33a1b76e8a34cd01"
+    },
+    {
+      "path": "atlas/audio/ex/breeze.mp3",
+      "sha256": "2bc70246848310044913211c028eb58478c943facdf4037ecbcf32c5af3b1a06"
+    },
+    {
+      "path": "atlas/audio/ex/bridge.mp3",
+      "sha256": "27bda417697e565419b4ab042a43333c65cae65eb6b948ded0cbd097ef0d2235"
+    },
+    {
+      "path": "atlas/audio/ex/calm.mp3",
+      "sha256": "68327c6c70cfff5a21a6feb2b876d5638b34e4aa123e1e18f8fcbe807e74a2c8"
+    },
+    {
+      "path": "atlas/audio/ex/challenge.mp3",
+      "sha256": "db1c53d57fe87e2bbf389515c392a6c96424fd40e294557d80e46b816e14daf5"
+    },
+    {
+      "path": "atlas/audio/ex/cheer.mp3",
+      "sha256": "a839a77f35f8539e30ddda163f9f170144364d113112ee14fb7d2ed22fd7a202"
+    },
+    {
+      "path": "atlas/audio/ex/cheerful.mp3",
+      "sha256": "d4ad1aaa0f386e4407026989cda9216b0ebb89539b7d5914fdafb937fbb0f054"
+    },
+    {
+      "path": "atlas/audio/ex/chess.mp3",
+      "sha256": "37168d79cea68f3d1ee52d6fab8eddc62c498daa906406876bba53735396d9be"
+    },
+    {
+      "path": "atlas/audio/ex/choose.mp3",
+      "sha256": "116f39c518bddbde6ac860b544d23d1144c1f35b83219d6e8db99cb69ee809bf"
+    },
+    {
+      "path": "atlas/audio/ex/classmate.mp3",
+      "sha256": "7f4e88ca9e2b4d9726690081f6aa5d87f424369756601ebb692122605a2babd5"
+    },
+    {
+      "path": "atlas/audio/ex/climate.mp3",
+      "sha256": "89f0657d895b9320f68edb092ed7bd698fb4ce8c97f25fc6bf534df363188c87"
+    },
+    {
+      "path": "atlas/audio/ex/collect.mp3",
+      "sha256": "987481957f14a298382f045e9708c20fcf41200cfa980560631b8035d517209e"
+    },
+    {
+      "path": "atlas/audio/ex/courage.mp3",
+      "sha256": "75c7d0efaecfa7def1c0559fdadc1838ed481e6be5bc4780eff31fca2857d718"
+    },
+    {
+      "path": "atlas/audio/ex/craft.mp3",
+      "sha256": "bf3ab57d977fbca0cf136ac6afdfb02a8857cd6a5a87196f2be32ae3f57e8cab"
+    },
+    {
+      "path": "atlas/audio/ex/creature.mp3",
+      "sha256": "d552b8bec62a3635f5d779b369801ad7d47e231d9fe4d101d56c894ae738df80"
+    },
+    {
+      "path": "atlas/audio/ex/curious.mp3",
+      "sha256": "1e42357f47583678d2dd1bb65dd09b9f922d678a57ae6f29f7b820f19f501465"
+    },
+    {
+      "path": "atlas/audio/ex/custom.mp3",
+      "sha256": "8ffd90a8d75f9cad8935c952e88b0499eaee2f9f50ede6178e33615658da26ea"
+    },
+    {
+      "path": "atlas/audio/ex/decision.mp3",
+      "sha256": "0fe4298d437b702fe20231a759f46953983af7b3336a8a4237ffb0d9e3008583"
+    },
+    {
+      "path": "atlas/audio/ex/delicious.mp3",
+      "sha256": "3280afcab36af4c414d24bf7cd5bcc2a6b07504f093eb35d3cab528604b31151"
+    },
+    {
+      "path": "atlas/audio/ex/discover.mp3",
+      "sha256": "d3871a30421e1e000937e5afd9d241475dac6f2d6aa899671d630c2a5dc2a7b1"
+    },
+    {
+      "path": "atlas/audio/ex/dream.mp3",
+      "sha256": "3800b3e38c3af687e7a80963fd835f0388f6d07a49706404e833cad0927cf6c2"
+    },
+    {
+      "path": "atlas/audio/ex/effort.mp3",
+      "sha256": "6434707fdd7b7f06262a7e134dac443e61ee0d63e099321425405eaf5ee709dc"
+    },
+    {
+      "path": "atlas/audio/ex/energy.mp3",
+      "sha256": "3ab3aef08fa23d0d1e9ec07df8275131d523e009d5063d632bd07a6d30ee4995"
+    },
+    {
+      "path": "atlas/audio/ex/exam.mp3",
+      "sha256": "85951043caf5a31c3f6da7d0a0a303e7bcfc690d266cc59299235591f2287451"
+    },
+    {
+      "path": "atlas/audio/ex/experiment.mp3",
+      "sha256": "9f504e67e9fb174cd3ebf4550bf87bb27d3822f145f8a21354b1a8a1bcca1aa0"
+    },
+    {
+      "path": "atlas/audio/ex/explore.mp3",
+      "sha256": "57bf7ddbb086405289ae5241895c0d830e3b05b134bf6c87776bc8bb24f4da48"
+    },
+    {
+      "path": "atlas/audio/ex/feast.mp3",
+      "sha256": "6b7855373addf636dca3c0f177cdb00922bce58d6875d555f32c0fcb25ec0cb8"
+    },
+    {
+      "path": "atlas/audio/ex/festival.mp3",
+      "sha256": "bdb4d9dd037788c39da003c1e1784f602a5412c8ec2235eb977b18638335e3ff"
+    },
+    {
+      "path": "atlas/audio/ex/finish.mp3",
+      "sha256": "5dcc8078399e48dd86998abe31e0633d382396cc02d119c69371a74055202c61"
+    },
+    {
+      "path": "atlas/audio/ex/flavour.mp3",
+      "sha256": "e5eb7984f546b939ee8024c1f0f5ee40fa21b3b971d215652c2948e360127bbb"
+    },
+    {
+      "path": "atlas/audio/ex/focus.mp3",
+      "sha256": "ef81ef8adb5be4a94d159fff7366c4fdf990d09b53ea458fa1784479a5a680b2"
+    },
+    {
+      "path": "atlas/audio/ex/forest.mp3",
+      "sha256": "8de8473c21433ad4ac8a3b010ce4652466ab810b84d9a5e3bcafb50a1f43a410"
+    },
+    {
+      "path": "atlas/audio/ex/future.mp3",
+      "sha256": "1116b1abd8aecf4bb66cc67b25515cccd580444aed637720c8a5de138d9bfa2a"
+    },
+    {
+      "path": "atlas/audio/ex/gentle.mp3",
+      "sha256": "44851397f6bf5a3b9267e1f00be26aa55542257c5feac3b43ac5d07285fd4e4c"
+    },
+    {
+      "path": "atlas/audio/ex/grade.mp3",
+      "sha256": "37d6551c45e5250f60319f71edd6c66e804c7208170fc5b239e90775b7a2b403"
+    },
+    {
+      "path": "atlas/audio/ex/grateful.mp3",
+      "sha256": "56cb1069ca435eca8604959c7a4a23d9bc5aec13b725dd2a170193027b4eb61c"
+    },
+    {
+      "path": "atlas/audio/ex/growth.mp3",
+      "sha256": "d12cb270cfe1e64a6e9a8e99581d11ad5de8b472e59b81bc535fb8ad5137f5e6"
+    },
+    {
+      "path": "atlas/audio/ex/guest.mp3",
+      "sha256": "04288f138f737b420cf83b3be24a6c007b98ef380368658260cb1de7fc6607ed"
+    },
+    {
+      "path": "atlas/audio/ex/guide.mp3",
+      "sha256": "7b7906caa17e4b778bb03127bf99b0140f932e3883cafac0efad2f2e04cca060"
+    },
+    {
+      "path": "atlas/audio/ex/guitar.mp3",
+      "sha256": "5b0f510fc6cc005b6b4dc586dbe7f5332ecefbcc46a15b2f66bc2fee234af7d6"
+    },
+    {
+      "path": "atlas/audio/ex/habit.mp3",
+      "sha256": "c5e38c60eb0947f16d67a2d1a0aae526cef6176d2f7f1f09143feb090770e9c6"
+    },
+    {
+      "path": "atlas/audio/ex/harbour.mp3",
+      "sha256": "dc03646904cf204e694189e03fc288f5bd9364f81456bde0c291adc0721ffb92"
+    },
+    {
+      "path": "atlas/audio/ex/homework.mp3",
+      "sha256": "7f340f4650787c9960c82e1b092768026785e914efdaab5bb2bbfa31e15697cf"
+    },
+    {
+      "path": "atlas/audio/ex/honest.mp3",
+      "sha256": "f2d3a9c01b3132ce4e49b7cbef829a02f61474dd8fb3e9e21d20cdcb2713c9de"
+    },
+    {
+      "path": "atlas/audio/ex/horizon.mp3",
+      "sha256": "34888a588a01e793a83bbeeda7605bf66c565d7fbef4d442c9748da946a0684e"
+    },
+    {
+      "path": "atlas/audio/ex/humour.mp3",
+      "sha256": "5fd7faa9920def3936bede4e4e52acf4f1c3a031b3f48b12dc8872d3d84400d4"
+    },
+    {
+      "path": "atlas/audio/ex/invent.mp3",
+      "sha256": "e4f9c5c0fd8b779e22bff80dd5de65007a64338fadcee8792769a13a5bfca254"
+    },
+    {
+      "path": "atlas/audio/ex/invite.mp3",
+      "sha256": "f87dacbb9f317a2c1dac21bb7500ecaefc2568afb79ba17c5f8874efc96a5da1"
+    },
+    {
+      "path": "atlas/audio/ex/journey.mp3",
+      "sha256": "91a26e93c72541c1af4da15bb3c4e6d73b93bda1da821d9ae9a744f976294e2a"
+    },
+    {
+      "path": "atlas/audio/ex/library.mp3",
+      "sha256": "313d68a26cd01e9a06f7ffea9521cfaf9e6f17daaa3f30b6006bef6437859404"
+    },
+    {
+      "path": "atlas/audio/ex/lonely.mp3",
+      "sha256": "b4dd476038bc7b15bd750ad7c95ebca0fba9f183cfc00250ed014495e78a8aa8"
+    },
+    {
+      "path": "atlas/audio/ex/luggage.mp3",
+      "sha256": "420de7907789adb62805b47e9fb4c7b1a9628c7e35f03ee4f5e2a6e319ec3676"
+    },
+    {
+      "path": "atlas/audio/ex/machine.mp3",
+      "sha256": "c6b45b9959269e1229ef5c634d9aa754b7df6fa1d303cac0c4a1bfe16fb56b82"
+    },
+    {
+      "path": "atlas/audio/ex/map.mp3",
+      "sha256": "3a64ec16deba80784cd6005c5bbf7251b62fa8f8bc2af181a8f25409e9051893"
+    },
+    {
+      "path": "atlas/audio/ex/match.mp3",
+      "sha256": "336b02f4c1d0e3e97f0a5b32753ce0b59766ee983269fc43dfa7392ac988b01f"
+    },
+    {
+      "path": "atlas/audio/ex/mirror.mp3",
+      "sha256": "b0692a1fc7f240fb6b77e2bbb43135aafff16ffcedb02af79083803b347063e4"
+    },
+    {
+      "path": "atlas/audio/ex/nervous.mp3",
+      "sha256": "e86157833db48850f9177e2d5e758a2d2a748cb9570ae6767f6e2a61a2e1da76"
+    },
+    {
+      "path": "atlas/audio/ex/organize.mp3",
+      "sha256": "4ef3944c6f89910ee252f308a72c88f64943141eeeb4ea3f7326e0076bf652e9"
+    },
+    {
+      "path": "atlas/audio/ex/partner.mp3",
+      "sha256": "f657963046e0660e5663b6ecd48959907189fef993156eee85976785bf949acd"
+    },
+    {
+      "path": "atlas/audio/ex/path.mp3",
+      "sha256": "2c05feb3b4ee0e1f3e1346b13aa59ad628cfe2c29fd1ac145322bf34beca4afa"
+    },
+    {
+      "path": "atlas/audio/ex/patient.mp3",
+      "sha256": "8ac6c9a4518f264b61d88280d585945394ca4fe5c04ec38e25f630d2c3b6fab7"
+    },
+    {
+      "path": "atlas/audio/ex/planet.mp3",
+      "sha256": "55ba29d6fd6b3550830f0fe67640e650f12280035090196d723c00b815831923"
+    },
+    {
+      "path": "atlas/audio/ex/practice.mp3",
+      "sha256": "0017d274b3c36879d118f2e7bc1503ca51478b087da2b646208ecb46dd596ac4"
+    },
+    {
+      "path": "atlas/audio/ex/prepare.mp3",
+      "sha256": "b9c1ab3a4a4734d19f1a9c235c566fdcf39c1c4b2a4f83ab67d2611eebb15baf"
+    },
+    {
+      "path": "atlas/audio/ex/project.mp3",
+      "sha256": "376876a2e62ad508013efdb35a2c57c14d97ce5e75ef701a8e641e0c1af404b5"
+    },
+    {
+      "path": "atlas/audio/ex/promise.mp3",
+      "sha256": "cca42a7396517d1f2fc27b71cddb8cf75a8913ca3eea54da0ae65af918b9144a"
+    },
+    {
+      "path": "atlas/audio/ex/protect.mp3",
+      "sha256": "4a8437acca808f7d19f58219e91d81d7c35d9b0d8464c9ba10f552aca1158a48"
+    },
+    {
+      "path": "atlas/audio/ex/proud.mp3",
+      "sha256": "214bcfea7e14fbce45d0fa1d5f967c9c177aec1b649e75c25d9bcc616463c964"
+    },
+    {
+      "path": "atlas/audio/ex/recipe.mp3",
+      "sha256": "da00132c10de8b304afa903a8cab477efa4761afc645d5e1879006c94144803c"
+    },
+    {
+      "path": "atlas/audio/ex/relax.mp3",
+      "sha256": "94a815006ae4d28bbaf3f5c60742702194deebfc18b9a6338b27167d249d7ee3"
+    },
+    {
+      "path": "atlas/audio/ex/remind.mp3",
+      "sha256": "faee6c76e727ffaa7de5a682e3808fb87c78481f0f0e10a1edbe7f7e2ba2d246"
+    },
+    {
+      "path": "atlas/audio/ex/robot.mp3",
+      "sha256": "aab06e8e9b5bcc33d81230a10e7d8292c8a7cb70a6d11965ec7b5d992feaad35"
+    },
+    {
+      "path": "atlas/audio/ex/rule.mp3",
+      "sha256": "abeff4662758d2d9f7c5089f5a8b0a3998642ba4f7a599589f8290ffcccde3ec"
+    },
+    {
+      "path": "atlas/audio/ex/score.mp3",
+      "sha256": "f8f324c6490eb4a532d82432893e4f88db1bcddfdbdc9896ff02b3f9376444cd"
+    },
+    {
+      "path": "atlas/audio/ex/screen.mp3",
+      "sha256": "0ec2db8ff35127386fa826009fdc1225524b549b5147ba3939047b4269b1dc28"
+    },
+    {
+      "path": "atlas/audio/ex/secret.mp3",
+      "sha256": "bdf304c0dee7b76ad745801a74c88e9c1729b8baa7082c10529af6e8145220c9"
+    },
+    {
+      "path": "atlas/audio/ex/shadow.mp3",
+      "sha256": "49f4900956217521cfda509064e06b846b4ea6920b6bc2b12b3af1e0a38f34b0"
+    },
+    {
+      "path": "atlas/audio/ex/share.mp3",
+      "sha256": "cc9d77c6bc84d500675021d09224190c20f6b999a37d54edd5c699d5be0b0610"
+    },
+    {
+      "path": "atlas/audio/ex/shine.mp3",
+      "sha256": "5071edfb88b94680a8352f31f46616460515bd039b120b5668d65637e012eaca"
+    },
+    {
+      "path": "atlas/audio/ex/solve.mp3",
+      "sha256": "f3cb741240991a68b9d81775aac32787278155dfd3ac332f74494cb703fb2906"
+    },
+    {
+      "path": "atlas/audio/ex/space.mp3",
+      "sha256": "5f235cc02099c1e4a75190794388c101c2fd28a6066c3136fee40fc97c57746c"
+    },
+    {
+      "path": "atlas/audio/ex/spoon.mp3",
+      "sha256": "0dd55a502f7d1614fa14f9f1a5f62e0ae4c3e248d5b77faf4f96830ce328edd0"
+    },
+    {
+      "path": "atlas/audio/ex/stage.mp3",
+      "sha256": "3995ab0feb56607a073a4bd6ac0df6926d9cf85119031766637bb5a2f4025808"
+    },
+    {
+      "path": "atlas/audio/ex/stream.mp3",
+      "sha256": "fd8ab7390f1f6d784fac04512298367c5a1c583a7bdec787f9360f5fb4fe97d4"
+    },
+    {
+      "path": "atlas/audio/ex/subject.mp3",
+      "sha256": "624504c6b8b5ef93b2d2a4af827819e1e7e9998b0188e05bd7c53a26e8993f98"
+    },
+    {
+      "path": "atlas/audio/ex/sunrise.mp3",
+      "sha256": "2716e0ead706520cd51aba5785e04083c2083d8cf7faaa998cc8bfd526981684"
+    },
+    {
+      "path": "atlas/audio/ex/support.mp3",
+      "sha256": "f5e4e898b32419652914818c1cab13507d723c602797e5e8df03edb619b7745f"
+    },
+    {
+      "path": "atlas/audio/ex/survive.mp3",
+      "sha256": "4c4a02311f22e4d5cfce80f01bacfec85410d15200de7101e7c7c6f0eeddbcc3"
+    },
+    {
+      "path": "atlas/audio/ex/talent.mp3",
+      "sha256": "32a65398e82c90d180a10c829f0c09577cd821a42883a948a537ff344b0a56a4"
+    },
+    {
+      "path": "atlas/audio/ex/ticket.mp3",
+      "sha256": "5bf4012170ea2f4693ee4f02260fe03e6d5dcc7164c0e7ed5b710ea20063d283"
+    },
+    {
+      "path": "atlas/audio/ex/traditional.mp3",
+      "sha256": "f1f8c44d7e975af59db160428666d9133e6559b61bb67657f6855f271e8285c0"
+    },
+    {
+      "path": "atlas/audio/ex/trust.mp3",
+      "sha256": "cf13d09f4e5fd5afe3f915b3b0623d8e15b93e5d16461b6670313350ed10bfa7"
+    },
+    {
+      "path": "atlas/audio/ex/uniform.mp3",
+      "sha256": "70d2096bae31eb6edbbc46490e9ebf5e39958c1bfee80ffb1fc916ed028e243b"
+    },
+    {
+      "path": "atlas/audio/ex/view.mp3",
+      "sha256": "71343a8bf4d6aa4d4282df0e4eed726ca3081097037f7a65e12250ac54082572"
+    },
+    {
+      "path": "atlas/audio/ex/wonder.mp3",
+      "sha256": "c8b439244aaa85d8f22bdacdb4ab0b5562bd780d361c07140179d49756c5d397"
+    },
+    {
+      "path": "atlas/audio/uk/achieve.mp3",
+      "sha256": "7ab2aba0bb0a07fdae7984a4d860bfb1b7361f2301162b341ae7b6b7dc44ea9b"
+    },
+    {
+      "path": "atlas/audio/uk/ambition.mp3",
+      "sha256": "ae73675504327af1173c840664ac9fd5a524e9e65dfc330779581a7f1d61ef66"
+    },
+    {
+      "path": "atlas/audio/uk/athlete.mp3",
+      "sha256": "fb9d1867b5f2fbff43b31266296425a7411c055f9927649fa2aa4e1e1f1de144"
+    },
+    {
+      "path": "atlas/audio/uk/balance.mp3",
+      "sha256": "de3953a10d284030ab91ed71219abcb819c85925ba129132ce1c4234ef1a323f"
+    },
+    {
+      "path": "atlas/audio/uk/bell.mp3",
+      "sha256": "d33ff739db35968ce9544d4ae1d35315e49cc2996497aeb365e1342db1252672"
+    },
+    {
+      "path": "atlas/audio/uk/brave.mp3",
+      "sha256": "68414285f765f8bdc1ee5570c0d3fe89ba0e552f970c03c560a5bb2de5ae35b1"
+    },
+    {
+      "path": "atlas/audio/uk/breeze.mp3",
+      "sha256": "6a1a9976c79cca1b4a413a07b26c03bf66d33b5b86bf6f5cb738bb9f85f6a7e1"
+    },
+    {
+      "path": "atlas/audio/uk/bridge.mp3",
+      "sha256": "71bb67f80e45cf7e263d07b838a149f4d5b6da5904662986199926ba00606bee"
+    },
+    {
+      "path": "atlas/audio/uk/calm.mp3",
+      "sha256": "664149741043502af712f65f0beb029c55ca1d7deb681f4023dffe5c3b2e201b"
+    },
+    {
+      "path": "atlas/audio/uk/challenge.mp3",
+      "sha256": "f17194e682bac752aa5114c8387a3d810daaec82bb3942fd180bce8510ea3a5b"
+    },
+    {
+      "path": "atlas/audio/uk/cheer.mp3",
+      "sha256": "013b6f5fab88eab16968c77653b04b2417cd954c07d1fb8f09ea7585a12ca24c"
+    },
+    {
+      "path": "atlas/audio/uk/cheerful.mp3",
+      "sha256": "0b79416a11d7d0222c0d48ffd2310f3a3250cc2479c8f9d5bc1742243c4b06cb"
+    },
+    {
+      "path": "atlas/audio/uk/chess.mp3",
+      "sha256": "cbdea148fdb29be936e1b87c553c831bdf9f06b224975c8414a49f33af63bd9b"
+    },
+    {
+      "path": "atlas/audio/uk/choose.mp3",
+      "sha256": "3cadf001151e13a3fd0717c1833568473b250f1a2275ff62eec28b3c924891eb"
+    },
+    {
+      "path": "atlas/audio/uk/classmate.mp3",
+      "sha256": "616742c862b6318f37e8b997018c54bf12c745766b63d15f68d7b063da34bc03"
+    },
+    {
+      "path": "atlas/audio/uk/climate.mp3",
+      "sha256": "008bc0fc1c6875cd6dc5c310e406dd57acb9914ef8f7beb16f7beb78fa92cb27"
+    },
+    {
+      "path": "atlas/audio/uk/collect.mp3",
+      "sha256": "c078bbc117890b8f343e6243804e2f8402226780af3658d018fdca809e238d46"
+    },
+    {
+      "path": "atlas/audio/uk/courage.mp3",
+      "sha256": "eef0377ba237304e8492cee101e35cd52af04a84ff9fa9c530651ab508fb384a"
+    },
+    {
+      "path": "atlas/audio/uk/craft.mp3",
+      "sha256": "057c7298c0a520bd5149527df6e02bfb011698054f1626c8e416356ca969f1cd"
+    },
+    {
+      "path": "atlas/audio/uk/creature.mp3",
+      "sha256": "3d5bd5a3ad94d3ff5bfa4e160c4f68a7d52002354ff22a3d5c8e4fdc6c98fabe"
+    },
+    {
+      "path": "atlas/audio/uk/curious.mp3",
+      "sha256": "6f4ca2216376ffb66632b72f240c0a7872cc4dcee6b3c82f9dc0d2a4f1f65a95"
+    },
+    {
+      "path": "atlas/audio/uk/custom.mp3",
+      "sha256": "8d8a3baf5aa540cbabf3d88ce4100a3f0cbdf16cc6978bc028e73042811be917"
+    },
+    {
+      "path": "atlas/audio/uk/decision.mp3",
+      "sha256": "42cf56b80952ff4896bf74b8555e7abd4aef42c1bfbbd70b4af0cb3099d65e08"
+    },
+    {
+      "path": "atlas/audio/uk/delicious.mp3",
+      "sha256": "1d3c55a059e1560acd7d306b8ca56f6cc6153ac58b345678275bca3cd55f285d"
+    },
+    {
+      "path": "atlas/audio/uk/discover.mp3",
+      "sha256": "71c75c082417cd1fa0eba5abfef0af828b20fb2a7984eb4487d4e8d10835f79d"
+    },
+    {
+      "path": "atlas/audio/uk/dream.mp3",
+      "sha256": "6e44a776657efa94d6a00cf3083aba15e51bb01b8f6c40f2fe285f6bec29281d"
+    },
+    {
+      "path": "atlas/audio/uk/effort.mp3",
+      "sha256": "fa421a3666b7df019afb6e6d12925863173dd6d512a2c4853e6129a19fdb96b8"
+    },
+    {
+      "path": "atlas/audio/uk/energy.mp3",
+      "sha256": "6fcaaf99d32321bc74a22981f1f634b9629185da8f9055e9b48c9a436dcf7694"
+    },
+    {
+      "path": "atlas/audio/uk/exam.mp3",
+      "sha256": "1b99b7de8ab9b1144ebff038ca633b7c45b45c4e86c9b4c844b7c83852e3194e"
+    },
+    {
+      "path": "atlas/audio/uk/experiment.mp3",
+      "sha256": "b20031e9ba6a6f8f1e5ac4f7dd9eeabd2606910b3cfb9bc3da013ec70be9c4d9"
+    },
+    {
+      "path": "atlas/audio/uk/explore.mp3",
+      "sha256": "dcf56ade58085f43c4e7f406f7fd6e9f90c0ee6132260650250e4325b4488ca6"
+    },
+    {
+      "path": "atlas/audio/uk/feast.mp3",
+      "sha256": "d43c2fb7223f9b84a6872c573412112cbcbd9833a6a97b38de8be562b7d7135c"
+    },
+    {
+      "path": "atlas/audio/uk/festival.mp3",
+      "sha256": "f185723587235e6804febecc9f683260f30a2ffc54ab43ed0ab30e7ce4bc8e91"
+    },
+    {
+      "path": "atlas/audio/uk/finish.mp3",
+      "sha256": "5d65d441826d2b3422a5b696dea6b56c35a588d06beb9b43f11609a99705fb28"
+    },
+    {
+      "path": "atlas/audio/uk/flavour.mp3",
+      "sha256": "12fd03d5d759d28cb2aec8daa20fd288dad0487066f7deb72ce9aed8c73c7a84"
+    },
+    {
+      "path": "atlas/audio/uk/focus.mp3",
+      "sha256": "67ecc036b7c745ff9fd245c5f6964b4560b1a785f0e6d6ba0b3b71baa1b6412a"
+    },
+    {
+      "path": "atlas/audio/uk/forest.mp3",
+      "sha256": "23d7060e8808befe2da20e06e4c26d44582fb485e8523731fff270b03787534f"
+    },
+    {
+      "path": "atlas/audio/uk/future.mp3",
+      "sha256": "e4332381e98965a0f973c65c52c99d016df06c8b5082bc6b3895a7b278f4961c"
+    },
+    {
+      "path": "atlas/audio/uk/gentle.mp3",
+      "sha256": "73192a250ca6cf441a8c2ff9cba06a4d2b71e108bdb47eeb2993a690d9559412"
+    },
+    {
+      "path": "atlas/audio/uk/grade.mp3",
+      "sha256": "baaaafbe7ea542d2b6eeef57250fecf98aa1aea222249736b55b6e9508b1e46d"
+    },
+    {
+      "path": "atlas/audio/uk/grateful.mp3",
+      "sha256": "9f8fb4c5e7af9d30b4d5f64e36a96205020a024cc86abc42e7fe3910f86d205a"
+    },
+    {
+      "path": "atlas/audio/uk/growth.mp3",
+      "sha256": "41f3e3355b3e22972ef4f2dcd71d3958be4fa6d89209eee17b5eb7ce6b9a6470"
+    },
+    {
+      "path": "atlas/audio/uk/guest.mp3",
+      "sha256": "ea8675ec1740497d9c261335f03bb82d6ff105afcf526fc01d31230ac5effa69"
+    },
+    {
+      "path": "atlas/audio/uk/guide.mp3",
+      "sha256": "765f7203ae4a06041dbfcd7d0b98bad2dc5c1c1cfd393ae9752d21bc2d374daa"
+    },
+    {
+      "path": "atlas/audio/uk/guitar.mp3",
+      "sha256": "54bd3ae6c4352237b5de5a3655f0e92278211bc847c93e93ecb11e3109ec4abb"
+    },
+    {
+      "path": "atlas/audio/uk/habit.mp3",
+      "sha256": "cab168a5527f2d5271378fc09eed52b25cdf095c229eeb501cf866c22bd6b220"
+    },
+    {
+      "path": "atlas/audio/uk/harbour.mp3",
+      "sha256": "128ac5a2dcc44ab662e64c8ce65d326cf7ae0c7666d02bbd6586d8d4b2264513"
+    },
+    {
+      "path": "atlas/audio/uk/homework.mp3",
+      "sha256": "fa4d450ea080b57e0b390b54cfb130cf98f22f3c45cce4ef9e1f338ead72114b"
+    },
+    {
+      "path": "atlas/audio/uk/honest.mp3",
+      "sha256": "e2307ddacc16e184442016fe8c732e04f832abfa5d88b728eea31266fac8997b"
+    },
+    {
+      "path": "atlas/audio/uk/horizon.mp3",
+      "sha256": "ddb728277b916d01c1424e8dd0076e641c22d9a8f3b4898f879efa74928610da"
+    },
+    {
+      "path": "atlas/audio/uk/humour.mp3",
+      "sha256": "01887b13b50d516339c37b07d278a3e46d2a39d918446c4b3c7d822fa636ab24"
+    },
+    {
+      "path": "atlas/audio/uk/invent.mp3",
+      "sha256": "339360bdc927ee18ec7d67de3b03783c5f080d21f59422e4831bda67ecc9c020"
+    },
+    {
+      "path": "atlas/audio/uk/invite.mp3",
+      "sha256": "8977a58f92a358623b9559da0c3f5bb80b95812e62703f0bb04d5366fb584368"
+    },
+    {
+      "path": "atlas/audio/uk/journey.mp3",
+      "sha256": "3d2f930c96659b226edace77c1fe59b087e198c583b390f0ae68d72994d63c66"
+    },
+    {
+      "path": "atlas/audio/uk/library.mp3",
+      "sha256": "937e5e202a9a05e279627bb482e379ba40c4cf8159db3d7faef720405d93c2a1"
+    },
+    {
+      "path": "atlas/audio/uk/lonely.mp3",
+      "sha256": "8a736dbef8a36719e291799018b08ed6b80c4879d10c29683b06079cbee23b83"
+    },
+    {
+      "path": "atlas/audio/uk/luggage.mp3",
+      "sha256": "f5f5165e13070f075a6d304b8d5539d5788a9bb5cc8fd8f59f28483f59a8b25f"
+    },
+    {
+      "path": "atlas/audio/uk/machine.mp3",
+      "sha256": "4c4dec2a0e176d023ee42825c4af7bcc653a8dfb5e7ed8c8b7f62cdf28775976"
+    },
+    {
+      "path": "atlas/audio/uk/map.mp3",
+      "sha256": "016f84518c6dfa5bc905177489761f29fad927f407f3f1061f2377f7409c36ee"
+    },
+    {
+      "path": "atlas/audio/uk/match.mp3",
+      "sha256": "e75512c6b7b06a3c9be22dedeab91d1a8231dbd0c7e5b5895352ff54fdc88a05"
+    },
+    {
+      "path": "atlas/audio/uk/mirror.mp3",
+      "sha256": "61634715169cc8ea7ce619434d18de692adf240b202fae8cc91ec019cfa9734e"
+    },
+    {
+      "path": "atlas/audio/uk/nervous.mp3",
+      "sha256": "c449f9abaff625efb8a76d906d0a3cdeb79d140360fc0aed0821906e56db44f7"
+    },
+    {
+      "path": "atlas/audio/uk/organize.mp3",
+      "sha256": "7d7a2f308f4fe0e4634a28303a4b7044f64c4fb3464cc05f38ee20ba4fc397e9"
+    },
+    {
+      "path": "atlas/audio/uk/partner.mp3",
+      "sha256": "2c5f05cd3d38bd75d65238b074923d850a562cc9395103219524361c0c2fef2a"
+    },
+    {
+      "path": "atlas/audio/uk/path.mp3",
+      "sha256": "f2cce3b84a57831edcb738f4ec947c143bbb0eb63f8e1014a908ce9e637e6799"
+    },
+    {
+      "path": "atlas/audio/uk/patient.mp3",
+      "sha256": "75b9edbcde84de1cb597522cae5da0647f74966997bd570731e47ad89ea2c41e"
+    },
+    {
+      "path": "atlas/audio/uk/planet.mp3",
+      "sha256": "f8ccaa9ae5c0dc0eaf87e884105b5e805107483c89c76a9c118c6a88f79a6e31"
+    },
+    {
+      "path": "atlas/audio/uk/practice.mp3",
+      "sha256": "96002e5ee0b3d500076b0a6ad596ccebac1aed337bbbae28c55b9af53ed77f9a"
+    },
+    {
+      "path": "atlas/audio/uk/prepare.mp3",
+      "sha256": "f7b4289f20124d376799b0e0c1ae27dcd291fa4d9b95c4a246515b70efe32b1d"
+    },
+    {
+      "path": "atlas/audio/uk/project.mp3",
+      "sha256": "362d7645142a801cb734f16d884df498f30d5b2a590b7f30c187ebc3f7fd226d"
+    },
+    {
+      "path": "atlas/audio/uk/promise.mp3",
+      "sha256": "8b9f5c088df8832f9c2423db0ec6159c19c30efbac748a2309279c9e8853074b"
+    },
+    {
+      "path": "atlas/audio/uk/protect.mp3",
+      "sha256": "07f1be9968b111986c737299979e46314896d21d41cc74b4cb4c38b5d211e974"
+    },
+    {
+      "path": "atlas/audio/uk/proud.mp3",
+      "sha256": "1e0ac15c05c29385150b3aa9e88a9c1c95f9a1d8f8c17f091e50e59265c24f45"
+    },
+    {
+      "path": "atlas/audio/uk/recipe.mp3",
+      "sha256": "317c114901422c0c7952ce99f4a6bce0e26a26a92682485a76dfe73e2b5529ce"
+    },
+    {
+      "path": "atlas/audio/uk/relax.mp3",
+      "sha256": "8e26faa7986cc67ea6a43d5ef5e33e6a7a767f7633efd2d488b3282ea8573785"
+    },
+    {
+      "path": "atlas/audio/uk/remind.mp3",
+      "sha256": "ded3b441e66cb7c8a8bcd1c98cef8e24ef3f37bbd6109d66a2ff211a6e73137f"
+    },
+    {
+      "path": "atlas/audio/uk/robot.mp3",
+      "sha256": "126e5873fe2d66604ac51f657ab6070ffce2cd8664c886de88b2968232e7b5e5"
+    },
+    {
+      "path": "atlas/audio/uk/rule.mp3",
+      "sha256": "dbd9419b2d5978f43b41392e18ef64f34a0d2ed3bc58bca4a59560ce11e7ad58"
+    },
+    {
+      "path": "atlas/audio/uk/score.mp3",
+      "sha256": "07f9aea76701f49c34748dc43662efe44b9a082ab30b003078f1f3c84761b725"
+    },
+    {
+      "path": "atlas/audio/uk/screen.mp3",
+      "sha256": "a48cc1943cc879c005d468b9f70dac4f8a27d4c0bd81d846a6855cbcf151a8c1"
+    },
+    {
+      "path": "atlas/audio/uk/secret.mp3",
+      "sha256": "a66f6479e6389fdc4f3b3dbdbe4e84e80bc53a7a0b86bc76743c7c54ad0a2796"
+    },
+    {
+      "path": "atlas/audio/uk/shadow.mp3",
+      "sha256": "3c940966c37fc2351fd1f55cc2e62cab39b79f80dfa8851e70c684aba427a89e"
+    },
+    {
+      "path": "atlas/audio/uk/share.mp3",
+      "sha256": "5f1eba3364b12811a759515c04afbd621dff88fc9a0b98cf8d30301cac0a0554"
+    },
+    {
+      "path": "atlas/audio/uk/shine.mp3",
+      "sha256": "a77b5e3823716298408ad5c97b68ea285c6e69cb06382494190d4e0cda3a5904"
+    },
+    {
+      "path": "atlas/audio/uk/solve.mp3",
+      "sha256": "ef46c2df0b89d1a4232f33094b3e05a202caae34a8a34d5d715844e12d7f2d9e"
+    },
+    {
+      "path": "atlas/audio/uk/space.mp3",
+      "sha256": "bde622cab3b2413877cb261e7371807c145a27dd50c9a41c8a638d7494accd0d"
+    },
+    {
+      "path": "atlas/audio/uk/spoon.mp3",
+      "sha256": "b5a94859b13f6172065fb7bf183962361ca5f2c276cd571441d3e72d15835452"
+    },
+    {
+      "path": "atlas/audio/uk/stage.mp3",
+      "sha256": "615d05006029cdf3b5d34f28dccdfae510ef49dc564b8169db79b4ed37c60150"
+    },
+    {
+      "path": "atlas/audio/uk/stream.mp3",
+      "sha256": "d19515e9e2ca5f320647488bc375f20f930bf6485da75fb1263c35fa62a0f8f3"
+    },
+    {
+      "path": "atlas/audio/uk/subject.mp3",
+      "sha256": "cb245cd56070670bc81cf3216e65fe15015cb84ff5d3b0ba2cfa80fc55c3358d"
+    },
+    {
+      "path": "atlas/audio/uk/sunrise.mp3",
+      "sha256": "6738148b3f9a2d1d69afdd13ab28882d380e6f19e8c313a2083c69785bbaced0"
+    },
+    {
+      "path": "atlas/audio/uk/support.mp3",
+      "sha256": "c7fbd5cc1ed03b06e6f6f2e7d4165fee93ce55a827738f8060c6d3c7beb9be68"
+    },
+    {
+      "path": "atlas/audio/uk/survive.mp3",
+      "sha256": "94c5dc4a9337cfa95eee0b8604856ab320cded96d586d9d777e3e23304eb4ce8"
+    },
+    {
+      "path": "atlas/audio/uk/talent.mp3",
+      "sha256": "6e09d85231334e0032e210b813018ccf8221ee20014fc8695dbd7771b3ffb90f"
+    },
+    {
+      "path": "atlas/audio/uk/ticket.mp3",
+      "sha256": "19e0e89791e62662b84ad5891a02ef4d4d20ddf0a6a4f1ec6e340995554de01f"
+    },
+    {
+      "path": "atlas/audio/uk/traditional.mp3",
+      "sha256": "dabb92a736c1e8a62f5a6b4a517c707679fb10afcdb74343406fe4005b79b12c"
+    },
+    {
+      "path": "atlas/audio/uk/trust.mp3",
+      "sha256": "65ac74f4e127dbe3446ccd310a3137664f4b6583df22c4b10841fbedcbfeead3"
+    },
+    {
+      "path": "atlas/audio/uk/uniform.mp3",
+      "sha256": "dd025b4cdff976982133bdddf1352333ff0771ac4384bf970dd889f83eae80d4"
+    },
+    {
+      "path": "atlas/audio/uk/view.mp3",
+      "sha256": "324accbec0e609020b59e7be84e4ff01b93ce9c9c10dc4d633dbc9653e741552"
+    },
+    {
+      "path": "atlas/audio/uk/wonder.mp3",
+      "sha256": "a553a994d7a1c965385c48367e451e5280b49b2d37b0fc13ace212a4d796708d"
+    },
+    {
+      "path": "atlas/img/achieve.webp",
+      "sha256": "ff087cfd44d3728d22f4b26dad461e07fd33be17da225d4ade75ffface12f22b"
+    },
+    {
+      "path": "atlas/img/ambition.webp",
+      "sha256": "632560ecc54d90728252d0adb6032e6324b77d01b9bd2fbc5436fc779a0c5245"
+    },
+    {
+      "path": "atlas/img/athlete.webp",
+      "sha256": "daaf40a5217d4c949615ce283a2b9d6108c7c3b1a5e419db25592f52d3cd2505"
+    },
+    {
+      "path": "atlas/img/balance.webp",
+      "sha256": "618bcfa436bb7b78976c38c5f7bb989debe034113ed74f7bd2dde195320d914b"
+    },
+    {
+      "path": "atlas/img/bell.webp",
+      "sha256": "fa0040e3b8ce5801094ea26e0000256e921fb103f1b6f9a21798e50319e4d7f7"
+    },
+    {
+      "path": "atlas/img/brave.webp",
+      "sha256": "53f66a0dec7dbc302fb6b82338fecfebfa38c01154862ed0c41a9491949252c3"
+    },
+    {
+      "path": "atlas/img/breeze.webp",
+      "sha256": "2b7929f0268af3373b9a31d3ad19a0b318f2d2c3432c6b79804bfe984b6c0bc2"
+    },
+    {
+      "path": "atlas/img/bridge.webp",
+      "sha256": "516dcc60e2038de8def8fbf9eb83f53e9c1702d1adfabba70ad03f7b1bcdaa05"
+    },
+    {
+      "path": "atlas/img/calm.webp",
+      "sha256": "d589c66972a381d8e3ec1725960d8e764ca8f42b0c7c14a77e5d045a5d9b5b4f"
+    },
+    {
+      "path": "atlas/img/challenge.webp",
+      "sha256": "ab46dd9ab170f419fbc79c608acf3c4a1c553879cdf229a8a7d34136f607c71e"
+    },
+    {
+      "path": "atlas/img/cheer.webp",
+      "sha256": "c50da25257781e2f9ee0b42f177ae1037ce3d1ee8828edf5e3fd3c4786935a28"
+    },
+    {
+      "path": "atlas/img/cheerful.webp",
+      "sha256": "01fb5d808db50da60f6a0b2f6ab0f06d2948a70b1e20dd9de7f9e0f70eb5b601"
+    },
+    {
+      "path": "atlas/img/chess.webp",
+      "sha256": "a32e2e6cecc7117ecd67a350ffb175d8a07d609e0e7c6b1292b546f48ae1b85f"
+    },
+    {
+      "path": "atlas/img/choose.webp",
+      "sha256": "43991c65614211794c02796ce634c8f5d7aa46eee2f4da0cd412a5e11553530e"
+    },
+    {
+      "path": "atlas/img/classmate.webp",
+      "sha256": "5e087e6275fda4509371e8a2041a05a7379ceec62b41ad189aae43e1ef038321"
+    },
+    {
+      "path": "atlas/img/climate.webp",
+      "sha256": "adc3c20107890738ea746ee2de0f46dfc8f3efc006dc89f696e6abdcf4bc5e87"
+    },
+    {
+      "path": "atlas/img/collect.webp",
+      "sha256": "11bbb4460f31e781889be858dc892341a9ed8b9fec9b7a98ea1dc5b9d68a31e3"
+    },
+    {
+      "path": "atlas/img/courage.webp",
+      "sha256": "2852d9c21ba55b12c72b66462e4eed75e3c1e429853d11162ebee5926d108c24"
+    },
+    {
+      "path": "atlas/img/craft.webp",
+      "sha256": "ba618d68238818e1c3a0f649c2bbb715de039feda5aec6d092db77b5ef8c4b82"
+    },
+    {
+      "path": "atlas/img/creature.webp",
+      "sha256": "439bd4aa17cdc7b3ca44c0a6e4bfd33892b081f28fde306f1a182a22a113b3da"
+    },
+    {
+      "path": "atlas/img/curious.webp",
+      "sha256": "2ac99d99c962a5db61666d8b447d8c8398e99d0e461e0ba725e2a901be782e9a"
+    },
+    {
+      "path": "atlas/img/custom.webp",
+      "sha256": "bfcc6bc494210b3e984c9f6d40f2e05aa1e38ca1cc1be936f3b37b6c9553e493"
+    },
+    {
+      "path": "atlas/img/decision.webp",
+      "sha256": "45708548d926f9e7d3f7f90b8d9b8e230b83d29c6344c3e81c608975970beb2e"
+    },
+    {
+      "path": "atlas/img/delicious.webp",
+      "sha256": "0f5a8efa70e7838518ec10407e174144bf5016667835ccfedb6c73007940689a"
+    },
+    {
+      "path": "atlas/img/discover.webp",
+      "sha256": "4abcf0990eff89f1860f4ab1e09e6ca3d76f64c06e4e6031eab5ebaaff06055e"
+    },
+    {
+      "path": "atlas/img/dream.webp",
+      "sha256": "6bfe86ad2e7db9368df2b22d19bc492e28afeec637484d1b03de10b155febbc5"
+    },
+    {
+      "path": "atlas/img/effort.webp",
+      "sha256": "640804eed5d59911fc2dde23924bfca2009bb3cf3a3e5538c5024c13d7ee66e8"
+    },
+    {
+      "path": "atlas/img/energy.webp",
+      "sha256": "d8c0d1b54fca3fb09f0758166bd0d94f4d58343c37ebf64e744549cabb6e6220"
+    },
+    {
+      "path": "atlas/img/exam.webp",
+      "sha256": "31316c407d375374ab4148fafe32b894ab832f1c7830d4c4580dce199785ae7d"
+    },
+    {
+      "path": "atlas/img/experiment.webp",
+      "sha256": "fcb416ba163195f4a5c9c59d2bd36ad0b5f327d1c8d85481585c4a46a1c2fedc"
+    },
+    {
+      "path": "atlas/img/explore.webp",
+      "sha256": "9667cadaa9c1567015e9dba2af28cedc51ca6f33b9661044e517f5342c1deee8"
+    },
+    {
+      "path": "atlas/img/feast.webp",
+      "sha256": "092c577dd6f2c6e695697c17f2e7808e7413c3f7b901bc690c37fa883ddb02cd"
+    },
+    {
+      "path": "atlas/img/festival.webp",
+      "sha256": "d2c51a05e02a0c515dee25c6730c7feaaf201a215326d977111b529942b921bd"
+    },
+    {
+      "path": "atlas/img/finish.webp",
+      "sha256": "dbc0bfb3e3866e1fa51c30483f6ae76b9d05e447efab008f4f991eadf3b6dc5a"
+    },
+    {
+      "path": "atlas/img/flavour.webp",
+      "sha256": "e54c84cabcbf12d239897dd9571424a439386ce4fc864ec79fc7f07cef29e7b9"
+    },
+    {
+      "path": "atlas/img/focus.webp",
+      "sha256": "93f6223a42c2c10f3a91eeca77a8d9f527bbcf0984ffae868d04cb7b50513c63"
+    },
+    {
+      "path": "atlas/img/forest.webp",
+      "sha256": "66c9522c7f4913a3ea74e822532d1fbd34baa0603be0db1e76019e113a25ea54"
+    },
+    {
+      "path": "atlas/img/future.webp",
+      "sha256": "3318bab0d6fcc81f39981a2247d1a2ddf8df2180abd6d3e366e6a07290e79798"
+    },
+    {
+      "path": "atlas/img/gentle.webp",
+      "sha256": "0306ce9ca58347f0832a063c06b9970ae30456ff2f59169db42cf673b1249f04"
+    },
+    {
+      "path": "atlas/img/grade.webp",
+      "sha256": "d85b8408464dd052e005ddd72ea6cf3262eb68a5de3ff5b069701a8731067225"
+    },
+    {
+      "path": "atlas/img/grateful.webp",
+      "sha256": "4fc40f92ecbcbbda619a3765f172d8330eed8a5753fc466fdb5bd064862c7968"
+    },
+    {
+      "path": "atlas/img/growth.webp",
+      "sha256": "366873453056cb63c952f85d20c1865f6bc645761e8a90ae937d3117f32fb236"
+    },
+    {
+      "path": "atlas/img/guest.webp",
+      "sha256": "a8bc080a26846cbaf1b0bdade4b53b84d38aed873f906519e19b6530c5b3243a"
+    },
+    {
+      "path": "atlas/img/guide.webp",
+      "sha256": "5b3b2b9cf92b220aa62ace89bfa5a15e47e6635938db35df3daafb8678a7bc24"
+    },
+    {
+      "path": "atlas/img/guitar.webp",
+      "sha256": "3d6b2fc2155725d871d0c355775562a910a7313f69d98a0958234744048fc303"
+    },
+    {
+      "path": "atlas/img/habit.webp",
+      "sha256": "eeffb01e638e4b5700f326232618d9db77c7c435c253d616444c4f5c0df3cc39"
+    },
+    {
+      "path": "atlas/img/harbour.webp",
+      "sha256": "f4d11e6969b119dcba304adf22483847cfad34cd1b5f305d239e8d1b0ef01487"
+    },
+    {
+      "path": "atlas/img/homework.webp",
+      "sha256": "a6bcd71dd72e8dfbe0beae168e3996cfc184dc8fd617b9c331eb743487063d2e"
+    },
+    {
+      "path": "atlas/img/honest.webp",
+      "sha256": "0529a87b7b3646fcf5a66f8464b8e390797ce011e49cc4640ed578f7ded30bf0"
+    },
+    {
+      "path": "atlas/img/horizon.webp",
+      "sha256": "2fa93e2ac3afed1e0aa556867c6316b89fd73e5028442cb2ceabfcbfa5bfea70"
+    },
+    {
+      "path": "atlas/img/humour.webp",
+      "sha256": "e1128b0c83425f2a7611f3b0a08e6995c97defafbe78d13488a0bf04491819bb"
+    },
+    {
+      "path": "atlas/img/invent.webp",
+      "sha256": "678440fbd14d880423afac3343bd26ba0a82b6b4a080243c4584c619705fdbc9"
+    },
+    {
+      "path": "atlas/img/invite.webp",
+      "sha256": "f962570566f2f0dff0906bcb0fc74734e536a14e2b18402d8ba67d47e902f6a3"
+    },
+    {
+      "path": "atlas/img/journey.webp",
+      "sha256": "15da4821193e4f052c253ca7715a1aab3a7c85e04c0784a7b1e63e015355da19"
+    },
+    {
+      "path": "atlas/img/library.webp",
+      "sha256": "64ce6edf8a80fe8d61ec473f2f907dc1ef5cc757016071ae75755bb7621ed817"
+    },
+    {
+      "path": "atlas/img/lonely.webp",
+      "sha256": "436f1fd5d50d9af903ad65ee9c9447f901839c862b07c06175549107fe467bcf"
+    },
+    {
+      "path": "atlas/img/luggage.webp",
+      "sha256": "cc71c6d91b0f37f0332d41c0b93c59abd08091000b3ab8d14932e88945c1100c"
+    },
+    {
+      "path": "atlas/img/machine.webp",
+      "sha256": "50be00f55a8262bd4fc8862f6efbcccb5fd7bd83d5e373de1eea4f9f7539728e"
+    },
+    {
+      "path": "atlas/img/map.webp",
+      "sha256": "1fc058816134c3254b3aa0e64ac0ab4ec0932c8702fa61bcbe8392e36f3afc5a"
+    },
+    {
+      "path": "atlas/img/match.webp",
+      "sha256": "55e617b5a2e995c7b2a406699e0cf58558b82eb8b10316766f13c079fa8321cd"
+    },
+    {
+      "path": "atlas/img/mirror.webp",
+      "sha256": "9dfd1ba41b39aa58b32230a775e2f8611b7721261cd667c04e78aa3c6b358fd5"
+    },
+    {
+      "path": "atlas/img/nervous.webp",
+      "sha256": "2c9f1c9479137334b997394572aded4ad9bf385e94b9a9ca1526c747be1cfaf8"
+    },
+    {
+      "path": "atlas/img/organize.webp",
+      "sha256": "57f0ee5acefddb1d2292f7f1a391d784b6154353a1af2c670cd5ad9a0ea9887e"
+    },
+    {
+      "path": "atlas/img/partner.webp",
+      "sha256": "30cfda7c205a4079b6d2de0bdb24967227299564b812f342f8a018ae07a5df5a"
+    },
+    {
+      "path": "atlas/img/path.webp",
+      "sha256": "1dd0294477e53bf576a55479e7d8028d6ba00c7f076ac7cf2edbfa0756c2a0a5"
+    },
+    {
+      "path": "atlas/img/patient.webp",
+      "sha256": "6d8f697515205e8a9fcd1464c93c378f4f3b5301093c5aafab13131f3f005020"
+    },
+    {
+      "path": "atlas/img/planet.webp",
+      "sha256": "eecb9361555741013c33378f847b3de0a08ba8f32f4ce37986d1e51334523843"
+    },
+    {
+      "path": "atlas/img/practice.webp",
+      "sha256": "76e52e048af0eda52303ed069b32aa46228d1b856a525eb6eb70b1db202e3649"
+    },
+    {
+      "path": "atlas/img/prepare.webp",
+      "sha256": "e3d6bbfcee44b8c0fbd03f5d1ade73ea859a2d483996914890ef1b40d3bd69a0"
+    },
+    {
+      "path": "atlas/img/project.webp",
+      "sha256": "746951385ae1c24f4e1c8c5e177c56c9ca5cb76af71b2aef0235399f5c4aaf1f"
+    },
+    {
+      "path": "atlas/img/promise.webp",
+      "sha256": "f9285b9a34687ca8d04cb77cf7b9e278c9f3b717b40a81b517d77d0b5088b81e"
+    },
+    {
+      "path": "atlas/img/protect.webp",
+      "sha256": "bcf20a7dde22d20e461ed1d5eff9e313624a5a302fe4e8687bc8e8d76f874a8f"
+    },
+    {
+      "path": "atlas/img/proud.webp",
+      "sha256": "e471c532b8e192279f5f3a7847ffe779d7276c4559244b7a41972493bed202c1"
+    },
+    {
+      "path": "atlas/img/recipe.webp",
+      "sha256": "45ef877ae77552307eab0c237b0ec5550a3d9a73f6306ff5cc1446d5818edee2"
+    },
+    {
+      "path": "atlas/img/relax.webp",
+      "sha256": "189aa627da0ecf775201fe71a0cdd69d7991b091062299597fda44749ce6cf22"
+    },
+    {
+      "path": "atlas/img/remind.webp",
+      "sha256": "87cbde2911bf6ac8361b4c21fe04c7b2129f6d52023d65e4161abfdc0cfb46fb"
+    },
+    {
+      "path": "atlas/img/robot.webp",
+      "sha256": "0555c1d2115b41bc837f28a43ab3ae52119459d7a5e35cb863d3c8597846985b"
+    },
+    {
+      "path": "atlas/img/rule.webp",
+      "sha256": "16849fad5d64b27ed08731537ab94371abc553cd59c00d904d05576b17f1278c"
+    },
+    {
+      "path": "atlas/img/score.webp",
+      "sha256": "8b4a4c5eb8662a561966177d9d09ed2ee14643e94095d9672c047a0846d753ba"
+    },
+    {
+      "path": "atlas/img/screen.webp",
+      "sha256": "731304e37a7e85fb8c1898ed8fbc92dcfe30fa0022648ce50e95befcdae90915"
+    },
+    {
+      "path": "atlas/img/secret.webp",
+      "sha256": "b3bef5f44b1f03b97a42ac29283065e699e17e91e9f4c763492063b2ea21f636"
+    },
+    {
+      "path": "atlas/img/shadow.webp",
+      "sha256": "4a12746b24be32d08d69e3ff6552b5756b6169eb2a8c9a2df4da799ac97ee62f"
+    },
+    {
+      "path": "atlas/img/share.webp",
+      "sha256": "84fb9c5dfa41edeabb4dc35530be4aef526674af00534edf40ce38074c1dc410"
+    },
+    {
+      "path": "atlas/img/shine.webp",
+      "sha256": "884340bf4954b967e8726e3c2f9c990e7668b7bd410c26c11c3fd7acc923bd04"
+    },
+    {
+      "path": "atlas/img/solve.webp",
+      "sha256": "926bb8729818a8355e4e44c2cee851439a446be8e5b66b303763579f45650da9"
+    },
+    {
+      "path": "atlas/img/space.webp",
+      "sha256": "79f39ee004640d42eb416bcc83352527669b114cd7d573236d8a212c00307de1"
+    },
+    {
+      "path": "atlas/img/spoon.webp",
+      "sha256": "f9b4e0f73c629e4b613b04b41ad4fd3298b1c979fa1be004677c2112a3fe4af9"
+    },
+    {
+      "path": "atlas/img/stage.webp",
+      "sha256": "7bb75b4217f3019e2d98a28bd283336adff987ad758b31c92334a69ffe884099"
+    },
+    {
+      "path": "atlas/img/stream.webp",
+      "sha256": "a86c080ffd9ca4bacb877aab729b16ca528825176cc04aa12534a902803f3d43"
+    },
+    {
+      "path": "atlas/img/subject.webp",
+      "sha256": "ef5b1fa245a341a70b9e2f19ed4337f94be003f0a396c5b6e90fd3438b49ab93"
+    },
+    {
+      "path": "atlas/img/sunrise.webp",
+      "sha256": "517961e0ac42efcfaebc39c407656f78bca6f1dfe0e50cfa6c203f3292e321aa"
+    },
+    {
+      "path": "atlas/img/support.webp",
+      "sha256": "1b71bae7fdd6226387c42556491f19e5d062cd5c5238b8cbb80c2c1aaae71c23"
+    },
+    {
+      "path": "atlas/img/survive.webp",
+      "sha256": "5a5a441309c76c58a535a42b2a7d23aa58ee23ffe4cadaac5354529b1e08be23"
+    },
+    {
+      "path": "atlas/img/talent.webp",
+      "sha256": "79bc3bccaa302f9745ec4228426e38928c1f84e7394bd87dddbabd25b8b4b9bf"
+    },
+    {
+      "path": "atlas/img/ticket.webp",
+      "sha256": "837843c7b42a3fad45941a9ebeaeedf8d0de0d21c980f5ecf7147dd150f40a34"
+    },
+    {
+      "path": "atlas/img/traditional.webp",
+      "sha256": "ca37b93787be16f949ef2b9c3447e4b6b8b9d0480480dfe73134c2974a3e4da1"
+    },
+    {
+      "path": "atlas/img/trust.webp",
+      "sha256": "881337e4acd60d00f84235e29543cd1ac47b9da3a96aabc051911c07f82cc2f9"
+    },
+    {
+      "path": "atlas/img/uniform.webp",
+      "sha256": "ffd740b56b4970151dd66d19db0bbad3258bcf565a23729b7b435f05be49e9b6"
+    },
+    {
+      "path": "atlas/img/view.webp",
+      "sha256": "70778a8c2d8ea8648b50a5260fbd30c76ac1c5f4ba44aaf037de6c6b152593ee"
+    },
+    {
+      "path": "atlas/img/wonder.webp",
+      "sha256": "40d7e0f7a5567d5100a4675c06684d6aaf4d1e4634a405d44044adf8e43eeb61"
+    }
+  ]
+}

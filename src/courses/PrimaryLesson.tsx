@@ -11,7 +11,9 @@ import { LessonRecap } from "./LessonRecap";
 import { PreviewSpeak } from "./PreviewSpeak";
 import { primaryVisualPolicy, type PrimaryStartingStage } from "./starting-point";
 import { entryLabel, type LearningEntry, type Lesson } from "./types";
+import { exampleTargetParts } from "./example-target";
 import { clearCheckpoint, readCheckpoint, saveCheckpoint } from "./primary-checkpoint";
+import { policyForCourse } from "../learning/policy";
 import { applyPrimarySession, primaryReviewIds, readPrimaryProgress, readRestoreGeneration, withPrimaryLock, writePrimaryProgress } from "../learning/primary-progress";
 import { PrimaryFavorite } from "./PrimaryJourney";
 
@@ -50,10 +52,26 @@ export function PrimaryLesson({ course, lesson, entries, profileId, stage, spell
     const progress = savedProgress.ok ? savedProgress.progress : null;
     const today = lesson.id === "today";
     const dueIds = today && progress ? primaryReviewIds(progress, now) : [];
+    const isMiddleCourse = course.manifest.stage === "middle" || course.manifest.id === "middle-english";
+    const basePolicy = isMiddleCourse
+      ? policyForCourse(course.manifest)
+      : primaryVisualPolicy(sessionStage, sessionSpelling);
+    const activePolicy = isMiddleCourse
+      ? {
+          ...basePolicy,
+          newContentLimit: Math.max(basePolicy.newContentLimit, count),
+          allowedKinds: sessionSpelling
+            ? (["context-meaning", "listen-word", "spell"] as const)
+            : (["context-meaning", "listen-word"] as const),
+        }
+      : {
+          ...basePolicy,
+          newContentLimit: Math.max(basePolicy.newContentLimit, count),
+        };
     const created = createLearningSession({
       courseId: course.manifest.id,
       contentVersion: course.manifest.version,
-      policy: primaryVisualPolicy(sessionStage, sessionSpelling),
+      policy: activePolicy,
       pool: entries,
       due: entries.filter((entry) => dueIds.includes(entry.id)).sort((a, b) => dueIds.indexOf(a.id) - dueIds.indexOf(b.id)),
       fresh: today && progress ? entries.filter((entry) => !Object.hasOwn(progress.introduced, entry.id) && !progress.cards[entry.id]) : entries,
@@ -86,9 +104,14 @@ export function PrimaryLesson({ course, lesson, entries, profileId, stage, spell
   const recapEntries = session.introduced
     .map((id) => entries.find((item) => item.id === id))
     .filter((item): item is LearningEntry => !!item);
+  const isMiddle = course.manifest.stage === "middle";
   const intro = step?.kind === "intro";
   const audioQuestion = step?.kind === "listen-picture" || step?.kind === "listen-word";
   const spellQuestion = step?.kind === "spell";
+  const contextQuestion = step?.kind === "context-meaning";
+  const targetSentence = entry?.kind === "english" ? (entry.contextQuestion?.sentence || entry.example.text) : "";
+  const targetWordForm = entry?.kind === "english" ? (entry.contextQuestion?.targetForm || entry.example.targetForm || entry.word) : "";
+  const targetParts = targetSentence && targetWordForm ? exampleTargetParts(targetSentence, targetWordForm) : null;
   const spellingValue = spellingInput?.index === session.index ? spellingInput.value : "";
   const failedImage = failedImageStep === session.index;
   const audioState = audioPlayback?.index === session.index ? audioPlayback.state : "waiting";
@@ -202,28 +225,40 @@ export function PrimaryLesson({ course, lesson, entries, profileId, stage, spell
       ) : (
         <>
           <header className="preview-question">
-            <p className="eyebrow">{intro ? "先认识，再找一找" : "轮到你来找一找"}</p>
-            <h1>{intro ? "看看这位新朋友" : step.kind === "listen-picture" ? "听一听，选出对应的图" : step.kind === "listen-word" ? "听一听，选出对应的词" : spellQuestion ? "试着拼出这个词" : "画里藏着哪个单词？"}</h1>
+            <p className="eyebrow">{intro ? (isMiddle ? "学习新词汇" : "先认识，再找一找") : contextQuestion ? "语境理解" : isMiddle ? "词汇练习" : "轮到你来找一找"}</p>
+            <h1>{intro ? (isMiddle ? `认识单词 · ${entry ? entryLabel(entry) : ""}` : "看看这位新朋友") : contextQuestion ? "在句子里理解词义" : step.kind === "listen-picture" ? "听一听，选出对应的图" : step.kind === "listen-word" ? "听一听，选出对应的词" : spellQuestion ? "试着拼出这个词" : "画里藏着哪个单词？"}</h1>
           </header>
-          <section className={`panel preview-study-card ${intro ? "is-intro" : "is-recall"}`} data-content-id={entry.id} data-question-kind={step.kind}>
-            <div key={`${entry.id}:${step.kind}`} className="preview-study-art" onErrorCapture={() => setFailedImageStep(session.index)}>
+          <section className={`panel preview-study-card ${intro ? "is-intro" : "is-recall"}`} data-content-id={entry ? entry.id : undefined} data-question-kind={step.kind}>
+            <div key={`${entry?.id}:${step.kind}`} className="preview-study-art" onErrorCapture={() => setFailedImageStep(session.index)}>
               {spellQuestion ? (
                 <div className="primary-listen-prompt primary-spelling-prompt">
                   <p className="eyebrow">A LITTLE SPELLING</p>
                   <p>想一想这个词</p>
-                  <h2>{entry.kind === "english" ? entry.meaning : entry.phrase}</h2>
+                  <h2>{entry?.kind === "english" ? (entry.lessonMeaning || entry.meaning) : entry?.phrase}</h2>
+                </div>
+              ) : contextQuestion && entry?.kind === "english" ? (
+                <div className="primary-context-prompt">
+                  <p className="eyebrow">READ &amp; UNDERSTAND</p>
+                  <div className="primary-context-sentence" lang="en">
+                    {targetParts ? (
+                      <p>{targetParts[0]}<mark className="example-target">{targetParts[1]}</mark>{targetParts[2]}</p>
+                    ) : (
+                      <p>{targetSentence}</p>
+                    )}
+                  </div>
+                  <p className="primary-context-hint">结合语境，选出划线单词在本句中最恰当的意思</p>
                 </div>
               ) : audioQuestion ? (
                 <div className="primary-listen-prompt">
                   <p className="eyebrow">LISTEN &amp; FIND</p>
                   <h2>先听一听</h2>
                   <p>可以多听几遍，再慢慢选。</p>
-                  <PreviewSpeak key={`${session.index}:${entry.id}`} text={entryLabel(entry)} locale={entry.media.locale}
-                    recording={course.audio(entry)} slow={slow} accessibleLabel="播放题目发音"
+                  <PreviewSpeak key={`${session.index}:${entry?.id}`} text={entry ? entryLabel(entry) : ""} locale={entry?.media.locale || "en-GB"}
+                    recording={entry ? course.audio(entry) : null} slow={slow} accessibleLabel="播放题目发音"
                     onPlaybackState={(state) => setAudioPlayback({ index: session.index, state })} />
                 </div>
               ) : (
-                <Illustration key={`${entry.id}:${step.kind}:${imageAttempt}`} src={course.img(entry)}
+                entry && <Illustration key={`${entry.id}:${step.kind}:${imageAttempt}`} src={course.img(entry)}
                   word={intro ? entryLabel(entry) : "图片暂未加载"} eager
                   alt={intro && entry.kind === "english" ? entry.meaning : "请根据画面选择对应的词"} />
               )}
@@ -233,13 +268,13 @@ export function PrimaryLesson({ course, lesson, entries, profileId, stage, spell
               </div>}
             </div>
             <div className="preview-study-content">
-              {intro && <PrimaryFavorite profileId={profileId} courseId={course.manifest.id} entry={entry} onOpenSettings={onOpenSettings} />}
+              {intro && entry && <PrimaryFavorite profileId={profileId} courseId={course.manifest.id} entry={entry} onOpenSettings={onOpenSettings} />}
               {intro ? (
-                entry.kind === "english" ? <EnglishWordCard key={entry.id} entry={entry} course={course}
+                entry && entry.kind === "english" ? <EnglishWordCard key={entry.id} entry={entry} course={course}
                   stage={sessionStage} slow={slow} onContinue={() => dispatch({ type: "next" })} /> : null
               ) : (
                 <>
-                  <p className="preview-prompt">{spellQuestion ? "输入英文单词" : step.kind === "listen-picture" ? "选一幅图" : "选一张词卡"}</p>
+                  <p className="preview-prompt">{spellQuestion ? "输入英文单词" : contextQuestion ? "选出符合语境的释义" : step.kind === "listen-picture" ? "选一幅图" : "选一张词卡"}</p>
                   {spellQuestion ? (
                     <form className="primary-spelling-form" onSubmit={(event) => {
                       event.preventDefault();
@@ -251,16 +286,42 @@ export function PrimaryLesson({ course, lesson, entries, profileId, stage, spell
                         onChange={(event) => setSpellingInput({ index: session.index, value: event.target.value })} />
                       {!answered && <button type="submit" className="btn btn-primary" disabled={!spellingValue.trim()}>确认答案 <ArrowRight size={18} /></button>}
                     </form>
-                  ) : <div key={`${session.index}:${imageAttempt}`} className={`preview-options ${step.kind === "listen-picture" ? "is-picture-choice" : ""}`} onErrorCapture={() => setFailedImageStep(session.index)}>
+                  ) : <div key={`${session.index}:${imageAttempt}`} className={`preview-options ${step.kind === "listen-picture" ? "is-picture-choice" : ""} ${contextQuestion ? "is-context-meaning" : ""}`} onErrorCapture={() => setFailedImageStep(session.index)}>
                     {(step.options ?? []).map((id, index) => {
-                      const option = entries.find((item) => item.id === id);
-                      if (!option) return null;
+                      let labelText = "";
+                      let ariaLabel: string | undefined = undefined;
+                      let optionImage = false;
+                      let option: LearningEntry | undefined;
+
+                      if (contextQuestion && entry?.kind === "english") {
+                        if (id === entry.id) {
+                          labelText = entry.lessonMeaning || entry.meaning;
+                        } else if (id.startsWith("distractor:")) {
+                          const idx = parseInt(id.slice("distractor:".length), 10);
+                          labelText = entry.contextQuestion?.distractors[idx] || "";
+                        } else {
+                          option = entries.find((item) => item.id === id);
+                          labelText = option?.kind === "english" ? (option.lessonMeaning || option.meaning) : "";
+                        }
+                      } else {
+                        option = entries.find((item) => item.id === id);
+                        if (!option) return null;
+                        if (step.kind === "listen-picture") {
+                          optionImage = true;
+                          ariaLabel = `图片选项 ${index + 1}：${option.kind === "english" ? option.meaning : option.phrase}`;
+                        } else {
+                          labelText = entryLabel(option);
+                        }
+                      }
+
+                      if (!optionImage && !labelText) return null;
+
                       return <button key={id} data-option-id={id} disabled={answered || unableToAnswer}
-                        aria-label={step.kind === "listen-picture" ? `图片选项 ${index + 1}：${option.kind === "english" ? option.meaning : option.phrase}` : undefined}
-                        className={`preview-option ${answered && id === entry.id ? "is-answer" : ""}`}
+                        aria-label={ariaLabel}
+                        className={`preview-option ${answered && id === entry?.id ? "is-answer" : ""}`}
                         onClick={() => dispatchRaw({ type: "answer", at: Date.now(), optionId: id })}>
-                        {step.kind === "listen-picture" ? <Illustration src={course.img(option)} word="图片暂未加载" eager alt={`图片选项 ${index + 1}`} /> : entryLabel(option)}
-                        {answered && id === entry.id && <Check size={20} />}
+                        {optionImage && option ? <Illustration src={course.img(option)} word="图片暂未加载" eager alt={`图片选项 ${index + 1}`} /> : <span>{labelText}</span>}
+                        {answered && id === entry?.id && <Check size={20} />}
                       </button>;
                     })}
                   </div>}
@@ -270,18 +331,21 @@ export function PrimaryLesson({ course, lesson, entries, profileId, stage, spell
                   </div>}
                   <div className="preview-feedback" aria-live="polite">
                     {answered && result?.outcome === "answered" ? (
-                      <><strong>{result.correct ? "找到了！" : "我们再认识一下。"}</strong>
-                        <span>{entry.kind === "english" ? `${entry.word} 是${entry.meaning}。` : entry.phrase}</span>
-                        {result.support !== "independent" && <small>这次是一起找到的，不计作独立答对。</small>}</>
+                      <><strong>{result.correct ? (isMiddle ? "理解正确！" : "找到了！") : (isMiddle ? "再看一看这个语境。" : "我们再认识一下。")}</strong>
+                        <span>{entry?.kind === "english" ? (contextQuestion && entry.contextQuestion?.explanation ? entry.contextQuestion.explanation : `${entry.word} 是${entry.lessonMeaning || entry.meaning}。`) : entry?.phrase}</span>
+                        {entry?.kind === "english" && entry.collocation && (
+                          <span className="context-collocation-note">常用搭配：<strong>{entry.collocation.phrase}</strong> {entry.collocation.translation}</span>
+                        )}
+                        {result.support !== "independent" && <small>这次有提示或协助，未计作独立答对。</small>}</>
                     ) : session.support !== "independent" ? (
-                      <><strong>{entryLabel(entry)}</strong><span>{session.support === "assisted" ? "请家长一起找找这个新朋友。" : "看看它的样子，再找一找。"}</span></>
-                    ) : <span>{audioQuestion && audioState !== "ready" ? "先听一听，再慢慢选。" : "慢慢来，不计时。"}</span>}
+                      <><strong>{entry ? entryLabel(entry) : ""}</strong><span>{session.support === "assisted" ? (isMiddle ? "参考提示，再仔细读一读句子。" : "请家长一起找找这个新朋友。") : "看看它的样子，再找一找。"}</span></>
+                    ) : <span>{audioQuestion && audioState !== "ready" ? "先听一听，再慢慢选。" : isMiddle ? "认真审题，不限答题时间。" : "慢慢来，不计时。"}</span>}
                   </div>
                   {answered ? <button className="btn btn-primary btn-xl" onClick={() => dispatch({ type: "next" })}>
                     继续 <ArrowRight size={20} />
                   </button> : <div className="preview-support">
-                    <button className="btn btn-ghost" disabled={unableToAnswer} onClick={() => dispatchRaw({ type: "support", support: "hinted", at: Date.now() })}>给我一点提示</button>
-                    <button className="btn btn-ghost" disabled={unableToAnswer} onClick={() => dispatchRaw({ type: "support", support: "assisted", at: Date.now() })}>请家长帮忙</button>
+                    <button className="btn btn-ghost" disabled={unableToAnswer} onClick={() => dispatchRaw({ type: "support", support: "hinted", at: Date.now() })}>{isMiddle ? "查看学习提示" : "给我一点提示"}</button>
+                    <button className="btn btn-ghost" disabled={unableToAnswer} onClick={() => dispatchRaw({ type: "support", support: "assisted", at: Date.now() })}>{isMiddle ? "请求家长/老师协助" : "请家长帮忙"}</button>
                   </div>}
                 </>
               )}

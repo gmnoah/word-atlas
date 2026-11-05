@@ -23,7 +23,7 @@ export const hanziManifest: CourseManifest & { status: "preview" } = {
 };
 export const middleManifest: CourseManifest & { status: "preview" } = {
   id: "middle-english",
-  version: "0.1.0-draft",
+  version: "0.5.0-draft",
   title: "初中英语",
   subject: "english",
   stage: "middle",
@@ -98,8 +98,8 @@ export const courseRegistry: readonly CourseRegistration[] = [
     cover: "atlas/img/project.webp",
     eyebrow: "MIDDLE HORIZONS",
     badge: "初中衔接",
-    count: 100,
-    lessonCount: 10,
+    count: 1100,
+    lessonCount: 110,
   },
   {
     kind: "planned",

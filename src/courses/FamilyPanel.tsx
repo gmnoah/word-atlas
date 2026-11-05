@@ -94,7 +94,7 @@ export function FamilyBackup() {
         toast(checked.error, "warn");
         return;
       }
-      const scope = `将替换这台设备中“词光”的全部本地档案：${checked.plan.profileCount} 位学习者、${checked.plan.courses.length} 门课程。其他网站数据不会受影响。`;
+      const scope = `将替换这台设备中“遇安”的全部本地档案：${checked.plan.profileCount} 位学习者、${checked.plan.courses.length} 门课程。其他网站数据不会受影响。`;
       if (!confirm(`${scope}\n\n建议先导出当前备份。确定恢复吗？`)) return;
       const result = await applyRestoreWithLock(localStorage, checked.plan);
       toast(result.ok ? "已恢复学习记录，请刷新页面继续。" : result.error, result.ok ? "ok" : "warn");
@@ -105,7 +105,7 @@ export function FamilyBackup() {
   return (
     <section className="family-backup" aria-labelledby="family-backup-title">
       <p className="eyebrow" id="family-backup-title">备份与恢复</p>
-      <p>备份包含这台设备里的全部词光档案、课程设置和学习记录，不会上传。</p>
+      <p>备份包含这台设备里的全部遇安档案、课程设置和学习记录，不会上传。</p>
       <div className="family-backup-actions">
         <button type="button" className="btn btn-ghost" onClick={download}>
           <Download size={18} /> 导出全部档案
