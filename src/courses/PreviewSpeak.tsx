@@ -2,6 +2,8 @@ import { Volume2 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { findMandarinVoice } from "./hanzi-voice";
 
+let activeStop: (() => void) | null = null;
+
 export function PreviewSpeak({
   text,
   locale,
@@ -10,6 +12,7 @@ export function PreviewSpeak({
   accessibleLabel,
   onPlaybackState,
   idleLabel = "听一听",
+  className = "preview-voice",
 }: {
   text: string;
   locale: "en-GB" | "zh-CN";
@@ -18,34 +21,45 @@ export function PreviewSpeak({
   accessibleLabel?: string;
   onPlaybackState?: (state: "waiting" | "playing" | "ready" | "error") => void;
   idleLabel?: string;
+  className?: string;
 }) {
   const [status, setStatus] = useState<"idle" | "playing" | "error">("idle");
   const active = useRef<HTMLAudioElement | null>(null);
   const generation = useRef(0);
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
-  const cancel = () => {
+  const stopSelf = () => {
     generation.current++;
     clearTimeout(timer.current);
     active.current?.pause();
     active.current = null;
     if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+    if (activeStop === stopAndReset) activeStop = null;
   };
-  useEffect(() => () => cancel(), []);
+  const stopAndReset = () => {
+    stopSelf();
+    setStatus("idle");
+    onPlaybackState?.("waiting");
+  };
+  useEffect(() => () => stopSelf(), []);
 
   const speak = async () => {
     const wasPlaying = status === "playing";
-    cancel();
+    if (activeStop && activeStop !== stopAndReset) {
+      activeStop();
+    }
+    stopSelf();
     if (wasPlaying) {
       setStatus("idle");
       onPlaybackState?.("waiting");
       return;
     }
     const mine = generation.current;
+    activeStop = stopAndReset;
     setStatus("playing");
     onPlaybackState?.("playing");
     const finish = (error = false) => {
       if (mine !== generation.current) return;
-      cancel();
+      stopSelf();
       setStatus(error ? "error" : "idle");
       onPlaybackState?.(error ? "error" : "ready");
     };
@@ -80,7 +94,7 @@ export function PreviewSpeak({
     }
   };
   return (
-    <div className="preview-voice">
+    <div className={className}>
       <button
         type="button"
         className="btn btn-ghost"

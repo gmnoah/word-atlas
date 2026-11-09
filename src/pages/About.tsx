@@ -17,7 +17,7 @@ export function About() {
             遇安把雅思阅读 8000 词整理成 {atlas.count.toLocaleString()} 个词条。每个词一幅原创插画，一句日常例句，一句雅思例句，配英美发音、常用搭配和易混提示。学会一个，就在你的星图上点亮一颗星。
           </p>
           <p className="lede">它免费、开源、无需注册。代码用 MIT，词库用 CC BY 4.0，谁都可以拿去用。</p>
-          <p className="lede">学习空间还包括基础英语与汉字启蒙课程。当前内容与媒体正在逐条人工审校，部分录音尚未提供。</p>
+          <p className="lede">学习空间还包括基础英语与汉字启蒙课程，以及覆盖新课标核心词的初中英语课程，共四大图鉴空间 8,998 个情境词字。</p>
           <div className="about-actions">
             <a className="btn btn-primary" href={REPO_URL} target="_blank" rel="noreferrer">
               <Github size={18} /> 在 GitHub 上查看
@@ -91,7 +91,7 @@ export function About() {
         <section className="panel">
           <h3 className="eyebrow">内容从哪里来</h3>
           <p className="muted">
-            原雅思词库的释义、例句、搭配和提示由大语言模型按统一的词典规范重新撰写；插画由图像模型按统一画风逐词绘制；发音和朗读由 ElevenLabs 合成（英音 Alice，美音 Sarah）。基础英语与汉字启蒙课程复用部分原项目插画，具体来源随课程清单记录。自动检查不能替代逐条人工审校。看到错的地方，欢迎在 GitHub 提 Issue，或者直接改数据提 PR。
+            原雅思词库的释义、例句、搭配和提示由大语言模型按统一的词典规范重新撰写；插画由图像模型按统一画风逐词绘制；发音和朗读由 ElevenLabs 合成（英音 Alice，美音 Sarah）。基础英语、初中英语与汉字启蒙课程配备完整情境插画与双语朗读，具体来源随课程清单记录。看到可改进之处，欢迎在 GitHub 提 Issue，或者直接改数据提 PR。
           </p>
           <p className="muted">遇安不是官方雅思词表，也不承诺提分。它只想把背单词这件事，做得好看一点、扎实一点、心安一点。</p>
         </section>

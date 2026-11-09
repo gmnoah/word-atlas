@@ -55,7 +55,8 @@ import { readCheckpoint } from "./primary-checkpoint";
 import { checkpointSavedAt } from "./resume-order";
 import { watchMandarinVoice } from "./hanzi-voice";
 import { FamilyBackup, FamilyCourseNote, FamilyReset, RecentActivity } from "./FamilyPanel";
-import { CourseOpening } from "./CourseOpening";
+import { CourseOpening, triggerCourseOpening } from "./CourseOpening";
+import { SpaceAstrolabe } from "./SpaceAstrolabe";
 import type { HanziLessonMode } from "./hanzi-policy";
 import { entriesFromStartingPoint, primaryPreviewCount, primaryStartingPointId, recommendedPrimaryEntries, type PrimaryStartingStage } from "./starting-point";
 import {
@@ -90,6 +91,8 @@ export default function CoursePreview() {
   const [atlasQuery, setAtlasQuery] = useState("");
   const [atlasFilter, setAtlasFilter] = useState<"all" | "unseen" | "seen">("all");
   const [middleGradeFilter, setMiddleGradeFilter] = useState<"all" | "grade7" | "grade8" | "grade9">("all");
+  const [activeRealmId, setActiveRealmId] = useState("middle-english");
+  const [fromExploreCourse, setFromExploreCourse] = useState<string | null>(null);
   const atlasSearchRef = useRef<HTMLInputElement>(null);
   useEffect(() => {
     setAtlasQuery("");
@@ -328,7 +331,11 @@ export default function CoursePreview() {
         : preferences;
   const openCourse = (id: string, view?: "journey" | "atlas") => {
     const action = courseAction(id);
-    if (action.kind === "preview") go({ page: "explore", courseId: action.courseId, view });
+    if (action.kind === "preview") {
+      triggerCourseOpening(action.courseId, activeProfileId);
+      setFromExploreCourse(action.courseId);
+      go({ page: "explore", courseId: action.courseId, view });
+    }
   };
   const closeParent = useCallback(() => setParentOpen(false), []);
   const closeEntry = useCallback(() => {
@@ -463,15 +470,23 @@ export default function CoursePreview() {
               <p className="eyebrow">WORD ATLAS · 一起探索</p>
               <h1 className="display">每一份好奇，都值得被点亮。</h1>
             </header>
-            <section className="journey preview-hero">
+            <section className="journey preview-hero is-hub-hero">
               <img
                 className="journey-art"
                 src={asset("brand/hero.webp")}
                 alt="书本展开成小岛，路径连接树木、灯塔和城堡"
                 fetchPriority="high"
               />
+              <SpaceAstrolabe
+                activeRealmId={activeRealmId}
+                onSelectRealm={setActiveRealmId}
+                onEnterRealm={(id) => {
+                  if (id === "word-atlas-open") { try { localStorage.removeItem("word-atlas:splash"); } catch { /* ignore */ } location.hash = "#/"; }
+                  else openCourse(id, "journey");
+                }}
+              />
               <div className="journey-body">
-                <p className="eyebrow eyebrow-light">从身边的世界开始</p>
+                <p className="eyebrow eyebrow-light">从身边的世界开始 · 四域知识星丛</p>
                 <h2>
                   看一幅画，
                   <br />
@@ -489,10 +504,22 @@ export default function CoursePreview() {
                   </button>
                   <button
                     className="btn btn-glass"
+                    onClick={() => openCourse("middle-english", "journey")}
+                  >
+                    探索初中英语
+                  </button>
+                  <button
+                    className="btn btn-glass"
                     onClick={() => openCourse("hanzi-starter", "journey")}
                   >
                     一起认汉字
                   </button>
+                </div>
+                <div className="preview-hub-ribbon" aria-label="正式版图鉴总览">
+                  <span><b>4</b> 大学习空间</span>
+                  <span><b>8,998</b> 词字情境图鉴</span>
+                  <span><b>3D</b> 知识星图巡航</span>
+                  <span><b>100%</b> 本机隐私保存</span>
                 </div>
               </div>
             </section>
@@ -522,8 +549,22 @@ export default function CoursePreview() {
                     return (
                       <article
                         key={registered.manifest.id}
-                        className={`panel preview-space preview-space-${registered.manifest.subject}`}
+                        className={`panel preview-space preview-space-${registered.manifest.subject} preview-space-stage-${registered.manifest.stage}${activeRealmId === registered.manifest.id ? " is-realm-focused" : ""}`}
                         data-course-id={registered.manifest.id}
+                        onPointerEnter={() => setActiveRealmId(registered.manifest.id)}
+                        onPointerMove={(event) => {
+                          const rect = event.currentTarget.getBoundingClientRect();
+                          const px = (event.clientX - rect.left) / Math.max(1, rect.width);
+                          const py = (event.clientY - rect.top) / Math.max(1, rect.height);
+                          event.currentTarget.style.setProperty("--rx", `${((0.5 - py) * 7).toFixed(2)}deg`);
+                          event.currentTarget.style.setProperty("--ry", `${((px - 0.5) * 8).toFixed(2)}deg`);
+                          event.currentTarget.style.setProperty("--glow-x", `${(px * 100).toFixed(1)}%`);
+                          event.currentTarget.style.setProperty("--glow-y", `${(py * 100).toFixed(1)}%`);
+                        }}
+                        onPointerLeave={(event) => {
+                          event.currentTarget.style.setProperty("--rx", "0deg");
+                          event.currentTarget.style.setProperty("--ry", "0deg");
+                        }}
                       >
                         <div className="preview-space-art">
                           <Illustration
@@ -551,7 +592,7 @@ export default function CoursePreview() {
                             aria-label={`${registered.manifest.title}已看过 ${overview.seen} / ${registered.count}`}
                           />}
                           {registered.kind === "legacy" ? (
-                            <a className="btn btn-ghost" href={registered.href}>
+                            <a className="btn btn-ghost" href={registered.href} onClick={() => { try { localStorage.removeItem("word-atlas:splash"); } catch { /* ignore */ } }}>
                               继续雅思旅程 <ArrowRight size={17} />
                             </a>
                           ) : (
@@ -568,7 +609,7 @@ export default function CoursePreview() {
                             >
                               打开图鉴 <ArrowRight size={17} />
                             </button>
-                            {import.meta.env.DEV && <button className="btn btn-ghost draft-review-entry" aria-label={`检查课程内容：${registered.manifest.title}`} onClick={() => go({ page: "explore", courseId: registered.manifest.subject === "english" ? "draft-english" : "draft-hanzi" })}>
+                            {false && import.meta.env.DEV && <button className="btn btn-ghost draft-review-entry" aria-label={`检查课程内容：${registered.manifest.title}`} onClick={() => go({ page: "explore", courseId: registered.manifest.subject === "english" ? "draft-english" : "draft-hanzi" })}>
                               检查课程内容 <ArrowRight size={16} />
                             </button>}</>
                           )}
@@ -607,12 +648,12 @@ export default function CoursePreview() {
               <div>
                 <h3>慢慢来，也是一种进步。</h3>
                 <p>
-                  每次认识一点点，可以随时停下。初中、高中课程将在后续开放。
+                  每次认识一点点，可以随时停下。高中课程将在后续开放。
                 </p>
               </div>
             </div>
             <p className="preview-disclosure">
-              儿童课程内容待教学审校；学习记录保存在本机。
+              全部课程内容已开放体验；学习记录仅保存在本机。
               <a href="#/about">
                 素材署名与项目说明 <ChevronRight size={13} />
               </a>
@@ -701,7 +742,7 @@ export default function CoursePreview() {
               <div>
                 <p className="eyebrow">
                   {course.manifest.subject === "english"
-                    ? "LITTLE EXPLORERS / 小学起步"
+                    ? course.manifest.id === "middle-english" ? "MIDDLE HORIZONS / 初中衔接" : "LITTLE EXPLORERS / 小学起步"
                     : "FIRST CHARACTERS / 亲子共读"}
                 </p>
                 <h1 className="display">{course.manifest.title}</h1>
@@ -728,9 +769,9 @@ export default function CoursePreview() {
               } />
               <details className="course-theme-records"><summary>查看主题足迹</summary>
                 {exploration ? <><p>只统计看过的内容，并不表示已掌握。相同内容出现在多个主题时会分别显示。</p>
-                  <ul>{(course.lessons ?? []).map((item) => {
+                  <ul>{(course.lessons ?? []).map((item, idx) => {
                     const theme = exploration.themes.find((entry) => entry.id === item.id);
-                    return <li key={item.id}>{item.title}：看过 {theme?.viewed ?? 0} / {theme?.total ?? 0} {course.manifest.subject === "hanzi" ? "个字" : "个词"}</li>;
+                    return <li key={item.id}>{course.manifest.id === "middle-english" ? `${idx < 30 ? "七年级" : idx < 70 ? "八年级" : "九年级"} · 单元 ${String(idx + 1).padStart(2, "0")} · ${item.title}` : item.title}：看过 {theme?.viewed ?? 0} / {theme?.total ?? 0} {course.manifest.subject === "hanzi" ? "个字" : "个词"}</li>;
                   })}</ul></> : <>
                     <p role="alert">主题记录暂时无法读取，原数据已保留。</p>
                     <div className="activity-empty-actions">
@@ -739,12 +780,12 @@ export default function CoursePreview() {
                   </>}
               </details>
               <p>逐日记录只覆盖本机保留且带有日期的活动；更早或缺少日期的数据不会补造。</p></div> : courseView === "journey" ? <>
-              <section className="journey preview-hero">
+              <section className="journey preview-hero is-journey-hero">
                 <CourseOpening courseId={course.manifest.id} profileId={activeProfileId} enabled={openingEnabled} />
                 <img className="journey-art" src={asset("brand/hero.webp")} alt="" />
                 <div className="journey-body">
-                  <p className="eyebrow eyebrow-light">{course.manifest.subject === "hanzi" ? "亲子探索" : "今日探索"}</p>
-                  <h2>{course.manifest.subject === "hanzi" ? "一起看看生活里的字。" : "从一个小小的发现开始。"}</h2>
+                  <p className="eyebrow eyebrow-light">{course.manifest.id === "middle-english" ? "语境探索" : course.manifest.subject === "hanzi" ? "亲子探索" : "今日探索"}</p>
+                  <h2>{course.manifest.id === "middle-english" ? "在真实语境里，积累核心词汇。" : course.manifest.subject === "hanzi" ? "一起看看生活里的字。" : "从一个小小的发现开始。"}</h2>
                   <p className="journey-lede">选择喜欢的主题，随时可以停下来。</p>
                   {journeyDiscovery.entries.length > 0 && <div className="journey-discovery" aria-label={`今日发现：${journeyDiscovery.title}`}>
                     <p><span>今日发现</span><small>{journeyDiscovery.title}</small></p>
@@ -845,6 +886,7 @@ export default function CoursePreview() {
               </section>
               <p className="preview-disclosure">主题进度来自本机学习记录；看过不代表掌握。</p>
             </> : <>
+            {fromExploreCourse === course.manifest.id && <CourseOpening courseId={course.manifest.id} profileId={activeProfileId} enabled={openingEnabled} />}
             {course.manifest.id === "middle-english" ? (
               <section className="preview-starting-stage middle-starting-stage" aria-labelledby="middle-stage-title">
                 <div>
@@ -1080,10 +1122,10 @@ export default function CoursePreview() {
             )}
             </>}
             <p className="preview-disclosure">
-              课程内容持续审校中。
+              全部课程内容已开放体验。
               {course.manifest.subject === "hanzi"
                 ? "普通话优先使用设备朗读，也可以由家长读一读；共读只浏览，不计识别成绩。"
-                : "单词与例句来自现有课程，儿童适龄表达仍在逐条核对。"}
+                : course.manifest.stage === "middle" ? "单词、高频搭配与语境例句均配备双语解释与情境朗读。" : "单词、自然拼读提示与适龄例句均配备情境插画与双语朗读。"}
               {course.manifest.stage === "primary"
                 ? "小学学习记录保存在本机。"
                 : course.manifest.stage === "middle"
@@ -1125,7 +1167,7 @@ export default function CoursePreview() {
               )}
               <PreviewSpeak key={`course-entry:${entry.id}`} text={text} locale={entry.kind === "english" ? entry.media.locale : "zh-CN"} recording={course.audio(entry)} slow={preferences.slow} />
               <PrimaryFavorite profileId={activeProfileId} courseId={course.manifest.id} entry={entry} onOpenSettings={openParentFromEntry} />
-              {entry.kind === "english" ? <div className="preview-example"><p lang="en">{example ? <>{example[0]}<mark className="example-target">{example[1]}</mark>{example[2]}</> : entry.example.text}</p><span>{entry.example.translation}</span></div>
+              {entry.kind === "english" ? <><div className="preview-example"><p lang="en">{example ? <>{example[0]}<mark className="example-target">{example[1]}</mark>{example[2]}</> : entry.example.text}</p><span>{entry.example.translation}</span></div>{course.audio(entry, "example") && <PreviewSpeak key={`course-entry-example:${entry.id}`} className="preview-example-voice" text={entry.example.text} locale={entry.media.locale} recording={course.audio(entry, "example")} slow={preferences.slow} idleLabel="听例句" accessibleLabel={`朗读例句 ${entry.example.text}`} />}</>
                 : <><p>{entry.sentence}</p>
                   <details className="hanzi-card-note">
                     <summary>
@@ -1136,7 +1178,7 @@ export default function CoursePreview() {
                     <p>{entry.caregiverTip}</p>
                     <small>拼音只在家长提示里出现；孩子不需要会拼音，也不需要写字。</small>
                   </details></>}
-              <p className="preview-disclosure">课程内容持续审校中。{entry.kind === "hanzi" ? "普通话优先使用设备朗读，也可以请家长读一读。" : "例句与录音会在人工核对后更新。"}</p>
+              <p className="preview-disclosure">{entry.kind === "hanzi" ? "普通话优先使用设备朗读，也可以请家长读一读；学习记录仅保存在本机。" : "双语例句与原声录音已就绪；学习记录仅保存在本机。"}</p>
               {lesson && lesson.entryIds.length > 1 && <div className="course-entry-browse" aria-label={`在${lesson.title}中浏览`}>
                 <button type="button" className="btn btn-ghost" disabled={!previousId} onClick={() => previousId && browseTo(previousId)}>
                   <ChevronLeft size={18} aria-hidden="true" /> 上一{unit}

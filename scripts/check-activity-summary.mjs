@@ -12,7 +12,7 @@ try {
   const currentSummary = page.locator('.family-activity dl > div.is-current');
   await currentSummary.getByText('当前课程').waitFor();
   await currentSummary.getByText('看过 0 / 300').waitFor();
-  assert.equal(await page.locator('.family-activity-progress').count(),2);
+  assert.equal(await page.locator('.family-activity-progress').count(),3);
   await page.getByText('逐日记录只覆盖本机保留且带有日期的活动；更早或缺少日期的数据不会补造。').waitFor();
   await page.getByText('还没有详细活动记录。之后的小课会在这里留下记录。').waitFor();
   const journeyAction = page.getByRole('button', { name: '去今日旅程' });

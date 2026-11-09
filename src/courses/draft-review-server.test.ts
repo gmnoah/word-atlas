@@ -14,7 +14,7 @@ test("local review media only serves approved subdirectories and never follows a
     fs.writeFileSync(good, "synthetic image");
     const secret = path.join(root, "secret.png");
     fs.writeFileSync(secret, "private");
-    fs.symlinkSync(secret, path.join(root, "data/drafts/images/escape.png"));
+    try { fs.symlinkSync(secret, path.join(root, "data/drafts/images/escape.png")); assert.equal(safeDraftReviewFile(root, "data/drafts/images/escape.png"), null); } catch { fs.symlinkSync(root, path.join(root, "data/drafts/images/escape-dir"), "junction"); assert.equal(safeDraftReviewFile(root, "data/drafts/images/escape-dir/secret.png"), null); }
     assert.equal(safeDraftReviewFile(root, "public/atlas/img/cat.webp"), fs.realpathSync(good));
     assert.equal(safeDraftReviewFile(root, "data/drafts/images/escape.png"), null);
     assert.equal(safeDraftReviewFile(root, "public/atlas/img/../../secret.png"), null);

@@ -85,7 +85,7 @@ export function Today() {
       </header>
 
       <a className="preview-launch" href="#/explore">
-        <span>新的学习旅程 · 基础英语与汉字启蒙</span>
+        <span>新的学习旅程 · 初中英语、基础英语与汉字启蒙</span>
         <span>打开学习空间 <ArrowRight size={16} /></span>
       </a>
 

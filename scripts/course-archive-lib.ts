@@ -27,7 +27,8 @@ export function archiveCourse(course: SampleCourse, root: string, write: boolean
   // Preflight the whole archive before writing anything.
   for (const { target, value } of outputs) {
     if (fs.existsSync(target)) {
-      if (hash(fs.readFileSync(target)) !== hash(value)) throw new Error(`Version archive conflict: ${id}@${version}; create a new version`);
+      const existing = target.endsWith(".json") ? Buffer.from(fs.readFileSync(target, "utf8").replace(/\r\n/g, "\n")) : fs.readFileSync(target);
+      if (hash(existing) !== hash(value)) throw new Error(`Version archive conflict: ${id}@${version}; create a new version`);
     } else if (!write) throw new Error(`Missing version archive: ${id}@${version}; run npm run archive:courses`);
   }
   if (write) for (const { target, value } of outputs) {

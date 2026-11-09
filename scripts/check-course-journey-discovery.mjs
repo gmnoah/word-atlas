@@ -66,7 +66,7 @@ try {
       );
       const discovery = page.locator(".journey-discovery");
       await discovery.waitFor();
-      assert.match(await page.locator(".preview-disclosure").last().innerText(), /课程内容持续审校中/);
+      assert.match(await page.locator(".preview-disclosure").last().innerText(), /全部课程内容已开放体验/);
       const chips = discovery.getByRole("button");
       assert.equal(await chips.count(), 4);
       assert.match(

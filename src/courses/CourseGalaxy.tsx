@@ -1,7 +1,8 @@
 import { useEffect, useId, useMemo, useRef, useState } from "react";
-import { Crosshair, Minus, Plus, RotateCcw } from "lucide-react";
+import { Compass, Crosshair, Minus, Plus, RotateCcw } from "lucide-react";
 import { detectQuality, GalaxyEngine } from "../galaxy/engine";
 import { layoutGalaxy } from "../galaxy/layout";
+const isReducedMotion = () => typeof window !== "undefined" && !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 import { readPrimaryProgress } from "../learning/primary-progress";
 import { entryLabel, type LearningEntry, type Lesson } from "./types";
 
@@ -19,6 +20,7 @@ export default function CourseGalaxy({ entries, lessons, profileId, courseId, re
   const multiTouch = useRef(false);
   const [topic, setTopic] = useState(lessons[0]?.id ?? "");
   const [focusedTopic, setFocusedTopic] = useState<string | null>(null);
+  const [orbiting, setOrbiting] = useState(false);
   const [webgl, setWebgl] = useState(true);
   const [contextLost, setContextLost] = useState(false);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
@@ -36,6 +38,13 @@ export default function CourseGalaxy({ entries, lessons, profileId, courseId, re
   const unit = courseId === "hanzi-starter" ? "字" : "词";
   const hoveredEntry = hoveredId ? entryById.get(hoveredId) : undefined;
   const focusedIndices = focusedTopic === chosen?.id ? [...new Set(visible.map(entry => layout.index.get(entry.id)).filter((index): index is number => index !== undefined))] : [];
+  const constellationPairs = useMemo(() => {
+    const pairs: [number, number][] = [];
+    for (let i = 0; i < focusedIndices.length - 1; i++) {
+      pairs.push([focusedIndices[i], focusedIndices[i + 1]]);
+    }
+    return pairs;
+  }, [focusedIndices]);
   const helpId = useId();
 
   useEffect(() => {
@@ -43,8 +52,8 @@ export default function CourseGalaxy({ entries, lessons, profileId, courseId, re
     if (!cv) return;
     const initialize = () => {
       let instance: GalaxyEngine;
-      // Keep the map still until the learner moves it; avoid continuous twinkle
-      // and rotation while preserving the existing 3D renderer and controls.
+      // Keep the map still until the learner moves it or toggles 3D orbit;
+      // preserve the existing 3D renderer and controls.
       try { instance = new GalaxyEngine(cv, layout, { quality: detectQuality(), reducedMotion: true, autoRotate: 0, preserve: true }); }
       catch { setWebgl(false); return; }
       engine.current = instance;
@@ -54,11 +63,25 @@ export default function CourseGalaxy({ entries, lessons, profileId, courseId, re
       instance.onFrame = () => {
         const markers = topicMarkers.current;
         if (!markers) return;
+        const projected = new Map<number, { x: number; y: number }>();
         markers.querySelectorAll<SVGCircleElement>("circle[data-index]").forEach(circle => {
           const index = Number(circle.dataset.index), offset = index * 3;
           const point = instance.toScreen(layout.positions[offset], layout.positions[offset + 1], layout.positions[offset + 2]);
           if (!point) { circle.style.visibility = "hidden"; return; }
+          projected.set(index, point);
           circle.setAttribute("cx", String(point.x)); circle.setAttribute("cy", String(point.y)); circle.style.visibility = "visible";
+        });
+        markers.querySelectorAll<SVGLineElement>("line[data-from]").forEach(line => {
+          const fromIdx = Number(line.dataset.from);
+          const toIdx = Number(line.dataset.to);
+          const p1 = projected.get(fromIdx);
+          const p2 = projected.get(toIdx);
+          if (!p1 || !p2) { line.style.visibility = "hidden"; return; }
+          line.setAttribute("x1", String(p1.x));
+          line.setAttribute("y1", String(p1.y));
+          line.setAttribute("x2", String(p2.x));
+          line.setAttribute("y2", String(p2.y));
+          line.style.visibility = "visible";
         });
       };
       if (starStates.current.length === layout.n) instance.setStates(starStates.current);
@@ -68,7 +91,7 @@ export default function CourseGalaxy({ entries, lessons, profileId, courseId, re
       event.preventDefault();
       engine.current?.destroy(); engine.current = null;
       pointers.current.clear(); drag.current = null; pinch.current = null;
-      setHoveredId(null); setFocusedTopic(null); setContextLost(true); setWebgl(false);
+      setOrbiting(false); setHoveredId(null); setFocusedTopic(null); setContextLost(true); setWebgl(false);
     };
     const restored = () => { initialize(); };
     cv.addEventListener("webglcontextlost", lost);
@@ -77,6 +100,18 @@ export default function CourseGalaxy({ entries, lessons, profileId, courseId, re
     const resize = new ResizeObserver(() => { engine.current?.resize(); engine.current?.drawOnce(); }); resize.observe(cv);
     return () => { resize.disconnect(); cv.removeEventListener("webglcontextlost", lost); cv.removeEventListener("webglcontextrestored", restored); engine.current?.destroy(); engine.current = null; };
   }, [layout]);
+  useEffect(() => {
+    const view = engine.current;
+    if (!view) return;
+    if (orbiting && !isReducedMotion()) {
+      view.autoRotate = 0.042;
+      view.start();
+    } else {
+      view.autoRotate = 0;
+      view.stop();
+      view.drawOnce();
+    }
+  }, [orbiting]);
   useEffect(() => {
     const states = new Float32Array(layout.n);
     layout.ids.forEach((id, index) => { if (seen.has(id)) states[index] = 1; });
@@ -90,7 +125,7 @@ export default function CourseGalaxy({ entries, lessons, profileId, courseId, re
     const indices = visible.map(entry => layout.index.get(entry.id)).filter((index): index is number => index !== undefined);
     if (indices.length && engine.current) { engine.current.frameStars(indices); engine.current.drawOnce(); setFocusedTopic(chosen?.id ?? null); }
   };
-  return <section className={`course-galaxy is-${courseId === "hanzi-starter" ? "hanzi" : "english"}`} aria-label="课程知识星图">
+  return <section className={`course-galaxy is-${courseId === "hanzi-starter" ? "hanzi" : "english"}${courseId === "middle-english" ? " is-middle" : ""}`} aria-label="课程知识星图">
     <div className="course-galaxy-sky" hidden={!webgl}>
       <canvas ref={canvas} role="img" tabIndex={webgl ? 0 : -1} aria-describedby={helpId} aria-label={`知识星图，共 ${entries.length} 个${unit}，${progress.ok ? `看过 ${seen.size} 个` : "学习记录暂不可读取"}。${webgl ? "可拖动或用方向键旋转，用加减键缩放；" : ""}下面可按主题选择词卡。`}
         onKeyDown={event => {
@@ -146,10 +181,18 @@ export default function CourseGalaxy({ entries, lessons, profileId, courseId, re
         }}
         onPointerCancel={event => { pointers.current.delete(event.pointerId); drag.current=null; pinch.current=null; multiTouch.current=true; }}
         onPointerLeave={() => { if (engine.current) { engine.current.hover = -1; engine.current.drawOnce(); } setHoveredId(null); }} />
-      <svg ref={topicMarkers} className="course-galaxy-markers" aria-hidden="true">{focusedIndices.map(index => <circle key={index} data-index={index} r="8" />)}</svg>
+      <svg ref={topicMarkers} className="course-galaxy-markers" aria-hidden="true">
+        {constellationPairs.map(([fromIdx, toIdx]) => <line key={`${fromIdx}-${toIdx}`} data-from={fromIdx} data-to={toIdx} />)}
+        {focusedIndices.map(index => <circle key={index} data-index={index} r="8" />)}
+      </svg>
       <div className="course-galaxy-caption"><strong>你的知识星图</strong><span aria-live="polite">{progress.ok ? `看过 ${seen.size} / ${entries.length}` : "学习记录暂时无法读取"}</span><small>亮点代表看过，微光代表待探索</small></div>
       {hoveredEntry && <div className="course-galaxy-preview" aria-hidden="true"><strong lang={hoveredEntry.kind === "hanzi" ? "zh-CN" : "en"}>{entryLabel(hoveredEntry)}</strong><span>{hoveredEntry.kind === "hanzi" ? hoveredEntry.phrase : hoveredEntry.meaning}</span>{progress.ok && seen.has(hoveredEntry.id) && <small>看过</small>}</div>}
-      {webgl && <div className="course-galaxy-controls"><button type="button" onClick={() => zoom(.8)} aria-label="放大星图"><Plus size={18} /></button><button type="button" onClick={() => zoom(1.25)} aria-label="缩小星图"><Minus size={18} /></button><button type="button" onClick={() => { setFocusedTopic(null); engine.current?.resetImmediately(); engine.current?.drawOnce(); }} aria-label="重置星图"><RotateCcw size={18} /></button></div>}
+      {webgl && <div className="course-galaxy-controls">
+        {!isReducedMotion() && <button type="button" className={orbiting ? "is-active" : ""} aria-pressed={orbiting} onClick={() => setOrbiting(v => !v)} aria-label={orbiting ? "暂停星轨巡航" : "开启星轨巡航"}><Compass size={18} /></button>}
+        <button type="button" onClick={() => zoom(.8)} aria-label="放大星图"><Plus size={18} /></button>
+        <button type="button" onClick={() => zoom(1.25)} aria-label="缩小星图"><Minus size={18} /></button>
+        <button type="button" onClick={() => { setOrbiting(false); setFocusedTopic(null); engine.current?.resetImmediately(); engine.current?.drawOnce(); }} aria-label="重置星图"><RotateCcw size={18} /></button>
+      </div>}
     </div>
     {!webgl && <div className="course-galaxy-fallback"><strong>你的知识星图</strong><span>{progress.ok ? `看过 ${seen.size} / ${entries.length}` : "学习记录暂时无法读取"}</span></div>}
     {!progress.ok && <div className="course-galaxy-recovery" role="status">

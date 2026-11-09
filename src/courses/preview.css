@@ -840,7 +840,7 @@
 .preview-parent-tip small {
   color: var(--ink-3);
 }
-.preview-voice p {
+.english-word-card-details .preview-example-voice { padding-bottom: 18px; } .preview-example-voice .btn { min-height: 48px; } .preview-voice p, .preview-example-voice p {
   font-size: 13px;
   color: var(--terra-ink);
   margin-top: 8px;
@@ -1366,7 +1366,7 @@
     padding: 0;
     text-align: center;
   }
-  .preview-voice .btn {
+  .preview-voice .btn, .preview-example-voice .btn {
     margin: auto;
   }
   .preview-study-content > .btn {
@@ -1990,4 +1990,394 @@
 @media (max-width: 560px) {
   .activity-week li { grid-template-columns: 52px minmax(0, 1fr); gap: 5px 10px; }
   .activity-week-detail { grid-column: 2; }
+}
+
+
+/* ---------- 3D Celestial Astrolabe & Four-Realms Interactive Stage ---------- */
+.preview-hero.is-hub-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+  align-items: stretch;
+  min-height: 440px;
+}
+.preview-hero.is-hub-hero .journey-body {
+  order: 1;
+  max-width: 620px;
+}
+.preview-hero.is-hub-hero .space-astrolabe {
+  order: 2;
+  position: relative;
+  z-index: 2;
+  min-height: 360px;
+  margin: 18px 18px 18px 0;
+  border-radius: var(--r-lg);
+  border: 1px solid rgba(242, 235, 221, 0.22);
+  background: radial-gradient(circle at 50% 42%, rgba(21, 27, 45, 0.72), rgba(13, 17, 32, 0.92));
+  box-shadow: inset 0 1px 0 rgba(255, 253, 248, 0.14), 0 18px 42px rgba(8, 11, 22, 0.42);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.space-astrolabe-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: grab;
+  touch-action: pan-y;
+}
+.space-astrolabe-canvas:active {
+  cursor: grabbing;
+}
+.space-astrolabe-hud {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 14px 16px;
+  pointer-events: none;
+}
+.space-astrolabe-focus-card {
+  align-self: flex-start;
+  max-width: 250px;
+  padding: 10px 13px;
+  border-radius: var(--r);
+  border: 1px solid rgba(242, 235, 221, 0.24);
+  background: rgba(13, 17, 32, 0.76);
+  backdrop-filter: blur(8px);
+  color: #f2ebdd;
+  pointer-events: auto;
+}
+.space-astrolabe-kicker {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: #e8b65a;
+}
+.space-astrolabe-title-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 2px;
+}
+.space-astrolabe-title-row strong {
+  font: 600 17px/1.25 var(--serif);
+  color: #fffdf8;
+}
+.space-astrolabe-title-row em {
+  font-style: normal;
+  font-size: 12px;
+  color: #e8b65a;
+  font-weight: 600;
+}
+.space-astrolabe-focus-card p {
+  margin: 4px 0 8px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: rgba(242, 235, 221, 0.82);
+}
+.space-astrolabe-jump {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #e8b65a;
+  cursor: pointer;
+}
+.space-astrolabe-jump:hover {
+  text-decoration: underline;
+}
+.space-astrolabe-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: auto;
+  padding-top: 190px;
+  pointer-events: auto;
+}
+.space-astrolabe-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(242, 235, 221, 0.85);
+  background: rgba(19, 26, 43, 0.78);
+  border: 1px solid rgba(242, 235, 221, 0.2);
+  cursor: pointer;
+  transition: transform 0.18s var(--ease), border-color 0.18s var(--ease), background 0.18s var(--ease);
+}
+.space-astrolabe-pill i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+.space-astrolabe-pill.is-active,
+.space-astrolabe-pill:hover {
+  color: #fffdf8;
+  background: rgba(29, 39, 64, 0.94);
+  border-color: rgba(232, 182, 90, 0.75);
+  transform: translateY(-1px);
+}
+.preview-hub-ribbon {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 253, 248, 0.18);
+  color: rgba(255, 253, 248, 0.88);
+  font-size: 13px;
+}
+.preview-hub-ribbon span {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+}
+.preview-hub-ribbon b {
+  font-family: var(--serif);
+  font-size: 16px;
+  color: #f4c873;
+}
+
+/* ---------- 3D Perspective Tilt & Stage Accents on Learning Space Cards ---------- */
+.preview-space {
+  --rx: 0deg;
+  --ry: 0deg;
+  --glow-x: 50%;
+  --glow-y: 30%;
+  position: relative;
+  transform: perspective(960px) rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform 0.22s var(--ease), box-shadow 0.22s var(--ease), border-color 0.22s var(--ease);
+  will-change: transform;
+}
+.preview-space::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(360px circle at var(--glow-x) var(--glow-y), rgba(232, 182, 90, 0.12), transparent 65%);
+  opacity: 0;
+  transition: opacity 0.25s var(--ease);
+  pointer-events: none;
+  z-index: 1;
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .preview-space:hover {
+    box-shadow: var(--shadow-lg);
+  }
+  .preview-space:hover::before {
+    opacity: 1;
+  }
+}
+.preview-space.is-realm-focused {
+  border-color: var(--ochre);
+}
+.preview-space.preview-space-stage-middle .preview-space-art span {
+  color: var(--sky-ink);
+  background: var(--sky-soft);
+}
+.preview-space.preview-space-stage-middle.is-realm-focused {
+  border-color: var(--sky);
+}
+.preview-space.preview-space-stage-primary.is-realm-focused {
+  border-color: var(--sage);
+}
+.preview-space.preview-space-stage-preschool.is-realm-focused {
+  border-color: var(--terra);
+}
+
+/* ---------- 3D Constellation Lines & Orbit Button in Course Galaxy ---------- */
+.course-galaxy-markers line {
+  stroke: rgba(232, 182, 90, 0.58);
+  stroke-width: 1.4;
+  stroke-dasharray: 4 4;
+  visibility: hidden;
+}
+.course-galaxy.is-middle .course-galaxy-markers line {
+  stroke: rgba(143, 178, 204, 0.68);
+}
+.course-galaxy.is-hanzi .course-galaxy-markers line {
+  stroke: rgba(229, 124, 90, 0.65);
+}
+.course-galaxy-controls button.is-active {
+  color: #131a2b;
+  background: #e8b65a;
+  border-color: #fffdf8;
+}
+
+@media (max-width: 960px) {
+  .preview-hero.is-hub-hero {
+    grid-template-columns: 1fr;
+  }
+  .preview-hero.is-hub-hero .space-astrolabe {
+    margin: 0 18px 18px;
+    min-height: 300px;
+  }
+  .space-astrolabe-pills {
+    padding-top: 130px;
+  }
+}
+@media (max-width: 560px) {
+  .preview-hero.is-hub-hero .space-astrolabe {
+    margin: 0 12px 14px;
+    min-height: 270px;
+  }
+  .space-astrolabe-focus-card {
+    max-width: 100%;
+  }
+  .space-astrolabe-pills {
+    padding-top: 96px;
+  }
+}
+
+
+/* ---------- Full-Screen 3D Double-Door & Particle Course Opening Ceremony ---------- */
+.course-opening {
+  position: fixed;
+  inset: 0;
+  z-index: 95;
+  perspective: 1400px;
+  background: transparent;
+  animation: none;
+}
+.course-opening::before,
+.course-opening::after {
+  display: none;
+}
+.course-opening-door {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50.5%;
+  background: radial-gradient(120% 80% at var(--gx) 45%, #232c48 0%, #151b2e 55%, #0c1020 100%);
+  transition: transform 0.95s cubic-bezier(0.65, 0, 0.35, 1), filter 0.95s;
+  backface-visibility: hidden;
+  z-index: 1;
+}
+.course-opening.is-stage-middle .course-opening-door {
+  background: radial-gradient(120% 80% at var(--gx) 45%, #1e3152 0%, #131c31 55%, #0b101e 100%);
+}
+.course-opening.is-stage-primary .course-opening-door {
+  background: radial-gradient(120% 80% at var(--gx) 45%, #1e332d 0%, #131f25 55%, #0b101d 100%);
+}
+.course-opening.is-stage-hanzi .course-opening-door {
+  background: radial-gradient(120% 80% at var(--gx) 45%, #38232b 0%, #1b1626 55%, #0d101d 100%);
+}
+.course-opening-door::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(transparent, rgba(230, 180, 87, 0.48) 30%, rgba(230, 180, 87, 0.48) 70%, transparent);
+}
+.course-opening-door.is-left {
+  left: 0;
+  --gx: 100%;
+  transform-origin: left center;
+}
+.course-opening-door.is-left::after {
+  right: 0;
+}
+.course-opening-door.is-right {
+  right: 0;
+  --gx: 0%;
+  transform-origin: right center;
+}
+.course-opening-door.is-right::after {
+  left: 0;
+}
+.course-opening.is-open .course-opening-door.is-left {
+  transform: rotateY(-96deg);
+  filter: brightness(1.55);
+}
+.course-opening.is-open .course-opening-door.is-right {
+  transform: rotateY(96deg);
+  filter: brightness(1.55);
+}
+.course-opening-light {
+  position: absolute;
+  top: -10%;
+  bottom: -10%;
+  left: 50%;
+  width: 4px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(255, 236, 200, 0.95), rgba(232, 182, 90, 0.35) 45%, transparent 72%);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+.course-opening.is-open .course-opening-light {
+  animation: course-doorlight 0.98s var(--ease) forwards;
+}
+@keyframes course-doorlight {
+  0% {
+    opacity: 0;
+    width: 4px;
+  }
+  25% {
+    opacity: 1;
+    width: 32vw;
+  }
+  100% {
+    opacity: 0;
+    width: 140vw;
+  }
+}
+.course-opening-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+}
+.course-opening .course-opening-card {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: max(8vh, 52px);
+  z-index: 4;
+  gap: 6px;
+  padding: 12px 20px;
+  transition: opacity 0.45s var(--ease), transform 0.55s var(--ease);
+}
+.course-opening .course-opening-orbit {
+  width: 84px;
+  margin-bottom: 4px;
+}
+.course-opening .course-opening-emblem {
+  width: 58px;
+}
+.course-opening .course-opening-card strong {
+  font-size: clamp(20px, 2.4vw, 26px);
+  letter-spacing: 0.14em;
+  text-shadow: 0 0 24px rgba(232, 182, 90, 0.35);
+}
+.course-opening.is-open .course-opening-card,
+.course-opening.is-open .course-opening-track,
+.course-opening.is-open .course-opening-skip {
+  opacity: 0;
+  transform: scale(1.04);
+  transition: opacity 0.35s var(--ease), transform 0.5s var(--ease);
+}
+.course-opening .course-opening-track {
+  z-index: 4;
+  bottom: 24px;
+  transform: translateX(-50%);
+}
+.course-opening .course-opening-skip {
+  z-index: 5;
+  top: 22px;
+  right: 24px;
 }

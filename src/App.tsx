@@ -51,7 +51,7 @@ export default function App() {
   useEffect(() => {
     // Start the selected course alongside the lazy page chunk. The shared
     // loader deduplicates this with the page's own request and isolates aborts.
-    if (selectedCourse !== "primary-starter" && selectedCourse !== "hanzi-starter") return;
+    if (selectedCourse !== "primary-starter" && selectedCourse !== "hanzi-starter" && selectedCourse !== "middle-english") return;
     const controller = new AbortController();
     void loadCourse(selectedCourse, { signal: controller.signal }).catch(() => {
       // The course page reports any error and offers its normal retry path.

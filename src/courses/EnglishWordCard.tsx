@@ -14,6 +14,7 @@ export function EnglishWordCard({ entry, course, stage, slow, onContinue }: {
   onContinue: () => void;
 }) {
   const recording = course.audio(entry);
+  const exampleRecording = course.audio(entry, "example");
   const target = exampleTargetParts(entry.example.text, entry.example.targetForm);
   const isMiddle = course.manifest.stage === "middle";
 
@@ -42,6 +43,18 @@ export function EnglishWordCard({ entry, course, stage, slow, onContinue }: {
           <p lang="en">{target ? <>{target[0]}<mark className="example-target">{target[1]}</mark>{target[2]}</> : entry.example.text}</p>
           <span>{entry.example.translation}</span>
         </div>
+        {exampleRecording && (
+          <PreviewSpeak
+            key={`${entry.id}:example`}
+            className="preview-example-voice"
+            text={entry.example.text}
+            locale={entry.media.locale}
+            recording={exampleRecording}
+            slow={slow}
+            idleLabel="听例句"
+            accessibleLabel={`朗读例句 ${entry.example.text}`}
+          />
+        )}
       </details>
       <button className="btn btn-primary btn-xl" onClick={onContinue}>
         {isMiddle ? "进入练习" : "认识了，继续"} <ArrowRight size={20} />

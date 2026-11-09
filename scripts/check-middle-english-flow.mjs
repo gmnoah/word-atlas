@@ -79,6 +79,7 @@ async function main() {
     .filter({ hasText: /开始旅程|继续旅程/ });
   await enterBtn.click();
   await page.waitForSelector(".preview-hero, .primary-journey");
+  assert.equal((await page.locator(".preview-course-head .eyebrow").textContent())?.trim(), "MIDDLE HORIZONS / 初中衔接");
 
   // 切换到主题图鉴
   const atlasBtn = page
@@ -176,6 +177,7 @@ async function main() {
   // 划线高亮目标词
   const markTarget = await page.locator(".sheet .example-target").textContent();
   assert.equal(markTarget?.trim(), "grade");
+  assert.ok(await page.locator(".sheet .preview-example-voice button").filter({ hasText: "听例句" }).isVisible(), "词卡弹层应提供例句发音按钮");
 
   // 关闭词卡
   await page.keyboard.press("Escape");
@@ -212,6 +214,7 @@ async function main() {
     const card = page.locator(".preview-study-card");
     await card.waitFor({ state: "visible" });
     assert.equal(await card.getAttribute("data-question-kind"), "intro");
+    assert.ok(await card.locator(".preview-example-voice button").filter({ hasText: "听例句" }).isVisible(), "小课初识词卡应提供例句发音按钮");
 
     // 验证按钮为“进入练习”
     const continueBtn = page
