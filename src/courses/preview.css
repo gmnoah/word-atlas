@@ -2381,3 +2381,79 @@
   top: 22px;
   right: 24px;
 }
+
+
+/* ---------- 3D Astrolabe OrbitControls Unobstructed Drag & Zoom Overrides ---------- */
+.space-astrolabe-canvas {
+  touch-action: none;
+  user-select: none;
+}
+.space-astrolabe.is-dragging .space-astrolabe-canvas {
+  cursor: grabbing;
+}
+.space-astrolabe.is-hovering-node .space-astrolabe-canvas {
+  cursor: pointer;
+}
+.space-astrolabe-hud {
+  pointer-events: none;
+  gap: 8px;
+}
+.space-astrolabe-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  pointer-events: none;
+}
+.space-astrolabe-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: rgba(242, 235, 221, 0.86);
+  text-shadow: 0 1px 6px rgba(8, 11, 22, 0.8);
+}
+.space-astrolabe-orbit-tools {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  pointer-events: auto;
+}
+.space-astrolabe-tool {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  color: #f2ebdd;
+  background: rgba(19, 26, 43, 0.82);
+  border: 1px solid rgba(242, 235, 221, 0.28);
+  cursor: pointer;
+  transition: transform 0.16s var(--ease), border-color 0.16s var(--ease), background 0.16s var(--ease);
+}
+.space-astrolabe-tool:hover {
+  border-color: #e8b65a;
+  background: rgba(29, 39, 64, 0.96);
+  transform: scale(1.06);
+}
+.space-astrolabe-focus-card {
+  pointer-events: none;
+  max-width: 215px;
+  padding: 9px 12px;
+  border-color: var(--realm-accent, rgba(242, 235, 221, 0.28));
+}
+.space-astrolabe-jump {
+  margin-top: 6px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(232, 182, 90, 0.14);
+  border: 1px solid rgba(232, 182, 90, 0.36);
+  pointer-events: auto;
+}
+.space-astrolabe-pills {
+  padding-top: 0 !important;
+  pointer-events: none;
+}
+.space-astrolabe-pill {
+  pointer-events: auto;
+}
