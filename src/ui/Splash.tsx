@@ -16,7 +16,7 @@ export function shouldShowSplash() {
   const h = location.hash.replace(/^#\/?/, "");
   if (h && !h.startsWith("?")) return false; // deep links go straight to content
   try {
-    return localStorage.getItem(SEEN_KEY) !== dayKey();
+    return true;
   } catch {
     return true;
   }

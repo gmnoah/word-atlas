@@ -369,14 +369,17 @@ export function CourseOpening({ courseId, profileId, enabled }: { courseId: stri
 
   const overlay = (
     <div
-      className={`course-opening is-${hanzi ? "hanzi" : "english"} is-stage-${stageClass} is-${phase}`}
+      className={`splash course-opening is-${hanzi ? "hanzi" : "english"} is-stage-${stageClass} is-${phase}`}
       role="region"
       aria-label="学习旅程开场"
     >
-      <div className="course-opening-door is-left" aria-hidden="true" />
-      <div className="course-opening-door is-right" aria-hidden="true" />
-      <div className="course-opening-light" aria-hidden="true" />
-      <canvas ref={canvasRef} className="course-opening-canvas" aria-hidden="true" />
+      <div className="door door-l course-opening-door is-left" aria-hidden="true" />
+      <div className="door door-r course-opening-door is-right" aria-hidden="true" />
+      <div className="splash-light course-opening-light" aria-hidden="true" />
+      <canvas ref={canvasRef} className="splash-canvas course-opening-canvas" aria-hidden="true" />
+
+
+
       <div className="course-opening-stars" aria-hidden="true"><i /><i /><i /></div>
       <div className="course-opening-card" aria-hidden="true">
         <div className="course-opening-orbit">
