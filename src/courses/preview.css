@@ -2457,3 +2457,24 @@
 .space-astrolabe-pill {
   pointer-events: auto;
 }
+
+
+/* ---------- Full-Viewport Portal Sizing for CourseOpening on document.body ---------- */
+body > .course-opening {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 200 !important;
+}
+body > .course-opening .course-opening-card {
+  bottom: max(5vh, 38px);
+  gap: 4px;
+}
+body > .course-opening .course-opening-orbit {
+  width: 64px;
+  margin-bottom: 2px;
+}
+body > .course-opening .course-opening-emblem {
+  width: 44px;
+}

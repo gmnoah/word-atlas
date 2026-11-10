@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { duck, playFile, preloadFiles } from "../lib/sound";
 import { store } from "../store/store";
 import { Mark } from "../ui/Logo";
 
 let forcedCourseId: string | null = null;
 
-/** Mark a course so its grand opening ceremony plays on the next transition from #/explore. */
+/** Mark a course so its grand full-screen opening ceremony plays on the next transition from #/explore. */
 export function triggerCourseOpening(courseId: string, profileId?: string) {
   forcedCourseId = courseId;
   if (profileId) {
@@ -46,8 +47,8 @@ const easeOutCubic = (t: number) => 1 - Math.pow(1 - Math.min(1, Math.max(0, t))
 function coursePalette(courseId: string): [string, number][] {
   if (courseId === "middle-english") {
     return [
-      ["243,236,223", 0.52],
-      ["143,178,204", 0.24],
+      ["243,236,223", 0.54],
+      ["143,178,204", 0.22],
       ["230,180,87", 0.14],
       ["151,184,142", 0.06],
       ["229,124,90", 0.04],
@@ -55,42 +56,44 @@ function coursePalette(courseId: string): [string, number][] {
   }
   if (courseId === "hanzi-starter") {
     return [
-      ["243,236,223", 0.52],
-      ["229,124,90", 0.24],
+      ["243,236,223", 0.54],
+      ["229,124,90", 0.22],
       ["230,180,87", 0.15],
       ["151,184,142", 0.05],
       ["143,178,204", 0.04],
     ];
   }
   return [
-    ["243,236,223", 0.52],
-    ["151,184,142", 0.24],
+    ["243,236,223", 0.54],
+    ["151,184,142", 0.22],
     ["230,180,87", 0.14],
     ["143,178,204", 0.06],
     ["229,124,90", 0.04],
   ];
 }
 
-/** Sample bright pixels of the course emblem, Chinese title, and English wordmark as particle targets. */
+/**
+ * Sample bright pixels of the course emblem, Chinese name, and English wordmark
+ * at full-screen proportions matching IELTS Splash.tsx.
+ */
 function sampleCourseTargets(w: number, h: number, count: number, courseId: string) {
   const c = document.createElement("canvas");
   c.width = w;
   c.height = h;
   const g = c.getContext("2d");
-  if (!g) return { pts: [] as [number, number][], wordTop: h * 0.45 };
+  if (!g) return { pts: [] as [number, number][], wordTop: h * 0.5 };
 
   const s = Math.min(w, h);
   const cx = w / 2;
-  const top = Math.max(48, h * 0.24 - s * 0.14);
-  const R = Math.max(26, s * 0.072);
+  const top = h * 0.46 - s * 0.3;
+  const R = s * 0.082;
   const cy = top + R;
 
   g.fillStyle = g.strokeStyle = "#fff";
-  g.lineWidth = Math.max(2, s * 0.0055);
+  g.lineWidth = Math.max(2, s * 0.006);
 
   if (courseId === "hanzi-starter") {
-    // Classic Tianzige seal frame for Hanzi Starter
-    const box = R * 1.65;
+    const box = R * 1.68;
     g.strokeRect(cx - box / 2, cy - box / 2, box, box);
     g.beginPath();
     g.moveTo(cx - box / 2, cy);
@@ -102,7 +105,6 @@ function sampleCourseTargets(w: number, h: number, count: number, courseId: stri
     g.arc(cx, cy, R * 0.32, 0, Math.PI * 2);
     g.fill();
   } else {
-    // Celestial Compass + Horizon ring for English courses
     g.beginPath();
     g.arc(cx, cy, R, 0, Math.PI * 2);
     g.stroke();
@@ -117,9 +119,9 @@ function sampleCourseTargets(w: number, h: number, count: number, courseId: stri
     }
     g.beginPath();
     g.moveTo(cx, cy - R * 0.9);
-    g.lineTo(cx + R * 0.28, cy);
+    g.lineTo(cx + R * 0.3, cy);
     g.lineTo(cx, cy + R * 0.9);
-    g.lineTo(cx - R * 0.28, cy);
+    g.lineTo(cx - R * 0.3, cy);
     g.closePath();
     g.fill();
     g.beginPath();
@@ -144,15 +146,15 @@ function sampleCourseTargets(w: number, h: number, count: number, courseId: stri
         ? "MIDDLE HORIZONS"
         : "LITTLE EXPLORERS";
 
-  const zh = Math.min(w * 0.19, s * 0.155);
+  const zh = Math.min(w * 0.22, s * 0.19);
   g.font = `700 ${zh}px "Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", serif`;
   g.textAlign = "center";
   g.textBaseline = "middle";
   g.fillText(zhTitle, cx, cy + R + zh * 0.78);
 
-  const en = Math.max(13, zh * 0.22);
+  const en = Math.max(15, zh * 0.22);
   g.font = `700 ${en}px "Fraunces Variable", Georgia, serif`;
-  g.letterSpacing = `${en * 0.26}px`;
+  g.letterSpacing = `${en * 0.28}px`;
   g.fillText(enSub, cx, cy + R + zh * 1.48);
 
   const data = g.getImageData(0, 0, w, h).data;
@@ -165,14 +167,14 @@ function sampleCourseTargets(w: number, h: number, count: number, courseId: stri
   const pts: [number, number][] = [];
   for (let i = 0; i < count && all.length; i++) {
     const [x, y] = all[Math.floor(Math.random() * all.length)];
-    pts.push([x + (Math.random() - 0.5) * 1.8, y + (Math.random() - 0.5) * 1.8]);
+    pts.push([x + Math.random() * 2, y + Math.random() * 2]);
   }
-  return { pts, wordTop: cy + R + zh * 1.25 };
+  return { pts, wordTop: cy + R + zh * 1.3 };
 }
 
 /**
- * Full-screen IELTS-grade 3D double-door & swirling stardust particle portal for each course.
- * Remains non-blocking (pointer-events: none on backdrop, auto on Skip) and respects prefers-reduced-motion.
+ * Full-screen IELTS-grade 3D double-door & 5,200-particle swirling stardust portal rendered into document.body.
+ * Escapes any parent `.page` or `.journey` CSS transform/overflow clipping so it always fills 100vw x 100vh.
  */
 export function CourseOpening({ courseId, profileId, enabled }: { courseId: string; profileId: string; enabled: boolean }) {
   const [visible, setVisible] = useState(false);
@@ -185,23 +187,20 @@ export function CourseOpening({ courseId, profileId, enabled }: { courseId: stri
   const dismiss = () => {
     const skip = skipRef.current;
     if (skip && document.activeElement === skip) {
-      (
-        skip.closest(".journey")?.querySelector<HTMLButtonElement>(".journey-actions button:not(:disabled)") ??
-        document.querySelector<HTMLButtonElement>(".journey-actions button:not(:disabled)")
-      )?.focus();
+      document.querySelector<HTMLButtonElement>(".journey-actions button:not(:disabled)")?.focus();
     }
     setVisible(false);
   };
 
-  const triggerDoorOpen = (withSound = false) => {
+  const triggerDoorOpen = (withSound = true) => {
     if (openingRef.current) return;
     openingRef.current = true;
     setPhase("open");
     if (withSound && store.get().settings.sfx) {
-      void playFile("splash-burst.mp3", 0.5);
-      void playFile("splash-door.mp3", 0.55, 0.1);
+      void playFile("splash-burst.mp3", 0.55);
+      void playFile("splash-door.mp3", 0.6, 0.12);
       duck(true);
-      window.setTimeout(() => duck(false), 1800);
+      window.setTimeout(() => duck(false), 2200);
     }
   };
 
@@ -232,11 +231,11 @@ export function CourseOpening({ courseId, profileId, enabled }: { courseId: stri
     setVisible(true);
     const readyTimer = window.setTimeout(() => {
       setPhase((p) => (p === "gather" ? "ready" : p));
-    }, 650);
+    }, 750);
     const openTimer = window.setTimeout(() => {
       triggerDoorOpen(forced);
-    }, 1250);
-    const doneTimer = window.setTimeout(dismiss, 2250);
+    }, 1450);
+    const doneTimer = window.setTimeout(dismiss, 2550);
     return () => {
       window.clearTimeout(readyTimer);
       window.clearTimeout(openTimer);
@@ -257,7 +256,7 @@ export function CourseOpening({ courseId, profileId, enabled }: { courseId: stri
     if (!g) return;
     g.scale(dpr, dpr);
 
-    const N = w < 700 ? 2200 : 4400;
+    const N = w < 700 ? 2600 : 5200;
     const { pts, wordTop } = sampleCourseTargets(w, h, N, courseId);
     const palette = coursePalette(courseId);
     const pickColor = (): string => {
@@ -267,7 +266,7 @@ export function CourseOpening({ courseId, profileId, enabled }: { courseId: stri
     };
 
     const cx = w / 2;
-    const cy = h * 0.42;
+    const cy = h / 2;
     const ps: Particle[] = [];
     for (let i = 0; i < N; i++) {
       const [tx, ty] = pts.length ? pts[i % pts.length] : [cx, cy];
@@ -278,19 +277,19 @@ export function CourseOpening({ courseId, profileId, enabled }: { courseId: stri
         y: sy,
         sx,
         sy,
-        tx: tx + (Math.random() - 0.5) * 1.1,
-        ty: ty + (Math.random() - 0.5) * 1.1,
+        tx: tx + (Math.random() - 0.5) * 1.2,
+        ty: ty + (Math.random() - 0.5) * 1.2,
         vx: 0,
         vy: 0,
         c: pickColor(),
-        r: ty < wordTop && Math.random() < 0.065 ? 2.1 + Math.random() * 1.3 : 0.75 + Math.random() * 1.15,
-        d: Math.random() * 0.35,
-        a: 0.58 + Math.random() * 0.42,
+        r: ty < wordTop && Math.random() < 0.06 ? 2.2 + Math.random() * 1.4 : 0.7 + Math.random() * 1.2,
+        d: Math.random() * 0.45,
+        a: 0.55 + Math.random() * 0.45,
         tw: Math.random() * Math.PI * 2,
       });
     }
 
-    const stars = Array.from({ length: Math.round((w * h) / 10000) }, () => ({
+    const stars = Array.from({ length: Math.round((w * h) / 9000) }, () => ({
       x: Math.random() * w,
       y: Math.random() * h,
       r: Math.random() * 0.9 + 0.2,
@@ -307,7 +306,7 @@ export function CourseOpening({ courseId, profileId, enabled }: { courseId: stri
       g.globalCompositeOperation = "lighter";
 
       for (const s of stars) {
-        g.fillStyle = `rgba(243,236,223,${0.14 + 0.22 * (0.5 + 0.5 * Math.sin(t * 1.5 + s.tw))})`;
+        g.fillStyle = `rgba(243,236,223,${0.15 + 0.25 * (0.5 + 0.5 * Math.sin(t * 1.3 + s.tw))})`;
         g.fillRect(s.x, s.y, s.r, s.r);
       }
 
@@ -315,38 +314,38 @@ export function CourseOpening({ courseId, profileId, enabled }: { courseId: stri
         openAt = t;
         for (const p of ps) {
           const dx = p.x - cx;
-          const dy = p.y - cy;
+          const dy = p.y - cy * 0.95;
           const len = Math.hypot(dx, dy) || 1;
-          const sp = 4.5 + Math.random() * 9.5;
+          const sp = 4 + Math.random() * 9;
           p.vx = (dx / len) * sp + (Math.random() - 0.5) * 3;
-          p.vy = (dy / len) * sp + (Math.random() - 0.5) * 3 - 0.8;
+          p.vy = (dy / len) * sp + (Math.random() - 0.5) * 3 - 1;
         }
       }
 
-      const fade = openAt ? Math.max(0, 1 - (t - openAt) / 0.95) : 1;
+      const fade = openAt ? Math.max(0, 1 - (t - openAt) / 1.05) : 1;
       for (const p of ps) {
         if (openAt) {
           p.x += p.vx;
           p.y += p.vy;
           p.vx *= 0.985;
-          p.vy = p.vy * 0.985 + 0.035;
+          p.vy = p.vy * 0.985 + 0.04;
         } else {
-          const k = easeOutCubic((t - 0.06 - p.d) / 0.95);
-          const sw = (1 - k) * (82 + p.tw * 11);
-          const ang = (1 - k) * 3.0 + p.tw;
+          const k = easeOutCubic((t - 0.1 - p.d) / 1.2);
+          const sw = (1 - k) * (90 + p.tw * 12);
+          const ang = (1 - k) * 3.2 + p.tw;
           p.x = p.sx + (p.tx - p.sx) * k + Math.cos(ang) * sw;
           p.y = p.sy + (p.ty - p.sy) * k + Math.sin(ang) * sw;
           if (k >= 1) {
-            p.x += Math.sin(t * 2.2 + p.tw) * 0.35;
-            p.y += Math.cos(t * 1.9 + p.tw) * 0.35;
+            p.x += Math.sin(t * 2 + p.tw) * 0.35;
+            p.y += Math.cos(t * 1.7 + p.tw) * 0.35;
           }
         }
-        const twinkle = 0.76 + 0.24 * Math.sin(t * 3.2 + p.tw * 3);
+        const twinkle = 0.75 + 0.25 * Math.sin(t * 3 + p.tw * 3);
         const alpha = p.a * twinkle * fade;
         if (p.r > 2) {
-          g.fillStyle = `rgba(${p.c},${alpha * 0.14})`;
+          g.fillStyle = `rgba(${p.c},${alpha * 0.12})`;
           g.beginPath();
-          g.arc(p.x, p.y, p.r * 2.5, 0, Math.PI * 2);
+          g.arc(p.x, p.y, p.r * 2.6, 0, Math.PI * 2);
           g.fill();
         }
         g.fillStyle = `rgba(${p.c},${alpha})`;
@@ -354,7 +353,7 @@ export function CourseOpening({ courseId, profileId, enabled }: { courseId: stri
       }
 
       g.globalCompositeOperation = "source-over";
-      if (!openAt || t - openAt < 1.05) {
+      if (!openAt || t - openAt < 1.2) {
         raf = requestAnimationFrame(frame);
       }
     };
@@ -368,7 +367,7 @@ export function CourseOpening({ courseId, profileId, enabled }: { courseId: stri
   const middle = courseId === "middle-english";
   const stageClass = hanzi ? "hanzi" : middle ? "middle" : "primary";
 
-  return (
+  const overlay = (
     <div
       className={`course-opening is-${hanzi ? "hanzi" : "english"} is-stage-${stageClass} is-${phase}`}
       role="region"
@@ -384,21 +383,22 @@ export function CourseOpening({ courseId, profileId, enabled }: { courseId: stri
           <i className="course-opening-node is-one" />
           <i className="course-opening-node is-two" />
           <i className="course-opening-node is-three" />
-          <span className="course-opening-emblem"><Mark size={46} /></span>
+          <span className="course-opening-emblem"><Mark size={42} /></span>
         </div>
         <p className="course-opening-kicker">
           {hanzi ? "FIRST CHARACTERS / 亲子探索" : middle ? "MIDDLE HORIZONS / 语境探索" : "LITTLE EXPLORERS / 今日探索"}
         </p>
-        <strong>遇安 · {hanzi ? "汉字启蒙" : middle ? "初中英语" : "基础英语"}</strong>
+        <strong>
+          {hanzi ? "欢迎打开汉字启蒙天地" : middle ? "欢迎打开初中英语大门" : "欢迎打开基础英语大门"}
+        </strong>
         <p className="course-opening-guide">
           {hanzi ? "看一看 · 听一听 · 找一找" : middle ? "READ · COLLOCATE · REMEMBER" : "LOOK · LISTEN · REMEMBER"}
         </p>
-        <small>
-          {hanzi ? "欢迎打开汉字启蒙天地 · 300 象形识字" : middle ? "欢迎打开初中英语大门 · 1100 核心词汇" : "欢迎打开基础英语大门 · 300 情境词汇"}
-        </small>
       </div>
       <div className="course-opening-track" aria-hidden="true"><span /></div>
       <button ref={skipRef} type="button" className="course-opening-skip" onClick={dismiss}>跳过开场</button>
     </div>
   );
+
+  return typeof document !== "undefined" ? createPortal(overlay, document.body) : overlay;
 }
